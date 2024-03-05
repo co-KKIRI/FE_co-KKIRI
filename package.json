@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@vitejs/plugin-react-swc": "^3.6.0"
-  }
-}

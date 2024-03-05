@@ -11,7 +11,7 @@ import MyPage from "@/pages/MyPage";
 import Manage from "@/pages/Manage";
 import MyStudy from "@/pages/MyStudy";
 import Profile from "@/pages/Profile";
-import { ROUTER_PATH } from "@/lib/api/path";
+import { ROUTER_PATH } from "@/lib/path";
 
 const {
   HOME_PATH,
