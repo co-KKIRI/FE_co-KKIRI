@@ -1,0 +1,113 @@
+const DESIGN_TOKEN = {
+  /**
+  color: {
+    white: "#FFFFFF",
+    black: "#000000",
+    error: "#DC3A3A",
+    surface: "#f8f9fa",
+    purple: {
+      100: "#F8F0FF",
+      200: "#ECD9FF",
+      300: "#DCB9FF",
+      400: "#C894FD",
+      500: "#AB57FF",
+      600: "#9935FF",
+      700: "#861DEE",
+      800: "#6E0AD1",
+      900: "#5603A7",
+    },
+    beige: {
+      100: "#FFF0D6",
+      200: "#FFE2AD",
+      300: "#FFC583",
+      400: "#FFAE65",
+      500: "#FF8832",
+    },
+    blue: {
+      100: "#E2F5FF",
+      200: "#B1E4FF",
+      300: "#7CD2FF",
+      400: "#34B9FF",
+      500: "#00A2FE",
+    },
+    green: {
+      100: "#E4FBDC",
+      200: "#D0F5C3",
+      300: "#9BE282",
+      400: "#60CF37",
+      500: "#2BA600",
+      550: "#4b7a47",
+      600: "#30523a",
+      700: "#2b5116",
+    },
+    red: {
+      900: "#bf1832",
+    },
+    gray: {
+      100: "#F6F6F6",
+      200: "#EEEEEE",
+      300: "#CCCCCC",
+      400: "#999999",
+      500: "#555555",
+      600: "#4A4A4A",
+      700: "#3A3A3A",
+      800: "#2B2B2B",
+      900: "#181818",
+    },
+    xMas: {
+      green: { 200: "#b8cab2", 300: "#96b8a5" },
+      beige: { 200: "#f1eedb", 300: "#eae3c6" },
+      blue: { 200: "#d9e5db", 300: "#b8cab2" },
+      purple: { 200: "#f1cdc7", 300: "#e59b90" },
+    },
+  },
+  typography: {
+    font12Regular: "font-size: 1.2rem; line-height: 1.8rem; letter-spacing: -0.006rem; font-weight: 400;",
+    font14Regular: "font-size: 1.4rem; line-height: 2rem; letter-spacing: -0.07rem; font-weight: 400;",
+    font14Bold: "font-size: 1.4rem; line-height: 2rem; letter-spacing: -0.07rem; font-weight: 700;",
+    font15Regular: "font-size: 1.5rem; line-height: 2.2rem; letter-spacing: -0.015rem; font-weight: 400;",
+    font15Bold: "font-size: 1.5rem; line-height: 2.2rem; letter-spacing: -0.015rem; font-weight: 700;",
+    font16Regular: "font-size: 1.6rem; line-height: 2.6rem; letter-spacing: -0.016rem; font-weight: 400;",
+    font16Bold: "font-size: 1.6rem; line-height: 2.6rem; letter-spacing: -0.016rem; font-weight: 700;",
+    font18Regular: "font-size: 1.8rem; line-height: 2.8rem; letter-spacing: -0.018rem; font-weight: 400;",
+    font18Bold: "font-size: 1.8rem; line-height: 2.8rem; letter-spacing: -0.018rem; font-weight: 700;",
+    font20Regular: "font-size: 2rem; line-height: 3rem; letter-spacing: -0.02rem; font-weight: 400;",
+    font20Bold: "font-size: 2rem; line-height: 3rem; letter-spacing: -0.02rem; font-weight: 700;",
+    font24Regular: "font-size: 2.4rem; line-height: 3.6rem; letter-spacing: -0.024rem; font-weight: 400;",
+    font24Bold: "font-size: 2.4rem; line-height: 3.6rem; letter-spacing: -0.024rem; font-weight: 700;",
+    font28Bold: "font-size: 2.8rem; line-height: 4.2rem; letter-spacing: -0.028rem; font-weight: 700;",
+  },
+  layout: {
+    spacing: {
+      small: "0.8rem",
+      medium: "1.6rem",
+      large: "2.4rem",
+    },
+    breakpoint: {
+      mobile: "768px",
+      tablet: "1024px",
+      pc: "1200px",
+    },
+    zIndex: {
+      dropdown: "z-index: 200",
+      sticky: "z-index: 400",
+      popover: "z-index: 600",
+      default: "z-index: 1",
+      overlay: "z-index: 800",
+      modal: "z-index: 1000",
+      toast: "z-index: 1200",
+    },
+  },
+  boxShadow: {
+    card: "0px 2px 12px 0px rgba(0, 0, 0, 0.08)",
+  },
+  overlayBackDropColor: {
+    screen: "rgba(0, 0, 0, 0.50)",
+    badge: "rgba(0, 0, 0, 0.54)",
+    toast: "rgba(0, 0, 0, 0.80)",
+    card: "linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%)",
+  },
+   */
+};
+
+export default DESIGN_TOKEN;

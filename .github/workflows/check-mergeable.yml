@@ -1,0 +1,67 @@
+#feature/* 브랜치에서 -> develop 브랜치로 pr을 요청할 때 실행
+
+name: Check Mergeable
+
+on:
+  pull_request_target:
+    types: [opened]
+    branches:
+      - develop
+
+jobs:
+  checking-mergeable:
+    runs-on: ubuntu-latest
+    steps:
+      # 기본적으로 develop의 head에 ref를 두고있으므로,
+      # 조상여부 판별을 위해
+      # PR을 만든 브랜치의 최신 커밋으로 체크아웃해야함
+      - name: checkout feature branch
+        id: checkout_feature_branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: check is ancestor
+        id: check_is_ancestor
+        # git merge-base --is-ancestor <commit1> <commit2>
+        # https://git-scm.com/docs/git-merge-base
+        # --is-ancestor: <commit1>이 <commit2>의 조상이라면, 0, 아니거나 에러면 1
+        # 첫 번째 커밋이 두 번째 커밋의 조상아니라면 (3-way merge, 규칙 지키지 않음)
+
+        # github.event.pull_request.head.sha : PR을 만든 브랜치의 최신 커밋 SHA
+        run: |
+          if git merge-base --is-ancestor ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}; then
+            echo "Merge type is Fast-Forward."
+            echo "::set-output name=mergeType::fast-forward"
+          else
+            echo "Merge type is Three-way."
+            echo "::set-output name=mergeType::three-way"
+          fi
+
+      - name: add decline command in comment
+        uses: mshick/add-pr-comment@v2
+        if: steps.check_is_ancestor.outputs.mergeType == 'three-way'
+        with:
+          message-id: git-decline-command-comment
+          message: |
+            ### 올바르지 않은 PR 형식
+            올바르지 않은 PR 형식입니다.
+
+            ### 참고
+            PR요청 전 deveop 브랜치에 변동이 있을 경우 꼭! feature 브랜치를 rebase 해주세요.
+            현재 시점에서 Merge 시 **Conflict**의 위험이 있습니다.
+            
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: add accept command in comment
+        uses: mshick/add-pr-comment@v2
+        if: steps.check_is_ancestor.outputs.mergeType == 'fast-forward'
+        with:
+          message-id: git-accept-command-comment
+          message: |
+            ### 올바른 PR 형식
+            올바른 PR 형식입니다.
+            코드 작성하시느라 수고 많으셨습니다 :)
+            
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
