@@ -53,12 +53,16 @@ function Gnb({ user, onCategoryClick, onLoginClick, onSignupClick }: GnbProps) {
 }
 export default Gnb;
 
-const { color, typography, mediaQueries } = DESIGN_TOKEN;
+const { color, typography, mediaQueries, zIndex } = DESIGN_TOKEN;
 
 const GnbWrapperStyled = styled.div`
+  ${zIndex.sticky};
+  position: sticky;
+  background-color: ${color.white};
   width: 100%;
   display: flex;
   justify-content: space-between;
+
   ${mediaQueries.desktop} {
     padding: 2.8rem 4rem;
   }
