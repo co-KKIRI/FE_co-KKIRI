@@ -2,7 +2,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 
-const { color, overlayBackDropColor, mediaQueries, spacing } = DESIGN_TOKEN;
+const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
 
 interface ModalLayoutProps {
   children: React.ReactNode;

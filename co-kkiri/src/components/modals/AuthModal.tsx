@@ -5,7 +5,7 @@ import gitHubButton from "@/assets/images/github_logo.svg";
 import logo from "@/assets/images/logo.svg";
 import ModalLayout from "./ModalLayout";
 
-const { color, mediaQueries } = DESIGN_TOKEN;
+const { color, mediaQueries, typography } = DESIGN_TOKEN;
 
 export default function AuthModal() {
   return (
@@ -37,8 +37,7 @@ const Layout = styled.div`
   padding-bottom: 6rem;
 
   & span {
-    font-size: 1.6rem;
-    font-weight: 700;
+    ${typography.font16Bold};
     line-height: 130%;
     color: ${color.black[100]};
     padding: 2rem 0 4rem 0;
