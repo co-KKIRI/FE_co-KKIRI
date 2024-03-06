@@ -8,6 +8,7 @@ const DESIGN_TOKEN = {
   color: {
     white: "#FFFFFF",
     black: {
+      0: "#000000",
       100: "#767676",
       200: "#505050",
       300: "#363636",
