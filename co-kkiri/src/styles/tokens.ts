@@ -27,7 +27,8 @@ const DESIGN_TOKEN = {
   },
   typography: {
     font12Semibold: "font-size: 1.2rem; line-height: normal; font-weight: 600;",
-    font14Medium: "font-size: 1.4rem; line-height: 150%; font-weight: 400;",
+    font14Regular: "font-size: 1.4rem; line-height: 150%; font-weight: 400;",
+    font14Medium: "font-size: 1.4rem; line-height: 150%; font-weight: 500;",
     font14Semibold: "font-size: 1.4rem; line-height: normal; font-weight: 600;",
     font14Bold: "font-size: 1.4rem; line-height: normal; font-weight: 700;",
     font16Regular: "font-size: 1.6rem; line-height: normal; font-weight: 400;",
