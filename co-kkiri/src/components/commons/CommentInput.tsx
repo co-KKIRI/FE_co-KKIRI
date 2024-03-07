@@ -23,7 +23,7 @@ const StyledTextarea = styled.textarea`
   border: none;
   border-radius: 1.5rem;
   box-shadow: ${content};
-  color: ${color.black[300]};
+  color: ${color.black[1]};
   height: 10.3rem;
   padding: 2rem 2.4rem;
   resize: none;
@@ -33,7 +33,7 @@ const StyledTextarea = styled.textarea`
   }
 
   &::placeholder {
-    color: ${color.gray[100]};
+    color: ${color.gray[1]};
   }
 
   &::-webkit-scrollbar {

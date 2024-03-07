@@ -56,10 +56,10 @@ const Container = styled.div`
 
 const StyledInput = styled.input`
   ${font14Medium}
-  background-color: ${color.gray[300]};
+  background-color: ${color.gray[3]};
   border-radius: 9.8rem;
   border: none;
-  color: ${color.black[300]};
+  color: ${color.black[1]};
   padding: 1.5rem 8rem 1.6rem 2.4rem;
   width: 100%;
 
@@ -68,7 +68,7 @@ const StyledInput = styled.input`
   }
 
   &::placeholder {
-    color: ${color.gray[100]};
+    color: ${color.gray[1]};
   }
 
   &[type="search"]::-webkit-search-cancel-button {

@@ -8,20 +8,20 @@ const DESIGN_TOKEN = {
   color: {
     white: "#FFFFFF",
     black: {
-      100: "#767676",
-      200: "#505050",
-      300: "#363636",
+      1: "#363636",
+      2: "#505050",
+      3: "#767676",
     },
     gray: {
-      100: "#a8a8a8",
-      200: "#dbdbdb",
-      300: "#f6f6f6",
+      1: "#A8A8A8",
+      2: "#DBDBDB",
+      3: "#F6F6F6",
     },
     red: "#ED1C24",
     primary: {
-      100: "#29C4BA",
-      200: "#BCEBE8",
-      300: "#29C4BA",
+      1: "#29C4BA",
+      2: "#BCEBE8",
+      3: "#F1F8F7",
     },
     secondary: "#FF9B52",
   },
@@ -56,7 +56,7 @@ const DESIGN_TOKEN = {
     toast: "z-index: 120",
   },
   boxShadow: {
-    content: "0px 4px 20px rgba(0, 0, 0, 0.08)", // 확인 후 수정
+    content: "0px 4px 20px rgba(0, 0, 0, 0.08)",
     floatingButton: "0px 0px 10px rgba(0, 0, 0, 0.10)",
   },
   overlayBackDropColor: "rgba(0, 0, 0, 0.60)",

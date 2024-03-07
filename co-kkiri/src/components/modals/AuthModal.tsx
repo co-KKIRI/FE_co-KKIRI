@@ -39,7 +39,7 @@ const Layout = styled.div`
   & span {
     ${typography.font16Bold};
     line-height: 130%;
-    color: ${color.black[100]};
+    color: ${color.black[3]};
     padding: 2rem 0 4rem 0;
   }
 `;

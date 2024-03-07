@@ -32,8 +32,8 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
   width: fit-content;
   padding: ${({ $padding }) => $padding || `0.4rem 1.2rem`};
 
-  background-color: ${({ $backgroundColor }) => $backgroundColor || color.gray[300]};
-  color: ${({ $fontColor }) => $fontColor || color.black[300]};
+  background-color: ${({ $backgroundColor }) => $backgroundColor || color.gray[3]};
+  color: ${({ $fontColor }) => $fontColor || color.black[3]};
   border-radius: ${({ $borderRadius }) => $borderRadius || `9999rem`};
 
   ${typography.font12Semibold}

@@ -91,7 +91,7 @@ const RightGroupStyled = styled.div`
 
 const StudyButtonStyled = styled.a`
   ${typography.font14Bold};
-  color: ${color.primary[100]};
+  color: ${color.primary[1]};
   ${mediaQueries.mobile} {
     display: none;
   }
