@@ -13,13 +13,13 @@ interface DefaultChipProps {
 export default function DefaultChip({ label, isSelected, onClick, style, selectedStyle }: DefaultChipProps) {
   const currentStyle = isSelected ? selectedStyle : style;
   return (
-    <DefaultChipContainer {...currentStyle} onClick={onClick}>
+    <Container {...currentStyle} onClick={onClick}>
       {label}
-    </DefaultChipContainer>
+    </Container>
   );
 }
 
-interface DefaultChipContainerStyleProps {
+export interface DefaultChipContainerStyleProps {
   $padding?: CSSProperties["padding"];
   $backgroundColor?: CSSProperties["backgroundColor"];
   $fontColor?: CSSProperties["color"];
@@ -28,7 +28,7 @@ interface DefaultChipContainerStyleProps {
 
 const { color, typography } = DESIGN_TOKEN;
 
-const DefaultChipContainer = styled.div<DefaultChipContainerStyleProps>`
+const Container = styled.div<DefaultChipContainerStyleProps>`
   width: fit-content;
   padding: ${({ $padding }) => $padding || `0.4rem 1.2rem`};
 
