@@ -63,12 +63,12 @@ const StyledInput = styled.input`
   padding: 1.5rem 8rem 1.6rem 2.4rem;
   width: 100%;
 
-  &::placeholder {
-    color: ${color.gray[100]};
-  }
-
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: ${color.gray[100]};
   }
 
   &[type="search"]::-webkit-search-cancel-button {

@@ -56,8 +56,8 @@ const DESIGN_TOKEN = {
     toast: "z-index: 120",
   },
   boxShadow: {
-    card: "0px 2px 12px 0px rgba(0, 0, 0, 0.08)", // 확인 후 수정
-    sidebar: "0px 4px 15px 0px rgba(0, 0, 0, 0.08)",
+    content: "0px 4px 20px rgba(0, 0, 0, 0.08)", // 확인 후 수정
+    floatingButton: "0px 0px 10px rgba(0, 0, 0, 0.10)",
   },
   overlayBackDropColor: "rgba(0, 0, 0, 0.60)",
 };
