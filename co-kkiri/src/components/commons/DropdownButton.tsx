@@ -39,7 +39,10 @@ const Container = styled.button<Container>`
   padding-right: 1.2rem;
   width: 10.4rem;
   height: 3.6rem;
-  border: 1px solid ${({ $isSelected }) => ($isSelected ? color.secondary : color.gray[2])};
+  ${({ $isSelected }) =>
+    $isSelected
+      ? `color:${color.secondary}; border:1px solid ${color.secondary};`
+      : `color:${color.black[1]}; border:1px solid ${color.gray[2]}`};
   border-radius: 9.8rem;
   background: ${color.white};
   ${typography.font12Semibold}
