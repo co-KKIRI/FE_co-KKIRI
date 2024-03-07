@@ -1,8 +1,7 @@
 import { MouseEvent, ReactNode } from "react";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import dropdownIcon from "@/assets/icons/dropdown.svg";
-import dropdownSelectedIcon from "@/assets/icons/dropdown_selected.svg";
+import { ICONS } from "@/constants/icons";
 
 interface DropdownButtonProps {
   children: ReactNode;
@@ -10,14 +9,16 @@ interface DropdownButtonProps {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
+const { dropdown, dropdownSelected } = ICONS;
+
 export default function DropdownButton({ children, isSelected, onClick }: DropdownButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {children}
       {isSelected ? (
-        <Arrow src={dropdownSelectedIcon} alt="dropdown_selected" />
+        <Arrow src={dropdownSelected.src} alt={dropdownSelected.alt} />
       ) : (
-        <Arrow src={dropdownIcon} alt="dropdown" />
+        <Arrow src={dropdown.src} alt={dropdown.alt} />
       )}
     </Container>
   );
