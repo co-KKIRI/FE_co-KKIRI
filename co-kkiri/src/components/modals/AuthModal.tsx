@@ -5,12 +5,10 @@ import gitHubButton from "@/assets/images/github_logo.svg";
 import logo from "@/assets/images/logo.svg";
 import ModalLayout from "./ModalLayout";
 
-const { color, mediaQueries, typography } = DESIGN_TOKEN;
-
 export default function AuthModal() {
   return (
     <ModalLayout desktopWidth={55.8} mobileWidth={32}>
-      <Layout>
+      <Container>
         <Logo src={logo} alt="로고 이미지" />
         <span>로그인 / 회원가입</span>
         <LoginButtons>
@@ -21,12 +19,14 @@ export default function AuthModal() {
             <img src={gitHubButton} alt="깃허브 로그인 버튼" />
           </LoginButton>
         </LoginButtons>
-      </Layout>
+      </Container>
     </ModalLayout>
   );
 }
 
-const Layout = styled.div`
+const { color, mediaQueries, typography } = DESIGN_TOKEN;
+
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

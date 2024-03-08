@@ -13,16 +13,16 @@ interface ModalLayoutProps {
 
 export default function ModalLayout({ children, mobileWidth, tabletWidth, desktopWidth }: ModalLayoutProps) {
   return (
-    <Layout>
+    <Container>
       <ModalBox mobileWidth={mobileWidth} tabletWidth={tabletWidth} desktopWidth={desktopWidth}>
         <CloseButton src={close} alt="닫기 아이콘" />
         {children}
       </ModalBox>
-    </Layout>
+    </Container>
   );
 }
 
-const Layout = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@ const Layout = styled.div`
   background-color: ${overlayBackDropColor};
 `;
 
-const ModalBox = styled.div<{ mobileWidth?: number; tabletWidth?: number; desktopWidth?: number }>`
+const ModalBox = styled.div<ModalLayoutProps>`
   display: flex;
   justify-content: center;
   align-items: center;
