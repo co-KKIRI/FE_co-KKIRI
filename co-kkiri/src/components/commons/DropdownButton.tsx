@@ -1,8 +1,7 @@
 import { MouseEvent, ReactNode } from "react";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import dropdownIcon from "@/assets/icons/dropdown.svg";
-import dropdownSelectedIcon from "@/assets/icons/dropdown_selected.svg";
+import { ICONS } from "@/constants/icons";
 
 interface DropdownButtonProps {
   children: ReactNode;
@@ -10,14 +9,16 @@ interface DropdownButtonProps {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
+const { dropdown, dropdownSelected } = ICONS;
+
 export default function DropdownButton({ children, isSelected, onClick }: DropdownButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {children}
       {isSelected ? (
-        <Arrow src={dropdownSelectedIcon} alt="dropdown_selected" />
+        <Arrow src={dropdownSelected.src} alt={dropdownSelected.alt} />
       ) : (
-        <Arrow src={dropdownIcon} alt="dropdown" />
+        <Arrow src={dropdown.src} alt={dropdown.alt} />
       )}
     </Container>
   );
@@ -38,7 +39,10 @@ const Container = styled.button<Container>`
   padding-right: 1.2rem;
   width: 10.4rem;
   height: 3.6rem;
-  border: 1px solid ${({ $isSelected }) => ($isSelected ? color.secondary : color.gray[2])};
+  ${({ $isSelected }) =>
+    $isSelected
+      ? `color:${color.secondary}; border:1px solid ${color.secondary};`
+      : `color:${color.black[1]}; border:1px solid ${color.gray[2]}`};
   border-radius: 9.8rem;
   background: ${color.white};
   ${typography.font12Semibold}

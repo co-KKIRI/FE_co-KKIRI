@@ -5,6 +5,7 @@ import close from "@/assets/icons/close.svg";
 import comment from "@/assets/icons/comment.svg";
 import deleted from "@/assets/icons/delete.svg";
 import dropdown from "@/assets/icons/dropdown.svg";
+import dropdownSelected from "@/assets/icons/dropdown_selected.svg";
 import eye from "@/assets/icons/eye.svg";
 import scrapFull from "@/assets/icons/scrap_click.svg";
 import scrapEmpty from "@/assets/icons/scrap.svg";
@@ -40,6 +41,10 @@ export const ICONS = {
   dropdown: {
     src: dropdown,
     alt: "드롭다운 펼치기",
+  },
+  dropdownSelected: {
+    src: dropdownSelected,
+    alt: "선택된 드롭다운",
   },
   eye: {
     src: eye,
