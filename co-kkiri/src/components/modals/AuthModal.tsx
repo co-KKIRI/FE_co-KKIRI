@@ -2,23 +2,26 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import googleButton from "@/assets/images/google_logo.svg";
 import gitHubButton from "@/assets/images/github_logo.svg";
-import logo from "@/assets/images/logo.svg";
 import ModalLayout from "./ModalLayout";
+import { IMAGES } from "@/constants/images";
+import { Link } from "react-router-dom";
 
 export default function AuthModal() {
   return (
     <ModalLayout desktopWidth={55.8} mobileWidth={32}>
       <Container>
-        <Logo src={logo} alt="로고 이미지" />
+        <Link to="/">
+          <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
+        </Link>
         <span>로그인 / 회원가입</span>
-        <LoginButtons>
+        <LoginButtonBox>
           <LoginButton padding={0.9}>
             <img src={googleButton} alt="구글 로그인 버튼" />
           </LoginButton>
           <LoginButton padding={1.3}>
             <img src={gitHubButton} alt="깃허브 로그인 버튼" />
           </LoginButton>
-        </LoginButtons>
+        </LoginButtonBox>
       </Container>
     </ModalLayout>
   );
@@ -46,13 +49,10 @@ const Container = styled.div`
 
 const Logo = styled.img`
   width: 17.8rem;
-
-  ${mediaQueries.mobile} {
-    width: 18rem;
-  }
+  cursor: pointer;
 `;
 
-const LoginButtons = styled.div`
+const LoginButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,6 +71,7 @@ const LoginButton = styled.div<{ padding: number }>`
   height: 7.2rem;
   box-shadow: 0 0.4rem 2rem 0 rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  cursor: pointer;
 
   ${mediaQueries.mobile} {
     width: 5.6rem;
