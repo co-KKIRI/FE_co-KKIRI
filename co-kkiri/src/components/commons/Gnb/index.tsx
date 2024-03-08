@@ -2,6 +2,7 @@ import * as S from "./Gnb.styled";
 import { ROUTER_PATH } from "@/lib/path";
 import { ICONS } from "@/constants/icons";
 import { IMAGES } from "@/constants/images";
+import { Link } from "react-router-dom";
 
 // 임시
 interface User {
@@ -24,12 +25,14 @@ export default function Gnb({ user, onCategoryClick, onLoginClick, onSignupClick
         <button onClick={onCategoryClick}>
           <img src={ICONS.category.src} alt={ICONS.category.alt} />
         </button>
-        <a href="/">
+        <Link to="/">
           <S.Logo src={IMAGES.logo.src} alt={IMAGES.logo.alt} />
-        </a>
+        </Link>
       </S.LeftGroupBox>
       <S.RightGroupBox>
-        <S.PostButton href={POST_PATH}>스터디 모집하기</S.PostButton>
+        <Link to={POST_PATH}>
+          <S.PostButton>스터디 모집하기</S.PostButton>
+        </Link>
         {user ? (
           <S.UserInfoWrapper>
             {user.profileImage ? (
@@ -37,7 +40,9 @@ export default function Gnb({ user, onCategoryClick, onLoginClick, onSignupClick
             ) : (
               <img src={IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
             )}
-            <S.Nickname href={MY_PAGE}>{user.nickname}</S.Nickname>
+            <Link to={MY_PAGE}>
+              <S.Nickname>{user.nickname}</S.Nickname>
+            </Link>
           </S.UserInfoWrapper>
         ) : (
           <div>
