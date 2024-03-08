@@ -5,22 +5,38 @@ import styled from "styled-components";
 
 export default function SideBar() {
   return (
-    <Container>
-      <HamburgerMenuWrapper>
-        <img src={ICONS.category.src} alt={ICONS.category.alt} />
-      </HamburgerMenuWrapper>
-      <CategoryBox>
-        <Link to="/">
-          <Category>홈</Category>
-        </Link>
-        <Category>스터디/프로젝트 찾기</Category>
-        <Category>스카우트</Category>
-      </CategoryBox>
-    </Container>
+    <Background>
+      <Container>
+        <HamburgerMenuWrapper>
+          <img src={ICONS.category.src} alt={ICONS.category.alt} />
+        </HamburgerMenuWrapper>
+        <CategoryBox>
+          <Link to="/">
+            <Category>홈</Category>
+          </Link>
+          <Category>스터디/프로젝트 찾기</Category>
+          <Category>스카우트</Category>
+        </CategoryBox>
+      </Container>
+    </Background>
   );
 }
 
-const { boxShadow, color, typography, mediaQueries } = DESIGN_TOKEN;
+const { boxShadow, color, typography, mediaQueries, overlayBackDropColor } = DESIGN_TOKEN;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: none;
+
+  ${mediaQueries.tablet} {
+    background-color: ${overlayBackDropColor};
+  }
+
+  ${mediaQueries.mobile} {
+    background-color: ${overlayBackDropColor};
+  }
+`;
 
 const Container = styled.div`
   width: 21rem;
@@ -40,7 +56,7 @@ const Container = styled.div`
   }
 
   ${mediaQueries.mobile} {
-    padding-left: 3rem;
+    padding-left: 2rem;
     padding-bottom: 3.8rem;
     width: 21rem;
     height: 100vh;
@@ -70,14 +86,18 @@ const Category = styled.div`
 const HamburgerMenuWrapper = styled.div`
   padding-top: 2.8rem;
   display: none;
+  cursor: pointer;
 
   ${mediaQueries.tablet} {
     display: block;
     padding-bottom: 3.8rem;
+    width: 2rem;
   }
 
   ${mediaQueries.mobile} {
     display: block;
-    padding-bottom: 3.8rem;
+    margin-bottom: 3.1rem;
+    padding-top: 2.1rem;
+    width: 1.8rem;
   }
 `;
