@@ -1,30 +1,9 @@
-import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-export default function SideBar() {
-  return (
-    <Background>
-      <Container>
-        <HamburgerMenuWrapper>
-          <img src={ICONS.category.src} alt={ICONS.category.alt} />
-        </HamburgerMenuWrapper>
-        <CategoryBox>
-          <Link to="/">
-            <Category>홈</Category>
-          </Link>
-          <Category>스터디/프로젝트 찾기</Category>
-          <Category>스카우트</Category>
-        </CategoryBox>
-      </Container>
-    </Background>
-  );
-}
 
 const { boxShadow, color, typography, mediaQueries, overlayBackDropColor } = DESIGN_TOKEN;
 
-const Background = styled.div`
+export const Background = styled.div`
   width: 100%;
   height: 100vh;
   background-color: none;
@@ -38,7 +17,7 @@ const Background = styled.div`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 21rem;
   height: 63rem;
   box-shadow: ${boxShadow.content};
@@ -65,7 +44,7 @@ const Container = styled.div`
   }
 `;
 
-const CategoryBox = styled.div`
+export const CategoryBox = styled.div`
   ${typography.font14Semibold}
   display: flex;
   flex-direction: column;
@@ -74,7 +53,7 @@ const CategoryBox = styled.div`
   padding-top: 3rem;
 `;
 
-const Category = styled.div`
+export const Category = styled.div`
   background-color: ${color.white};
   cursor: pointer;
 
@@ -83,7 +62,7 @@ const Category = styled.div`
   }
 `;
 
-const HamburgerMenuWrapper = styled.div`
+export const HamburgerMenuWrapper = styled.div`
   padding-top: 2.8rem;
   display: none;
   cursor: pointer;
