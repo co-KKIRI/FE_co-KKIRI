@@ -25,18 +25,13 @@ export const Container = styled.div`
 export const LeftGroupBox = styled.div`
   display: flex;
   gap: 2rem;
+  align-items: center;
 `;
 
 export const RightGroupBox = styled.div`
   display: flex;
   gap: 3rem;
   align-items: center;
-`;
-
-export const UserInfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
 `;
 
 export const Logo = styled.img`
@@ -60,10 +55,6 @@ export const PostButton = styled.div`
   ${mediaQueries.mobile} {
     display: none;
   }
-`;
-
-export const Nickname = styled.div`
-  ${typography.font14Medium};
 `;
 
 export const SignButton = styled.button`
