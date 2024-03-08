@@ -1,7 +1,5 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
-import googleButton from "@/assets/images/google_logo.svg";
-import gitHubButton from "@/assets/images/github_logo.svg";
 import ModalLayout from "./ModalLayout";
 import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
@@ -16,10 +14,10 @@ export default function AuthModal() {
         <span>로그인 / 회원가입</span>
         <LoginButtonBox>
           <LoginButton padding={0.9}>
-            <img src={googleButton} alt="구글 로그인 버튼" />
+            <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
           </LoginButton>
           <LoginButton padding={1.3}>
-            <img src={gitHubButton} alt="깃허브 로그인 버튼" />
+            <img src={IMAGES.githubLogo.src} alt={IMAGES.githubLogo.alt} />
           </LoginButton>
         </LoginButtonBox>
       </Container>
