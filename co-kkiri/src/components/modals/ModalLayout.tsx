@@ -37,17 +37,17 @@ const ModalBox = styled.div<ModalLayoutProps>`
   align-items: center;
   flex-direction: column;
   gap: 2.2rem;
-  width: ${(props) => props.desktopWidth}rem;
+  width: ${(props) => props.desktopWidth / 10}rem;
   height: auto;
   background-color: ${color.white};
   border-radius: 2rem;
 
   ${mediaQueries.tablet} {
-    width: ${(props) => props.tabletWidth}rem;
+    width: ${(props) => props.tabletWidth && `${props.tabletWidth / 10}rem`};
   }
 
   ${mediaQueries.mobile} {
-    width: ${(props) => props.mobileWidth}rem;
+    width: ${(props) => props.mobileWidth && `${props.mobileWidth / 10}rem`};
   }
 `;
 

@@ -3,12 +3,15 @@ import styled from "styled-components";
 import ModalLayout from "./ModalLayout";
 import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
+import { ROUTER_PATH } from "@/lib/path";
 
 export default function AuthModal() {
+  const { HOME_PATH } = ROUTER_PATH;
+
   return (
-    <ModalLayout desktopWidth={55.8} mobileWidth={32}>
+    <ModalLayout desktopWidth={558} mobileWidth={320}>
       <Container>
-        <Link to="/">
+        <Link to={HOME_PATH}>
           <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
         </Link>
         <span>로그인 / 회원가입</span>
