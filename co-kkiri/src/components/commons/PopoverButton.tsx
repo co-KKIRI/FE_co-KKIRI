@@ -3,22 +3,22 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
 
-interface DropdownButtonProps {
+interface PopoverButtonProps {
   children: ReactNode;
   isSelected: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const { dropdown, dropdownSelected } = ICONS;
+const { popover, popoverSelected } = ICONS;
 
-export default function DropdownButton({ children, isSelected, onClick }: DropdownButtonProps) {
+export default function PopoverButton({ children, isSelected, onClick }: PopoverButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {children}
       {isSelected ? (
-        <Arrow src={dropdownSelected.src} alt={dropdownSelected.alt} />
+        <Arrow src={popoverSelected.src} alt={popoverSelected.alt} />
       ) : (
-        <Arrow src={dropdown.src} alt={dropdown.alt} />
+        <Arrow src={popover.src} alt={popover.alt} />
       )}
     </Container>
   );
