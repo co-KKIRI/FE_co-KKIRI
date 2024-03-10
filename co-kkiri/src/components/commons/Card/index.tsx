@@ -1,12 +1,13 @@
 import * as S from "./Card.styled";
 import Header from "./Header";
 import ProjectChip from "../Chips/ProjectChip";
-import Scrap from "./Scrap";
+import Scrap from "../Scrap";
 import Title from "./Title";
 import Positions from "./Positions";
 import Stacks from "./Stacks";
-import Count from "./Count";
+import Count from "../Count";
 import { ICONS } from "@/constants/icons";
+import UserInfo from "../UserInfo";
 
 // 임시
 interface Position {
@@ -29,26 +30,27 @@ interface CardData {
   title: string;
   position: Position[];
   stack: Stack[];
-  user: { nickname: string; profileImage: null | string };
+  user: { nickname: string; profileImage: string };
   viewCount: number;
   commentCount: number;
 }
 
 interface CardProps {
-  page: "home" | "studyList";
+  page?: "home" | "studyList";
+  isSidebarOpen?: boolean;
   cardData: CardData;
-  isSidebarOpen: boolean;
+  onClick?: () => void;
 }
 
-export default function Card({ page, isSidebarOpen, cardData }: CardProps) {
+export default function Card({ page = "home", isSidebarOpen = false, cardData, onClick }: CardProps) {
   const { type, scrap, recruitEndAt, progressWay, title, position, stack, user, viewCount, commentCount } = cardData;
 
   return (
-    <S.Container $page={page} $isSidebarOpen={isSidebarOpen}>
+    <S.Container $page={page} $isSidebarOpen={isSidebarOpen} onClick={onClick}>
       {page === "studyList" && (
         <S.TypeWrapper>
           <ProjectChip label={type} />
-          <Scrap scrap={scrap} size={3.6} />
+          <Scrap isScraped={scrap} width={36} />
         </S.TypeWrapper>
       )}
       <S.UpperBox $page={page}>
@@ -56,7 +58,7 @@ export default function Card({ page, isSidebarOpen, cardData }: CardProps) {
           <S.HeaderPadding $page={page}>
             <Header deadline={recruitEndAt} progressWay={progressWay} />
           </S.HeaderPadding>
-          {page === "home" && <Scrap scrap={scrap} size={2.8} />}
+          {page === "home" && <Scrap isScraped={scrap} width={28} />}
         </S.HeaderWrapper>
         <S.ContentWrapper>
           <Title title={title} />
@@ -66,8 +68,7 @@ export default function Card({ page, isSidebarOpen, cardData }: CardProps) {
       </S.UpperBox>
       <S.BreakLine />
       <S.FooterBox>
-        {/* UserInfo 컴포넌트로 대체 */}
-        <div style={{ height: 36 }}>코끼리</div>
+        <UserInfo user={user} />
         <S.CountWrapper>
           <Count icon={ICONS.eye} count={viewCount} />
           <Count icon={ICONS.comment} count={commentCount} />
