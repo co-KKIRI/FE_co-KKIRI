@@ -35,9 +35,7 @@ export default function SearchInput({ placeholder }: SearchInputProps) {
 const {
   color,
   typography: { font14Medium },
-  mediaQueries: { desktop },
-  mediaQueries: { tablet },
-  mediaQueries: { mobile },
+  mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Container = styled.div`

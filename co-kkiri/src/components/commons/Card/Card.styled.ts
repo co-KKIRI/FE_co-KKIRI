@@ -1,31 +1,67 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-type PageProp = {
-  $page: string;
-};
+type PageType = "home" | "studyList";
+
+interface PageProp {
+  $page: PageType;
+}
 
 interface ContainerProps extends PageProp {
   $isSidebarOpen: boolean;
+  onClick?: () => void | undefined;
 }
 
 const {
   color,
   boxShadow: { content },
-  mediaQueries: { desktop },
-  mediaQueries: { tablet },
-  mediaQueries: { mobile },
+  mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
+const desktopWidthByPage = ($isSidebarOpen: boolean, $page: PageType) => {
+  switch ($page) {
+    case "home":
+      return $isSidebarOpen ? "44.5rem" : "26.5rem";
+    case "studyList":
+      return $isSidebarOpen ? "29rem" : "26.5rem";
+    default:
+      return "26.5rem";
+  }
+};
+
+const mobileWidthByPage = ($page: PageType) => {
+  switch ($page) {
+    case "home":
+      return "26.5rem";
+    case "studyList":
+      return "32rem";
+    default:
+      return "26.5rem";
+  }
+};
+
+const widthForDevice = ({ $isSidebarOpen, $page }: ContainerProps) => {
+  const desktopWidth = desktopWidthByPage($isSidebarOpen, $page);
+  const mobileWidth = mobileWidthByPage($page);
+
+  return css`
+    ${desktop} {
+      width: ${desktopWidth};
+    }
+    ${tablet} {
+      width: 34.6rem;
+    }
+    ${mobile} {
+      width: ${mobileWidth};
+    }
+  `;
+};
+
 export const Container = styled.article<ContainerProps>`
-  ${({ $page, $isSidebarOpen }) =>
-    $page === "home" && `${desktop} { width: ${$isSidebarOpen && "44.5rem"}; } ${tablet} { width: 34.6rem; }`};
-  ${({ $page, $isSidebarOpen }) =>
-    $page === "studyList" &&
-    `${desktop} { width: ${$isSidebarOpen && "29rem"}; } ${tablet} { width: 34.6rem; } ${mobile}{width: 32rem}`};
-  width: 26.5rem;
-  border-radius: 2.2rem;
+  ${widthForDevice}
+  border-radius: 2rem;
   box-shadow: ${content};
+  cursor: ${(props) => (props.onClick ? "pointer" : "auto")};
 `;
 
 export const TypeWrapper = styled.div`
@@ -36,20 +72,38 @@ export const TypeWrapper = styled.div`
 `;
 
 export const UpperBox = styled.div<PageProp>`
-  ${({ $page }) => $page === "home" && `padding: 1rem 2rem 1.8rem;`};
-  ${({ $page }) => $page === "studyList" && `padding: 0.5rem 2rem 1.5rem;`};
+  ${({ $page }) => {
+    switch ($page) {
+      case "home":
+        return `padding: 1rem 2rem 1.8rem;`;
+      case "studyList":
+        return `padding: 0.5rem 2rem 1.5rem;`;
+      default:
+        return "";
+    }
+  }};
 `;
 
+const paddingBottomByPage = ($page: PageType) => {
+  switch ($page) {
+    case "home":
+      return "0.8rem";
+    case "studyList":
+      return "1.2rem";
+    default:
+      return "0.8rem";
+  }
+};
+
 export const HeaderWrapper = styled.header<PageProp>`
-  ${({ $page }) => $page === "home" && `padding-bottom: 0.8rem;`};
-  ${({ $page }) => $page === "studyList" && `padding-bottom: 1.2rem;`};
+  ${({ $page }) => `padding-bottom: ${paddingBottomByPage($page)};`}
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const HeaderPadding = styled.div<PageProp>`
-  ${({ $page }) => $page === "home" && `padding-top: 1rem; padding-bottom: 0.4rem;`};
+  ${({ $page }) => ($page === "home" ? `padding-top: 1rem; padding-bottom: 0.4rem;` : "")};
 `;
 
 export const ContentWrapper = styled.main`

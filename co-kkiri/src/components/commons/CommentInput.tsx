@@ -12,9 +12,7 @@ export default function CommentInput({ placeholder }: CommentInputProps) {
 const {
   color,
   typography: { font14Medium },
-  mediaQueries: { desktop },
-  mediaQueries: { tablet },
-  mediaQueries: { mobile },
+  mediaQueries: { desktop, tablet, mobile },
   boxShadow: { content },
 } = DESIGN_TOKEN;
 
