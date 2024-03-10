@@ -12,6 +12,7 @@ import scrapEmpty from "@/assets/icons/scrap.svg";
 import search from "@/assets/icons/search.svg";
 import share from "@/assets/icons/share.svg";
 import triangle from "@/assets/icons/triangle.svg";
+import post from "@/assets/icons/post.svg";
 
 export const ICONS = {
   arrowRight: {
@@ -69,5 +70,9 @@ export const ICONS = {
   triangle: {
     src: triangle,
     alt: "필터 펼치기",
+  },
+  post: {
+    src: post,
+    alt: "스터디/프로젝트 모집글 작성하기",
   },
 };
