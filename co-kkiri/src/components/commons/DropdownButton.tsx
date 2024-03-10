@@ -2,10 +2,15 @@ import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-export default function DropdownButton() {
+interface DropdownButtonProps {
+  selectOption: string;
+  toggleDropdown: () => void;
+}
+
+export default function DropdownButton({ selectOption, toggleDropdown }: DropdownButtonProps) {
   return (
-    <Container>
-      <div>조회순</div>
+    <Container onClick={() => toggleDropdown()}>
+      <div>{selectOption}</div>
       <img src={ICONS.triangle.src} alt={ICONS.triangle.alt} />
     </Container>
   );
@@ -17,10 +22,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  cursor: pointer;
 
   & div {
-    ${typography.font14Semibold}
-    color : ${color.black[3]}
+    ${typography.font14Semibold};
+    color: ${color.black[3]};
   }
 
   & img {
