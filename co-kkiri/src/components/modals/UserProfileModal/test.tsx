@@ -9,7 +9,7 @@ export default function ModalTestPage() {
   };
 
   const userInfo = {
-    profileImg: "",
+    profileImg: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     position: [
       { id: 1, name: "프론트엔드" },
       { id: 2, name: "백엔드" },
