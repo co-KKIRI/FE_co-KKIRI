@@ -1,5 +1,6 @@
 import logo from "@/assets/images/logo.svg";
 import profileImg from "@/assets/images/profileImg.svg";
+import profileImgBig from "@/assets/images/profileImg_big.svg";
 import google from "@/assets/images/google_logo.svg";
 import github from "@/assets/images/github_logo.svg";
 
@@ -10,7 +11,11 @@ export const IMAGES = {
   },
   profileImg: {
     src: profileImg,
-    alt: "프로필 이미지",
+    alt: "프로필 기본 이미지",
+  },
+  profileImgBig: {
+    src: profileImgBig,
+    alt: "프로필 기본 이미지",
   },
   googleLogo: {
     src: google,
