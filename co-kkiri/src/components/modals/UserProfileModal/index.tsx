@@ -39,7 +39,7 @@ export default function UserProfileModal({
     <ModalLayout desktopWidth={430} mobileWidth={320}>
       <S.Container>
         {profileImg ? (
-          <img src={profileImg} alt="프로필 이미지" />
+          <S.ProfileImg src={profileImg} alt="프로필 이미지" />
         ) : (
           <img src={IMAGES.profileImgBig.src} alt={IMAGES.profileImgBig.alt} />
         )}

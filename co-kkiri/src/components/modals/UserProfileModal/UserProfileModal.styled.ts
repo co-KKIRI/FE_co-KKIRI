@@ -41,6 +41,13 @@ export const LinkWrapper = styled.div`
   padding-bottom: 4rem;
 `;
 
+export const ProfileImg = styled.img`
+  width: 10rem;
+  height: 10rem;
+  border-radius: 99rem;
+  object-fit: cover;
+`;
+
 export const Nickname = styled.div`
   ${typography.font16Bold}
 `;
