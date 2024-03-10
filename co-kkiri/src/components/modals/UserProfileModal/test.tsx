@@ -10,7 +10,10 @@ export default function ModalTestPage() {
 
   const userInfo = {
     profileImg: "",
-    position: ["프론트엔드", "백엔드"],
+    position: [
+      { id: 1, name: "프론트엔드" },
+      { id: 2, name: "백엔드" },
+    ],
     nickname: "123",
     career: 2,
     stack: [

@@ -3,16 +3,22 @@ import ModalLayout from "../ModalLayout";
 import { IMAGES } from "@/constants/images";
 import PositionChip from "../../commons/Chips/PositionChip";
 import Stacks from "../../commons/Card/Stacks";
+import Positions from "@/components/commons/Card/Positions";
 
-// 임시
+// 임시 (id가 꼭 있어야 하는지, index로 key 값을 넘겨주는 방법도 고려)
 interface Stack {
   id: number;
   img: string;
 }
 
+interface Position {
+  id: number;
+  name: string;
+}
+
 interface UserProfileModalProps {
   profileImg: string;
-  position: string[];
+  position: Position[];
   nickname: string;
   career: number;
   stack: Stack[];
@@ -37,13 +43,7 @@ export default function UserProfileModal({
         ) : (
           <img src={IMAGES.profileImgBig.src} alt={IMAGES.profileImgBig.alt} />
         )}
-        <S.PositionWrapper>
-          {position.length > 0 ? (
-            position.map((pos, index) => <PositionChip key={index} label={pos} />)
-          ) : (
-            <PositionChip label="포지션" /> /** card 컴포넌트의 position과 함께 갈지 말지 고민 */
-          )}
-        </S.PositionWrapper>
+        <Positions position={position} />
         <S.ProfileBox>
           <S.ProfileWrapper>
             <S.Nickname>{nickname}</S.Nickname>
@@ -55,18 +55,22 @@ export default function UserProfileModal({
         <S.LinkBox>
           <S.Line />
           <S.LinkWrapper>
-            {link.length > 0 ? (
-              link.map((link, index) => (
-                <a key={index} href={link} target="_blank" rel="noopner noreferrer">
-                  {link}
-                </a>
-              ))
-            ) : (
-              <div>링크없음</div>
-            )}
+            {link.length > 0
+              ? link.map((link, index) => (
+                  <a key={index} href={link} target="_blank" rel="noopner noreferrer">
+                    {link}
+                  </a>
+                ))
+              : "링크없음"}
           </S.LinkWrapper>
         </S.LinkBox>
       </S.Container>
     </ModalLayout>
   );
 }
+
+/* {position.length > 0 ? (
+  position.map((pos, index) => <PositionChip key={index} label={pos} />)
+  ) : (
+    <PositionChip label="포지션" /> 
+    )} */
