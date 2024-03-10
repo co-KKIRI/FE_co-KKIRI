@@ -1,7 +1,7 @@
 import * as S from "./UserProfileModal.styled";
 import ModalLayout from "../ModalLayout";
 import { IMAGES } from "@/constants/images";
-import PositionChip from "../../commons/Chips/PositionChip";
+// import PositionChip from "../../commons/Chips/PositionChip";
 import Stacks from "../../commons/Card/Stacks";
 import Positions from "@/components/commons/Card/Positions";
 
