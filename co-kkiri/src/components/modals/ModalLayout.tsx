@@ -2,8 +2,6 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 
-const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
-
 interface ModalLayoutProps {
   children: React.ReactNode;
   mobileWidth?: number;
@@ -21,6 +19,8 @@ export default function ModalLayout({ children, mobileWidth, tabletWidth, deskto
     </Container>
   );
 }
+
+const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
   display: flex;
