@@ -4,9 +4,9 @@ import styled from "styled-components";
 const { boxShadow, color, typography, mediaQueries, overlayBackDropColor } = DESIGN_TOKEN;
 
 export const Background = styled.div`
+  position: fixed;
   width: 100%;
   height: 100vh;
-  background-color: none;
 
   ${mediaQueries.tablet} {
     background-color: ${overlayBackDropColor};
@@ -19,7 +19,7 @@ export const Background = styled.div`
 
 export const Container = styled.div`
   width: 21rem;
-  height: 63rem;
+  height: 98vh;
   box-shadow: ${boxShadow.content};
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
@@ -53,19 +53,17 @@ export const CategoryBox = styled.div`
   padding-top: 3rem;
 `;
 
-export const Category = styled.div`
+export const Category = styled.button`
   background-color: ${color.white};
-  cursor: pointer;
 
   &:hover {
     color: ${color.primary[1]};
   }
 `;
 
-export const HamburgerMenuWrapper = styled.div`
+export const HamburgerMenuWrapper = styled.button`
   padding-top: 2.8rem;
   display: none;
-  cursor: pointer;
 
   ${mediaQueries.tablet} {
     display: block;
