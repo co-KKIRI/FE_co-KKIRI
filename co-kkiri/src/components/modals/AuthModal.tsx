@@ -5,11 +5,15 @@ import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
 import { ROUTER_PATH } from "@/lib/path";
 
-export default function AuthModal() {
+interface AuthModalProps {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function AuthModal({ onClick }: AuthModalProps) {
   const { HOME_PATH } = ROUTER_PATH;
 
   return (
-    <ModalLayout desktopWidth={558} mobileWidth={320}>
+    <ModalLayout desktopWidth={558} mobileWidth={320} onClick={onClick}>
       <Container>
         <Link to={HOME_PATH}>
           <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
