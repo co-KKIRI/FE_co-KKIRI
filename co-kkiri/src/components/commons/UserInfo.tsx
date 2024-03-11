@@ -1,7 +1,5 @@
 import { IMAGES } from "@/constants/images";
-import { ROUTER_PATH } from "@/lib/path";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface UserInfoProps {
@@ -12,7 +10,6 @@ interface UserInfoProps {
 }
 
 export default function UserInfo({ user }: UserInfoProps) {
-  const { MY_PAGE } = ROUTER_PATH;
   return (
     <UserInfoWrapper>
       {user.profileImage ? (
@@ -20,9 +17,7 @@ export default function UserInfo({ user }: UserInfoProps) {
       ) : (
         <img src={IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
       )}
-      <Link to={MY_PAGE}>
-        <Nickname>{user.nickname}</Nickname>
-      </Link>
+      <Nickname>{user.nickname}</Nickname>
     </UserInfoWrapper>
   );
 }
