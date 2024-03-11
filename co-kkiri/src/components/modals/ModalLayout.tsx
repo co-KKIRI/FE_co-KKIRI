@@ -1,28 +1,37 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
+import ModalPortal from "./ModalPortal";
 
 interface ModalLayoutProps {
   children: React.ReactNode;
   mobileWidth?: number;
   tabletWidth?: number;
   desktopWidth: number;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function ModalLayout({ children, mobileWidth, tabletWidth, desktopWidth }: ModalLayoutProps) {
+export default function ModalLayout({ children, mobileWidth, tabletWidth, desktopWidth, onClick }: ModalLayoutProps) {
   return (
-    <Container>
-      <ModalBox mobileWidth={mobileWidth} tabletWidth={tabletWidth} desktopWidth={desktopWidth}>
-        <CloseButton src={close} alt="닫기 아이콘" />
-        {children}
-      </ModalBox>
-    </Container>
+    <ModalPortal>
+      <Container>
+        <ModalBox mobileWidth={mobileWidth} tabletWidth={tabletWidth} desktopWidth={desktopWidth}>
+          <CloseButton onClick={onClick}>
+            <img src={close} alt="닫기 아이콘" />
+          </CloseButton>
+          {children}
+        </ModalBox>
+      </Container>
+    </ModalPortal>
   );
 }
 
 const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +60,7 @@ const ModalBox = styled.div<ModalLayoutProps>`
   }
 `;
 
-const CloseButton = styled.img`
+const CloseButton = styled.button`
   margin-left: auto;
   width: 1.2rem;
   height: 1.2rem;
