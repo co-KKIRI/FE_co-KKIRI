@@ -13,6 +13,7 @@ import search from "@/assets/icons/search.svg";
 import share from "@/assets/icons/share.svg";
 import triangle from "@/assets/icons/triangle.svg";
 import post from "@/assets/icons/post.svg";
+import questionMark from "@/assets/icons/question-mark.svg";
 
 export const ICONS = {
   arrowRight: {
@@ -74,5 +75,9 @@ export const ICONS = {
   post: {
     src: post,
     alt: "스터디/프로젝트 모집글 작성하기",
+  },
+  questionMark: {
+    src: questionMark,
+    alt: "물음표",
   },
 };

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { ICONS } from "@/constants/icons";
 
 //임시
 interface Stack {
@@ -14,9 +15,17 @@ interface StacksProps {
 export default function Stacks({ stack }: StacksProps) {
   return (
     <Wrapper>
-      {stack.map((item) => (
-        <Background key={item.id}></Background>
-      ))}
+      {stack.length > 0 ? (
+        stack.map((item) => (
+          <Background key={item.id}>
+            <img src={item.img} />
+          </Background>
+        ))
+      ) : (
+        <Background>
+          <QuestionMark src={ICONS.questionMark.src} alt={ICONS.questionMark.alt} />
+        </Background>
+      )}
     </Wrapper>
   );
 }
@@ -33,4 +42,12 @@ const Background = styled.div`
   border-radius: 50%;
   width: 3.6rem;
   height: 3.6rem;
+  position: relative;
+`;
+
+const QuestionMark = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
