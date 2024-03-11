@@ -4,23 +4,29 @@ import { ICONS } from "@/constants/icons";
 import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
 import UserInfo from "../UserInfo";
+import { useState } from "react";
+import AuthModal from "@/components/modals/AuthModal";
 
 interface GnbProps {
   user?: {
     nickname: string;
     profileImage: string;
   }; // 미정
-  onCategoryClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onLoginClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onSignupClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onSideBarClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Gnb({ user, onCategoryClick, onLoginClick, onSignupClick }: GnbProps) {
+export default function Gnb({ user, onSideBarClick }: GnbProps) {
   const { HOME_PATH, POST_PATH } = ROUTER_PATH;
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const handleAuthModalOpen = () => {
+    setIsAuthModalOpen(!isAuthModalOpen);
+  };
+
   return (
     <S.Container>
       <S.LeftGroupBox>
-        <button onClick={onCategoryClick}>
+        <button onClick={onSideBarClick}>
           <img src={ICONS.category.src} alt={ICONS.category.alt} />
         </button>
         <Link to={HOME_PATH}>
@@ -31,15 +37,9 @@ export default function Gnb({ user, onCategoryClick, onLoginClick, onSignupClick
         <Link to={POST_PATH}>
           <S.PostButton>스터디 모집하기</S.PostButton>
         </Link>
-        {user ? (
-          <UserInfo user={user} />
-        ) : (
-          <div>
-            <S.SignButton onClick={onLoginClick}>로그인</S.SignButton>/
-            <S.SignButton onClick={onSignupClick}>회원가입</S.SignButton>
-          </div>
-        )}
+        {user ? <UserInfo user={user} /> : <S.SignButton onClick={handleAuthModalOpen}>로그인/회원가입</S.SignButton>}
       </S.RightGroupBox>
+      {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} />}
     </S.Container>
   );
 }
