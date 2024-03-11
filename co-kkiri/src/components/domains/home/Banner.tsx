@@ -1,13 +1,28 @@
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-interface BannerProps {
-  isSidebarOpen?: boolean;
-  onClick: () => void;
+//임시
+interface Image {
+  src: string;
+  alt: string;
 }
 
-export default function Banner({ isSidebarOpen = false, onClick }: BannerProps) {
-  return <Background $isSidebarOpen={isSidebarOpen} onClick={onClick}></Background>;
+interface BannerProps {
+  isSidebarOpen: boolean;
+  image: Image;
+  path: string;
+}
+
+export default function Banner({ image, path, isSidebarOpen }: BannerProps) {
+  return (
+    <Link to={path}>
+      <Background $isSidebarOpen={isSidebarOpen}>
+        <img src={image.src} alt={image.alt} />
+      </Background>
+    </Link>
+  );
 }
 
 const {
@@ -15,7 +30,7 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Background = styled.button<{ $isSidebarOpen?: boolean }>`
+const Background = styled.figure<{ $isSidebarOpen?: boolean }>`
   background-color: ${color.primary[3]};
   border-radius: 2rem;
 
