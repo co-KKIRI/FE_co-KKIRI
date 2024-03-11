@@ -3,22 +3,35 @@ import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
 
-interface ModalLayoutProps {
-  children: React.ReactNode;
+interface ModalBoxProps {
   mobileWidth?: number;
   tabletWidth?: number;
   desktopWidth: number;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function ModalLayout({ children, mobileWidth, tabletWidth, desktopWidth, onClick }: ModalLayoutProps) {
+interface ModalLayoutProps extends ModalBoxProps {
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  modalType?: "confirm";
+}
+
+export default function ModalLayout({
+  mobileWidth,
+  tabletWidth,
+  desktopWidth,
+  children,
+  onClick,
+  modalType,
+}: ModalLayoutProps) {
   return (
     <ModalPortal>
       <Container>
         <ModalBox mobileWidth={mobileWidth} tabletWidth={tabletWidth} desktopWidth={desktopWidth}>
-          <CloseButton onClick={onClick}>
-            <img src={close} alt="닫기 아이콘" />
-          </CloseButton>
+          {!modalType && "confirm" && (
+            <CloseButton onClick={onClick}>
+              <img src={close} alt="닫기 아이콘" />
+            </CloseButton>
+          )}
           {children}
         </ModalBox>
       </Container>
@@ -40,7 +53,7 @@ const Container = styled.div`
   background-color: ${overlayBackDropColor};
 `;
 
-const ModalBox = styled.div<ModalLayoutProps>`
+const ModalBox = styled.div<ModalBoxProps>`
   display: flex;
   justify-content: center;
   align-items: center;
