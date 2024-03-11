@@ -49,7 +49,9 @@ export default function Card({ page = "home", isSidebarOpen = false, cardData, o
     <S.Container $page={page} $isSidebarOpen={isSidebarOpen} onClick={onClick}>
       {page === "studyList" && (
         <S.TypeWrapper>
-          <ProjectChip label={type} />
+          <S.ProjectChip>
+            <ProjectChip label={type} />
+          </S.ProjectChip>
           <Scrap isScraped={scrap} width={36} />
         </S.TypeWrapper>
       )}

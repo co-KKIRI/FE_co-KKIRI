@@ -59,6 +59,7 @@ const widthForDevice = ({ $isSidebarOpen, $page }: ContainerProps) => {
 
 export const Container = styled.article<ContainerProps>`
   ${widthForDevice}
+  background-color: ${color.white};
   border-radius: 2rem;
   box-shadow: ${content};
   cursor: ${(props) => (props.onClick ? "pointer" : "auto")};
@@ -69,6 +70,10 @@ export const TypeWrapper = styled.div`
   justify-content: space-between;
   align-items: start;
   padding: 1.5rem 2rem 0 0;
+`;
+
+export const ProjectChip = styled.div`
+  margin-left: -0.2rem;
 `;
 
 export const UpperBox = styled.div<PageProp>`
