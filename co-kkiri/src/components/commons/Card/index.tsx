@@ -11,13 +11,12 @@ import { ICONS } from "@/constants/icons";
 
 // 임시
 interface Position {
-  id: number;
   name: string;
 }
 
 //임시
 interface Stack {
-  id: number;
+  name: string;
   img: string;
 }
 

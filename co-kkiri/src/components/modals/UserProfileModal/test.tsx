@@ -10,15 +10,12 @@ export default function ModalTestPage() {
 
   const userInfo = {
     profileImg: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    position: [
-      { id: 1, name: "프론트엔드" },
-      { id: 2, name: "백엔드" },
-    ],
+    position: [{ name: "프론트엔드" }, { name: "백엔드" }],
     nickname: "123",
     career: 2,
     stack: [
-      { id: 1, img: "https://simpleicons.org/icons/react.svg" },
-      { id: 2, img: "https://simpleicons.org/icons/nextdotjs.svg" },
+      { name: "react", img: "https://simpleicons.org/icons/react.svg" },
+      { name: "next.js", img: "https://simpleicons.org/icons/nextdotjs.svg" },
     ],
     introduce: "잘 부탁드립니다.",
     link: ["https://www.youtube.com"],
