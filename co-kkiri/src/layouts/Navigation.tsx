@@ -29,14 +29,13 @@ interface SideBarWrapperProps {
 
 const SideBarWrapper = styled.div<SideBarWrapperProps>`
   ${mediaQueries.desktop} {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out;
     transform: ${(props) => (props.$isOpen ? "translateX(0)" : "translateX(-100%)")};
   }
   ${mediaQueries.tablet} {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
     display: ${(props) => (props.$isOpen ? "block" : "none")};
   }
 

@@ -19,7 +19,7 @@ export const Background = styled.div`
 
 export const Container = styled.div`
   width: 21rem;
-  height: 98vh;
+  height: 80vh;
   box-shadow: ${boxShadow.content};
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
