@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PositionChip from "../Chips/PositionChip";
+import PositionChip from "./Chips/PositionChip";
 
 // 임시
 interface Position {

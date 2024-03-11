@@ -1,13 +1,13 @@
 import * as S from "./Card.styled";
 import Header from "./Header";
+import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";
 import Scrap from "../Scrap";
-import Title from "./Title";
-import Positions from "./Positions";
-import Stacks from "./Stacks";
+import Positions from "../Positions";
+import Stacks from "../Stacks";
 import Count from "../Count";
-import { ICONS } from "@/constants/icons";
 import UserInfo from "../UserInfo";
+import { ICONS } from "@/constants/icons";
 
 // 임시
 interface Position {
