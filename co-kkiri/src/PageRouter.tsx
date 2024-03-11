@@ -12,6 +12,7 @@ import Manage from "@/pages/Manage";
 import MyStudy from "@/pages/MyStudy";
 import Profile from "@/pages/Profile";
 import { ROUTER_PATH } from "@/lib/path";
+import Navigation from "./layouts/Navigation";
 
 const {
   HOME_PATH,
@@ -30,6 +31,7 @@ const {
 const PageRouter = () => {
   return (
     <Router>
+      <Navigation />
       <Routes>
         <Route path={HOME_PATH} element={<Home />} />
         <Route path={STUDY_LIST_PATH} element={<StudyList />} />
