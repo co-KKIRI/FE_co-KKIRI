@@ -14,7 +14,7 @@ export default function Navigation() {
   return (
     <>
       <Gnb onSideBarClick={handleSideBarOpen} />
-      <SideBarWrapper isOpen={isCategoryOpen}>
+      <SideBarWrapper $isOpen={isCategoryOpen}>
         <SideBar onClick={handleSideBarOpen} />
       </SideBarWrapper>
     </>
@@ -24,26 +24,26 @@ export default function Navigation() {
 const { mediaQueries } = DESIGN_TOKEN;
 
 interface SideBarWrapperProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 const SideBarWrapper = styled.div<SideBarWrapperProps>`
   ${mediaQueries.desktop} {
     transition: transform 0.3s ease-in-out;
-    transform: ${(props) => (props.isOpen ? "translateX(0)" : "translateX(-100%)")};
+    transform: ${(props) => (props.$isOpen ? "translateX(0)" : "translateX(-100%)")};
   }
   ${mediaQueries.tablet} {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    display: ${(props) => (props.$isOpen ? "block" : "none")};
   }
 
   ${mediaQueries.mobile} {
     position: absolute;
     top: 0;
     left: 0;
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    display: ${(props) => (props.$isOpen ? "block" : "none")};
   }
 `;

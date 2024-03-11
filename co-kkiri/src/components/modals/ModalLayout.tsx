@@ -4,15 +4,18 @@ import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
 
 interface ModalBoxProps {
-  mobileWidth?: number;
-  tabletWidth?: number;
-  desktopWidth: number;
+  $mobileWidth?: number;
+  $tabletWidth?: number;
+  $desktopWidth: number;
 }
 
-interface ModalLayoutProps extends ModalBoxProps {
+interface ModalLayoutProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   modalType?: "confirm";
+  mobileWidth?: number;
+  tabletWidth?: number;
+  desktopWidth: number;
 }
 
 export default function ModalLayout({
@@ -26,7 +29,7 @@ export default function ModalLayout({
   return (
     <ModalPortal>
       <Container>
-        <ModalBox mobileWidth={mobileWidth} tabletWidth={tabletWidth} desktopWidth={desktopWidth}>
+        <ModalBox $mobileWidth={mobileWidth} $tabletWidth={tabletWidth} $desktopWidth={desktopWidth}>
           {!modalType && "confirm" && (
             <CloseButton onClick={onClick}>
               <img src={close} alt="닫기 아이콘" />
@@ -59,17 +62,17 @@ const ModalBox = styled.div<ModalBoxProps>`
   align-items: center;
   flex-direction: column;
   gap: 2.2rem;
-  width: ${(props) => props.desktopWidth / 10}rem;
+  width: ${(props) => props.$desktopWidth / 10}rem;
   height: auto;
   background-color: ${color.white};
   border-radius: 2rem;
 
   ${mediaQueries.tablet} {
-    width: ${(props) => props.tabletWidth && `${props.tabletWidth / 10}rem`};
+    width: ${(props) => props.$tabletWidth && `${props.$tabletWidth / 10}rem`};
   }
 
   ${mediaQueries.mobile} {
-    width: ${(props) => props.mobileWidth && `${props.mobileWidth / 10}rem`};
+    width: ${(props) => props.$mobileWidth && `${props.$mobileWidth / 10}rem`};
   }
 `;
 

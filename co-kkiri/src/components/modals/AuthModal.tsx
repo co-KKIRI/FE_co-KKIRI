@@ -20,10 +20,10 @@ export default function AuthModal({ onClick }: AuthModalProps) {
         </Link>
         <span>로그인 / 회원가입</span>
         <LoginButtonBox>
-          <LoginButton padding={0.9}>
+          <LoginButton $padding={0.9}>
             <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
           </LoginButton>
-          <LoginButton padding={1.3}>
+          <LoginButton $padding={1.3}>
             <img src={IMAGES.githubLogo.src} alt={IMAGES.githubLogo.alt} />
           </LoginButton>
         </LoginButtonBox>
@@ -68,7 +68,7 @@ const LoginButtonBox = styled.div`
   }
 `;
 
-const LoginButton = styled.div<{ padding: number }>`
+const LoginButton = styled.div<{ $padding: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,6 +81,6 @@ const LoginButton = styled.div<{ padding: number }>`
   ${mediaQueries.mobile} {
     width: 5.6rem;
     height: 5.6rem;
-    padding: ${(props) => props.padding}rem;
+    padding: ${(props) => props.$padding}rem;
   }
 `;
