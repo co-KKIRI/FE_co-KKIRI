@@ -72,6 +72,10 @@ const ToolbarContainer = styled.div`
       width: 1.8rem;
       margin-right: 0.8rem;
     }
+
+    & .ql-blockquote {
+      margin-right: 0;
+    }
   }
 `;
 
