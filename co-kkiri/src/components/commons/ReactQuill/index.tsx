@@ -29,7 +29,7 @@ export default function QuillEditor() {
       },
     };
   }, []);
-
+  console.log(values);
   return (
     <Container>
       <CustomToolbar />
