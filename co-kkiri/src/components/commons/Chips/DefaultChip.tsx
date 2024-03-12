@@ -47,24 +47,13 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
   padding: 0.4rem 1.2rem;
 
   display: flex;
+  position: relative;
 
   background-color: ${color.gray[3]};
   color: ${color.black[3]};
   border-radius: 9999rem;
 
   ${typography.font12Semibold}
-
-  ${({ $isVertical }) => $isVertical ? `
-      flex-direction: column;
-      align-items: center;
-      gap: .4rem;
-      padding: .8rem;
-    ` : `
-      flex-direction: row;
-      align-items: center;
-      gap: 1.2rem;
-      `
-  }
 
   ${({$isClickable}) => $isClickable && `cursor: pointer;`}
 
@@ -81,6 +70,25 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
     width: 1.4rem;
     height: 1.4rem;
     ${({$isClickable}) => $isClickable && `cursor: pointer;`}
+  }
+
+  ${({ $isVertical }) => $isVertical ? `
+      flex-direction: column;
+      border-radius: 1rem;
+      align-items: center;
+      gap: .4rem;
+      padding: .8rem;
+
+      & .icon{
+        position: absolute;
+        top: .4rem;
+        right: .4rem;
+      }
+    ` : `
+      flex-direction: row;
+      align-items: center;
+      gap: 1.2rem;
+      `
   }
 
   -webkit-user-select: none;
