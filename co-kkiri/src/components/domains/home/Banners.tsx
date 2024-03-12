@@ -1,6 +1,7 @@
 import { ROUTER_PATH } from "@/lib/path";
-import Banner from "./Banner";
 import styled from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
+import Banner from "./Banner";
 
 interface BannersProps {
   isSidebarOpen?: boolean;
@@ -24,7 +25,23 @@ export default function Banners({ isSidebarOpen = false }: BannersProps) {
   );
 }
 
+const {
+  mediaQueries: { desktop, tablet, mobile },
+} = DESIGN_TOKEN;
+
 const Box = styled.article`
   display: flex;
-  gap: 2rem;
+  width: 100%;
+
+  ${desktop} {
+    gap: 2rem;
+  }
+
+  ${tablet} {
+    gap: 1.5rem;
+  }
+
+  ${mobile} {
+    gap: 1rem;
+  }
 `;

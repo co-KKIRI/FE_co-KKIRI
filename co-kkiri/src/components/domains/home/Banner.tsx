@@ -17,11 +17,13 @@ interface BannerProps {
 
 export default function Banner({ image, path, isSidebarOpen }: BannerProps) {
   return (
-    <Link to={path}>
-      <Background $isSidebarOpen={isSidebarOpen}>
-        <img src={image.src} alt={image.alt} />
-      </Background>
-    </Link>
+    <Wrapper $isSidebarOpen={isSidebarOpen}>
+      <Link to={path}>
+        <Background>
+          <img src={image.src} alt={image.alt} />
+        </Background>
+      </Link>
+    </Wrapper>
   );
 }
 
@@ -30,10 +32,7 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Background = styled.figure<{ $isSidebarOpen?: boolean }>`
-  background-color: ${color.primary[3]};
-  border-radius: 2rem;
-
+const Wrapper = styled.figure<{ $isSidebarOpen?: boolean }>`
   ${desktop} {
     width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 29 : 36)}rem;
     height: 24rem;
@@ -45,7 +44,14 @@ const Background = styled.figure<{ $isSidebarOpen?: boolean }>`
   }
 
   ${mobile} {
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
+    height: 100%;
   }
+`;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${color.primary[3]};
+  border-radius: 2rem;
 `;
