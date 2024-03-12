@@ -1,7 +1,20 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { QUILL_ICONS } from "@/constants/reactQuillIcons";
+import { Quill } from "react-quill";
 
 const { color } = DESIGN_TOKEN;
+
+const icons = Quill.import("ui/icons");
+icons["header"]["1"] = `<img src=${QUILL_ICONS.header1.src} className="fm_editor_icon">`;
+icons["header"]["2"] = `<img src=${QUILL_ICONS.header2.src} className="fm_editor_icon">`;
+icons["header"]["3"] = `<img src=${QUILL_ICONS.header3.src} className="fm_editor_icon">`;
+icons["blockquote"] = `<img src=${QUILL_ICONS.quote.src} className="fm_editor_icon">`;
+icons["bold"] = `<img src=${QUILL_ICONS.bold.src} className="fm_editor_icon">`;
+icons["italic"] = `<img src=${QUILL_ICONS.italic.src} className="fm_editor_icon">`;
+icons["underline"] = `<img src=${QUILL_ICONS.underline.src} className="fm_editor_icon">`;
+icons["image"] = `<img src=${QUILL_ICONS.image.src} className="fm_editor_icon">`;
+icons["link"] = `<img src=${QUILL_ICONS.link.src} className="fm_editor_icon">`;
 
 export default function CustomToolbar() {
   return (
@@ -10,9 +23,7 @@ export default function CustomToolbar() {
         <HeaderContainer>
           <button className="ql-header" value="1"></button>
           <button className="ql-header" value="2"></button>
-          <button className="ql-header" value="3">
-            H3
-          </button>
+          <button className="ql-header" value="3"></button>
           <button className="ql-blockquote" />
         </HeaderContainer>
         <TextStyleContainer>
