@@ -11,7 +11,7 @@ interface SelectPositionChipProps{
 
 export default function SelectPositionChip({ label, isSelected, onClick }: SelectPositionChipProps
 ) {
-    return <Container label={label} isSelected={isSelected} onClick={onClick} isVertical />;
+    return <Container label={label} isSelected={isSelected} onClick={onClick} />;
 }
 
 const {color, typography} = DESIGN_TOKEN;
