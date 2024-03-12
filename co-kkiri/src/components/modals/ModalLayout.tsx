@@ -2,6 +2,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
+import { useEffect } from "react";
 
 interface ModalBoxProps {
   $mobileWidth?: number;
@@ -26,6 +27,19 @@ export default function ModalLayout({
   onClick,
   modalType,
 }: ModalLayoutProps) {
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+
   return (
     <ModalPortal>
       <Container>
