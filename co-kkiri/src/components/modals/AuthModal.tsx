@@ -5,21 +5,25 @@ import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
 import { ROUTER_PATH } from "@/lib/path";
 
-export default function AuthModal() {
+interface AuthModalProps {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function AuthModal({ onClick }: AuthModalProps) {
   const { HOME_PATH } = ROUTER_PATH;
 
   return (
-    <ModalLayout desktopWidth={558} mobileWidth={320}>
+    <ModalLayout desktopWidth={558} mobileWidth={320} onClick={onClick}>
       <Container>
         <Link to={HOME_PATH}>
           <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
         </Link>
         <span>로그인 / 회원가입</span>
         <LoginButtonBox>
-          <LoginButton padding={0.9}>
+          <LoginButton $padding={0.9}>
             <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
           </LoginButton>
-          <LoginButton padding={1.3}>
+          <LoginButton $padding={1.3}>
             <img src={IMAGES.githubLogo.src} alt={IMAGES.githubLogo.alt} />
           </LoginButton>
         </LoginButtonBox>
@@ -64,7 +68,7 @@ const LoginButtonBox = styled.div`
   }
 `;
 
-const LoginButton = styled.div<{ padding: number }>`
+const LoginButton = styled.div<{ $padding: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,6 +81,6 @@ const LoginButton = styled.div<{ padding: number }>`
   ${mediaQueries.mobile} {
     width: 5.6rem;
     height: 5.6rem;
-    padding: ${(props) => props.padding}rem;
+    padding: ${(props) => props.$padding}rem;
   }
 `;

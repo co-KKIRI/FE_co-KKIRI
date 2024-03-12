@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-const { color, typography, mediaQueries, zIndex } = DESIGN_TOKEN;
+const { color, typography, mediaQueries } = DESIGN_TOKEN;
 
 export const Container = styled.div`
-  ${zIndex.sticky};
-  position: sticky;
   background-color: ${color.white};
   width: 100%;
   display: flex;
