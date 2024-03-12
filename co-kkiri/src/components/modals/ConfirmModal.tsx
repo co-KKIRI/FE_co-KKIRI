@@ -4,7 +4,7 @@ import Button from "../commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CONFIRM_TYPE } from "@/constants/modal";
 
-type ConfirmType = "apply" | "post" | "modify" | "delete" | "cancel" | "review" | "start" | "accept" | "refuse";
+type ConfirmType = keyof typeof CONFIRM_TYPE;
 
 interface ConfirmModalProps {
   type: ConfirmType;
