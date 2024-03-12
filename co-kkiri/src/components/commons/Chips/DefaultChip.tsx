@@ -44,6 +44,7 @@ const { color, typography } = DESIGN_TOKEN;
 
 const Container = styled.div<DefaultChipContainerStyleProps>`
   width: fit-content;
+  height: fit-content;
   padding: 0.4rem 1.2rem;
 
   display: flex;
