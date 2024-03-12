@@ -4,17 +4,17 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
 
 interface PopoverButtonProps {
-  children: ReactNode;
+  selectOption: string;
   isSelected: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const { popover, popoverSelected } = ICONS;
 
-export default function PopoverButton({ children, isSelected, onClick }: PopoverButtonProps) {
+export default function PopoverButton({ selectOption, onClick, isSelected }: PopoverButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
-      {children}
+      {selectOption}
       {isSelected ? (
         <Arrow src={popoverSelected.src} alt={popoverSelected.alt} />
       ) : (
