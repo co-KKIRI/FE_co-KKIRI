@@ -82,4 +82,9 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
     height: 1.4rem;
     ${({$isClickable}) => $isClickable && `cursor: pointer;`}
   }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
