@@ -30,7 +30,7 @@ const Container = styled(DefaultChip)`
 
     ${({ isSelected }) => !isSelected && `opacity: .4;`}
 
-    ${typography.font12normal}
+    ${typography.font12Regular}
 
 
     
