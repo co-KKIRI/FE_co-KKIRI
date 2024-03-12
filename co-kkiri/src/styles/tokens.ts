@@ -26,7 +26,7 @@ const DESIGN_TOKEN = {
     secondary: "#FF9B52",
   },
   typography: {
-    font12normal: "font-size: 1.2rem; line-height: normal; font-weight: 400;",
+    font12Regular: "font-size: 1.2rem; line-height: normal; font-weight: 400;",
     font12Semibold: "font-size: 1.2rem; line-height: normal; font-weight: 600;",
     font14Regular: "font-size: 1.4rem; line-height: 150%; font-weight: 400;",
     font14Medium: "font-size: 1.4rem; line-height: 150%; font-weight: 500;",
