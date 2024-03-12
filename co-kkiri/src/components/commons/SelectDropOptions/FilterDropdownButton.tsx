@@ -32,12 +32,10 @@ export default function FilterDropdownButton({ filterType }: FilterDropdownButto
   };
 
   return (
-    <div ref={ref}>
-      <Container>
-        <PopoverButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
-        <DropdownMenu isOpen={isOpen} handleSelectOption={handleSelectOption} selectType={filterType} />
-      </Container>
-    </div>
+    <Container ref={ref}>
+      <PopoverButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
+      <DropdownMenu isOpen={isOpen} handleSelectOption={handleSelectOption} selectType={filterType} />
+    </Container>
   );
 }
 
