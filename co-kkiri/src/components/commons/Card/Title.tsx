@@ -15,7 +15,7 @@ const {
   typography: { font16Bold },
 } = DESIGN_TOKEN;
 
-const CardTitle = styled.h1`
+const CardTitle = styled.h3`
   ${font16Bold}
   color: ${color.black[1]};
   display: -webkit-box;

@@ -9,7 +9,6 @@ interface PageProp {
 
 interface ContainerProps extends PageProp {
   $isSidebarOpen: boolean;
-  onClick?: () => void | undefined;
 }
 
 const {
@@ -62,7 +61,6 @@ export const Container = styled.article<ContainerProps>`
   background-color: ${color.white};
   border-radius: 2rem;
   box-shadow: ${content};
-  cursor: ${(props) => (props.onClick ? "pointer" : "auto")};
 `;
 
 export const TypeWrapper = styled.div`
