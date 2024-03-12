@@ -4,7 +4,7 @@ import { ICONS } from "@/constants/icons";
 
 //임시
 interface Stack {
-  id: number;
+  name: string;
   img: string;
 }
 
@@ -16,9 +16,9 @@ export default function Stacks({ stack }: StacksProps) {
   return (
     <Wrapper>
       {stack.length > 0 ? (
-        stack.map((item) => (
-          <Background key={item.id}>
-            <img src={item.img} />
+        stack.map(({ name, img }) => (
+          <Background key={name}>
+            <img src={img} />
           </Background>
         ))
       ) : (

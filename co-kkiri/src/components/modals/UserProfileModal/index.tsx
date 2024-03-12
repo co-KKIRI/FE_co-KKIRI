@@ -2,17 +2,16 @@ import * as S from "./UserProfileModal.styled";
 import ModalLayout from "../ModalLayout";
 import { IMAGES } from "@/constants/images";
 // import PositionChip from "../../commons/Chips/PositionChip";
-import Stacks from "../../commons/Card/Stacks";
-import Positions from "@/components/commons/Card/Positions";
+import Stacks from "@/components/commons/Stacks";
+import Positions from "@/components/commons/Positions";
 
 // 임시 (id가 꼭 있어야 하는지, index로 key 값을 넘겨주는 방법도 고려)
 interface Stack {
-  id: number;
+  name: string;
   img: string;
 }
 
 interface Position {
-  id: number;
   name: string;
 }
 

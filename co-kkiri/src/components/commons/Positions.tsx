@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import PositionChip from "../Chips/PositionChip";
+import PositionChip from "./Chips/PositionChip";
 
 // 임시
 interface Position {
-  id: number;
   name: string;
 }
 
@@ -15,9 +14,9 @@ export default function Positions({ position }: PositionsProps) {
   return (
     <Wrapper>
       {position.length > 0 ? (
-        position.map((item) => (
-          <div key={item.id}>
-            <PositionChip label={item.name} />
+        position.map(({ name }) => (
+          <div key={name}>
+            <PositionChip label={name} />
           </div>
         ))
       ) : (
