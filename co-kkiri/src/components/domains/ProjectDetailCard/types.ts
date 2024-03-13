@@ -1,7 +1,7 @@
 import { GetTypeFromObject } from "@/types/ObjectUtilTypes";
 
 // ProjectDetailCard내 Table에서 사용되는 Key
-export type ProjectDetailKey = "recruitEndAt" | "progressPeriod" | "progressWay" | "contactWay" | "positions" | "stacks";
+export type ProjectDetailKey = "recruitEndAt" | "progressPeriod" | "progressWay" | "contactWay" | "capacity" |"positions" | "stacks";
 
 // 구체적인 렌더링 방식
 export type RenderType = "text" | "positionChip" | "stackChip";
