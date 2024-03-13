@@ -64,6 +64,9 @@ const resetStyle = css`
   i {
     font-style: italic;
   }
+  em {
+    font-style: italic;
+  }
 `;
 
 export default resetStyle;
