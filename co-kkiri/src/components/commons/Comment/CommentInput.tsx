@@ -2,11 +2,20 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 interface CommentInputProps {
-  placeholder: string;
+  placeholder?: string;
+  value?: string;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function CommentInput({ placeholder }: CommentInputProps) {
-  return <StyledTextarea name="comment" placeholder={placeholder} />;
+export default function CommentInput({ placeholder, value, setValue }: CommentInputProps) {
+  return (
+    <StyledTextarea
+      name="comment"
+      placeholder={placeholder}
+      value={value || ""}
+      onChange={(e) => setValue && setValue(e.target.value)}
+    />
+  );
 }
 
 const {
