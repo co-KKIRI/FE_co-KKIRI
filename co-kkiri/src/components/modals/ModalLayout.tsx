@@ -2,6 +2,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
+import { useEffect } from "react";
 
 interface ModalBoxProps {
   $mobileWidth?: number;
@@ -26,6 +27,15 @@ export default function ModalLayout({
   onClick,
   modalType,
 }: ModalLayoutProps) {
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      width: 100%;`;
+    return () => {
+      document.body.style.cssText = "";
+    };
+  }, []);
+
   return (
     <ModalPortal>
       <Container>
