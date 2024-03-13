@@ -8,6 +8,8 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 
   ${mediaQueries.desktop} {
     padding: 2.8rem 4rem;

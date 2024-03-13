@@ -31,20 +31,21 @@ const {
 const PageRouter = () => {
   return (
     <Router>
-      <Navigation />
       <Routes>
-        <Route path={HOME_PATH} element={<Home />} />
-        <Route path={STUDY_LIST_PATH} element={<StudyList />} />
-        <Route path={DETAIL_PATH} element={<Detail />} />
-        <Route path={EDIT_PATH} element={<Edit />} />
-        <Route path={POST_PATH} element={<Post />} />
-        <Route path={REVIEW_PATH} element={<Review />} />
-        <Route path={CASTING} element={<Casting />} />
-        <Route path={MY_PAGE} element={<MyPage />} />
-        <Route path={MY_STUDY} element={<MyStudy />} />
-        <Route path={MANAGE} element={<Manage />} />
-        <Route path={PROFILE} element={<Profile />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Navigation />}>
+          <Route path={HOME_PATH} element={<Home />} />
+          <Route path={STUDY_LIST_PATH} element={<StudyList />} />
+          <Route path={DETAIL_PATH} element={<Detail />} />
+          <Route path={EDIT_PATH} element={<Edit />} />
+          <Route path={POST_PATH} element={<Post />} />
+          <Route path={REVIEW_PATH} element={<Review />} />
+          <Route path={CASTING} element={<Casting />} />
+          <Route path={MY_PAGE} element={<MyPage />} />
+          <Route path={MY_STUDY} element={<MyStudy />} />
+          <Route path={MANAGE} element={<Manage />} />
+          <Route path={PROFILE} element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </Router>
   );
