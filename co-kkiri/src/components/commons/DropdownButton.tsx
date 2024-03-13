@@ -19,6 +19,7 @@ export default function DropdownButton({ selectOption, toggleDropdown }: Dropdow
 const { typography, color } = DESIGN_TOKEN;
 
 const Container = styled.div`
+  height: 3.6rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
