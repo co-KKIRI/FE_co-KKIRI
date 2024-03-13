@@ -40,11 +40,13 @@ interface CardData {
 
 interface CardProps {
   page?: "home" | "studyList";
-  isSidebarOpen?: boolean;
   cardData: CardData;
+  scrapClick?: () => void;
 }
 
-export default function Card({ page = "home", isSidebarOpen = false, cardData }: CardProps) {
+export default function Card({ page = "home", cardData, scrapClick }: CardProps) {
+  //임시
+  const isSidebarOpen = false;
   const { id, type, scrap, recruitEndAt, progressWay, title, position, stack, user, viewCount, commentCount } =
     cardData;
 
@@ -56,7 +58,7 @@ export default function Card({ page = "home", isSidebarOpen = false, cardData }:
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap isScraped={scrap} width={36} />
+            <Scrap wasScraped={scrap} width={36} onClick={scrapClick} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -64,7 +66,7 @@ export default function Card({ page = "home", isSidebarOpen = false, cardData }:
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap isScraped={scrap} width={28} />}
+            {page === "home" && <Scrap wasScraped={scrap} width={28} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
