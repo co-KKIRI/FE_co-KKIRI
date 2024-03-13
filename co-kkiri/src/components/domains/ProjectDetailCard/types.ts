@@ -4,7 +4,7 @@ import { GetTypeFromObject } from "@/types/ObjectUtilTypes";
 export type ProjectDetailKey = "recruitEndAt" | "progressPeriod" | "progressWay" | "contactWay" | "capacity" |"positions" | "stacks";
 
 // 구체적인 렌더링 방식
-export type RenderType = "text" | "positionChip" | "stackChip";
+export type RenderType = "text" | "positionChip" | "stackIcon";
 
 // ProjectDetailCard 내부에서 Table에게 전달할 Table Config
 export type ProjectDetailConfig = {
