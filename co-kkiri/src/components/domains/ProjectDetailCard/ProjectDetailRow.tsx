@@ -12,6 +12,7 @@ export interface ProjectDetailRowProps {
 
 export default function ProjectDetailRow({ label, content, renderType }: ProjectDetailRowProps) {
 
+    //Chip이랑 Icon은 배열이어야만 정상적으로 render함
     const renderContent = useCallback(() => {
         switch (renderType) {
             case "text":
