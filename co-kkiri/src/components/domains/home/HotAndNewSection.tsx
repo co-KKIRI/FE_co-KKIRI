@@ -4,30 +4,20 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import More from "./More";
 import Cards from "./Cards";
 
-// 임시
-interface Position {
-  name: string;
-}
-
-//임시
-interface Stack {
-  name: string;
-  img: string;
-}
-
 //임시
 interface CardData {
   id: number;
-  type: "스터디" | "프로젝트";
-  scrap: boolean;
+  type: "STUDY" | "PROJECT";
   recruitEndAt: string;
+  isScraped: boolean;
   progressWay: string;
   title: string;
-  position: Position[];
-  stack: Stack[];
-  user: { nickname: string; profileImage: string };
-  viewCount: number;
-  commentCount: number;
+  position: string[];
+  stack: string[];
+  memberNickname: string;
+  memberProfileImg: string;
+  postViews: number;
+  postCommentsNum: number;
 }
 
 interface CardsProps {
