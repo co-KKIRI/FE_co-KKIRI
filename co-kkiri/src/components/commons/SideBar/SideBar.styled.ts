@@ -4,15 +4,23 @@ import styled from "styled-components";
 const { boxShadow, color, typography, mediaQueries, overlayBackDropColor } = DESIGN_TOKEN;
 
 export const Background = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100vh;
+  ${mediaQueries.desktop} {
+    position: sticky;
+    top: 8rem;
+    left: 0;
+  }
 
   ${mediaQueries.tablet} {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
     background-color: ${overlayBackDropColor};
   }
 
   ${mediaQueries.mobile} {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
     background-color: ${overlayBackDropColor};
   }
 `;

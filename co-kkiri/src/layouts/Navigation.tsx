@@ -2,21 +2,25 @@ import Gnb from "@/components/commons/Gnb";
 import SideBar from "@/components/commons/SideBar";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useState } from "react";
-import styled from "styled-components";
+import { Outlet } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 export default function Navigation() {
-  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
 
   const handleSideBarOpen = () => {
-    setIsCategoryOpen(!isCategoryOpen);
+    setIsSideBarOpen(!isSideBarOpen);
   };
 
   return (
     <>
       <Gnb onSideBarClick={handleSideBarOpen} />
-      <SideBarWrapper $isOpen={isCategoryOpen}>
+      <SideBarWrapper $isOpen={isSideBarOpen}>
         <SideBar onClick={handleSideBarOpen} />
       </SideBarWrapper>
+      <OutletWrapper $isOpen={isSideBarOpen}>
+        <Outlet />
+      </OutletWrapper>
     </>
   );
 }
@@ -27,22 +31,46 @@ interface SideBarWrapperProps {
   $isOpen: boolean;
 }
 
-const SideBarWrapper = styled.div<SideBarWrapperProps>`
-  ${mediaQueries.desktop} {
-    transition: transform 0.5s ease-in-out;
-    transform: ${(props) => (props.$isOpen ? "translateX(0)" : "translateX(-100%)")};
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
   }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+`;
+
+const SideBarWrapper = styled.div<SideBarWrapperProps>`
+  position: fixed;
+
+  ${mediaQueries.desktop} {
+    animation: ${(props) => (props.$isOpen ? slideIn : slideOut)} 0.2s forwards;
+  }
+
   ${mediaQueries.tablet} {
     position: absolute;
     top: 0;
-    left: 0;
     display: ${(props) => (props.$isOpen ? "block" : "none")};
   }
 
   ${mediaQueries.mobile} {
     position: absolute;
     top: 0;
-    left: 0;
     display: ${(props) => (props.$isOpen ? "block" : "none")};
+  }
+`;
+
+const OutletWrapper = styled.div<SideBarWrapperProps>`
+  ${mediaQueries.desktop} {
+    padding-left: ${(props) => (props.$isOpen ? "23rem" : 0)};
   }
 `;
