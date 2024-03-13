@@ -10,20 +10,20 @@ interface Image {
 }
 
 interface BannerProps {
-  isSidebarOpen: boolean;
   image: Image;
   path: string;
 }
 
-export default function Banner({ image, path, isSidebarOpen }: BannerProps) {
+export default function Banner({ image, path }: BannerProps) {
+  //임시
+  const isSidebarOpen = false;
+
   return (
-    <Wrapper $isSidebarOpen={isSidebarOpen}>
-      <Link to={path}>
-        <Background>
-          <img src={image.src} alt={image.alt} />
-        </Background>
-      </Link>
-    </Wrapper>
+    <Link to={path}>
+      <Background $isSidebarOpen={isSidebarOpen}>
+        <img src={image.src} alt={image.alt} />
+      </Background>
+    </Link>
   );
 }
 
@@ -32,7 +32,10 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Wrapper = styled.figure<{ $isSidebarOpen?: boolean }>`
+const Background = styled.figure<{ $isSidebarOpen?: boolean }>`
+  background-color: ${color.primary[3]};
+  border-radius: 2rem;
+
   ${desktop} {
     width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 29 : 36)}rem;
     height: 24rem;
@@ -44,14 +47,13 @@ const Wrapper = styled.figure<{ $isSidebarOpen?: boolean }>`
   }
 
   ${mobile} {
+    max-width: 22.6rem;
     width: 100%;
-    height: 100%;
-  }
-`;
 
-const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: ${color.primary[3]};
-  border-radius: 2rem;
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
 `;

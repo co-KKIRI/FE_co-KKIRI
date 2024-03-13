@@ -3,10 +3,6 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import Banner from "./Banner";
 
-interface BannersProps {
-  isSidebarOpen?: boolean;
-}
-
 //임시(/src/constants/bannerInfos.ts)
 const { POST_PATH, STUDY_LIST_PATH, CASTING } = ROUTER_PATH;
 const BANNER_INFOS = [
@@ -15,11 +11,11 @@ const BANNER_INFOS = [
   { id: 2, img: { src: "", alt: "" }, path: CASTING },
 ];
 
-export default function Banners({ isSidebarOpen = false }: BannersProps) {
+export default function Banners() {
   return (
     <Box>
       {BANNER_INFOS.map(({ id, img, path }) => (
-        <Banner key={id} image={img} path={path} isSidebarOpen={isSidebarOpen} />
+        <Banner key={id} image={img} path={path} />
       ))}
     </Box>
   );
@@ -31,6 +27,7 @@ const {
 
 const Box = styled.article`
   display: flex;
+  justify-content: center;
   width: 100%;
 
   ${desktop} {
@@ -42,6 +39,8 @@ const Box = styled.article`
   }
 
   ${mobile} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
   }
 `;

@@ -85,30 +85,32 @@ export default function Home() {
   return (
     <Container>
       <Banners />
-      <Cards
-        isSidebarOpen={false}
-        category="New! 스터디"
-        path={ROUTER_PATH.STUDY_LIST_PATH}
-        cardDataList={cardDataList}
-      />
-      <Cards
-        isSidebarOpen={false}
-        category="New! 스터디"
-        path={ROUTER_PATH.STUDY_LIST_PATH}
-        cardDataList={cardDataList}
-      />
-      <Cards
-        isSidebarOpen={false}
-        category="New! 스터디"
-        path={ROUTER_PATH.STUDY_LIST_PATH}
-        cardDataList={cardDataList}
-      />
-      <Cards
-        isSidebarOpen={false}
-        category="New! 스터디"
-        path={ROUTER_PATH.STUDY_LIST_PATH}
-        cardDataList={cardDataList}
-      />
+      <Box>
+        <Cards
+          isSidebarOpen={false}
+          category="New! 스터디"
+          path={ROUTER_PATH.STUDY_LIST_PATH}
+          cardDataList={cardDataList}
+        />
+        <Cards
+          isSidebarOpen={false}
+          category="New! 스터디"
+          path={ROUTER_PATH.STUDY_LIST_PATH}
+          cardDataList={cardDataList}
+        />
+        <Cards
+          isSidebarOpen={false}
+          category="New! 스터디"
+          path={ROUTER_PATH.STUDY_LIST_PATH}
+          cardDataList={cardDataList}
+        />
+        <Cards
+          isSidebarOpen={false}
+          category="New! 스터디"
+          path={ROUTER_PATH.STUDY_LIST_PATH}
+          cardDataList={cardDataList}
+        />
+      </Box>
     </Container>
   );
 }
@@ -119,6 +121,11 @@ const {
 } = DESIGN_TOKEN;
 
 const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+
   ${desktop} {
     padding: ${spacing.desktop};
     padding-bottom: 12rem;
@@ -132,5 +139,17 @@ const Container = styled.main`
   ${mobile} {
     padding: ${spacing.mobile};
     padding-bottom: 20rem;
+  }
+`;
+
+const Box = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+
+  ${mobile} {
+    align-items: normal;
+    gap: 4rem;
   }
 `;

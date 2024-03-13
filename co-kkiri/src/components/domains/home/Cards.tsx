@@ -55,6 +55,7 @@ export default function Cards({ isSidebarOpen = false, category, path, cardDataL
 
 const {
   typography: { font20Bold },
+  spacing,
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
@@ -97,6 +98,8 @@ const LowerWrapper = styled.div`
   ${mobile} {
     gap: 1rem;
     overflow: scroll;
+    width: calc(100% + 2rem * 2);
+    margin-left: -${spacing.mobile};
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
