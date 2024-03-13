@@ -12,6 +12,7 @@ interface ProjectDetailCardProps extends ProjectDetailContentType {
 
 export default function ProjectDetailCard({ ProjectCategory, ...projectDetailContents }: ProjectDetailCardProps) {
 
+    // 이 친구가 여기 있으면 안될 것 같은데 추후에 코드를 수정해서 밖으로 빼던 해야할 듯 합니다
     const projectDetailConfig: ProjectDetailConfig = {
         'recruitEndAt': {
             "label": "모집 마감",
