@@ -2,11 +2,12 @@ import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";
+import { RenderType } from "./types";
 
 export interface ProjectDetailRowProps {
     label: string;
     content: string | string[];
-    renderType: string;
+    renderType: RenderType;
 }
 
 export default function ProjectDetailRow({ label, content, renderType }: ProjectDetailRowProps) {
