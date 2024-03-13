@@ -1,5 +1,4 @@
 import PositionChip from "@/components/commons/Chips/PositionChip";
-import StackChip from "@/components/commons/Chips/StackChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";

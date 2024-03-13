@@ -29,7 +29,7 @@ export default function ProjectDetailCard({ ProjectCategory, ...projectDetailCon
             "renderType": "text",
         },
         'contactWay':{
-            "label": "연락 방법",
+            "label": "연락 방식",
             "content": projectDetailContents.contactWay,
             "renderType": "text",
         },
