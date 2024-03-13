@@ -2,7 +2,6 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 import Card from "@/components/commons/Card";
-import More from "./More";
 
 // 임시
 interface Position {
@@ -31,56 +30,25 @@ interface CardData {
 }
 
 interface CardsProps {
-  isSidebarOpen?: boolean;
-  category: string;
-  path: string;
   cardDataList: CardData[];
 }
 
-export default function Cards({ isSidebarOpen = false, category, path, cardDataList }: CardsProps) {
+export default function Cards({ cardDataList }: CardsProps) {
   return (
-    <Box>
-      <UpperWrapper>
-        <h2>{category}</h2>
-        <More path={path} />
-      </UpperWrapper>
-      <LowerWrapper>
-        {cardDataList.map((cardData) => (
-          <Card key={cardData.id} page="home" isSidebarOpen={isSidebarOpen} cardData={cardData} />
-        ))}
-      </LowerWrapper>
-    </Box>
+    <Wrapper>
+      {cardDataList.map((cardData) => (
+        <Card key={cardData.id} page="home" cardData={cardData} />
+      ))}
+    </Wrapper>
   );
 }
 
 const {
-  typography: { font20Bold },
   spacing,
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Box = styled.section`
-  ${desktop} {
-    max-width: 112rem;
-  }
-
-  ${tablet} {
-    max-width: 70.8rem;
-  }
-`;
-
-const UpperWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 2rem;
-
-  h2 {
-    ${font20Bold}
-  }
-`;
-
-const LowerWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
 
   ${desktop} {

@@ -1,0 +1,75 @@
+import styled from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
+
+import More from "./More";
+import Cards from "./Cards";
+
+// 임시
+interface Position {
+  name: string;
+}
+
+//임시
+interface Stack {
+  name: string;
+  img: string;
+}
+
+//임시
+interface CardData {
+  id: number;
+  type: "스터디" | "프로젝트";
+  scrap: boolean;
+  recruitEndAt: string;
+  progressWay: string;
+  title: string;
+  position: Position[];
+  stack: Stack[];
+  user: { nickname: string; profileImage: string };
+  viewCount: number;
+  commentCount: number;
+}
+
+interface CardsProps {
+  category: string;
+  path: string;
+  cardDataList: CardData[];
+}
+
+export default function HotAndNewSection({ category, path, cardDataList }: CardsProps) {
+  return (
+    <Box>
+      <Wrapper>
+        <h2>{category}</h2>
+        <More path={path} />
+      </Wrapper>
+      <Cards cardDataList={cardDataList} />
+    </Box>
+  );
+}
+
+const {
+  typography: { font20Bold },
+  mediaQueries: { desktop, tablet },
+} = DESIGN_TOKEN;
+
+const Box = styled.section`
+  ${desktop} {
+    max-width: 112rem;
+  }
+
+  ${tablet} {
+    max-width: 70.8rem;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+
+  h2 {
+    ${font20Bold}
+  }
+`;
