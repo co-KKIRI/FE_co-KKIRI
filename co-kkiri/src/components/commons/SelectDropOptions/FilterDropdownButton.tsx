@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import DropdownMenu from "../DropdownMenu";
-import PopoverButton from "../PopoverButton";
+import FilterButton from "../FilterButton";
 import useOpenToggle from "@/hooks/useOpenToggle";
 
 interface FilterDropdownButtonProps {
@@ -33,7 +33,7 @@ export default function FilterDropdownButton({ filterType }: FilterDropdownButto
 
   return (
     <Container ref={ref}>
-      <PopoverButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
+      <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
       <DropdownMenu isOpen={isOpen} handleSelectOption={handleSelectOption} selectType={filterType} />
     </Container>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
 
-interface PopoverButtonProps {
+interface FilterButtonProps {
   selectOption: string;
   isSelected: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -11,7 +11,7 @@ interface PopoverButtonProps {
 
 const { popover, popoverSelected } = ICONS;
 
-export default function PopoverButton({ selectOption, onClick, isSelected }: PopoverButtonProps) {
+export default function FilterButton({ selectOption, onClick, isSelected }: FilterButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {selectOption}
