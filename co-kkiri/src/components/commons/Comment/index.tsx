@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import UserInfo from "../UserInfo";
 import CommentTextarea from "../Textarea/CommentTextarea";
 import * as S from "./Comment.styled";
@@ -31,6 +31,10 @@ export default function Comment({ commentInfo }: CommentProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [contentValue, setContentValue] = useState<string>(content);
 
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContentValue(e.target.value);
+  };
+
   const handleEditComment = async () => {
     setIsEditing(false);
     //api
@@ -58,7 +62,7 @@ export default function Comment({ commentInfo }: CommentProps) {
             </S.ButtonWrapper>
           ))}
       </S.TopBox>
-      {isEditing ? <CommentTextarea value={contentValue} setValue={setContentValue} /> : <S.Text>{content}</S.Text>}
+      {isEditing ? <CommentTextarea value={contentValue} onChange={handleChange} /> : <S.Text>{content}</S.Text>}
       <S.HorizontalDivider />
     </S.Container>
   );

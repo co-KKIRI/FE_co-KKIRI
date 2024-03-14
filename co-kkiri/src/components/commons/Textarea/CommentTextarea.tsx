@@ -1,17 +1,14 @@
 import Textarea from ".";
+import { ChangeEvent } from "react";
 
 interface CommentTextareaProps {
   value?: string;
-  setValue?: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  className?: string;
 }
 
-export default function CommentTextarea({ value, setValue }: CommentTextareaProps) {
+export default function CommentTextarea({ value, onChange, className }: CommentTextareaProps) {
   return (
-    <Textarea
-      type="comment"
-      placeholder="댓글을 입력하세요."
-      value={value || ""}
-      onChange={(e) => setValue && setValue(e.target.value)}
-    />
+    <Textarea className={className} type="comment" placeholder="댓글을 입력하세요." value={value} onChange={onChange} />
   );
 }

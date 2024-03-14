@@ -68,7 +68,7 @@ export const Container = styled.button<Container>`
     css`
       background-color: ${color.gray[2]};
       color: ${color.white};
-      pointer-events: none;
+      border: none;
     `};
 
   ${({ children }) =>
