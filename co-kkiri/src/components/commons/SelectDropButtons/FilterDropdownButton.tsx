@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import DropdownMenu from "../DropdownMenu";
 import FilterButton from "../FilterButton";
 import useOpenToggle from "@/hooks/useOpenToggle";
+import DropdownMenu from "./commons/DropdownMenu";
 
 interface FilterDropdownButtonProps {
   filterType: "position" | "meeting";
@@ -34,7 +34,12 @@ export default function FilterDropdownButton({ filterType }: FilterDropdownButto
   return (
     <Container ref={ref}>
       <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
-      <DropdownMenu isOpen={isOpen} handleSelectOption={handleSelectOption} selectType={filterType} />
+      <DropdownMenu
+        borderType="round"
+        isOpen={isOpen}
+        handleSelectOption={handleSelectOption}
+        selectType={filterType}
+      />
     </Container>
   );
 }
@@ -45,4 +50,5 @@ const Container = styled.div`
   align-items: end;
   gap: 0.6rem;
   position: relative;
+  width: 10.4rem;
 `;

@@ -1,26 +1,28 @@
 import styled from "styled-components";
-import DefaultDropdownMenu from "./DefaultDropdownMenu";
-import DefaultDropdownButton from "./DefaultDropdownButton";
+import DropdownMenu from "./commons/DropdownMenu";
+import DropdownButton from "./commons/DropdownButton";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
 
 export default function SortSelectButton() {
   const [selectOption, setSelectOption] = useState("최신순");
+  const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
   const handleSelectOption = (option: string) => {
     setSelectOption(option);
+    setIsSelected(true);
     toggleDropdown();
   };
 
   return (
     <Container ref={ref}>
-      <DefaultDropdownButton selectType="sort" onClick={toggleDropdown} selectOption={selectOption} />
-      <DefaultDropdownMenu
+      <DropdownButton selectType="sort" onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
+      <DropdownMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
         selectType="sortList"
-        borderType="round"></DefaultDropdownMenu>
+        borderType="round"></DropdownMenu>
     </Container>
   );
 }
