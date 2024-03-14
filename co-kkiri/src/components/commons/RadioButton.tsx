@@ -33,6 +33,7 @@ const RadioInput = styled.input`
   border-radius: 4.3rem;
   border: 0.1rem solid ${color.gray[2]};
   outline: none;
+  cursor: pointer;
 
   &:checked {
     background-color: ${color.secondary};
