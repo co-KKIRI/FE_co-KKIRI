@@ -15,6 +15,7 @@ import triangle from "@/assets/icons/triangle.svg";
 import post from "@/assets/icons/post.svg";
 import questionMark from "@/assets/icons/question-mark.svg";
 import categorySelected from "@/assets/icons/category_selected.svg";
+import calendar from "@/assets/icons/calendar.svg";
 
 export const ICONS = {
   arrowRight: {
@@ -84,5 +85,9 @@ export const ICONS = {
   categorySelected: {
     src: categorySelected,
     alt: "선택된 카테고리",
+  },
+  calendar: {
+    src: calendar,
+    alt: "날짜선택 달력",
   },
 };

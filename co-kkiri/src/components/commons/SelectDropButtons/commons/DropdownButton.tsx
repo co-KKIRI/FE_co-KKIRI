@@ -6,20 +6,33 @@ interface DropdownButtonProps {
   selectOption: string;
   onClick: () => void;
   selectType?: string;
+  isSelected: boolean;
 }
 
-export default function DefaultDropdownButton({ selectOption, onClick, selectType }: DropdownButtonProps) {
+interface ContainerProps {
+  selectType?: string;
+  isSelected?: boolean;
+}
+
+export default function DefaultDropdownButton({ selectOption, onClick, selectType, isSelected }: DropdownButtonProps) {
   return (
-    <Container onClick={onClick} selectType={selectType}>
+    <Container onClick={onClick} selectType={selectType} isSelected={isSelected}>
       <div>{selectOption}</div>
-      <img src={selectType === "sort" ? ICONS.triangle.src : ICONS.popover.src} />
+      <img
+        src={
+          selectType === "sort" ? ICONS.triangle.src : selectType === "date" ? ICONS.calendar.src : ICONS.popover.src
+        }
+        alt={
+          selectType === "sort" ? ICONS.triangle.alt : selectType === "date" ? ICONS.calendar.alt : ICONS.popover.alt
+        }
+      />
     </Container>
   );
 }
 
 const { color, typography } = DESIGN_TOKEN;
 
-const Container = styled.button<{ selectType?: string }>`
+const Container = styled.button<ContainerProps>`
   ${({ selectType }) => (selectType === "sort" ? VARIANT_STYLE.sort : VARIANT_STYLE.drop)}
 `;
 
@@ -32,18 +45,18 @@ const VARIANT_STYLE = {
     ${typography.font14Semibold}
   `,
 
-  drop: css`
+  drop: css<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     padding: 0 2rem;
     gap: 0.4rem;
     border-radius: 0.5rem;
     height: 4.8rem;
-    ${typography.font16Semibold}
-    color: ${color.black[3]};
+    ${typography.font16Medium}
+    color : ${({ isSelected }) => (isSelected ? color.black[1] : color.black[3])};
     border: 0.1rem solid ${color.gray[2]};
-    width: 100%;
 
     & img {
       width: 1.8rem;
