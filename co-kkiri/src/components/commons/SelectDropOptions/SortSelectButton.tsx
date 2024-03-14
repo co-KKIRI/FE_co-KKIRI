@@ -15,12 +15,12 @@ export default function SortSelectButton() {
 
   return (
     <Container ref={ref}>
-      <DefaultDropdownButton selectType="sort" toggleDropdown={toggleDropdown} selectOption={selectOption} />
+      <DefaultDropdownButton selectType="sort" onClick={toggleDropdown} selectOption={selectOption} />
       <DefaultDropdownMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        borderType="square"
-        selectType="progressDate"></DefaultDropdownMenu>
+        selectType="sortList"
+        borderType="round"></DefaultDropdownMenu>
     </Container>
   );
 }
@@ -31,4 +31,6 @@ const Container = styled.div`
   align-items: end;
   gap: 1.6rem;
   position: relative;
+  padding: 0;
+  width: 10.4rem;
 `;

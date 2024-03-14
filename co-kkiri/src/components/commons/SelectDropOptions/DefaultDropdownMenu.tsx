@@ -53,6 +53,7 @@ export default function DefaultDropdownMenu({ selectType, isOpen, handleSelectOp
     <Container $isOpen={isOpen} borderType={borderType}>
       {optionList[borderType][selectType]?.map((option: string) => (
         <Option
+          borderType={borderType}
           onClick={() => {
             handleSelectOption(option);
           }}
@@ -67,40 +68,37 @@ export default function DefaultDropdownMenu({ selectType, isOpen, handleSelectOp
 const { typography, color, zIndex } = DESIGN_TOKEN;
 
 const Container = styled.div<ContainerProps>`
-  ${(props) => (props.borderType === "round" ? VARIANT_STYLE.round : VARIANT_STYLE.square)}
+  display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+  ${({ borderType }) => (borderType === "round" ? VARIANT_STYLE.round : VARIANT_STYLE.square)}
 `;
 
 const COMMON_STYLE = css`
-  display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
   border: 0.1rem solid ${color.gray[2]};
   color: ${color.black[3]};
   background-color: ${color.white};
   ${zIndex.popover}
-  ${typography.font16Medium}
 `;
 
 const VARIANT_STYLE = {
   round: css`
     width: 10.4rem;
-    ${COMMON_STYLE}
     padding: 1.6rem 1.4rem;
     border-radius: 2rem;
-    position: absolute;
-    top: 4.2rem;
+    ${COMMON_STYLE}
   `,
 
   square: css`
-    ${COMMON_STYLE}
-
     border-radius: 0.5rem;
     padding: 2rem;
+    ${COMMON_STYLE}
   `,
 };
 
-const Option = styled.div`
-  ${typography.font12Semibold}
+const Option = styled.div<{ borderType?: string }>`
   color: ${color.black[1]};
   cursor: pointer;
+  ${({ borderType }) => (borderType === "round" ? typography.font12Semibold : typography.font16Medium)};
 `;
