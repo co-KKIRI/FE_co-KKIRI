@@ -14,6 +14,7 @@ import share from "@/assets/icons/share.svg";
 import triangle from "@/assets/icons/triangle.svg";
 import post from "@/assets/icons/post.svg";
 import questionMark from "@/assets/icons/question-mark.svg";
+import categorySelected from "@/assets/icons/category_selected.svg";
 
 export const ICONS = {
   arrowRight: {
@@ -79,5 +80,9 @@ export const ICONS = {
   questionMark: {
     src: questionMark,
     alt: "물음표",
+  },
+  categorySelected: {
+    src: categorySelected,
+    alt: "선택된 카테고리",
   },
 };
