@@ -1,22 +1,39 @@
 import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
+import { useToggle } from "usehooks-ts";
 
 //임시
 interface ScrapProps {
-  isScraped?: boolean;
+  wasScraped?: boolean;
   width?: number;
+  onClick?: () => void;
 }
 
 /**
  *
  * @property width - px단위
  * */
-export default function Scrap({ isScraped = false, width }: ScrapProps) {
+export default function Scrap({ wasScraped = false, width }: ScrapProps) {
+  const [isScraped, toggle] = useToggle(wasScraped);
   const scrapIcon = isScraped ? ICONS.scrapFull : ICONS.scrapEmpty;
 
-  return <ScrapIcon src={scrapIcon.src} alt={scrapIcon.alt} $width={width} />;
+  const handleScrapClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle();
+  };
+
+  return (
+    <Wrapper $width={width} onClick={handleScrapClick}>
+      <ScrapIcon src={scrapIcon.src} alt={scrapIcon.alt} />
+    </Wrapper>
+  );
 }
 
-const ScrapIcon = styled.img<{ $width?: number }>`
+const Wrapper = styled.div<{ $width?: number }>`
   width: ${({ $width }) => ($width ? `${$width / 10}rem` : "100%")};
+`;
+
+const ScrapIcon = styled.img`
+  width: 100%;
 `;

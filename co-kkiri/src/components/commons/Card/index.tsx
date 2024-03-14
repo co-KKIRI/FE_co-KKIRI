@@ -12,41 +12,44 @@ import UserInfo from "../UserInfo";
 
 import { ICONS } from "@/constants/icons";
 
-// 임시
-interface Position {
-  name: string;
-}
-
-//임시
-interface Stack {
-  name: string;
-  img: string;
-}
-
 //임시
 interface CardData {
   id: number;
-  type: "스터디" | "프로젝트";
-  scrap: boolean;
+  type: "STUDY" | "PROJECT";
   recruitEndAt: string;
+  isScraped: boolean;
   progressWay: string;
   title: string;
-  position: Position[];
-  stack: Stack[];
-  user: { nickname: string; profileImage: string };
-  viewCount: number;
-  commentCount: number;
+  position: string[];
+  stack: string[];
+  memberNickname: string;
+  memberProfileImg: string;
+  postViews: number;
+  postCommentsNum: number;
 }
 
 interface CardProps {
   page?: "home" | "studyList";
-  isSidebarOpen?: boolean;
   cardData: CardData;
 }
 
-export default function Card({ page = "home", isSidebarOpen = false, cardData }: CardProps) {
-  const { id, type, scrap, recruitEndAt, progressWay, title, position, stack, user, viewCount, commentCount } =
-    cardData;
+export default function Card({ page = "home", cardData }: CardProps) {
+  //임시
+  const isSidebarOpen = false;
+  const {
+    id,
+    type,
+    isScraped,
+    recruitEndAt,
+    progressWay,
+    title,
+    position,
+    stack,
+    memberNickname,
+    memberProfileImg,
+    postViews,
+    postCommentsNum,
+  } = cardData;
 
   return (
     <Link to={`/list/${id}`}>
@@ -56,7 +59,7 @@ export default function Card({ page = "home", isSidebarOpen = false, cardData }:
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap isScraped={scrap} width={36} />
+            <Scrap wasScraped={isScraped} width={36} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -64,20 +67,20 @@ export default function Card({ page = "home", isSidebarOpen = false, cardData }:
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap isScraped={scrap} width={28} />}
+            {page === "home" && <Scrap wasScraped={isScraped} width={28} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <Positions position={position} />
-            {page === "studyList" && <Stacks stack={stack} />}
+            <Positions positions={position} />
+            {page === "studyList" && <Stacks stacks={stack} />}
           </S.ContentWrapper>
         </S.UpperBox>
         <S.BreakLine />
         <S.FooterBox>
-          <UserInfo user={user} />
+          <UserInfo user={{ nickname: memberNickname, profileImage: memberProfileImg }} />
           <S.CountWrapper>
-            <Count icon={ICONS.eye} count={viewCount} />
-            <Count icon={ICONS.comment} count={commentCount} />
+            <Count icon={ICONS.eye} count={postViews} />
+            <Count icon={ICONS.comment} count={postCommentsNum} />
           </S.CountWrapper>
         </S.FooterBox>
       </S.Container>
