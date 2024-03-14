@@ -1,22 +1,19 @@
+import { Outlet } from "react-router-dom";
+import useSideBarStore from "@/stores/sideBarStore";
+import styled, { keyframes } from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
 import Gnb from "@/components/commons/Gnb";
 import SideBar from "@/components/commons/SideBar";
-import DESIGN_TOKEN from "@/styles/tokens";
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
 
 export default function Navigation() {
-  const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
-
-  const handleSideBarOpen = () => {
-    setIsSideBarOpen(!isSideBarOpen);
-  };
+  const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
+  const toggleSideBar = useSideBarStore((state) => state.toggleSideBar);
 
   return (
     <>
-      <Gnb onSideBarClick={handleSideBarOpen} />
+      <Gnb onSideBarClick={toggleSideBar} />
       <SideBarWrapper $isOpen={isSideBarOpen}>
-        <SideBar onClick={handleSideBarOpen} />
+        <SideBar onClick={toggleSideBar} />
       </SideBarWrapper>
       <OutletWrapper $isOpen={isSideBarOpen}>
         <Outlet />

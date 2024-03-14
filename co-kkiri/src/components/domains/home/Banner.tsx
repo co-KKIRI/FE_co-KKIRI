@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import useSideBarStore from "@/stores/sideBarStore";
 
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
@@ -15,12 +16,11 @@ interface BannerProps {
 }
 
 export default function Banner({ image, path }: BannerProps) {
-  //임시
-  const isSidebarOpen = false;
+  const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
 
   return (
     <Link to={path}>
-      <Background $isSidebarOpen={isSidebarOpen}>
+      <Background $isSideBarOpen={isSideBarOpen}>
         <img src={image.src} alt={image.alt} />
       </Background>
     </Link>
@@ -32,12 +32,12 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Background = styled.figure<{ $isSidebarOpen?: boolean }>`
+const Background = styled.figure<{ $isSideBarOpen?: boolean }>`
   background-color: ${color.primary[3]};
   border-radius: 2rem;
 
   ${desktop} {
-    width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 29 : 36)}rem;
+    width: ${({ $isSideBarOpen }) => ($isSideBarOpen ? 29 : 36)}rem;
     height: 24rem;
   }
 
