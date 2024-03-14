@@ -31,10 +31,9 @@ interface CardData {
 interface CardProps {
   page?: "home" | "studyList";
   cardData: CardData;
-  scrapClick?: () => void;
 }
 
-export default function Card({ page = "home", cardData, scrapClick }: CardProps) {
+export default function Card({ page = "home", cardData }: CardProps) {
   //임시
   const isSidebarOpen = false;
   const {
@@ -60,7 +59,7 @@ export default function Card({ page = "home", cardData, scrapClick }: CardProps)
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap wasScraped={isScraped} width={36} onClick={scrapClick} />
+            <Scrap wasScraped={isScraped} width={36} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>

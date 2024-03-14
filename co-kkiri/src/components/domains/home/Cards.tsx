@@ -24,8 +24,11 @@ interface CardsProps {
 }
 
 export default function Cards({ cardDataList }: CardsProps) {
+  //임시
+  const isSidebarOpen = false;
+
   return (
-    <Wrapper>
+    <Wrapper $isSidebarOpen={isSidebarOpen}>
       {cardDataList.map((cardData) => (
         <Card key={cardData.id} page="home" cardData={cardData} />
       ))}
@@ -38,11 +41,19 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isSidebarOpen: boolean }>`
   display: flex;
 
   ${desktop} {
     gap: 2rem;
+    ${({ $isSidebarOpen }) =>
+      $isSidebarOpen
+        ? `  display: grid;
+    grid-template:
+      1fr 1fr /
+      1fr 1fr;
+    `
+        : ""}
   }
 
   ${tablet} {

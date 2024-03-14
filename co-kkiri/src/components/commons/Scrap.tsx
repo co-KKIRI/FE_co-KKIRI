@@ -13,7 +13,7 @@ interface ScrapProps {
  *
  * @property width - px단위
  * */
-export default function Scrap({ wasScraped = false, width, onClick }: ScrapProps) {
+export default function Scrap({ wasScraped = false, width }: ScrapProps) {
   const [isScraped, toggle] = useToggle(wasScraped);
   const scrapIcon = isScraped ? ICONS.scrapFull : ICONS.scrapEmpty;
 
@@ -21,10 +21,6 @@ export default function Scrap({ wasScraped = false, width, onClick }: ScrapProps
     e.preventDefault();
     e.stopPropagation();
     toggle();
-
-    if (onClick) {
-      onClick();
-    }
   };
 
   return (
