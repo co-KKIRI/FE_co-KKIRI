@@ -60,7 +60,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap wasScraped={isScraped} width={36} />
+            <Scrap isScraped={isScraped} width={36} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -68,7 +68,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap wasScraped={isScraped} width={28} />}
+            {page === "home" && <Scrap isScraped={isScraped} width={28} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />

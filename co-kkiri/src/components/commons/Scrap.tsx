@@ -4,18 +4,17 @@ import { useToggle } from "usehooks-ts";
 
 //임시
 interface ScrapProps {
-  wasScraped?: boolean;
+  isScraped?: boolean;
   width?: number;
-  onClick?: () => void;
 }
 
 /**
  *
  * @property width - px단위
  * */
-export default function Scrap({ wasScraped = false, width }: ScrapProps) {
-  const [isScraped, toggle] = useToggle(wasScraped);
-  const scrapIcon = isScraped ? ICONS.scrapFull : ICONS.scrapEmpty;
+export default function Scrap({ isScraped = false, width }: ScrapProps) {
+  const [isScrapedValue, toggle] = useToggle(isScraped);
+  const scrapIcon = isScrapedValue ? ICONS.scrapFull : ICONS.scrapEmpty;
 
   const handleScrapClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
