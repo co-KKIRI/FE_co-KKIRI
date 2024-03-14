@@ -1,6 +1,5 @@
 import * as S from "./Card.styled";
 import { Link } from "react-router-dom";
-import useSideBarStore from "@/stores/sideBarStore";
 
 import Header from "./Header";
 import Title from "./Title";
@@ -11,6 +10,7 @@ import Stacks from "../Stacks";
 import Count from "../Count";
 import UserInfo from "../UserInfo";
 
+import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { ICONS } from "@/constants/icons";
 
 //임시
@@ -35,7 +35,7 @@ interface CardProps {
 }
 
 export default function Card({ page = "home", cardData }: CardProps) {
-  const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
+  const isSidebarOpenNarrow = useResponsiveSidebar();
 
   const {
     id,
@@ -54,7 +54,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
 
   return (
     <Link to={`/list/${id}`}>
-      <S.Container $page={page} $isSideBarOpen={isSideBarOpen}>
+      <S.Container $page={page} $isSidebarOpenNarrow={isSidebarOpenNarrow}>
         {page === "studyList" && (
           <S.TypeWrapper>
             <S.ProjectChip>

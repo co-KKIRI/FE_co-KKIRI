@@ -8,7 +8,7 @@ interface PageProp {
 }
 
 interface ContainerProps extends PageProp {
-  $isSideBarOpen: boolean;
+  $isSidebarOpenNarrow: boolean;
 }
 
 const {
@@ -17,12 +17,12 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const desktopWidthByPage = ($isSideBarOpen: boolean, $page: PageType) => {
+const desktopWidthByPage = ($isSidebarOpenNarrow: boolean, $page: PageType) => {
   switch ($page) {
     case "home":
-      return $isSideBarOpen ? "44.5rem" : "26.5rem";
+      return $isSidebarOpenNarrow ? "44.5rem" : "26.5rem";
     case "studyList":
-      return $isSideBarOpen ? "29rem" : "26.5rem";
+      return $isSidebarOpenNarrow ? "29rem" : "26.5rem";
     default:
       return "26.5rem";
   }
@@ -39,8 +39,8 @@ const mobileWidthByPage = ($page: PageType) => {
   }
 };
 
-const widthForDevice = ({ $isSideBarOpen, $page }: ContainerProps) => {
-  const desktopWidth = desktopWidthByPage($isSideBarOpen, $page);
+const widthForDevice = ({ $isSidebarOpenNarrow, $page }: ContainerProps) => {
+  const desktopWidth = desktopWidthByPage($isSidebarOpenNarrow, $page);
   const mobileWidth = mobileWidthByPage($page);
 
   return css`

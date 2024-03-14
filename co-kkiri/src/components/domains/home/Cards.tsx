@@ -1,9 +1,8 @@
-import useSideBarStore from "@/stores/sideBarStore";
-
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 import Card from "@/components/commons/Card";
+import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 
 //임시
 interface CardData {
@@ -26,12 +25,12 @@ interface CardsProps {
 }
 
 export default function Cards({ cardDataList }: CardsProps) {
-  const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
+  const isSidebarOpenNarrow = useResponsiveSidebar();
 
   return (
-    <Wrapper $isSideBarOpen={isSideBarOpen}>
+    <Wrapper $isSidebarOpenNarrow={isSidebarOpenNarrow}>
       {cardDataList.map((cardData) => (
-        <Card key={cardData.id} page="home" cardData={cardData} />
+        <Card key={cardData.id} page="studyList" cardData={cardData} />
       ))}
     </Wrapper>
   );
@@ -42,13 +41,13 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Wrapper = styled.div<{ $isSideBarOpen: boolean }>`
+const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   display: flex;
 
   ${desktop} {
     gap: 2rem;
-    ${({ $isSideBarOpen }) =>
-      $isSideBarOpen
+    ${({ $isSidebarOpenNarrow }) =>
+      $isSidebarOpenNarrow
         ? `  display: grid;
     grid-template:
       1fr 1fr /
