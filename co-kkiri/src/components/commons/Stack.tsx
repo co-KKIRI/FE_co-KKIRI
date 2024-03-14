@@ -12,9 +12,9 @@ export default function Stack({ stack }: StackProps) {
   return (
     <Background>
       {icon ? (
-        <Icon src={icon.src} alt={icon.alt} />
+        <StackIcon src={icon.src} alt={icon.alt} />
       ) : (
-        <Icon src={ICONS.questionMark.src} alt={ICONS.questionMark.alt} />
+        <EmptyIcon src={ICONS.questionMark.src} alt={ICONS.questionMark.alt} />
       )}
     </Background>
   );
@@ -30,9 +30,15 @@ const Background = styled.div`
   position: relative;
 `;
 
-const Icon = styled.img`
+const EmptyIcon = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const StackIcon = styled(EmptyIcon)`
+  //임의 값 -> 디자인 완성되면 수정할 것
+  width: 2.4rem;
+  height: 2.4rem;
 `;

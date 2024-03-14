@@ -32,6 +32,7 @@ export default function Scrap({ wasScraped = false, width }: ScrapProps) {
 
 const Wrapper = styled.div<{ $width?: number }>`
   width: ${({ $width }) => ($width ? `${$width / 10}rem` : "100%")};
+  cursor: pointer;
 `;
 
 const ScrapIcon = styled.img`
