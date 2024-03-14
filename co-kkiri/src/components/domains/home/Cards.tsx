@@ -30,7 +30,7 @@ export default function Cards({ cardDataList }: CardsProps) {
   return (
     <Wrapper $isSidebarOpenNarrow={isSidebarOpenNarrow}>
       {cardDataList.map((cardData) => (
-        <Card key={cardData.id} page="studyList" cardData={cardData} />
+        <Card key={cardData.id} page="home" cardData={cardData} />
       ))}
     </Wrapper>
   );
