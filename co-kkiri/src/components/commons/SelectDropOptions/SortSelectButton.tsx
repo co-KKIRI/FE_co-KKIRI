@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import DropdownMenu from "../DropdownMenu";
-import DropdownButton from "../DropdownButton";
+import DefaultDropdownMenu from "./DefaultDropdownMenu";
+import DefaultDropdownButton from "./DefaultDropdownButton";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
 
@@ -15,8 +15,12 @@ export default function SortSelectButton() {
 
   return (
     <Container ref={ref}>
-      <DropdownButton toggleDropdown={toggleDropdown} selectOption={selectOption} />
-      <DropdownMenu isOpen={isOpen} handleSelectOption={handleSelectOption} selectType="sortList"></DropdownMenu>
+      <DefaultDropdownButton selectType="sort" toggleDropdown={toggleDropdown} selectOption={selectOption} />
+      <DefaultDropdownMenu
+        isOpen={isOpen}
+        handleSelectOption={handleSelectOption}
+        borderType="square"
+        selectType="progressDate"></DefaultDropdownMenu>
     </Container>
   );
 }

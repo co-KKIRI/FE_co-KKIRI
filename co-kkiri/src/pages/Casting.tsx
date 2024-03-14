@@ -1,5 +1,9 @@
+import SortSelectButton from "@/components/commons/SelectDropOptions/SortSelectButton";
+
 export default function Casting() {
   return (
-    <div>Casting</div>
-  )
+    <div>
+      <SortSelectButton />
+    </div>
+  );
 }
