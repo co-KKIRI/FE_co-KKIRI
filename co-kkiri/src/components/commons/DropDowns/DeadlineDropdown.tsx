@@ -12,7 +12,12 @@ export default function DeadlineDropdown() {
 
   return (
     <Container ref={ref}>
-      <SquareDropButton iconType="date" onClick={toggleDropdown} selectOption={selectOption} $isSelected={isSelected} />
+      <SquareDropButton
+        $iconType="date"
+        onClick={toggleDropdown}
+        selectOption={selectOption}
+        $isSelected={isSelected}
+      />
       {isOpen && <DatePickerWithRange />}
     </Container>
   );
@@ -27,9 +32,13 @@ const Container = styled.div`
   gap: 0.6rem;
   position: relative;
   padding: 0;
-  width: 31.4rem;
+  width: 36.7rem;
+
+  ${mediaQueries.tablet} {
+    width: 46.2rem;
+  }
 
   ${mediaQueries.mobile} {
-    width: 28rem;
+    width: 32rem;
   }
 `;

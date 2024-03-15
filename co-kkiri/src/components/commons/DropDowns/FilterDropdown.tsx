@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import FilterButton from "../FilterButton";
+import FilterButton from "./FilterDropButton";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import DropMenu from "./commons/DropMenu";
 import { DROPDOWN_INFO } from "@/constants/dropDown";

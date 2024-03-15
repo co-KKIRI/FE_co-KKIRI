@@ -34,7 +34,7 @@ export default function RecruitDropdown({ menuInfoType }: RecruitDropdownProps) 
         selectOption={selectOption}
         onClick={toggleDropdown}
         $isSelected={isSelected}
-        iconType="default"
+        $iconType="default"
       />
       <DropMenu
         isOpen={isOpen}

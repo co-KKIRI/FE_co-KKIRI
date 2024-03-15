@@ -5,12 +5,12 @@ import DESIGN_TOKEN from "@/styles/tokens";
 interface DropdownButtonProps {
   selectOption: string;
   onClick: () => void;
-  iconType: "date" | "default";
+  $iconType: "date" | "default";
   $isSelected: boolean;
 }
 
 interface ContainerProps {
-  iconType: "date" | "default";
+  $iconType: "date" | "default";
   $isSelected: boolean;
 }
 
@@ -19,20 +19,20 @@ interface ContainerProps {
  * 네모 형태 드랍 버튼
  *
  * @param selectOption: 버튼 innerText
- * @param iconType: 버튼 innerIcon
- * @property {"date"|"default"} iconType
+ * @param $iconType: 버튼 innerIcon
+ * @property {"date"|"default"} $iconType
  */
 
-export default function SquareDropButton({ selectOption, onClick, iconType, $isSelected }: DropdownButtonProps) {
+export default function SquareDropButton({ selectOption, onClick, $iconType, $isSelected }: DropdownButtonProps) {
   const iconSources = {
     date: { src: ICONS.calendar.src, alt: ICONS.calendar.alt },
     default: { src: ICONS.popover.src, alt: ICONS.popover.alt },
   };
 
   return (
-    <Container onClick={onClick} iconType={iconType} $isSelected={$isSelected}>
+    <Container onClick={onClick} $iconType={$iconType} $isSelected={$isSelected}>
       <div>{selectOption}</div>
-      <img src={iconSources[iconType].src} alt={iconSources[iconType].alt} />
+      <img src={iconSources[$iconType].src} alt={iconSources[$iconType].alt} />
     </Container>
   );
 }

@@ -23,7 +23,7 @@ export default function SquareDropButton({ selectOption, onClick, $isSelected }:
   return (
     <Container onClick={onClick} $isSelected={$isSelected}>
       <div>{selectOption}</div>
-      <img src={ICONS.popover.src} alt={ICONS.popover.alt} />
+      <img src={ICONS.triangle.src} alt={ICONS.triangle.alt} />
     </Container>
   );
 }
