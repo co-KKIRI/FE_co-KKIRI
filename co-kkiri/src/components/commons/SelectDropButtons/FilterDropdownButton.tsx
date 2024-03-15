@@ -35,10 +35,10 @@ export default function FilterDropdownButton({ filterType }: FilterDropdownButto
     <Container ref={ref}>
       <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
       <DropdownMenu
-        borderType="round"
+        $borderType="round"
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        selectType={filterType}
+        $selectType={filterType}
       />
     </Container>
   );

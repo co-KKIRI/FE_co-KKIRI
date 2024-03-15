@@ -38,16 +38,16 @@ export default function RecruitDropdownButton({ recruitInfoType }: RecruitDropdo
   return (
     <Container ref={ref}>
       <DropdownButton
-        selectType={recruitInfoType}
+        $selectType={recruitInfoType}
         onClick={toggleDropdown}
         selectOption={selectOption}
-        isSelected={isSelected}
+        $isSelected={isSelected}
       />
       <DropdownMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        selectType={recruitInfoType}
-        borderType="square"></DropdownMenu>
+        $selectType={recruitInfoType}
+        $borderType="square"></DropdownMenu>
     </Container>
   );
 }

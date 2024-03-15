@@ -12,7 +12,7 @@ export default function DeadlineDropdownButton() {
 
   return (
     <Container ref={ref}>
-      <DropdownButton selectType="date" onClick={toggleDropdown} selectOption="마감 기간" isSelected={isSelected} />
+      <DropdownButton $selectType="date" onClick={toggleDropdown} selectOption="마감 기간" $isSelected={isSelected} />
       {isOpen && <DatePickerWithRange />}
     </Container>
   );

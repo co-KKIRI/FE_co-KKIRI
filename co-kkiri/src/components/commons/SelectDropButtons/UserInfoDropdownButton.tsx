@@ -35,16 +35,16 @@ export default function UserInfoDropdownButton({ userInfoType }: UserInfoDropdow
   return (
     <Container ref={ref}>
       <DropdownButton
-        selectType={userInfoType}
+        $selectType={userInfoType}
         onClick={toggleDropdown}
         selectOption={selectOption}
-        isSelected={isSelected}
+        $isSelected={isSelected}
       />
       <DropdownMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        selectType={userInfoType}
-        borderType="square"></DropdownMenu>
+        $selectType={userInfoType}
+        $borderType="square"></DropdownMenu>
     </Container>
   );
 }

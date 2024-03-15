@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 interface DropdownMenuProps {
-  selectType:
+  $selectType:
     | "position"
     | "meeting"
     | "sortList"
@@ -13,12 +13,12 @@ interface DropdownMenuProps {
     | "career";
   handleSelectOption: (option: string) => void;
   isOpen: boolean;
-  borderType: "round" | "square";
+  $borderType: "round" | "square";
 }
 
 interface ContainerProps {
   $isOpen: boolean;
-  borderType?: "round" | "square";
+  $borderType?: "round" | "square";
 }
 
 interface OptionList {
@@ -32,7 +32,15 @@ interface OptionList {
   career?: string[];
 }
 
-export default function DefaultDropdownMenu({ selectType, isOpen, handleSelectOption, borderType }: DropdownMenuProps) {
+/**
+ *  * DefaultDropdownMenu 컴포넌트
+ * @param $borderType: 드랍메뉴의 형태 결정
+ * @property {"round"|"square"} $borderType
+ *
+ * @param $selectType: 옵션의 내용 결정
+ */
+
+export default function DropdownMenu({ $selectType, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
   const optionList: { round: OptionList; square: OptionList } = {
     round: {
       position: ["전체", "프론트엔드", "백엔드", "디자이너", "IOS", "안드로이드", "데브옵스"],
@@ -50,10 +58,10 @@ export default function DefaultDropdownMenu({ selectType, isOpen, handleSelectOp
   };
 
   return (
-    <Container $isOpen={isOpen} borderType={borderType}>
-      {optionList[borderType][selectType]?.map((option: string) => (
+    <Container $isOpen={isOpen} $borderType={$borderType}>
+      {optionList[$borderType][$selectType]?.map((option: string) => (
         <Option
-          borderType={borderType}
+          $borderType={$borderType}
           onClick={() => {
             handleSelectOption(option);
           }}
@@ -69,7 +77,7 @@ const { typography, color, zIndex } = DESIGN_TOKEN;
 
 const Container = styled.div<ContainerProps>`
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
-  ${({ borderType }) => (borderType === "round" ? VARIANT_STYLE.round : VARIANT_STYLE.square)}
+  ${({ $borderType }) => ($borderType === "round" ? VARIANT_STYLE.round : VARIANT_STYLE.square)}
 `;
 
 const COMMON_STYLE = css`
@@ -98,8 +106,8 @@ const VARIANT_STYLE = {
   `,
 };
 
-const Option = styled.div<{ borderType?: string }>`
+const Option = styled.div<{ $borderType?: string }>`
   color: ${color.black[1]};
   cursor: pointer;
-  ${({ borderType }) => (borderType === "round" ? typography.font12Semibold : typography.font16Medium)};
+  ${({ $borderType }) => ($borderType === "round" ? typography.font12Semibold : typography.font16Medium)};
 `;
