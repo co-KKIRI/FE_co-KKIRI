@@ -1,6 +1,6 @@
 import Card from "@/components/commons/Card";
 import Category from "@/components/commons/Category";
-import Pagination from "@/components/commons/test/Pagination";
+import Pagination from "@/components/commons/Pagination_test/Pagination";
 import FilterDropdownButton from "@/components/commons/SelectDropOptions/FilterDropdownButton";
 import { StudyInfo, StudyListData } from "@/lib/mock/studyList";
 import DESIGN_TOKEN from "@/styles/tokens";
