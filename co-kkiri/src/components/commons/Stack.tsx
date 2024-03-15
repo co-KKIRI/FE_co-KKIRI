@@ -6,17 +6,21 @@ import { Image } from "@/types/ImageTypes";
 
 interface StackProps {
   stack?: Pick<Stack, "name" | "img">;
+  className?: string;
 }
 
-export default function Stack({ stack }: StackProps) {
+export default function Stack({ stack, className }: StackProps) {
   //임시
-  const icon: Image = stack && stack.img ? {
-    src: stack.img,
-    alt: stack.name
-  } : ICONS.questionMark;
+  const icon: Image =
+    stack && stack.img
+      ? {
+          src: stack.img,
+          alt: stack.name,
+        }
+      : ICONS.questionMark;
 
   return (
-    <Background>
+    <Background className={className}>
       <Icon src={icon.src} alt={icon.alt} />
     </Background>
   );
@@ -25,7 +29,7 @@ export default function Stack({ stack }: StackProps) {
 const { color } = DESIGN_TOKEN;
 
 const Background = styled.div`
-  padding: .8rem;
+  padding: 0.8rem;
 
   background-color: ${color.gray[3]};
   border-radius: 50%;
