@@ -5,7 +5,7 @@ import { Stack } from "@/types/StackTypes";
 import { Image } from "@/types/ImageTypes";
 
 interface StackProps {
-  stack?: Stack;
+  stack?: Pick<Stack, "name" | "img">;
 }
 
 export default function Stack({ stack }: StackProps) {
