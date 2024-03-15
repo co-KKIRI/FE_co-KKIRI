@@ -8,7 +8,7 @@ interface Icon {
   alt: string;
 }
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
@@ -25,9 +25,9 @@ interface ButtonProps {
  * @property {number} width - px단위로 입력. 입력하지 않을 경우 width:100% 로 설정
  * @property {object} icon - icon.js에서 필요한 아이콘의 객체를 입력
  * */
-export default function Button({ children, onClick, disabled, variant, width, icon }: ButtonProps) {
+export default function Button({ children, onClick, disabled, variant, width, icon, className }: ButtonProps) {
   return (
-    <S.Container onClick={onClick} disabled={disabled} $variant={variant} $width={width}>
+    <S.Container onClick={onClick} disabled={disabled} $variant={variant} $width={width} className={className}>
       {icon && <S.ButtonIcon src={icon.src} alt={icon.alt} />}
       {children}
     </S.Container>
