@@ -5,20 +5,21 @@ import FilterButton from "../FilterButton";
 import useOpenToggle from "@/hooks/useOpenToggle";
 
 interface FilterDropdownButtonProps {
-  filterType: "position" | "meeting";
+  filterType: "position" | "progressWay";
+  onSelectFilter: (filterType: string, selectedValue: string) => void;
 }
 
 const filterDefaultValue = {
   position: "포지션",
-  meeting: "진행 방식",
+  progressWay: "진행 방식",
 };
 
 /**
  * FilterDropdownButton 컴포넌트
  * filterType에 따라 dropdown 옵션이 정해집니다.
- * @property {"position"|"meeting"} filterType
+ * @property {"position"|"progressWay"} filterType
  * */
-export default function FilterDropdownButton({ filterType }: FilterDropdownButtonProps) {
+export default function FilterDropdownButton({ filterType, onSelectFilter }: FilterDropdownButtonProps) {
   const defaultValue = filterDefaultValue[filterType];
 
   const [selectOption, setSelectOption] = useState(defaultValue);
@@ -28,6 +29,7 @@ export default function FilterDropdownButton({ filterType }: FilterDropdownButto
   const handleSelectOption = (option: string) => {
     setSelectOption(option);
     setIsSelected(true);
+    onSelectFilter(filterType, option);
     toggleDropdown();
   };
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 interface DropdownMenuProps {
-  selectType: "position" | "meeting" | "sortList";
+  selectType: "position" | "progressWay" | "sortList";
   handleSelectOption: (option: string) => void;
   isOpen: boolean;
 }
@@ -10,7 +10,7 @@ interface DropdownMenuProps {
 export default function DropdownMenu({ selectType, isOpen, handleSelectOption }: DropdownMenuProps) {
   const optionList = {
     position: ["전체", "프론트엔드", "백엔드", "디자이너", "IOS", "안드로이드", "데브옵스"],
-    meeting: ["전체", "온라인", "오프라인", "온/오프라인"],
+    progressWay: ["전체", "온라인", "오프라인", "온/오프라인"],
     sortList: ["최신순", "마감순", "조회순"],
   };
 
@@ -41,6 +41,7 @@ const Container = styled.div<{ $isOpen: boolean }>`
   gap: 1.6rem;
   position: absolute;
   top: 4.2rem;
+  background-color: ${color.white};
   ${zIndex.popover}
 `;
 
