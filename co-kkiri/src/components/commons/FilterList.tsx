@@ -1,5 +1,5 @@
 import DESIGN_TOKEN from "@/styles/tokens";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import styled from "styled-components";
 
 interface FilterListProps {
@@ -8,16 +8,19 @@ interface FilterListProps {
 }
 
 export default function FilterList({ filters, onFilterClick }: FilterListProps) {
+    const [currentFilter, setCurrentFilter] = useState<string>(filters[0]);
+
     const handleFilterClick = (e: MouseEvent<HTMLDivElement>) => {
         const filter = e.currentTarget.textContent;
         if (filter) {
             console.log(filter + " clicked");
             onFilterClick(filter);
+            setCurrentFilter(filter);
         }
     }
 
     return <Container>
-        {filters.map(filter => <div key={filter} onClick={handleFilterClick}>{filter}</div>)}
+        {filters.map(filter => <Box key={filter} $isSelected={currentFilter === filter} onClick={handleFilterClick}>{filter}</Box>)}
     </Container>
 
 }
@@ -40,8 +43,18 @@ const Container = styled.div`
         ${typography.font16Bold}
     }
 
-    :hover{
-       cursor: pointer; 
-       color: ${color.black[3]};
-    }
 `
+
+interface BoxProps {
+    $isSelected?: boolean;
+}
+
+const Box = styled.div<BoxProps>`
+
+    ${({ $isSelected }) => $isSelected && `color: ${color.black[1]};`}
+
+    &:hover{
+       cursor: pointer; 
+       ${({ $isSelected }) => !$isSelected && `color: ${color.black[3]};`}
+    }
+`;
