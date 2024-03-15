@@ -5,25 +5,33 @@ import DESIGN_TOKEN from "@/styles/tokens";
 interface DropdownButtonProps {
   selectOption: string;
   onClick: () => void;
-  selectType?: string;
-  isSelected: boolean;
+  $selectType?: string;
+  $isSelected: boolean;
 }
 
 interface ContainerProps {
-  selectType?: string;
-  isSelected?: boolean;
+  $selectType?: string;
+  $isSelected?: boolean;
 }
 
-export default function DefaultDropdownButton({ selectOption, onClick, selectType, isSelected }: DropdownButtonProps) {
+/**
+ *  * DefaultDropdownMenu 컴포넌트
+ * @param $selectOption: 버튼 안의 초기 innerText 결정
+ * @property {"sort"|"date"} $selectOption
+ * $selectOption의 기본값은 drop 입니다.
+ *
+ * @param $selectType: 버튼 안의 초기 icon 결정
+ */
+export default function DropdownButton({ selectOption, onClick, $selectType, $isSelected }: DropdownButtonProps) {
   return (
-    <Container onClick={onClick} selectType={selectType} isSelected={isSelected}>
+    <Container onClick={onClick} $selectType={$selectType} $isSelected={$isSelected}>
       <div>{selectOption}</div>
       <img
         src={
-          selectType === "sort" ? ICONS.triangle.src : selectType === "date" ? ICONS.calendar.src : ICONS.popover.src
+          $selectType === "sort" ? ICONS.triangle.src : $selectType === "date" ? ICONS.calendar.src : ICONS.popover.src
         }
         alt={
-          selectType === "sort" ? ICONS.triangle.alt : selectType === "date" ? ICONS.calendar.alt : ICONS.popover.alt
+          $selectType === "sort" ? ICONS.triangle.alt : $selectType === "date" ? ICONS.calendar.alt : ICONS.popover.alt
         }
       />
     </Container>
@@ -33,7 +41,7 @@ export default function DefaultDropdownButton({ selectOption, onClick, selectTyp
 const { color, typography } = DESIGN_TOKEN;
 
 const Container = styled.button<ContainerProps>`
-  ${({ selectType }) => (selectType === "sort" ? VARIANT_STYLE.sort : VARIANT_STYLE.drop)}
+  ${({ $selectType }) => ($selectType === "sort" ? VARIANT_STYLE.sort : VARIANT_STYLE.drop)}
 `;
 
 const VARIANT_STYLE = {
@@ -55,7 +63,7 @@ const VARIANT_STYLE = {
     border-radius: 0.5rem;
     height: 4.8rem;
     ${typography.font16Medium}
-    color : ${({ isSelected }) => (isSelected ? color.black[1] : color.black[3])};
+    color : ${({ $isSelected }) => ($isSelected ? color.black[1] : color.black[3])};
     border: 0.1rem solid ${color.gray[2]};
 
     & img {

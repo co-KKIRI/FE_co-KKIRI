@@ -17,12 +17,17 @@ export default function SortSelectButton() {
 
   return (
     <Container ref={ref}>
-      <DropdownButton selectType="sort" onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
+      <DropdownButton
+        $selectType="sort"
+        onClick={toggleDropdown}
+        selectOption={selectOption}
+        $isSelected={isSelected}
+      />
       <DropdownMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        selectType="sortList"
-        borderType="round"></DropdownMenu>
+        $selectType="sortList"
+        $borderType="round"></DropdownMenu>
     </Container>
   );
 }
