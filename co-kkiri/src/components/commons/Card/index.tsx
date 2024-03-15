@@ -36,15 +36,6 @@ interface CardProps {
 export default function Card({ page = "home", cardData }: CardProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
 
-  const getTypeLabel = (type: "STUDY" | "PROJECT") => {
-    switch (type) {
-      case "STUDY":
-        return "스터디";
-      case "PROJECT":
-        return "프로젝트";
-    }
-  };
-
   const {
     id,
     type,
@@ -66,7 +57,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
         {page === "studyList" && (
           <S.TypeWrapper>
             <S.ProjectChip>
-              <ProjectChip label={getTypeLabel(type)} />
+              <ProjectChip label={type} />
             </S.ProjectChip>
             <Scrap isScraped={isScraped} width={36} />
           </S.TypeWrapper>
