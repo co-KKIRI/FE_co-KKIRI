@@ -16,7 +16,7 @@ export default function FilterDropButton({ selectOption, onClick, isSelected }: 
     <Container $isSelected={isSelected} onClick={onClick}>
       {selectOption}
       {isSelected ? (
-        <Arrow src={popoverSelected.src} alt={popoverSelected.alt} />
+        <Arrow $isSelected src={popoverSelected.src} alt={popoverSelected.alt} />
       ) : (
         <Arrow src={popover.src} alt={popover.alt} />
       )}
@@ -48,7 +48,15 @@ const Container = styled.button<Container>`
   ${typography.font12Semibold}
 `;
 
-const Arrow = styled.img`
+interface Arrow {
+  $isSelected?: boolean;
+}
+
+const Arrow = styled.img<Arrow>`
   width: 1.2rem;
   height: 1.2rem;
+
+  ${({ $isSelected }) =>
+    $isSelected && `transform: rotate(180deg);`
+  }
 `;
