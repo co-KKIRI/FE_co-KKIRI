@@ -1,28 +1,24 @@
 import styled from "styled-components";
-import DropdownMenu from "./commons/DropdownMenu";
-import DropdownButton from "./commons/DropdownButton";
+import DropMenu from "./commons/DropMenu";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import DESIGN_TOKEN from "@/styles/tokens";
+import SquareDropButton from "./commons/SquareDropButton";
+import { DROPDOWN_INFO } from "@/constants/dropDown";
 
-interface UserInfoDropdownButtonProps {
-  userInfoType: "position" | "career";
+interface UserInfoDropdownProps {
+  menuInfoType: "position" | "career";
 }
 
-const UserInfoDefaultValue = {
-  position: "포지션",
-  career: "경력",
-};
-
 /**
- * UserInfoDropdownButton 컴포넌트
- * userInfoType에 따라 dropdown 옵션이 정해집니다.
- * @property {"position" | "career"} userInfoType
+ * UserInfoDropdown 컴포넌트
+ * @param  menuInfoType: 드랍메뉴 내용
+ * @property {"position" | "career"}  menuInfoType
  * */
-export default function UserInfoDropdownButton({ userInfoType }: UserInfoDropdownButtonProps) {
-  const defaultValue = UserInfoDefaultValue[userInfoType];
+export default function UserInfoDropdown({ menuInfoType }: UserInfoDropdownProps) {
+  const { user } = DROPDOWN_INFO;
 
-  const [selectOption, setSelectOption] = useState(defaultValue);
+  const [selectOption, setSelectOption] = useState(user[menuInfoType].defaultValue);
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
@@ -34,17 +30,17 @@ export default function UserInfoDropdownButton({ userInfoType }: UserInfoDropdow
 
   return (
     <Container ref={ref}>
-      <DropdownButton
-        $selectType={userInfoType}
-        onClick={toggleDropdown}
+      <SquareDropButton
         selectOption={selectOption}
+        onClick={toggleDropdown}
         $isSelected={isSelected}
+        iconType="default"
       />
-      <DropdownMenu
+      <DropMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        $selectType={userInfoType}
-        $borderType="square"></DropdownMenu>
+        $borderType="square"
+        options={user[menuInfoType].options}></DropMenu>
     </Container>
   );
 }

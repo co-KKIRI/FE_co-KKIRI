@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import DropdownMenu from "./commons/DropdownMenu";
-import DropdownButton from "./commons/DropdownButton";
+import DropMenu from "./commons/DropMenu";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
+import TextDropButton from "./commons/TextDropButton";
+import { DROPDOWN_INFO } from "@/constants/dropDown";
 
 export default function SortSelectButton() {
-  const [selectOption, setSelectOption] = useState("최신순");
+  const { sort } = DROPDOWN_INFO;
+
+  const [selectOption, setSelectOption] = useState(sort.defaultValue);
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
@@ -17,17 +20,12 @@ export default function SortSelectButton() {
 
   return (
     <Container ref={ref}>
-      <DropdownButton
-        $selectType="sort"
-        onClick={toggleDropdown}
-        selectOption={selectOption}
-        $isSelected={isSelected}
-      />
-      <DropdownMenu
+      <TextDropButton onClick={toggleDropdown} selectOption={selectOption} $isSelected={isSelected} />
+      <DropMenu
         isOpen={isOpen}
         handleSelectOption={handleSelectOption}
-        $selectType="sortList"
-        $borderType="round"></DropdownMenu>
+        options={sort.options}
+        $borderType="round"></DropMenu>
     </Container>
   );
 }

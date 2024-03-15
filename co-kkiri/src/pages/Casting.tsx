@@ -1,3 +1,9 @@
+import UserInfoDropdownButton from "@/components/commons/SelectDropOptions/UserInfoDropdownButton";
+
 export default function Casting() {
-  return <div>Casting</div>;
+  return (
+    <div>
+      <UserInfoDropdownButton userInfoType="position" />
+    </div>
+  );
 }
