@@ -1,6 +1,5 @@
 import * as S from "./Card.styled";
 import { Link } from "react-router-dom";
-
 import Header from "./Header";
 import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";

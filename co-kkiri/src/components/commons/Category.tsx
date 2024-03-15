@@ -41,6 +41,7 @@ const { typography, color } = DESIGN_TOKEN;
 const Container = styled.div`
   display: flex;
   gap: 2rem;
+  justify-content: flex-start;
 `;
 
 const CategoryButton = styled.button<{ $isSelected: boolean }>`
