@@ -85,7 +85,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 5,
-        type: "STUDY",
+        type: "PROJECT",
         recruitEndAt: "2024-03-20",
         status: "READY",
         isScraped: false,
@@ -100,7 +100,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 6,
-        type: "STUDY",
+        type: "PROJECT",
         recruitEndAt: "2024-03-25",
         status: "READY",
         isScraped: false,
