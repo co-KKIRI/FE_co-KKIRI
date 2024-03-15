@@ -28,18 +28,21 @@ const Container = styled(DefaultChip)`
   color: ${color.black[1]};
 
   ${({ isSelected }) => !isSelected && `opacity: .4;`}
+  &:hover {
+    ${({ isSelected }) => !isSelected && `opacity: 1;`}
+  }
 
   ${typography.font12Regular}
 
-
-    
-    ${mediaQueries.mobile} {
+  ${mediaQueries.mobile} {
     width: fit-content;
     height: fit-content;
 
     padding: 0.3rem 1.2rem;
 
     border-radius: 9999rem;
+
+    opacity: 1;
 
     & .image-container {
       display: none;
@@ -53,5 +56,16 @@ const Container = styled(DefaultChip)`
 
             border-color: ${color.secondary};
         `}
+
+    &:hover {
+      ${({ isSelected }) =>
+        !isSelected &&
+        `
+        background-color: ${color.white};
+        color: ${color.secondary};
+
+        border-color: ${color.secondary};
+    `}
+    }
   }
 `;
