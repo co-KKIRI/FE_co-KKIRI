@@ -16,8 +16,9 @@ import post from "@/assets/icons/post.svg";
 import questionMark from "@/assets/icons/question-mark.svg";
 import categorySelected from "@/assets/icons/category_selected.svg";
 import calendar from "@/assets/icons/calendar.svg";
+import { Images } from "@/types/ImageTypes";
 
-export const ICONS = {
+export const ICONS: Images = {
   arrowRight: {
     src: arrowRight,
     alt: "다음",
