@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 interface ResetButtonProps {
   onReset: () => void;
+  className?: string;
 }
 
-export default function ResetButton({ onReset }: ResetButtonProps) {
+export default function ResetButton({ onReset, className }: ResetButtonProps) {
   return (
-    <Container onClick={onReset}>
+    <Container onClick={onReset} className={className}>
       <img src={ICONS.reset.src} alt={ICONS.reset.alt} />
       <p>초기화</p>
     </Container>
