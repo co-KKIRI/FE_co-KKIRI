@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Stack from "./Stack";
+import StackComponent from "./Stack";
+import { STACKS } from "@/constants/stacks";
 
 interface StacksProps {
   stacks: string[];
@@ -7,7 +8,7 @@ interface StacksProps {
 
 export default function Stacks({ stacks }: StacksProps) {
   return (
-    <Wrapper>{stacks.length > 0 ? stacks.map((stack) => <Stack key={stack} stack={stack} />) : <Stack />}</Wrapper>
+    <Wrapper>{stacks.length > 0 ? stacks.map((stack) => <StackComponent key={stack} stack={STACKS[stack]} />) : <StackComponent />}</Wrapper>
   );
 }
 
