@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
-import { STACK_ICONS } from "@/constants/stackIcons";
+import { Stack } from "@/types/StackTypes";
+import { Image } from "@/types/ImageTypes";
 
 interface StackProps {
-  stack?: string;
+  stack?: Stack;
 }
 
 export default function Stack({ stack }: StackProps) {
   //임시
-  const icon = stack && STACK_ICONS[stack] ? STACK_ICONS[stack] : ICONS.questionMark;
+  const icon: Image = stack && stack.img ? {
+    src: stack.img,
+    alt: stack.name
+  } : ICONS.questionMark;
+
   return (
     <Background>
       <Icon src={icon.src} alt={icon.alt} />
@@ -20,6 +25,8 @@ export default function Stack({ stack }: StackProps) {
 const { color } = DESIGN_TOKEN;
 
 const Background = styled.div`
+  padding: .8rem;
+
   background-color: ${color.gray[3]};
   border-radius: 50%;
   width: 3.6rem;
@@ -31,7 +38,7 @@ const Background = styled.div`
 `;
 
 const Icon = styled.img`
-  //임시
-  max-width: 2.4rem;
-  max-height: 2.4rem;
+  width: 100%; /* 컨테이너 너비에 맞춤 */
+  height: 100%; /* 컨테이너 높이에 맞춤 */
+  object-fit: contain;
 `;
