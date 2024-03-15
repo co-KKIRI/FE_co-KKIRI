@@ -1,19 +1,18 @@
 import DESIGN_TOKEN from "@/styles/tokens";
-import { StackPosition } from "@/types/StackTypes";
 import { MouseEvent } from "react";
 import styled from "styled-components";
 
 interface FilterListProps {
-  currentFilter: StackPosition
-  filters: StackPosition[];
-  onFilterClick(filter: StackPosition): void;
+  currentFilter: string
+  filters: string[];
+  onFilterClick(filter: string): void;
   className?: string;
 }
 
 export default function FilterList({ currentFilter, filters, onFilterClick, className }: FilterListProps) {
 
   const handleFilterClick = (e: MouseEvent<HTMLDivElement>) => {
-    const filter = e.currentTarget.textContent as StackPosition;
+    const filter = e.currentTarget.textContent;
     if (filter) {
       onFilterClick(filter);
     }
