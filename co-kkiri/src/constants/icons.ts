@@ -16,6 +16,7 @@ import post from "@/assets/icons/post.svg";
 import questionMark from "@/assets/icons/question-mark.svg";
 import categorySelected from "@/assets/icons/category_selected.svg";
 import calendar from "@/assets/icons/calendar.svg";
+import reset from "@/assets/icons/reset.svg";
 import { Images } from "@/types/ImageTypes";
 
 export const ICONS: Images = {
@@ -91,4 +92,8 @@ export const ICONS: Images = {
     src: calendar,
     alt: "날짜선택 달력",
   },
+  reset: {
+    src: reset,
+    alt: "초기화"
+  }
 };
