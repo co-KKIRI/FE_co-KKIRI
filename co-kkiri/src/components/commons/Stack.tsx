@@ -8,14 +8,11 @@ interface StackProps {
 }
 
 export default function Stack({ stack }: StackProps) {
-  const icon = stack ? STACK_ICONS[stack] : undefined;
+  //임시
+  const icon = stack && STACK_ICONS[stack] ? STACK_ICONS[stack] : ICONS.questionMark;
   return (
     <Background>
-      {icon ? (
-        <Icon src={icon.src} alt={icon.alt} />
-      ) : (
-        <Icon src={ICONS.questionMark.src} alt={ICONS.questionMark.alt} />
-      )}
+      <Icon src={icon.src} alt={icon.alt} />
     </Background>
   );
 }
@@ -28,11 +25,13 @@ const Background = styled.div`
   width: 3.6rem;
   height: 3.6rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Icon = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  //임시
+  max-width: 2.4rem;
+  max-height: 2.4rem;
 `;

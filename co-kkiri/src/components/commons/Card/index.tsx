@@ -10,6 +10,7 @@ import Stacks from "../Stacks";
 import Count from "../Count";
 import UserInfo from "../UserInfo";
 
+import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { ICONS } from "@/constants/icons";
 
 //임시
@@ -34,8 +35,8 @@ interface CardProps {
 }
 
 export default function Card({ page = "home", cardData }: CardProps) {
-  //임시
-  const isSidebarOpen = false;
+  const isSidebarOpenNarrow = useResponsiveSidebar();
+
   const {
     id,
     type,
@@ -53,13 +54,13 @@ export default function Card({ page = "home", cardData }: CardProps) {
 
   return (
     <Link to={`/list/${id}`}>
-      <S.Container $page={page} $isSidebarOpen={isSidebarOpen}>
+      <S.Container $page={page} $isSidebarOpenNarrow={isSidebarOpenNarrow}>
         {page === "studyList" && (
           <S.TypeWrapper>
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap wasScraped={isScraped} width={36} />
+            <Scrap isScraped={isScraped} width={36} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -67,7 +68,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap wasScraped={isScraped} width={28} />}
+            {page === "home" && <Scrap isScraped={isScraped} width={28} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />

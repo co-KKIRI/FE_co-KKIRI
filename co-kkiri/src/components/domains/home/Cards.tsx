@@ -2,6 +2,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 import Card from "@/components/commons/Card";
+import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 
 //임시
 interface CardData {
@@ -24,11 +25,10 @@ interface CardsProps {
 }
 
 export default function Cards({ cardDataList }: CardsProps) {
-  //임시
-  const isSidebarOpen = false;
+  const isSidebarOpenNarrow = useResponsiveSidebar();
 
   return (
-    <Wrapper $isSidebarOpen={isSidebarOpen}>
+    <Wrapper $isSidebarOpenNarrow={isSidebarOpenNarrow}>
       {cardDataList.map((cardData) => (
         <Card key={cardData.id} page="home" cardData={cardData} />
       ))}
@@ -41,13 +41,13 @@ const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Wrapper = styled.div<{ $isSidebarOpen: boolean }>`
+const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   display: flex;
 
   ${desktop} {
     gap: 2rem;
-    ${({ $isSidebarOpen }) =>
-      $isSidebarOpen
+    ${({ $isSidebarOpenNarrow }) =>
+      $isSidebarOpenNarrow
         ? `  display: grid;
     grid-template:
       1fr 1fr /
