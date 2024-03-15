@@ -1,3 +1,9 @@
+import InviteResponseModal from "@/components/modals/InviteResponseModal";
+
 export default function Casting() {
-  return <div>Casting</div>;
+  return (
+    <div>
+      <InviteResponseModal />
+    </div>
+  );
 }
