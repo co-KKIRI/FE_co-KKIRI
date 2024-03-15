@@ -5,9 +5,10 @@ import styled from "styled-components";
 interface FilterListProps {
   filters: string[];
   onFilterClick(filter: string): void;
+  className?: string;
 }
 
-export default function FilterList({ filters, onFilterClick }: FilterListProps) {
+export default function FilterList({ filters, onFilterClick, className }: FilterListProps) {
   const [currentFilter, setCurrentFilter] = useState<string>(filters[0]);
 
   const handleFilterClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -19,7 +20,7 @@ export default function FilterList({ filters, onFilterClick }: FilterListProps) 
   };
 
   return (
-    <Container>
+    <Container className={className}>
       {filters.map((filter) => (
         <Box key={filter} $isSelected={currentFilter === filter} onClick={handleFilterClick}>
           {filter}
