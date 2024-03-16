@@ -28,7 +28,7 @@ export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
           setFilter(mappedFilter[filter]);
         }}
       />
-      <StackChipGrid
+      <StackChipList
         selectedStacks={selectedStacks}
         filter={filter}
         onStackChipClick={(stack) => {
@@ -91,12 +91,12 @@ const Container = styled.div<ContainerProps>`
   }
 
   ${mediaQueries.tablet} {
-    width: fit-content;
+    width: 70rem;
     gap: 3rem;
   }
 
   ${mediaQueries.desktop} {
-    width: fit-content;
+    width: 85.6rem;
     gap: 3rem;
   }
 `;
@@ -110,7 +110,7 @@ const ResetButton = styled(DefaultResetButton)`
   justify-self: end;
 `;
 
-const StackChipGrid = styled(DefaultStackChipList)`
+const StackChipList = styled(DefaultStackChipList)`
   grid-area: stackchips;
 `;
 
