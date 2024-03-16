@@ -32,6 +32,13 @@ const Container = styled(DefaultChip)`
     ${({ isSelected }) => !isSelected && `opacity: 1;`}
   }
 
+  & > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
   ${typography.font12Regular}
 
   ${mediaQueries.mobile} {
