@@ -32,6 +32,7 @@ export default function DefaultChip({
 }: DefaultChipProps) {
   return (
     <Container
+      title={label}
       className={className}
       $isVertical={isVertical}
       $isSelected={isSelected}
