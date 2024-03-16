@@ -1,5 +1,3 @@
 export default function Casting() {
-  return (
-    <div>Casting</div>
-  )
+  return <div>Casting</div>;
 }
