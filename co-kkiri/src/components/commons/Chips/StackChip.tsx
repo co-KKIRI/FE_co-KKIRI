@@ -39,7 +39,7 @@ const Container = styled(DefaultChip)`
     width: 100%;
   }
 
-  ${typography.font12Regular}
+  ${typography.font11Regular}
 
   ${mediaQueries.mobile} {
     width: fit-content;
@@ -58,11 +58,11 @@ const Container = styled(DefaultChip)`
     ${({ isSelected }) =>
       isSelected &&
       `
-            background-color: ${color.white};
-            color: ${color.secondary};
+      background-color: ${color.white};
+      color: ${color.secondary};
 
-            border-color: ${color.secondary};
-        `}
+      border-color: ${color.secondary};
+      `}
 
     &:hover {
       ${({ isSelected }) =>
