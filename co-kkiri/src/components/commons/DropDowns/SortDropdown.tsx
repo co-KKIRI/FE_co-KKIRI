@@ -2,7 +2,7 @@ import styled from "styled-components";
 import DropMenu from "./commons/DropMenu";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
-import TextDropButton from "./TextDropButton";
+import TextDropButton from "./commons/TextDropButton";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 
 export default function SortSelectButton() {
