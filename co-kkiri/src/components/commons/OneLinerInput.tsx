@@ -4,10 +4,11 @@ import DESIGN_TOKEN from "@/styles/tokens";
 
 interface OneLinerInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  helperText?: string;
 }
 
 const OneLinerInput = forwardRef<HTMLInputElement, OneLinerInputProps>(
-  ({ label, id, placeholder, value, maxLength, onChange, onBlur }, ref) => {
+  ({ label, id, placeholder, value, maxLength, helperText, onChange, onBlur }, ref) => {
     return (
       <Wrapper>
         <Label htmlFor={id}>{label}</Label>
@@ -20,6 +21,7 @@ const OneLinerInput = forwardRef<HTMLInputElement, OneLinerInputProps>(
           onBlur={onBlur}
           ref={ref}
         />
+        <p>{helperText}</p> {/*아직 스타일은 적용하지 않음*/}
       </Wrapper>
     );
   },
