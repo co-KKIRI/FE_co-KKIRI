@@ -21,7 +21,7 @@ interface ContainerProps {
  * @param options: 드랍메뉴 내용
  */
 
-export default function DropdownMenu({ options, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
+export default function DropMenu({ options, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
   return (
     <Container $isOpen={isOpen} $borderType={$borderType}>
       {options.map((option: string) => (
