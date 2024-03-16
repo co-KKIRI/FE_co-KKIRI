@@ -58,10 +58,6 @@ export const SubmitButtonBox = styled.div`
   justify-content: center;
   gap: 1.2rem;
 
-  ${mediaQueries.tablet} {
-    gap: 0.8rem;
-  }
-
   ${mediaQueries.mobile} {
     gap: 0.8rem;
     flex-direction: column-reverse;

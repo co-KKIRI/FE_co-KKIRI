@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ROUTER_PATH } from "@/lib/path";
 
 interface AuthModalProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function AuthModal({ onClick }: AuthModalProps) {
