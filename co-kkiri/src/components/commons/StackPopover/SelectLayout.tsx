@@ -1,11 +1,12 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
-import DefaultFilterList from "../../../commons/FilterList";
+import DefaultFilterList from "../FilterList";
 import DefaultResetButton from "./ResetButton";
 import DefaultStackChipList from "./StackChipList";
 import DefaultDeleteStackChipList from "./DeleteStackChipList";
 import { useEffect, useState } from "react";
-import { StackPositionFilter, getFilterKey, mappedFilter } from "./constants";
+import { StackPositionFilter, mappedFilter } from "./constants";
+import { getFilterKey } from "@/lib/utils";
 
 interface SelectLayoutProps {
   onStacksChange: (selectedStacks: string[]) => void;
@@ -22,10 +23,11 @@ export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
   return (
     <Container $isSelectedStacks={selectedStacks.length !== 0}>
       <FilterList
-        currentFilter={getFilterKey(filter)}
-        filters={Object.keys(mappedFilter)}
+        currentFilter={mappedFilter[filter]}
+        filters={Object.values(mappedFilter)}
         onFilterClick={(filter) => {
-          setFilter(mappedFilter[filter]);
+          const filterKey = getFilterKey<StackPositionFilter>(mappedFilter, filter);
+          setFilter(filterKey as StackPositionFilter);
         }}
       />
       <StackChipList
