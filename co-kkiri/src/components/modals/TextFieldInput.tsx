@@ -2,12 +2,12 @@ import { InputHTMLAttributes, forwardRef } from "react";
 import { styled } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-interface OneLinerInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextFieldInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   helperText?: string;
 }
 
-const OneLinerInput = forwardRef<HTMLInputElement, OneLinerInputProps>(
+const TextFieldInput = forwardRef<HTMLInputElement, TextFieldInputProps>(
   ({ label, id, placeholder, value, maxLength, helperText, onChange, onBlur }, ref) => {
     return (
       <Wrapper>
@@ -27,7 +27,7 @@ const OneLinerInput = forwardRef<HTMLInputElement, OneLinerInputProps>(
   },
 );
 
-export default OneLinerInput;
+export default TextFieldInput;
 
 const {
   color,

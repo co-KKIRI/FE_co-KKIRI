@@ -1,5 +1,5 @@
 import { Control, Controller } from "react-hook-form";
-import OneLinerInput from "@/components/commons/OneLinerInput";
+import OneLinerInput from "@/components/modals/TextFieldInput";
 import { CONDITIONS, LABEL } from "@/constants/textInputRules";
 
 interface FormData {
@@ -8,12 +8,12 @@ interface FormData {
   introduction: string;
 }
 
-interface TextInputProps {
+interface ModalTextFieldInputProps {
   name: "nickname" | "link" | "introduction";
   control: Control<FormData>;
 }
 
-export default function TextInput({ name, control }: TextInputProps) {
+export default function ModalTextFieldInput({ name, control }: ModalTextFieldInputProps) {
   return (
     <Controller
       name={name}
