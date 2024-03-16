@@ -1,18 +1,19 @@
 import FilterButton from "@/components/commons/FilterButton";
-import { useState } from "react";
 import SelectLayout from "./SelectLayout";
 import styled from "styled-components";
+import useOpenToggle from "@/hooks/useOpenToggle";
 
-export default function StacksPopover() {
-  const [isButtonSelected, setIsButtonSelected] = useState<boolean>(false);
-  const handleButtonClick = () => {
-    setIsButtonSelected(!isButtonSelected);
-  };
+interface StacksPopoverProps {
+  onStacksChange: (stacks: string[]) => void;
+}
+
+export default function StacksPopover({ onStacksChange }: StacksPopoverProps) {
+  const {isOpen, openToggle} = useOpenToggle();
 
   return (
     <Container>
-      <FilterButton selectOption="기술 스택" isSelected={isButtonSelected} onClick={handleButtonClick} />
-      {isButtonSelected && <SelectLayout />}
+      <FilterButton selectOption="기술 스택" isSelected={isOpen} onClick={openToggle} />
+      {isOpen && <SelectLayout onStacksChange={onStacksChange} />}
     </Container>
   );
 }
