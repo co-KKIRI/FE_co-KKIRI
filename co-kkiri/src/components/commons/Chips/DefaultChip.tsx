@@ -75,11 +75,6 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
 
   & > span {
     text-align: center;
-
-    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
-    overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
-    text-overflow: ellipsis; /* 오버플로된 텍스트의 말줄임표 표시 */
-    width: 100%; /* 또는 부모 요소의 너비에 맞추어 설정 */
   }
 
   & .icon {
