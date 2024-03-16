@@ -11,7 +11,7 @@ interface FilterButtonProps {
 
 const { popover, popoverSelected } = ICONS;
 
-export default function FilterButton({ selectOption, onClick, isSelected }: FilterButtonProps) {
+export default function FilterDropButton({ selectOption, onClick, isSelected }: FilterButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {selectOption}

@@ -19,7 +19,7 @@ interface ContainerProps {
  * @param selectOption: 버튼 innerText
  */
 
-export default function SquareDropButton({ selectOption, onClick, $isSelected }: DropdownButtonProps) {
+export default function TextDropButton({ selectOption, onClick, $isSelected }: DropdownButtonProps) {
   return (
     <Container onClick={onClick} $isSelected={$isSelected}>
       <div>{selectOption}</div>

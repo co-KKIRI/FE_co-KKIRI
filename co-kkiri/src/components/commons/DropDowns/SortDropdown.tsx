@@ -5,7 +5,7 @@ import useOpenToggle from "@/hooks/useOpenToggle";
 import TextDropButton from "./commons/TextDropButton";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 
-export default function SortSelectButton() {
+export default function SortDropdown() {
   const { sort } = DROPDOWN_INFO;
 
   const [selectOption, setSelectOption] = useState(sort.defaultValue);
