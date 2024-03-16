@@ -5,7 +5,7 @@ import DefaultResetButton from "./ResetButton";
 import DefaultStackChipList from "./StackChipList";
 import DefaultDeleteStackChipList from "./DeleteStackChipList";
 import { useEffect, useState } from "react";
-import { StackPositionFilter, mappedFilter } from "./constants";
+import { StackPositionFilter, getFilterKey, mappedFilter } from "./constants";
 
 interface SelectLayoutProps {
   onStacksChange: (selectedStacks: string[]) => void;
@@ -22,7 +22,7 @@ export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
   return (
     <Container $isSelectedStacks={selectedStacks.length !== 0}>
       <FilterList
-        currentFilter={mappedFilter[filter]}
+        currentFilter={getFilterKey(filter)}
         filters={Object.keys(mappedFilter)}
         onFilterClick={(filter) => {
           setFilter(mappedFilter[filter]);
@@ -91,12 +91,12 @@ const Container = styled.div<ContainerProps>`
   }
 
   ${mediaQueries.tablet} {
-    width: 69.8rem;
+    width: fit-content;
     gap: 3rem;
   }
 
   ${mediaQueries.desktop} {
-    width: 85.4rem;
+    width: fit-content;
     gap: 3rem;
   }
 `;
