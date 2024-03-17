@@ -2,21 +2,18 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
-import { useEffect } from "react";
-
-interface ModalBoxProps {
-  $mobileWidth?: number;
-  $tabletWidth?: number;
-  $desktopWidth: number;
-}
+import { useEffect, useRef } from "react";
+import { slideIn, slideOut } from "@/utils/animation";
+import { useOnClickOutside } from "usehooks-ts";
 
 interface ModalLayoutProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  modalType?: "confirm";
+  modalType?: "confirm" | "sidebar";
   mobileWidth?: number;
   tabletWidth?: number;
   desktopWidth: number;
+  onClose: () => void;
 }
 
 export default function ModalLayout({
@@ -26,7 +23,12 @@ export default function ModalLayout({
   children,
   onClick,
   modalType,
+  onClose,
 }: ModalLayoutProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(modalRef, onClose);
+
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 
@@ -38,9 +40,14 @@ export default function ModalLayout({
 
   return (
     <ModalPortal>
-      <Container>
-        <ModalBox $mobileWidth={mobileWidth} $tabletWidth={tabletWidth} $desktopWidth={desktopWidth}>
-          {!modalType && "confirm" && (
+      <Container $isSidebar={modalType === "sidebar"}>
+        <ModalBox
+          ref={modalRef}
+          $mobileWidth={mobileWidth}
+          $tabletWidth={tabletWidth}
+          $desktopWidth={desktopWidth}
+          $isSidebar={modalType === "sidebar"}>
+          {!modalType && ("confirm" || "sidebar") && (
             <CloseButton onClick={onClick}>
               <img src={close} alt="닫기 아이콘" />
             </CloseButton>
@@ -54,12 +61,19 @@ export default function ModalLayout({
 
 const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
 
-const Container = styled.div`
+interface ModalBoxProps {
+  $mobileWidth?: number;
+  $tabletWidth?: number;
+  $desktopWidth: number;
+  $isSidebar?: boolean;
+}
+
+const Container = styled.div<{ $isSidebar?: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  justify-content: ${(props) => (props.$isSidebar ? "flex-start" : "center")};
   align-items: center;
   width: 100%;
   height: 100vh;
@@ -76,6 +90,7 @@ const ModalBox = styled.div<ModalBoxProps>`
   height: auto;
   background-color: ${color.white};
   border-radius: 2rem;
+  animation: ${(props) => (props.$isSidebar ? slideIn : slideOut)} 0.2s forwards;
 
   ${mediaQueries.tablet} {
     width: ${(props) => props.$tabletWidth && `${props.$tabletWidth / 10}rem`};
