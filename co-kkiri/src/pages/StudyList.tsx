@@ -1,64 +1,62 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import Category from "@/components/commons/Category";
+import FilterList from "@/components/commons/FilterList";
 import SearchInput from "@/components/commons/SearchInput";
 import FilterSortOptions from "@/components/domains/studyList/Filters";
 import Cards from "@/components/domains/studyList/Cards";
 import Pagination from "@/components/commons/Pagination_test/Pagination";
-import { getTypeLabel } from "@/utils/getTypeLabel";
+import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
+import { CategoryList } from "@/types/categoryTypes";
 import { getItemsPerPage } from "@/utils/getItemsPerPage";
+import { getFilterKey } from "@/utils/ObjectUtils";
 // mock Data
 import { StudyInfo, StudyListData } from "@/lib/mock/studyList";
 
 export default function StudyList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
-  const [selectedCategory, setSelectedCategory] = useState("전체");
+  const [category, setCategory] = useState<CategoryListFilter>("ALL");
   const [selectedPosition, setSelectedPosition] = useState("");
   const [selectedProgressWay, setSelectedProgressWay] = useState("");
   const [filteredPageData, setFilteredPageData] = useState<StudyInfo[]>([]);
-  const [sortBy, setSortBy] = useState<string>("최신순");
 
+  const { sort, filter } = DROPDOWN_INFO;
+
+  // reactQuery 없이 구현된 코드
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const pageData = filteredPageData.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredPageData.length / itemsPerPage);
 
-  const handleSelectCategory = (category: string) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
+  const handleCategoryChange = (category: string) => {
+    const filterKey = getFilterKey<CategoryList>(categoryListFilter, category);
+    setCategory(filterKey as CategoryListFilter);
   };
 
-  const handleFilterChange = (filterType: string, selectedValue: string) => {
-    if (filterType === "position") {
-      if (selectedValue === selectedPosition || selectedValue === "전체") {
-        setSelectedPosition("");
-      } else {
-        setSelectedPosition(selectedValue);
-      }
-    } else if (filterType === "progressWay") {
-      if (selectedValue === selectedProgressWay || selectedValue === "전체") {
-        setSelectedProgressWay("");
-      } else {
-        setSelectedProgressWay(selectedValue);
-      }
+  // API 요청 없이 구현된 코드
+  const handleFilterChange = (option: string, selectedValue: string) => {
+    if (option === "position") {
+      setSelectedPosition(selectedValue === filter.position.options[0] ? "" : selectedValue);
+    } else if (option === "progressWay") {
+      setSelectedProgressWay(selectedValue === filter.progressWay.options[0] ? "" : selectedValue);
     }
-    setCurrentPage(1);
   };
 
-  const handleSort = (option: string) => {
-    let sortedData;
+  // API 요청 없이 구현된 코드
+  const handleSortChange = (option: string) => {
+    let sortedData: StudyInfo[];
     switch (option) {
-      case "최신순":
+      case sort.options[0]:
         sortedData = filteredPageData.slice().sort((a, b) => b.id - a.id);
         break;
-      case "마감순":
+      case sort.options[1]:
         sortedData = filteredPageData
           .slice()
           .sort((a, b) => new Date(a.recruitEndAt).getTime() - new Date(b.recruitEndAt).getTime());
         break;
-      case "조회순":
+      case sort.options[2]:
         sortedData = filteredPageData.slice().sort((a, b) => b.postViews - a.postViews);
         break;
       default:
@@ -66,12 +64,12 @@ export default function StudyList() {
         break;
     }
     setFilteredPageData(sortedData);
-    setSortBy(option);
+    setCurrentPage(1);
   };
 
-  function handleResize() {
+  const handleResize = () => {
     setItemsPerPage(getItemsPerPage());
-  }
+  };
 
   useEffect(() => {
     handleResize();
@@ -82,28 +80,29 @@ export default function StudyList() {
   }, []);
 
   useEffect(() => {
-    let filteredData = StudyListData.result.studyList.filter((data) => {
-      const typeLabel = getTypeLabel(data.type);
-      return selectedCategory === "전체" || typeLabel === selectedCategory;
+    const filteredData = StudyListData.result.studyList.filter((data) => {
+      const categoryFilter = category === "ALL" || data.type === category;
+      const positionFilter = !selectedPosition || data.position.includes(selectedPosition);
+      const progressWayFilter = !selectedProgressWay || data.progressWay === selectedProgressWay;
+
+      return categoryFilter && positionFilter && progressWayFilter;
     });
-
-    if (selectedPosition) {
-      filteredData = filteredData.filter((data) => data.position.includes(selectedPosition));
-    }
-    if (selectedProgressWay) {
-      filteredData = filteredData.filter((data) => data.progressWay === selectedProgressWay);
-    }
-
     setFilteredPageData(filteredData);
-  }, [selectedCategory, selectedPosition, selectedProgressWay]);
+    setCurrentPage(1);
+  }, [category, selectedPosition, selectedProgressWay]);
 
   return (
     <Container>
       <CategoryWrapper>
-        <Category categoryType="list" onSelectCategory={handleSelectCategory} />
+        <FilterList
+          type="category"
+          currentFilter={categoryListFilter[category]}
+          filters={Object.values(categoryListFilter)}
+          onFilterClick={handleCategoryChange}
+        />
         <SearchInput placeholder="제목을 검색해보세요!" />
       </CategoryWrapper>
-      <FilterSortOptions handleFilterChange={handleFilterChange} handleSort={handleSort} selectedOption={sortBy} />
+      <FilterSortOptions handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} />
       <Cards data={pageData} />
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
     </Container>
