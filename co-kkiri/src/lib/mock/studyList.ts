@@ -280,7 +280,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 17,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-07-15",
         status: "READY",
         isScraped: true,
@@ -295,7 +295,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 16,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-06-30",
         status: "READY",
         isScraped: true,
@@ -310,7 +310,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 15,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-05-20",
         status: "READY",
         isScraped: false,
@@ -325,7 +325,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 14,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-04-15",
         status: "READY",
         isScraped: false,
@@ -385,7 +385,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 10,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-05-01",
         status: "READY",
         isScraped: false,
@@ -415,7 +415,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 8,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-04-10",
         status: "READY",
         isScraped: true,
@@ -445,7 +445,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 6,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-03-25",
         status: "READY",
         isScraped: false,
@@ -460,7 +460,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 5,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-03-20",
         status: "READY",
         isScraped: true,
@@ -505,7 +505,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 2,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-03-05",
         status: "READY",
         isScraped: false,
@@ -520,7 +520,7 @@ export const StudyListData: StudyList = {
       },
       {
         id: 1,
-        type: "PROJECT",
+        type: "STUDY",
         recruitEndAt: "2024-03-01",
         status: "READY",
         isScraped: true,
