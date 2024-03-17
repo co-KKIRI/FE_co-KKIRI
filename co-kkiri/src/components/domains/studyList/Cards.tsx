@@ -10,6 +10,7 @@ interface CardsProps {
 
 export default function Cards({ data }: CardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
+
   return (
     <Wrapper>
       {data.length === 0 ? (
@@ -40,10 +41,7 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
     grid-template-columns: repeat(4, 1fr);
     ${({ $isSidebarOpenNarrow }) =>
       $isSidebarOpenNarrow &&
-      `  display: grid;
-    grid-template:
-      1fr 1fr /
-      1fr 1fr;
+      `  grid-template-columns: repeat(2, 1fr);
     `}
   }
 
