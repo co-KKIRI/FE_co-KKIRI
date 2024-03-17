@@ -1,9 +1,9 @@
 import DESIGN_TOKEN from "@/styles/tokens";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import close from "@/assets/icons/close.svg";
 import ModalPortal from "./ModalPortal";
 import { useEffect, useRef } from "react";
-import { slideIn, slideOut } from "@/utils/animation";
+import { slideIn } from "@/utils/animation";
 import { useOnClickOutside } from "usehooks-ts";
 
 interface ModalLayoutProps {
@@ -90,7 +90,11 @@ const ModalBox = styled.div<ModalBoxProps>`
   height: auto;
   background-color: ${color.white};
   border-radius: 2rem;
-  animation: ${(props) => (props.$isSidebar ? slideIn : slideOut)} 0.2s forwards;
+  ${(props) =>
+    props.$isSidebar &&
+    css`
+      animation: ${slideIn} 0.2s forwards;
+    `}
 
   ${mediaQueries.tablet} {
     width: ${(props) => props.$tabletWidth && `${props.$tabletWidth / 10}rem`};
