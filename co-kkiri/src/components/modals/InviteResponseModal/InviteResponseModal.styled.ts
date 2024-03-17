@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { color, mediaQueries, typography } = DESIGN_TOKEN;
 
-export const Container = styled.div`
+export const Container = styled.form`
   width: 100%;
 
   & h1 {

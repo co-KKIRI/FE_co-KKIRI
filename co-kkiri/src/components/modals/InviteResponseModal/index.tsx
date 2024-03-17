@@ -40,8 +40,12 @@ export default function InviteResponseModal({ onClick }: InviteResponseModalProp
             </p>
           </S.MessageBox>
           <S.SubmitButtonBox>
-            <Button variant="red">거절하기</Button>
-            <Button variant="primary">수락하기</Button>
+            <Button type="submit" variant="red">
+              거절하기
+            </Button>
+            <Button type="submit" variant="primary">
+              수락하기
+            </Button>
           </S.SubmitButtonBox>
         </S.ContentContainer>
       </S.Container>
