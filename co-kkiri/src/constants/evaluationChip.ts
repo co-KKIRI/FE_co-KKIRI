@@ -29,11 +29,11 @@ export const EVALUATION_COMMENT = {
       dogmatic: "다른 의견도 수용해보아요 😊",
       harsh: "상처 받았어요.. 💔",
     },
-  },
-  team: {
-    communication: "팀원간 소통이 부족했어요",
-    develop: "성장하지 못한 것 같아요",
-    systematic: "체계적이지 못해요",
-    deadline: "약속된 기간 안에 끝났어요",
+    team: {
+      communication: "팀원간 소통이 부족했어요",
+      develop: "성장하지 못한 것 같아요",
+      systematic: "체계적이지 못해요",
+      deadline: "약속된 기간 안에 끝났어요",
+    },
   },
 };
