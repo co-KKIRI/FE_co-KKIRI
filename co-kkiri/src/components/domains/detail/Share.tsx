@@ -1,7 +1,7 @@
-import { ICONS } from "@/constants/icons";
 import styled from "styled-components";
+import { ICONS } from "@/constants/icons";
 
-export default function ShareButton() {
+export default function Share() {
   const handleShare = () => {};
 
   const { share } = ICONS;
