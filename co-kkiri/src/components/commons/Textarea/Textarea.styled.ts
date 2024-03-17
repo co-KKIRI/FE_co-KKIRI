@@ -6,7 +6,6 @@ import { TextareaType } from ".";
 const {
   color,
   typography: { font14Medium, font16Medium },
-  mediaQueries: { desktop, tablet, mobile },
   boxShadow: { content },
 } = DESIGN_TOKEN;
 
@@ -17,17 +16,9 @@ const TEXTAREA_TYPE: VariantStyle<TextareaType> = {
     border-radius: 1.5rem;
     box-shadow: ${content};
     color: ${color.black[1]};
+    width: 100%;
     height: 10.3rem;
     padding: 2rem 2.4rem;
-    ${desktop} {
-      width: 50rem;
-    }
-    ${tablet} {
-      width: 35rem;
-    }
-    ${mobile} {
-      width: 32rem;
-    }
   `,
   modal: css`
     ${font16Medium}
