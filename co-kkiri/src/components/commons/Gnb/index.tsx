@@ -39,7 +39,7 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
         </Link>
         {user ? <UserInfo user={user} /> : <S.SignButton onClick={handleAuthModalOpen}>로그인/회원가입</S.SignButton>}
       </S.RightGroupBox>
-      {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} />}
+      {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} onClose={handleAuthModalOpen} />}
     </S.Container>
   );
 }

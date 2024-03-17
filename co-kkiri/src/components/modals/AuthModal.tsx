@@ -7,13 +7,14 @@ import { ROUTER_PATH } from "@/lib/path";
 
 interface AuthModalProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: () => void;
 }
 
-export default function AuthModal({ onClick }: AuthModalProps) {
+export default function AuthModal({ onClick, onClose }: AuthModalProps) {
   const { HOME_PATH } = ROUTER_PATH;
 
   return (
-    <ModalLayout desktopWidth={558} mobileWidth={320} onClick={onClick}>
+    <ModalLayout desktopWidth={558} mobileWidth={320} onClick={onClick} onClose={onClose}>
       <Container>
         <Link to={HOME_PATH}>
           <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
