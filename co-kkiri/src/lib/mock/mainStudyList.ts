@@ -34,7 +34,8 @@ export const mainStudyList: MainStudyList = {
         status: "READY",
         isScraped: true,
         progressWay: "온라인",
-        title: "프론트엔드 기초 스터디",
+        title:
+          "프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디",
         position: ["프론트엔드", "안드로이드", "디자이너"],
         stack: ["HTML", "CSS", "JavaScript"],
         memberNickname: "개발자A",
