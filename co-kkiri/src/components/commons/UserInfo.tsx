@@ -8,7 +8,7 @@ interface UserInfoProps {
     profileImageUrl: string;
   };
   nicknameBold?: boolean;
-  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export default function UserInfo({ user, onClick, nicknameBold }: UserInfoProps) {
@@ -43,4 +43,8 @@ const ProfileImg = styled.img`
 
 const Nickname = styled.div<{ $bold?: boolean }>`
   ${({ $bold }) => ($bold ? `${font14Semibold}` : `${font14Medium}`)}
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
 `;

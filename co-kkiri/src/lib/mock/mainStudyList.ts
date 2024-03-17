@@ -38,7 +38,7 @@ export const mainStudyList: MainStudyList = {
           "프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디",
         position: ["프론트엔드", "안드로이드", "디자이너"],
         stack: ["HTML", "CSS", "JavaScript"],
-        memberNickname: "개발자A",
+        memberNickname: "개발자AAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         memberProfileImg: "",
         postViews: 150,
         postCommentsNum: 10,

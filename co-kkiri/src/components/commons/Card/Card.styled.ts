@@ -122,8 +122,8 @@ export const BreakLine = styled.div`
 `;
 
 export const FooterBox = styled.footer`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
   align-items: center;
   padding: 1.6rem 2rem;
 `;
@@ -132,4 +132,5 @@ export const CountWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  justify-self: end;
 `;
