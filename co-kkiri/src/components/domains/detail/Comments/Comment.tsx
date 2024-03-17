@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
-import UserInfo from "../UserInfo";
-import CommentTextarea from "../Textarea/CommentTextarea";
+import UserInfo from "@/components/commons/UserInfo";
+import CommentTextarea from "@/components/domains/detail/Comments/CommentTextarea";
 import * as S from "./Comment.styled";
 
 type CommentInfo = {
@@ -48,7 +48,7 @@ export default function Comment({ commentInfo }: CommentProps) {
         <S.InfoWrapper>
           <UserInfo user={commentUser} />
           <S.ColumnDivider />
-          <S.Date>{commentDate}</S.Date>
+          <S.Date>{commentDate}</S.Date> {/* createdAt 데이터 확인후 formatDate 함수 적용해서 변경 예정*/}
         </S.InfoWrapper>
         {isMine &&
           (isEditing ? (
