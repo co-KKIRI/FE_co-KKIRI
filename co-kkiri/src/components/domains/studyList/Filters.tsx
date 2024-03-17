@@ -1,21 +1,20 @@
 import styled from "styled-components";
-import FilterDropdownButton from "@/components/commons/SelectDropOptions/FilterDropdownButton";
-import SortSelectButton from "@/components/commons/SelectDropOptions/SortSelectButton";
+import FilterDropdown from "@/components/commons/DropDowns/FilterDropdown";
+import SortDropdown from "@/components/commons/DropDowns/SortDropdown";
 
 interface FiltersProps {
   handleFilterChange: (filterType: string, selectedValue: string) => void;
-  handleSort: (option: string) => void;
-  selectedOption: string;
+  handleSortChange: (option: string) => void;
 }
 
-export default function Filters({ handleFilterChange, handleSort, selectedOption }: FiltersProps) {
+export default function Filters({ handleFilterChange, handleSortChange }: FiltersProps) {
   return (
     <Container>
       <FilterWrapper>
-        <FilterDropdownButton filterType="position" onSelectFilter={handleFilterChange} />
-        <FilterDropdownButton filterType="progressWay" onSelectFilter={handleFilterChange} />
+        <FilterDropdown menuInfoType="position" onSelectFilter={handleFilterChange} />
+        <FilterDropdown menuInfoType="progressWay" onSelectFilter={handleFilterChange} />
       </FilterWrapper>
-      <SortSelectButton handleSort={handleSort} selectedOption={selectedOption} />
+      <SortDropdown handleSortChange={handleSortChange} />
     </Container>
   );
 }
