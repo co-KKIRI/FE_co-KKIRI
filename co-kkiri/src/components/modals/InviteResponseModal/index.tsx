@@ -3,6 +3,7 @@ import ModalLayout from "../ModalLayout";
 import UserInfo from "../../commons/UserInfo";
 import Button from "../../commons/Button";
 import { ICONS } from "@/constants/icons";
+import { Link } from "react-router-dom";
 
 interface InviteResponseModalProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,10 +24,12 @@ export default function InviteResponseModal({ onClick }: InviteResponseModalProp
             <UserInfo user={user} />
           </S.SenderInfoBox>
           <S.ContentBox>
-            <h6>
-              스터디/프로젝트
-              <img src={ICONS.arrowRightGray.src} alt={ICONS.arrowRightGray.alt} />
-            </h6>
+            <Link to="">
+              <h6>
+                스터디/프로젝트
+                <img src={ICONS.arrowRightGray.src} alt={ICONS.arrowRightGray.alt} />
+              </h6>
+            </Link>
             <p>실제 사용할 쇼핑몰 웹프로젝트 만들어나가실 분 구합니다. 쇼핑몰 사장</p>
           </S.ContentBox>
           <S.MessageBox>

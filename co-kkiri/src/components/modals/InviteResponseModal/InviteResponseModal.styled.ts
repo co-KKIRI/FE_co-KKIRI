@@ -23,7 +23,6 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   gap: 4rem;
-  width: 100%;
   padding: 3rem;
   margin-top: 0.2rem;
 
@@ -32,7 +31,13 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const SenderInfoBox = styled.div``;
+export const SenderInfoBox = styled.div`
+  & h6 {
+    ${typography.font14Bold};
+    color: ${color.gray[1]};
+    margin-bottom: 1.2rem;
+  }
+`;
 
 export const ContentBox = styled.div`
   & h6 {
@@ -53,13 +58,11 @@ export const MessageBox = styled.div`
 `;
 
 export const SubmitButtonBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 17.9rem);
   gap: 1.2rem;
 
   ${mediaQueries.mobile} {
-    gap: 0.8rem;
-    flex-direction: column-reverse;
+    grid-template-columns: repeat(2, 13.6rem);
   }
 `;
