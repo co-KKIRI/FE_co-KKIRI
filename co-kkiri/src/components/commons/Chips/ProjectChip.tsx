@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import DefaultChip from "./DefaultChip";
 import { VariantStyle } from "@/types/styledUtilTypes";
-import { getTypeLabel } from "@/utils/getTypeLable";
+import { getTypeLabel } from "@/utils/getTypeLabel";
 
 export type ProjectType = "STUDY" | "PROJECT";
 
