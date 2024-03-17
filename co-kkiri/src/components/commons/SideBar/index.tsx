@@ -1,34 +1,28 @@
-import { ICONS } from "@/constants/icons";
-import { Link } from "react-router-dom";
-import { ROUTER_PATH } from "@/lib/path";
 import * as S from "./SideBar.styled";
-import React from "react";
+import { useWindowSize } from "usehooks-ts";
+import ModalLayout from "@/components/modals/ModalLayout";
+import SideBarList from "./SideBarList";
 
 interface SideBarProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: () => void;
 }
 
-export default function SideBar({ onClick }: SideBarProps) {
-  const { HOME_PATH, STUDY_LIST_PATH, CASTING } = ROUTER_PATH;
+export default function SideBar({ onClick, onClose }: SideBarProps) {
+  const { width: screenWidth } = useWindowSize();
+  const isTabletOrMobile = screenWidth < 1200;
 
   return (
-    <S.Background>
-      <S.Container>
-        <S.HamburgerMenuWrapper onClick={onClick}>
-          <img src={ICONS.category.src} alt={ICONS.category.alt} />
-        </S.HamburgerMenuWrapper>
-        <S.CategoryBox>
-          <Link to={HOME_PATH}>
-            <S.Category onClick={onClick}>홈</S.Category>
-          </Link>
-          <Link to={STUDY_LIST_PATH}>
-            <S.Category onClick={onClick}>스터디/프로젝트 찾기</S.Category>
-          </Link>
-          <Link to={CASTING}>
-            <S.Category onClick={onClick}>스카우트</S.Category>
-          </Link>
-        </S.CategoryBox>
-      </S.Container>
-    </S.Background>
+    <>
+      {isTabletOrMobile ? (
+        <ModalLayout desktopWidth={0} tabletWidth={210} mobileWidth={210} modalType="sidebar" onClose={onClose}>
+          <SideBarList onClick={onClick} />
+        </ModalLayout>
+      ) : (
+        <S.Background>
+          <SideBarList onClick={onClick} />
+        </S.Background>
+      )}
+    </>
   );
 }

@@ -1,28 +1,12 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
-const { boxShadow, color, typography, mediaQueries, overlayBackDropColor } = DESIGN_TOKEN;
+const { boxShadow, color, typography, mediaQueries } = DESIGN_TOKEN;
 
 export const Background = styled.div`
-  ${mediaQueries.desktop} {
-    position: sticky;
-    top: 8rem;
-    left: 0;
-  }
-
-  ${mediaQueries.tablet} {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background-color: ${overlayBackDropColor};
-  }
-
-  ${mediaQueries.mobile} {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background-color: ${overlayBackDropColor};
-  }
+  position: sticky;
+  top: 8rem;
+  left: 0;
 `;
 
 export const Container = styled.div`
