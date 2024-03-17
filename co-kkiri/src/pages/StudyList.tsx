@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import FilterList from "@/components/commons/FilterList";
 import SearchInput from "@/components/commons/SearchInput";
-import FilterSortOptions from "@/components/domains/studyList/Filters";
+import Filters from "@/components/domains/studyList/Filters";
 import Cards from "@/components/domains/studyList/Cards";
 import Pagination from "@/components/commons/Pagination_test/Pagination";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
@@ -102,7 +102,7 @@ export default function StudyList() {
         />
         <SearchInput placeholder="제목을 검색해보세요!" />
       </CategoryWrapper>
-      <FilterSortOptions handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} />
+      <Filters handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} />
       <Cards data={pageData} />
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
     </Container>
