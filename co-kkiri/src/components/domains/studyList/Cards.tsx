@@ -63,7 +63,7 @@ const NoResultText = styled.p<{ $isSidebarOpenNarrow: boolean }>`
   text-align: center;
   margin-top: 2rem;
   ${mediaQueries.desktop} {
-    width: 120rem;
+    width: 112rem;
     ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `width: 76.8rem;`}
   }
 
