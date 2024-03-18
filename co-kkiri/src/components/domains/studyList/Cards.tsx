@@ -14,7 +14,7 @@ export default function Cards({ data }: CardsProps) {
   return (
     <Box>
       {data.length === 0 ? (
-        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없습니다.</NoResultText>
+        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없어요.</NoResultText>
       ) : (
         <CardList $isSidebarOpenNarrow={isSidebarOpenNarrow}>
           {data.map((data) => (
