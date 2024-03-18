@@ -10,6 +10,7 @@ export const Container = styled.div`
   justify-content: space-between;
   position: sticky;
   top: 0;
+  z-index: 1;
 
   ${mediaQueries.desktop} {
     padding: 2.8rem 4rem;
