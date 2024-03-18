@@ -52,7 +52,7 @@ export const mainStudyList: MainStudyList = {
         progressWay: "오프라인",
         title: "백엔드 심화 스터디",
         position: ["개발자", "안드로이드", "프론트엔드", "디자이너", "백엔드", "IOS"],
-        stack: ["Node.js", "Express", "MongoDB"],
+        stack: ["Node.js", "Express", "MongoDB", "HTML", "CSS", "JavaScript", "Python", "R", "SQL"],
         memberNickname: "개발자B",
         memberProfileImg: "",
         postViews: 200,

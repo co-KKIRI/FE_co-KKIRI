@@ -5,7 +5,7 @@ import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";
 import Scrap from "../Scrap";
 import Stacks from "../Stacks";
-import CardPositions from "./CardPositions";
+import Positions from "../Positions";
 import Count from "../Count";
 import UserInfo from "../UserInfo";
 
@@ -70,7 +70,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <CardPositions positions={position} />
+            <Positions positions={position} variant="card" />
             {page === "studyList" && <Stacks stacks={stack} />}
           </S.ContentWrapper>
         </S.UpperBox>
