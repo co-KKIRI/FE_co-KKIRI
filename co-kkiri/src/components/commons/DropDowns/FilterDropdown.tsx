@@ -46,7 +46,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  gap: 0.6rem;
   position: relative;
   width: 10.4rem;
 `;
