@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { DatePickerWithRange } from "../DatePickerWithRange";
-import SquareDropButton from "./commons/SquareDropButton";
+import { DatePickerWithRange } from "./DatePickerWithRange";
+import SquareDropButton from "../commons/SquareDropButton";
 
 export default function DeadlineDropdown() {
   const [selectOption, setSelectOption] = useState("마감 기간");
