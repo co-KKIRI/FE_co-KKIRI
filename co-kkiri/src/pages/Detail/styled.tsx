@@ -6,31 +6,12 @@ import RecruitmentPost from "@/components/domains/detail/RecruitmentPost";
 import Comments from "@/components/domains/detail/Comments";
 import ShareAndScrap from "@/components/domains/detail/ShareAndScrap";
 import DetailCard from "@/components/domains/detail/DetailCard";
-import { studyDetailData } from "@/lib/mock/studyDetail";
-
-export default function Detail() {
-  const detailInfo = studyDetailData.result;
-
-  return (
-    <Container>
-      <Box>
-        <GoBackButton />
-        <ShareAndScrapButton isScraped={detailInfo.isScraped} />
-        <PostSection detailInfo={detailInfo} />
-        <DetailCardSection detailInfo={detailInfo} />
-        <CommentsSection commentsNum={detailInfo.commentsNum} />
-        <MappedButton variant="primary">지원하기</MappedButton>
-        {/* 로직에 따라서 버튼 표시여부, 내부 텍스트 및 색상, 클릭 시 각 버튼에 해당하는 기능 맵핑 예정 */}
-      </Box>
-    </Container>
-  );
-}
 
 const {
   mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   ${desktop} {
@@ -46,7 +27,7 @@ const Container = styled.div`
   }
 `;
 
-const Box = styled.div`
+export const Box = styled.div`
   display: grid;
   ${desktop} {
     grid-template:
@@ -88,29 +69,29 @@ const Box = styled.div`
   }
 `;
 
-const GoBackButton = styled(BackButton)`
+export const GoBackButton = styled(BackButton)`
   grid-area: back;
   align-self: center;
 `;
 
-const ShareAndScrapButton = styled(ShareAndScrap)`
+export const ShareAndScrapButton = styled(ShareAndScrap)`
   grid-area: shareAndScrap;
   align-self: center;
   justify-self: flex-end;
 `;
 
-const PostSection = styled(RecruitmentPost)`
+export const PostSection = styled(RecruitmentPost)`
   grid-area: post;
 `;
 
-const DetailCardSection = styled(DetailCard)`
+export const DetailCardSection = styled(DetailCard)`
   grid-area: card;
 `;
 
-const CommentsSection = styled(Comments)`
+export const CommentsSection = styled(Comments)`
   grid-area: comments;
 `;
 
-const MappedButton = styled(Button)`
+export const MappedButton = styled(Button)`
   grid-area: button;
 `;
