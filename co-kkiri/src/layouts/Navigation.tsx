@@ -1,19 +1,36 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import useSideBarStore from "@/stores/sideBarStore";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import Gnb from "@/components/commons/Gnb";
 import SideBar from "@/components/commons/SideBar";
+import { useWindowSize } from "usehooks-ts";
+import { slideIn, slideOut } from "@/utils/animation";
 
 export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
   const toggleSideBar = useSideBarStore((state) => state.toggleSideBar);
 
+  const { width: screenWidth } = useWindowSize();
+  const isTabletOrMobile = screenWidth < 1200;
+
+  const handleSideBarOpen = () => {
+    toggleSideBar();
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
-      <Gnb onSideBarClick={toggleSideBar} />
+      <Gnb onSideBarClick={handleSideBarOpen} />
       <SideBarWrapper $isOpen={isSideBarOpen}>
-        <SideBar onClick={toggleSideBar} />
+        {!isTabletOrMobile ? (
+          <SideBar onClose={() => {}} />
+        ) : (
+          isOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
+        )}
       </SideBarWrapper>
       <OutletWrapper $isOpen={isSideBarOpen}>
         <Outlet />
@@ -28,42 +45,9 @@ interface SideBarWrapperProps {
   $isOpen: boolean;
 }
 
-const slideIn = keyframes`
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const slideOut = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-`;
-
 const SideBarWrapper = styled.div<SideBarWrapperProps>`
   position: fixed;
-
-  ${mediaQueries.desktop} {
-    animation: ${(props) => (props.$isOpen ? slideIn : slideOut)} 0.2s forwards;
-  }
-
-  ${mediaQueries.tablet} {
-    position: absolute;
-    top: 0;
-    display: ${(props) => (props.$isOpen ? "block" : "none")};
-  }
-
-  ${mediaQueries.mobile} {
-    position: absolute;
-    top: 0;
-    display: ${(props) => (props.$isOpen ? "block" : "none")};
-  }
+  animation: ${(props) => (props.$isOpen ? slideIn : slideOut)} 0.2s forwards;
 `;
 
 const OutletWrapper = styled.div<SideBarWrapperProps>`

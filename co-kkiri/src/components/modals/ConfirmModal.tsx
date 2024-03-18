@@ -8,11 +8,12 @@ type ConfirmType = keyof typeof CONFIRM_TYPE;
 
 interface ConfirmModalProps {
   type: ConfirmType;
+  onClose: () => void;
 }
 
-export default function ConfirmModal({ type }: ConfirmModalProps) {
+export default function ConfirmModal({ type, onClose }: ConfirmModalProps) {
   return (
-    <ModalLayout desktopWidth={430} mobileWidth={320} modalType="confirm">
+    <ModalLayout desktopWidth={430} mobileWidth={320} modalType="confirm" onClose={onClose}>
       <Container>
         <Message>{CONFIRM_TYPE[type].massage}</Message>
         <Wrapper>

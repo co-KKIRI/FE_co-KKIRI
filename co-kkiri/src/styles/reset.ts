@@ -6,6 +6,7 @@ const resetStyle = css`
     padding: 0;
     font: inherit;
     color: inherit;
+    scrollbar-gutter: stable;
   }
 
   *,
