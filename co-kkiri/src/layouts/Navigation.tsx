@@ -25,13 +25,15 @@ export default function Navigation() {
   return (
     <>
       <Gnb onSideBarClick={handleSideBarOpen} />
-      <SideBarWrapper $isOpen={isSideBarOpen}>
-        {!isTabletOrMobile ? (
-          <SideBar onClose={() => {}} />
-        ) : (
-          isOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
-        )}
-      </SideBarWrapper>
+      {isSideBarOpen && (
+        <SideBarWrapper $isOpen={isSideBarOpen}>
+          {!isTabletOrMobile ? (
+            <SideBar onClose={() => {}} />
+          ) : (
+            isOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
+          )}
+        </SideBarWrapper>
+      )}
       <OutletWrapper $isOpen={isSideBarOpen}>
         <Outlet />
       </OutletWrapper>
