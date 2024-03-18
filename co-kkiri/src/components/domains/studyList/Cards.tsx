@@ -12,9 +12,9 @@ export default function Cards({ data }: CardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
 
   return (
-    <Wrapper>
+    <Box>
       {data.length === 0 ? (
-        <NoResultText>검색 결과가 없습니다.</NoResultText>
+        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없습니다.</NoResultText>
       ) : (
         <CardList $isSidebarOpenNarrow={isSidebarOpenNarrow}>
           {data.map((data) => (
@@ -22,15 +22,21 @@ export default function Cards({ data }: CardsProps) {
           ))}
         </CardList>
       )}
-    </Wrapper>
+    </Box>
   );
 }
 
 const { mediaQueries, color } = DESIGN_TOKEN;
 
-const Wrapper = styled.div`
+const Box = styled.div`
   display: flex;
   justify-content: center;
+  ${mediaQueries.tablet} {
+    width: 76.8rem;
+  }
+  ${mediaQueries.mobile} {
+    width: 34rem;
+  }
 `;
 
 const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
@@ -39,10 +45,7 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   gap: 2rem;
   ${mediaQueries.desktop} {
     grid-template-columns: repeat(4, 1fr);
-    ${({ $isSidebarOpenNarrow }) =>
-      $isSidebarOpenNarrow &&
-      `  grid-template-columns: repeat(2, 1fr);
-    `}
+    ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `grid-template-columns: repeat(2, 1fr);`}
   }
 
   ${mediaQueries.tablet} {
@@ -54,9 +57,21 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   }
 `;
 
-const NoResultText = styled.p`
+const NoResultText = styled.p<{ $isSidebarOpenNarrow: boolean }>`
   font-size: 1.2rem;
   color: ${color.black};
   text-align: center;
   margin-top: 2rem;
+  ${mediaQueries.desktop} {
+    width: 120rem;
+    ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `width: 76.8rem;`}
+  }
+
+  ${mediaQueries.tablet} {
+    width: 76.8rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 34rem;
+  }
 `;
