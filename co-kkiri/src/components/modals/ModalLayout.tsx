@@ -8,6 +8,7 @@ interface ModalBoxProps {
   $mobileWidth?: number;
   $tabletWidth?: number;
   $desktopWidth: number;
+  $borderRadius?: number;
 }
 
 interface ModalLayoutProps {
@@ -17,6 +18,7 @@ interface ModalLayoutProps {
   mobileWidth?: number;
   tabletWidth?: number;
   desktopWidth: number;
+  $borderRadius?: number;
 }
 
 export default function ModalLayout({
@@ -26,6 +28,7 @@ export default function ModalLayout({
   children,
   onClick,
   modalType,
+  $borderRadius = 20,
 }: ModalLayoutProps) {
   useEffect(() => {
     document.body.style.cssText = `
@@ -39,7 +42,11 @@ export default function ModalLayout({
   return (
     <ModalPortal>
       <Container>
-        <ModalBox $mobileWidth={mobileWidth} $tabletWidth={tabletWidth} $desktopWidth={desktopWidth}>
+        <ModalBox
+          $mobileWidth={mobileWidth}
+          $tabletWidth={tabletWidth}
+          $desktopWidth={desktopWidth}
+          $borderRadius={$borderRadius}>
           {!modalType && "confirm" && (
             <CloseButton onClick={onClick}>
               <img src={close} alt="닫기 아이콘" />
@@ -72,17 +79,17 @@ const ModalBox = styled.div<ModalBoxProps>`
   align-items: center;
   flex-direction: column;
   gap: 2.2rem;
-  width: ${(props) => props.$desktopWidth / 10}rem;
+  width: ${({ $desktopWidth }) => $desktopWidth / 10}rem;
   height: auto;
   background-color: ${color.white};
-  border-radius: 2rem;
+  border-radius: ${({ $borderRadius }) => $borderRadius && `${$borderRadius / 10}rem`};
 
   ${mediaQueries.tablet} {
-    width: ${(props) => props.$tabletWidth && `${props.$tabletWidth / 10}rem`};
+    width: ${({ $tabletWidth }) => $tabletWidth && `${$tabletWidth / 10}rem`};
   }
 
   ${mediaQueries.mobile} {
-    width: ${(props) => props.$mobileWidth && `${props.$mobileWidth / 10}rem`};
+    width: ${({ $mobileWidth }) => $mobileWidth && `${$mobileWidth / 10}rem`};
   }
 `;
 
