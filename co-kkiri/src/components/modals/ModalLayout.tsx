@@ -78,6 +78,7 @@ const Container = styled.div<{ $isSidebar?: boolean }>`
   width: 100%;
   height: 100vh;
   background-color: ${overlayBackDropColor};
+  z-index: 2;
 `;
 
 const ModalBox = styled.div<ModalBoxProps>`
