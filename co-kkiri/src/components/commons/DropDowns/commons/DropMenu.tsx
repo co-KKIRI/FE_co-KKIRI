@@ -52,8 +52,9 @@ const COMMON_STYLE = css`
   border: 0.1rem solid ${color.gray[2]};
   color: ${color.black[3]};
   background-color: ${color.white};
-  position: relative;
-  top: 0.6rem;
+  position: absolute;
+  top: 4.2rem;
+  z-index: 1;
 `;
 
 const VARIANT_STYLE = {
