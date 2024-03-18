@@ -86,10 +86,10 @@ const ModalBox = styled.div<ModalBoxProps>`
   align-items: center;
   flex-direction: column;
   gap: 2.2rem;
-  width: ${(props) => props.$desktopWidth / 10}rem;
+  width: ${({ $desktopWidth }) => $desktopWidth / 10}rem;
   height: auto;
   background-color: ${color.white};
-  border-radius: 2rem;
+  border-radius: 1rem;
   ${(props) =>
     props.$isSidebar &&
     css`
@@ -97,11 +97,11 @@ const ModalBox = styled.div<ModalBoxProps>`
     `}
 
   ${mediaQueries.tablet} {
-    width: ${(props) => props.$tabletWidth && `${props.$tabletWidth / 10}rem`};
+    width: ${({ $tabletWidth }) => $tabletWidth && `${$tabletWidth / 10}rem`};
   }
 
   ${mediaQueries.mobile} {
-    width: ${(props) => props.$mobileWidth && `${props.$mobileWidth / 10}rem`};
+    width: ${({ $mobileWidth }) => $mobileWidth && `${$mobileWidth / 10}rem`};
   }
 `;
 

@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
 import DefaultChip from "./DefaultChip";
 import { VariantStyle } from "@/types/styledUtilTypes";
-
-export type ProjectType = "STUDY" | "PROJECT";
+import { CategoryList } from "@/types/categoryTypes";
 
 interface ProjectChipProps {
-  label: ProjectType; //나중에 global한 type으로 빼내어야함
+  label: CategoryList;
 }
 
 export default function ProjectChip({ label }: ProjectChipProps) {
@@ -17,29 +16,29 @@ export default function ProjectChip({ label }: ProjectChipProps) {
         return "프로젝트";
     }
   };
-
   return <Container label={getTypeLabel(label)} />;
 }
 
-type ProjectVariant = ProjectType;
+type ProjectVariant = "스터디" | "프로젝트";
 
 const ProjectChipStyle = css`
   padding: 0.6rem 3rem;
   border-radius: 0.2rem 6.1rem 6.1rem 0.2rem;
 `;
+
 const VARIANT_STYLE: VariantStyle<ProjectVariant> = {
-  STUDY: css`
+  스터디: css`
     background-color: #daf4af;
     color: #588f00;
     ${ProjectChipStyle}
   `,
-  PROJECT: css`
+  프로젝트: css`
     background-color: #ffdbe4;
     color: #c71b44;
     ${ProjectChipStyle}
   `,
 };
 
-const Container = styled(DefaultChip)`
-  ${({ label }) => VARIANT_STYLE[label as ProjectVariant]}
+const Container = styled(DefaultChip)<{ label: ProjectVariant }>`
+  ${({ label }) => VARIANT_STYLE[label]}
 `;

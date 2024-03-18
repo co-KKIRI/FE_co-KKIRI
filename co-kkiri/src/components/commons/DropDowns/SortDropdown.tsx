@@ -5,14 +5,20 @@ import useOpenToggle from "@/hooks/useOpenToggle";
 import TextDropButton from "./commons/TextDropButton";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 
-export default function SortDropdown() {
+interface SortDropdownProps {
+  handleSortChange: (sortType: string) => void;
+}
+
+export default function SortDropdown({ handleSortChange }: SortDropdownProps) {
   const { sort } = DROPDOWN_INFO;
 
   const [selectOption, setSelectOption] = useState(sort.defaultValue);
   const [isSelected, setIsSelected] = useState(false);
+
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
   const handleSelectOption = (option: string) => {
+    handleSortChange(option);
     setSelectOption(option);
     setIsSelected(true);
     toggleDropdown();

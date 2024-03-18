@@ -23,6 +23,7 @@ export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
   return (
     <Container $isSelectedStacks={selectedStacks.length !== 0}>
       <FilterList
+        type="filter"
         currentFilter={mappedFilter[filter]}
         filters={Object.values(mappedFilter)}
         onFilterClick={(filter) => {
