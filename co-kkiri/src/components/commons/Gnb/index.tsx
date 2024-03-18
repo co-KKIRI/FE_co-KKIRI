@@ -12,8 +12,8 @@ import useOpenToggle from "@/hooks/useOpenToggle";
 interface GnbProps {
   user?: {
     nickname: string;
-    profileImage: string;
-  }; // 미정
+    profileImageUrl: string;
+  };
   onSideBarClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 

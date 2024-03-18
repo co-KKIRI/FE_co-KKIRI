@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 interface UserInfoProps {
   user: {
     nickname: string;
-    profileImage: string;
+    profileImageUrl: string;
   };
   nicknameBold?: boolean;
   onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -14,8 +14,8 @@ interface UserInfoProps {
 export default function UserInfo({ user, onClick, nicknameBold }: UserInfoProps) {
   return (
     <UserInfoWrapper onClick={onClick}>
-      {user.profileImage ? (
-        <ProfileImg src={user.profileImage} alt="프로필 사진" />
+      {user.profileImageUrl ? (
+        <ProfileImg src={user.profileImageUrl} alt="프로필 사진" />
       ) : (
         <img src={IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
       )}
