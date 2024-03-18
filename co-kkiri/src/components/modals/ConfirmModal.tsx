@@ -39,6 +39,7 @@ const Container = styled.div`
 
   ${mediaQueries.mobile} {
     width: 26rem;
+    gap: 3rem;
     padding-top: 5rem;
     padding-bottom: 3rem;
   }
@@ -53,13 +54,11 @@ const Message = styled.div`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 16.9rem);
+  grid-template-columns: repeat(2, 17.9rem);
   gap: 1.2rem;
 
   ${mediaQueries.mobile} {
-    display: flex;
-    flex-direction: column-reverse;
+    grid-template-columns: repeat(2, 13.6rem);
     gap: 0.8rem;
-    width: 100%;
   }
 `;
