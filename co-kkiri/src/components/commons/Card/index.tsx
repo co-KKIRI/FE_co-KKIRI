@@ -4,8 +4,8 @@ import Header from "./Header";
 import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";
 import Scrap from "../Scrap";
-import Positions from "../Positions";
 import Stacks from "../Stacks";
+import CardPositions from "./CardPositions";
 import Count from "../Count";
 import UserInfo from "../UserInfo";
 
@@ -35,7 +35,6 @@ interface CardProps {
 
 export default function Card({ page = "home", cardData }: CardProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
-
   const {
     id,
     type,
@@ -71,7 +70,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <Positions positions={position} />
+            <CardPositions positions={position} />
             {page === "studyList" && <Stacks stacks={stack} />}
           </S.ContentWrapper>
         </S.UpperBox>
