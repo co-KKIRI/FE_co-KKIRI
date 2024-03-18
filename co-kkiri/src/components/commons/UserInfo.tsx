@@ -1,6 +1,6 @@
 import { IMAGES } from "@/constants/images";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 
 interface UserInfoProps {
   user: {
@@ -8,11 +8,12 @@ interface UserInfoProps {
     profileImage: string;
   };
   nicknameBold?: boolean;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function UserInfo({ user, nicknameBold }: UserInfoProps) {
+export default function UserInfo({ user, onClick, nicknameBold }: UserInfoProps) {
   return (
-    <UserInfoWrapper>
+    <UserInfoWrapper onClick={onClick}>
       {user.profileImage ? (
         <ProfileImg src={user.profileImage} alt="프로필 사진" />
       ) : (
@@ -31,6 +32,7 @@ const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  cursor: pointer;
 `;
 
 const ProfileImg = styled.img`
