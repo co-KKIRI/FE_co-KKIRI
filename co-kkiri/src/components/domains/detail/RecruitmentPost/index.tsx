@@ -4,6 +4,7 @@ import PostManagementButtons from "../PostManagementButtons";
 import Count from "@/components/commons/Count";
 import { ICONS } from "@/constants/icons";
 import { DetailInfo } from "@/lib/mock/studyDetail";
+import DOMPurify from "dompurify";
 
 interface RecruitmentPostProps {
   detailInfo: DetailInfo;
@@ -24,6 +25,8 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
   const userInfo = { nickname, profileImage };
   const isMine = true; // 임시
 
+  const sanitizedContent = { __html: DOMPurify.sanitize(postContent) };
+
   return (
     <S.Container className={className}>
       <S.Title>{postTitle}</S.Title>
@@ -36,7 +39,7 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
         {isMine && <PostManagementButtons />}
       </S.Box>
       <S.HorizontalDivider />
-      <S.Content>{postContent}</S.Content>
+      <S.Content dangerouslySetInnerHTML={sanitizedContent} />
       <S.CountWrapper>
         <Count icon={ICONS.eye} count={views} />
         <Count icon={ICONS.scrapEmpty} count={scraps} />
