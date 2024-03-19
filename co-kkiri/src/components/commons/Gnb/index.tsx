@@ -32,17 +32,17 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
   };
 
   return (
-    <div ref={ref}>
-      <S.Container>
-        <S.LeftGroupBox>
+    <S.Container ref={ref}>
+      <S.Box>
+        <S.LeftGroupWrapper>
           <button onClick={onSideBarClick}>
             <img src={ICONS.category.src} alt={ICONS.category.alt} />
           </button>
           <Link to={HOME_PATH}>
             <S.Logo src={IMAGES.logo.src} alt={IMAGES.logo.alt} />
           </Link>
-        </S.LeftGroupBox>
-        <S.RightGroupBox>
+        </S.LeftGroupWrapper>
+        <S.RightGroupWrapper>
           <Link to={POST_PATH}>
             <S.PostButton>스터디 모집하기</S.PostButton>
           </Link>
@@ -51,10 +51,10 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
           ) : (
             <S.SignButton onClick={handleAuthModalOpen}>로그인/회원가입</S.SignButton>
           )}
-        </S.RightGroupBox>
-      </S.Container>
+        </S.RightGroupWrapper>
+      </S.Box>
       {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} onClose={handleAuthModalOpen} />}
       <UserPopover isOpen={isOpen} handleSelectOption={handlePopoverOpen} />
-    </div>
+    </S.Container>
   );
 }

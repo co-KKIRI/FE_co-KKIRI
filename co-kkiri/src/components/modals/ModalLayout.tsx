@@ -59,7 +59,7 @@ export default function ModalLayout({
   );
 }
 
-const { color, overlayBackDropColor, mediaQueries } = DESIGN_TOKEN;
+const { color, overlayBackDropColor, mediaQueries, zIndex } = DESIGN_TOKEN;
 
 interface ModalBoxProps {
   $mobileWidth?: number;
@@ -78,7 +78,7 @@ const Container = styled.div<{ $isSidebar?: boolean }>`
   width: 100%;
   height: 100vh;
   background-color: ${overlayBackDropColor};
-  z-index: 2;
+  ${zIndex.modal}
 `;
 
 const ModalBox = styled.div<ModalBoxProps>`

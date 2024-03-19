@@ -15,12 +15,11 @@ export default function UserPopover({ isOpen, handleSelectOption }: UserPopoverP
     <Container $isOpen={isOpen}>
       <Box>
         {popover.map((options) => (
-          <Link to={options.path}>
+          <Link to={options.path} key={options.option}>
             <Option
               onClick={() => {
                 handleSelectOption(options.option);
-              }}
-              key={options.option}>
+              }}>
               {options.option}
             </Option>
           </Link>
@@ -36,7 +35,7 @@ const Container = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
-  ${zIndex.dropdown}
+  ${zIndex.popover}
 
   ${mediaQueries.desktop} {
     right: 4rem;
