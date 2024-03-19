@@ -125,6 +125,7 @@ export const FooterBox = styled.footer`
   display: grid;
   grid-template-columns: minmax(0, auto) minmax(0, auto);
   align-items: center;
+  gap: 1.2rem;
   padding: 1.6rem 2rem;
 `;
 
