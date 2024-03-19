@@ -11,7 +11,6 @@ interface DeleteStackChipProps {
 export default function DeleteStackChip({ label, onDelete }: DeleteStackChipProps) {
   const onClick = (e: MouseEvent<HTMLDivElement>) => {
     onDelete(label);
-    e.stopPropagation();
   };
 
   return <Container label={label} icon={ICONS.deleted} onIconClick={onClick} />;
