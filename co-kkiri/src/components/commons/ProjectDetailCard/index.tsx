@@ -1,12 +1,13 @@
-import ProjectChip, { ProjectType } from "@/components/commons/Chips/ProjectChip";
+import ProjectChip from "@/components/commons/Chips/ProjectChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import ProjectDetailTable from "./ProjectDetailTable";
 import { ProjectDetailConfig, ProjectDetailContentType } from "./types";
 import ProjectDetailRow from "./ProjectDetailRow";
+import { CategoryList } from "@/types/categoryTypes";
 
 interface ProjectDetailCardProps extends ProjectDetailContentType {
-  ProjectCategory: ProjectType;
+  ProjectCategory: CategoryList;
 }
 
 export default function ProjectDetailCard({ ProjectCategory, ...projectDetailContents }: ProjectDetailCardProps) {
