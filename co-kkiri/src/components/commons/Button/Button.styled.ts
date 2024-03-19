@@ -4,7 +4,8 @@ import { ButtonVariant } from ".";
 
 const {
   color,
-  mediaQueries: { mobile },
+  mediaQueries,
+  boxShadow: { floatingButton },
 } = DESIGN_TOKEN;
 
 const VARIANT_STYLE = {
@@ -30,13 +31,31 @@ const VARIANT_STYLE = {
   `,
 
   floating: css`
-    width: 5.6rem;
-    height: 5.6rem;
-    background-color: ${color.primary[1]};
     border-radius: 50%;
-    display: none;
-    ${mobile} {
-      display: inline-flex;
+    box-shadow: ${floatingButton};
+
+    ${mediaQueries.desktop} {
+      width: 7.2rem;
+      height: 7.2rem;
+      position: fixed;
+      bottom: 8rem;
+      right: 4rem;
+    }
+
+    ${mediaQueries.tablet} {
+      width: 5.6rem;
+      height: 5.6rem;
+      position: fixed;
+      bottom: 8rem;
+      right: 3rem;
+    }
+
+    ${mediaQueries.mobile} {
+      width: 5.6rem;
+      height: 5.6rem;
+      position: fixed;
+      bottom: 8rem;
+      right: 2rem;
     }
   `,
 };
@@ -80,5 +99,7 @@ export const Container = styled.button<Container>`
 `;
 
 export const ButtonIcon = styled.img`
-  height: 1.935rem;
+  ${mediaQueries.desktop} {
+    width: 3rem;
+  }
 `;

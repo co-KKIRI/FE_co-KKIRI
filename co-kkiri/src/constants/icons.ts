@@ -20,6 +20,7 @@ import reset from "@/assets/icons/reset.svg";
 import more from "@/assets/icons/more.svg";
 import { Images } from "@/types/ImageTypes";
 import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
+import scrollTop from "@/assets/icons/scroll_top.svg";
 
 export const ICONS: Images = {
   arrowRight: {
@@ -106,4 +107,5 @@ export const ICONS: Images = {
     src: more,
     alt: "생략",
   },
+  scrollTop: { src: scrollTop, alt: "화면 최상단으로 스크롤 이동" },
 };
