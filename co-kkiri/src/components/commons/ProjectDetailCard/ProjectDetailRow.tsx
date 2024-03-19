@@ -16,7 +16,8 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
     switch (renderType) {
       case "text":
         return <p>{content}</p>;
-        break;
+      case "personNumber":
+        return <p>{content}명</p>;
       case "positionChip":
         if (Array.isArray(content)) {
           return (
