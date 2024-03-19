@@ -6,8 +6,13 @@ import { useRef, useState } from "react";
 import DeleteStackChipList from "../StackPopover/DeleteStackChipList";
 import { useResizeObserver } from "usehooks-ts";
 
-export default function MultiselectDropdown() {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+interface MultiselectDropdownProps {
+  selectedOptions: string[];
+  limit?: number;
+  onSelectChange: (selectedOptions: string[]) => void;
+}
+
+export default function MultiselectDropdown({ selectedOptions, limit, onSelectChange }: MultiselectDropdownProps) {
   const { isOpen, openToggle, ref } = useOpenToggle();
   const dropButtonRef = useRef<HTMLButtonElement>(null);
   const { height } = useResizeObserver({
@@ -22,7 +27,7 @@ export default function MultiselectDropdown() {
           <DeleteStackChipList
             stacks={selectedOptions}
             onDeleteStack={(stack) => {
-              setSelectedOptions((prevStacks) => prevStacks.filter((prevStack) => prevStack !== stack));
+              onSelectChange(selectedOptions.filter((prevStack) => prevStack !== stack));
             }}
           />
         }
@@ -34,7 +39,8 @@ export default function MultiselectDropdown() {
       {isOpen && (
         <SelectLayout
           stacks={selectedOptions}
-          onStacksChange={(stacks) => setSelectedOptions([...stacks])}
+          limit={limit}
+          onStacksChange={(stacks) => onSelectChange([...stacks])}
           $top={height ? height : undefined}
         />
       )}

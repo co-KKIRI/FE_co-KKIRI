@@ -12,12 +12,12 @@ interface SelectLayoutProps {
   stacks: string[];
   onStacksChange: (selectedStacks: string[]) => void;
   isDeletedChip?: boolean;
+  limit?: number;
   className?: string;
 }
 
-export default function SelectLayout({ stacks, onStacksChange, isDeletedChip, className }: SelectLayoutProps) {
+export default function SelectLayout({ stacks, onStacksChange, isDeletedChip, limit, className }: SelectLayoutProps) {
   const [filter, setFilter] = useState<StackPositionFilter>("ALL");
-
   useEffect(() => {}, [stacks, onStacksChange]);
 
   return (
@@ -38,6 +38,9 @@ export default function SelectLayout({ stacks, onStacksChange, isDeletedChip, cl
           if (stacks.includes(stack)) {
             onStacksChange(stacks.filter((prevStack) => prevStack !== stack));
           } else {
+            //limit 초과해서 담을 수는 없음
+            if (limit && stacks.length >= limit) return;
+
             onStacksChange([...stacks, stack]);
           }
         }}
