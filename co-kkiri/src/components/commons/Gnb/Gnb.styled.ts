@@ -4,13 +4,16 @@ import DESIGN_TOKEN from "@/styles/tokens";
 const { color, typography, mediaQueries, zIndex } = DESIGN_TOKEN;
 
 export const Container = styled.div`
+  position: sticky;
+  top: 0;
+  ${zIndex.sticky};
+`;
+
+export const Box = styled.div`
   background-color: ${color.white};
   width: 100%;
   display: flex;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
-  ${zIndex.default};
 
   ${mediaQueries.desktop} {
     padding: 2.2rem 4rem;
@@ -23,13 +26,13 @@ export const Container = styled.div`
   }
 `;
 
-export const LeftGroupBox = styled.div`
+export const LeftGroupWrapper = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
 `;
 
-export const RightGroupBox = styled.div`
+export const RightGroupWrapper = styled.div`
   display: flex;
   gap: 3rem;
   align-items: center;
