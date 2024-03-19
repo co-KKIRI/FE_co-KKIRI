@@ -70,7 +70,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <Positions positions={position} variant="card" />
+            <Positions positions={position} variant="card" page={page} />
             {page === "studyList" && <Stacks stacks={stack} variant="card" />}
           </S.ContentWrapper>
         </S.UpperBox>

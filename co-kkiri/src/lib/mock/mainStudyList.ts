@@ -36,7 +36,7 @@ export const mainStudyList: MainStudyList = {
         progressWay: "온라인",
         title:
           "프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디프론트엔드 기초 스터디",
-        position: ["프론트엔드", "안드로이드", "디자이너"],
+        position: ["프론트엔드", "안드로이드", "디자이너", "개발자"],
         stack: ["HTML", "CSS", "JavaScript"],
         memberNickname: "개발자AAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         memberProfileImg: "",
