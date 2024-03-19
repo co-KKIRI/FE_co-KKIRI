@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import * as S from "./styled";
 import useComponentHeight from "@/hooks/useComponentHeight";
-import ScrollTop from "@/components/commons/FloatingButton/ScrollTop";
+import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
 import { DetailInfo, studyDetailData } from "@/lib/mock/studyDetail";
 
 export default function Detail() {
@@ -18,7 +18,7 @@ export default function Detail() {
         <S.DetailCardSection cardRef={cardRef} detailInfo={detailInfo} />
         <S.CommentsSection commentsNum={detailInfo.commentsNum} />
         <S.ButtonSection $cardHeight={cardHeight} />
-        <ScrollTop />
+        <ScrollToTop />
       </S.Box>
     </S.Container>
   );
