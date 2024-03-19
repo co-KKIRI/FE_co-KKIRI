@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { MouseEvent, ReactNode, RefObject } from "react";
+import { ReactNode, RefObject } from "react";
 
 interface DropdownButtonProps {
   selectOption: ReactNode;
