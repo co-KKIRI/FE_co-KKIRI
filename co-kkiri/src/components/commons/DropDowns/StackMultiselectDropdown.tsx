@@ -31,7 +31,11 @@ export default function MultiselectDropdown({ selectedOptions, limit, onSelectCh
             }}
           />
         }
-        onClick={openToggle}
+        onClick={(e) => {
+          if (e.target !== e.currentTarget) return;
+
+          openToggle();
+        }}
         $iconType="default"
         $isSelected={isOpen}
         dropButtonRef={dropButtonRef}
