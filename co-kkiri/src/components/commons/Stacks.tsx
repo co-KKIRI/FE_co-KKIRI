@@ -22,7 +22,7 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
       let limit = 5;
 
       if (windowWidth >= desktop) {
-        limit = 4;
+        limit = isSidebarOpenNarrow ? 5 : 4;
       }
       setDisplayPositions(stacks.slice(0, limit));
     }

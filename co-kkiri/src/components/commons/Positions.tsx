@@ -24,8 +24,7 @@ export default function Positions({ positions, variant = "profile", page }: Posi
       if (windowWidth >= tablet) {
         limit = 3;
         if (windowWidth >= desktop) {
-          const isHomeWithSidebarNarrow = page === "home" && isSidebarOpenNarrow;
-          limit = isHomeWithSidebarNarrow ? 4 : 2;
+          limit = isSidebarOpenNarrow ? (page === "home" ? 4 : 3) : 2;
         }
       }
       setDisplayPositions(positions.slice(0, limit));
