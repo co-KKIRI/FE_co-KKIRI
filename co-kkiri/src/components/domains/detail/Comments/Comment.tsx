@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import UserInfo from "@/components/commons/UserInfo";
 import CommentTextarea from "@/components/domains/detail/Comments/CommentTextarea";
 import * as S from "./Comment.styled";
+import { createTimePassedMessage } from "@/utils/formatDate";
 
 type CommentInfo = {
   commentId: number;
@@ -20,13 +21,13 @@ interface CommentProps {
  */
 export default function Comment({ commentInfo }: CommentProps) {
   const {
-    commentProfileImg: profileImage,
+    commentProfileImg: profileImageUrl,
     commentNickname: nickname,
     commentCreatedAt: commentDate,
     commentContent: content,
     isMine,
   } = commentInfo;
-  const commentUser = { profileImage, nickname };
+  const commentUser = { profileImageUrl, nickname };
 
   const [isEditing, setIsEditing] = useState(false);
   const [contentValue, setContentValue] = useState<string>(content);
@@ -48,7 +49,7 @@ export default function Comment({ commentInfo }: CommentProps) {
         <S.InfoWrapper>
           <UserInfo user={commentUser} />
           <S.ColumnDivider />
-          <S.Date>{commentDate}</S.Date> {/* createdAt 데이터 확인후 formatDate 함수 적용해서 변경 예정*/}
+          <S.Date>{createTimePassedMessage(commentDate, true)}</S.Date>
         </S.InfoWrapper>
         {isMine &&
           (isEditing ? (

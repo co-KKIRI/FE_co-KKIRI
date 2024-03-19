@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { formatDate } from "@/utils/formatDate";
 
 //임시
 interface HeaderProps {
@@ -10,7 +11,7 @@ interface HeaderProps {
 export default function Header({ deadline, progressWay }: HeaderProps) {
   return (
     <Container>
-      <span>{`${deadline} 마감`}</span>
+      <span>{`${formatDate(deadline)} 마감`}</span>
       <div></div>
       <span>{progressWay}</span>
     </Container>

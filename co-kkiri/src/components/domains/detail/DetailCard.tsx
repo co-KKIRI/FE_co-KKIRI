@@ -1,5 +1,6 @@
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
 import { DetailInfo } from "@/lib/mock/studyDetail";
+import { formatDate } from "@/utils/formatDate";
 
 interface DetailCardProps {
   detailInfo: DetailInfo;
@@ -13,7 +14,7 @@ export default function DetailCard({ detailInfo, className }: DetailCardProps) {
     <div className={className}>
       <ProjectDetailCard
         ProjectCategory={type}
-        recruitEndAt={recruitEndAt}
+        recruitEndAt={formatDate(recruitEndAt)}
         progressPeriod={progressPeriod}
         positions={positions}
         progressWay={progressWay}
