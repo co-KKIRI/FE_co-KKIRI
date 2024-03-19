@@ -3,7 +3,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import { QUILL_ICONS } from "@/constants/reactQuillIcons";
 import { Quill } from "react-quill";
 
-const { color } = DESIGN_TOKEN;
+const { color, mediaQueries } = DESIGN_TOKEN;
 
 const icons = Quill.import("ui/icons");
 icons["header"]["1"] = `<img src=${QUILL_ICONS.header1.src} className="fm_editor_icon">`;
@@ -42,10 +42,10 @@ export default function CustomToolbar() {
           <button className="ql-list" value="ordered"></button>
           <button className="ql-list" value="bullet"></button>
         </ListContainer>
-        <span className="ql-formats">
+        <SourceContainer>
           <button className="ql-link" />
           <button className="ql-image" />
-        </span>
+        </SourceContainer>
       </div>
     </ToolbarContainer>
   );
@@ -58,31 +58,79 @@ const ToolbarContainer = styled.div`
     align-items: center;
     gap: 2rem;
     width: 100%;
-    height: 4.3rem;
+    height: auto;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     border-bottom: none;
     background-color: ${color.gray[3]};
     border: 0.1rem solid ${color.gray[2]};
-    padding: 2rem;
+    padding: 1.5rem 2rem;
 
     & button {
       font-size: 14px;
       padding: 0 !important;
       width: 1.8rem;
-      margin-right: 0.8rem;
     }
 
-    & .ql-blockquote {
-      margin-right: 0;
+    ${mediaQueries.tablet} {
+      gap: 0;
+    }
+
+    ${mediaQueries.mobile} {
+      display: flex;
+      flex-wrap: wrap;
+      height: 8.3rem;
+      gap: 0.8rem;
     }
   }
 `;
 
-const HeaderContainer = styled.span``;
+const HeaderContainer = styled.span`
+  & .ql-header {
+    margin-right: 0.8rem;
+  }
 
-const TextStyleContainer = styled.span``;
+  ${mediaQueries.tablet} {
+    & .ql-blockquote {
+      margin-right: 0.8rem;
+    }
+  }
+`;
 
-const AlignmentContainer = styled.span``;
+const TextStyleContainer = styled.span`
+  & button {
+    margin-right: 0.8rem;
+  }
+`;
 
-const ListContainer = styled.span``;
+const AlignmentContainer = styled.span`
+  & button:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+
+  ${mediaQueries.tablet} {
+    margin-left: 0.6rem;
+
+    & button:nth-last-child(1) {
+      margin-right: 0.8rem;
+    }
+  }
+`;
+
+const ListContainer = styled.span`
+  & button:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+
+  ${mediaQueries.tablet} {
+    & button:nth-last-child(1) {
+      margin-right: 0.8rem;
+    }
+  }
+`;
+
+const SourceContainer = styled.span`
+  & button:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+`;

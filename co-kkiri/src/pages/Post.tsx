@@ -33,7 +33,7 @@ export default function Post() {
           </SelectBox>
           <SelectBox>
             <h3>진행 기간</h3>
-            <RecruitDropdownStyled menuInfoType="progressPeriod" />
+            <RecruitDropdown menuInfoType="progressPeriod" />
           </SelectBox>
           <SelectBox>
             <h3>모집 인원</h3>
@@ -81,19 +81,12 @@ export default function Post() {
 
 const { typography, color, mediaQueries } = DESIGN_TOKEN;
 
-const RecruitDropdownStyled = styled(RecruitDropdown)`
-  & .hIsEbU {
-    background-color: rebeccapurple;
-  }
-`;
-
 const Container = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 8rem;
-  gap: 12rem;
+  padding: 8rem 0 12rem;
 
   & h1 {
     ${typography.font24Bold}
@@ -126,6 +119,16 @@ const GirdContainer = styled.div`
       "e"
       "f";
   }
+
+  ${mediaQueries.mobile} {
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d"
+      "e"
+      "f";
+  }
 `;
 
 const SelectContainer = styled.div`
@@ -141,6 +144,10 @@ const SelectContainer = styled.div`
 
   ${mediaQueries.tablet} {
     width: 46.2rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 32rem;
   }
 `;
 

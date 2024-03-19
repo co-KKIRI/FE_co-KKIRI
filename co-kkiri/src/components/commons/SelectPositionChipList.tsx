@@ -1,4 +1,6 @@
+import styled from "styled-components";
 import SelectPositionChip from "./Chips/SelectPositionChip";
+import DESIGN_TOKEN from "@/styles/tokens";
 
 interface SelectPositionChipListProps {
   selectedPositions: string[];
@@ -11,7 +13,7 @@ export default function SelectPositionChipList({ selectedPositions, onChipClick 
   return (
     <div>
       {positions.map((position) => (
-        <SelectPositionChip
+        <SelectPositionChiStyled
           key={position}
           label={position}
           isSelected={selectedPositions.includes(position)}
@@ -23,3 +25,11 @@ export default function SelectPositionChipList({ selectedPositions, onChipClick 
     </div>
   );
 }
+
+const { mediaQueries, typography } = DESIGN_TOKEN;
+
+const SelectPositionChiStyled = styled(SelectPositionChip)`
+  ${mediaQueries.mobile} {
+    ${typography.font12Medium}
+  }
+`;
