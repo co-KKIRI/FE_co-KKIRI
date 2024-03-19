@@ -79,8 +79,8 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
   }
 
   & .icon {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.05rem;
+    height: 1.05rem;
     ${({ $isClickable }) => $isClickable && `cursor: pointer;`}
   }
 
