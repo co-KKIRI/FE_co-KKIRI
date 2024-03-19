@@ -10,4 +10,8 @@
     const a:GetTypeFromObject<A, "content"> = "hello"; // string | string[]
  * 
 */
-export type GetTypeFromObject<O, ObjectPropertyType extends PropertyKey> = O extends { [key in ObjectPropertyType]: infer ValueType } ? ValueType : never;
+export type GetTypeFromObject<O, ObjectPropertyType extends PropertyKey> = O extends {
+  [key in ObjectPropertyType]: infer ValueType;
+}
+  ? ValueType
+  : never;
