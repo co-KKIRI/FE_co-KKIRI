@@ -51,5 +51,6 @@ interface SelectLayoutProps {
 }
 
 const SelectLayout = styled(DefaultSelectLayout)<SelectLayoutProps>`
+  border-radius: 0.5rem;
   top: ${({ $top }) => ($top ? `${$top / 10 + 0.6}rem` : `5.4rem`)};
 `;
