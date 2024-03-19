@@ -27,11 +27,13 @@ export default function SortDropdown({ handleSortChange }: SortDropdownProps) {
   return (
     <Container ref={ref}>
       <TextDropButton onClick={toggleDropdown} selectOption={selectOption} $isSelected={isSelected} />
-      <DropMenu
-        isOpen={isOpen}
-        handleSelectOption={handleSelectOption}
-        options={sort.options}
-        $borderType="round"></DropMenu>
+      <Wrapper>
+        <DropMenu
+          isOpen={isOpen}
+          handleSelectOption={handleSelectOption}
+          options={sort.options}
+          $borderType="round"></DropMenu>
+      </Wrapper>
     </Container>
   );
 }
@@ -40,6 +42,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  position: relative;
+`;
+
+const Wrapper = styled.div`
   padding: 0;
   width: 10.4rem;
+  position: absolute;
+  top: -0.9rem;
 `;

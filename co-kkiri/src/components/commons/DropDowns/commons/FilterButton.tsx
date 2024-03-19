@@ -56,7 +56,5 @@ const Arrow = styled.img<Arrow>`
   width: 1.2rem;
   height: 1.2rem;
 
-  ${({ $isSelected }) =>
-    $isSelected && `transform: rotate(180deg);`
-  }
+  ${({ $isSelected }) => $isSelected && `transform: rotate(180deg);`}
 `;
