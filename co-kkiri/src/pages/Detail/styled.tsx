@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import BackButton from "@/components/commons/BackButton";
-import Button from "@/components/commons/Button";
+import MappedButton from "@/components/domains/detail/MappedButton";
 import RecruitmentPost from "@/components/domains/detail/RecruitmentPost";
 import Comments from "@/components/domains/detail/Comments";
 import ShareAndScrap from "@/components/domains/detail/ShareAndScrap";
@@ -34,11 +34,11 @@ export const Box = styled.div`
       "back  shareAndScrap . ."
       ". . . ." 1.5rem
       "post post . card"
-      "post post . ." 12.7rem
-      "post post . comments"
-      ". . . comments" 3.2rem
-      "button button . comments"
-      ". . . comments"
+      "post post . ." 3rem
+      "post post . button"
+      "post post . ."
+      ". . . ." 12rem
+      "comments comments . ."
       / 40.4rem 9.6rem 6rem 35rem;
   }
   ${tablet} {
@@ -86,12 +86,22 @@ export const PostSection = styled(RecruitmentPost)`
 
 export const DetailCardSection = styled(DetailCard)`
   grid-area: card;
+  ${desktop} {
+    position: sticky;
+    top: 8rem;
+    left: 0;
+  }
 `;
 
 export const CommentsSection = styled(Comments)`
   grid-area: comments;
 `;
 
-export const MappedButton = styled(Button)`
+export const ButtonSection = styled(MappedButton)<{ $cardHeight?: number }>`
   grid-area: button;
+  ${desktop} {
+    position: sticky;
+    top: ${({ $cardHeight }) => ($cardHeight ? `${$cardHeight / 10 + 11}rem` : `51.7rem;`)};
+    left: 0;
+  }
 `;
