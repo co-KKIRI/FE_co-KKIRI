@@ -15,12 +15,11 @@ export default function UserPopover({ isOpen, handleSelectOption }: UserPopoverP
     <Container $isOpen={isOpen}>
       <Box>
         {popover.map((options) => (
-          <Link to={options.path}>
+          <Link to={options.path} key={options.option}>
             <Option
               onClick={() => {
                 handleSelectOption(options.option);
-              }}
-              key={options.option}>
+              }}>
               {options.option}
             </Option>
           </Link>
