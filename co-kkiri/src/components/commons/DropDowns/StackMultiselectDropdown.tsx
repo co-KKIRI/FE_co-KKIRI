@@ -43,6 +43,7 @@ export default function MultiselectDropdown({ selectedOptions, limit, onSelectCh
       {isOpen && (
         <SelectLayout
           stacks={selectedOptions}
+          //TODO: limit 초과시 error 로직 짜야함
           limit={limit}
           onStacksChange={(stacks) => onSelectChange([...stacks])}
           $top={height ? height : undefined}
