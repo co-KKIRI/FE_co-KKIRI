@@ -45,7 +45,7 @@ const Container = styled.div<ContainerProps>`
   ${({ $borderType }) => ($borderType === "round" ? VARIANT_STYLE.round : VARIANT_STYLE.square)}
 `;
 
-const COMMON_STYLE = css`
+const COMMON_STYLE = css<{ $borderType?: string }>`
   flex-direction: column;
   gap: 2rem;
   width: 100%;
@@ -53,7 +53,8 @@ const COMMON_STYLE = css`
   color: ${color.black[3]};
   background-color: ${color.white};
   position: absolute;
-  top: 4.2rem;
+  top: ${({ $borderType }) => ($borderType === "round" ? "4.2rem" : "5.4rem")};
+
   ${zIndex.dropdown}
 `;
 

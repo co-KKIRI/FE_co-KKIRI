@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 interface RadioButtonProps {
-  children: ReactNode;
+  children?: ReactNode;
   value: string;
   defaultChecked?: boolean;
 }

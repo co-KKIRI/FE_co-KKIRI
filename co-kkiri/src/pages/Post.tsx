@@ -17,17 +17,23 @@ export default function Post() {
         <GirdContainer>
           <RadioButtonBox>
             <h3>모집 구분</h3>
-            <div>
-              <RadioButton value="">프로젝트</RadioButton>
-              <RadioButton value="">스터디</RadioButton>
-            </div>
+            <span>
+              <RadioButtonWarper>
+                <RadioButton value="" />
+                <span>프로젝트</span>
+              </RadioButtonWarper>
+              <RadioButtonWarper>
+                <RadioButton value="" />
+                <span>스터디</span>
+              </RadioButtonWarper>
+            </span>
           </RadioButtonBox>
           <SelectBox>
             <h3>마감기간</h3>
           </SelectBox>
           <SelectBox>
             <h3>진행 기간</h3>
-            <RecruitDropdown menuInfoType="progressPeriod" />
+            <RecruitDropdownStyled menuInfoType="progressPeriod" />
           </SelectBox>
           <SelectBox>
             <h3>모집 인원</h3>
@@ -74,6 +80,12 @@ export default function Post() {
 }
 
 const { typography, color, mediaQueries } = DESIGN_TOKEN;
+
+const RecruitDropdownStyled = styled(RecruitDropdown)`
+  & .hIsEbU {
+    background-color: rebeccapurple;
+  }
+`;
 
 const Container = styled.form`
   display: flex;
@@ -137,11 +149,16 @@ const RadioButtonBox = styled.div`
   flex-direction: column;
   gap: 1.9rem;
 
-  & div {
+  & span {
     display: flex;
-    align-items: center;
     gap: 3rem;
   }
+`;
+
+const RadioButtonWarper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 `;
 
 const SelectBox = styled.div`
@@ -166,6 +183,7 @@ const QuillBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 8rem;
+
   & h1 {
     border-bottom: none;
   }
