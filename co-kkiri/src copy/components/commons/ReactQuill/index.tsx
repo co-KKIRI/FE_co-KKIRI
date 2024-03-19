@@ -29,10 +29,9 @@ export default function QuillEditor() {
       },
     };
   }, []);
-
+  console.log(values);
   return (
     <Container>
-      <input placeholder="제목을 입력해주세요!" />
       <CustomToolbar />
       <ReactQuillWrapper>
         <ReactQuill
@@ -52,17 +51,7 @@ export default function QuillEditor() {
 const { color, typography } = DESIGN_TOKEN;
 
 const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  & input {
-    height: 4.8rem;
-    border: 0.1rem solid ${color.gray[2]};
-    border-radius: 0.5rem;
-    padding: 0 1.885rem;
-    margin-bottom: 1.2rem;
-  }
+  width: 77.3rem;
 `;
 
 const ReactQuillWrapper = styled.div`
