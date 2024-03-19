@@ -30,13 +30,14 @@ export default function UserPopover({ isOpen, handleSelectOption }: UserPopoverP
   );
 }
 
-const { typography, mediaQueries, color, boxShadow } = DESIGN_TOKEN;
+const { typography, mediaQueries, color, boxShadow, zIndex } = DESIGN_TOKEN;
 
 const Container = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  z-index: 1;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
+  ${zIndex.dropdown}
+
   ${mediaQueries.desktop} {
     right: 4rem;
   }
