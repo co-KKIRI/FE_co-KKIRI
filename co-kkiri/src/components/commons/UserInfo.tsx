@@ -1,20 +1,21 @@
 import { IMAGES } from "@/constants/images";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 
 interface UserInfoProps {
   user: {
     nickname: string;
-    profileImage: string;
+    profileImageUrl: string;
   };
   nicknameBold?: boolean;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function UserInfo({ user, nicknameBold }: UserInfoProps) {
+export default function UserInfo({ user, onClick, nicknameBold }: UserInfoProps) {
   return (
-    <UserInfoWrapper>
-      {user.profileImage ? (
-        <ProfileImg src={user.profileImage} alt="프로필 사진" />
+    <UserInfoWrapper onClick={onClick}>
+      {user.profileImageUrl ? (
+        <ProfileImg src={user.profileImageUrl} alt="프로필 사진" />
       ) : (
         <img src={IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
       )}
@@ -31,6 +32,7 @@ const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  cursor: pointer;
 `;
 
 const ProfileImg = styled.img`

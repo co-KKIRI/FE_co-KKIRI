@@ -1,3 +1,7 @@
+import { ROUTER_PATH } from "@/lib/path";
+
+const { MY_PAGE, MY_STUDY } = ROUTER_PATH;
+
 export const DROPDOWN_INFO = {
   user: {
     position: {
@@ -42,4 +46,10 @@ export const DROPDOWN_INFO = {
       options: ["전체", "온라인", "오프라인", "온/오프라인"],
     },
   },
+
+  popover: [
+    { option: "나의 스터디", path: MY_STUDY },
+    { option: "마이페이지", path: MY_PAGE },
+    { option: "로그아웃", path: "" },
+  ],
 };

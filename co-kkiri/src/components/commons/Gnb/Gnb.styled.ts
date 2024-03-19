@@ -13,13 +13,13 @@ export const Container = styled.div`
   ${zIndex.default};
 
   ${mediaQueries.desktop} {
-    padding: 2.8rem 4rem;
+    padding: 2.2rem 4rem;
   }
   ${mediaQueries.tablet} {
-    padding: 2.8rem 3rem;
+    padding: 2.2rem 3rem;
   }
   ${mediaQueries.mobile} {
-    padding: 2.1rem 2rem;
+    padding: 1.4rem 2rem;
   }
 `;
 
