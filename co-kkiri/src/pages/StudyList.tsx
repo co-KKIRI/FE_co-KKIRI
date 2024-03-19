@@ -93,18 +93,20 @@ export default function StudyList() {
 
   return (
     <Container>
-      <CategoryWrapper>
-        <FilterList
-          type="category"
-          currentFilter={categoryListFilter[category]}
-          filters={Object.values(categoryListFilter)}
-          onFilterClick={handleCategoryChange}
-        />
-        <SearchInput placeholder="제목을 검색해보세요!" />
-      </CategoryWrapper>
-      <Filters handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} />
-      <Cards data={pageData} />
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      <Box>
+        <CategoryWrapper>
+          <FilterList
+            type="category"
+            currentFilter={categoryListFilter[category]}
+            filters={Object.values(categoryListFilter)}
+            onFilterClick={handleCategoryChange}
+          />
+          <SearchInput placeholder="제목을 검색해보세요!" />
+        </CategoryWrapper>
+        <Filters handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} />
+        <Cards data={pageData} />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      </Box>
     </Container>
   );
 }
@@ -112,10 +114,21 @@ export default function StudyList() {
 const { mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
-  padding: 4rem;
+  padding-top: 2.6rem;
+  padding-bottom: 10rem;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+`;
+
+const Box = styled.div`
+  display: inline-grid;
   gap: 4rem;
+  ${mediaQueries.tablet} {
+    width: 76.8rem;
+  }
+  ${mediaQueries.mobile} {
+    width: 34rem;
+  }
 `;
 
 const CategoryWrapper = styled.div`
@@ -123,7 +136,14 @@ const CategoryWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  ${mediaQueries.tablet} {
+    padding: 0 3rem;
+    width: 76.8rem;
+  }
+
   ${mediaQueries.mobile} {
+    padding: 0 2rem;
+    width: 34rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;

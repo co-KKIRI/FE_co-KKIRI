@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { PAGINATION_ICONS } from "@/constants/paginationIcons";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { useWindowSize } from "usehooks-ts";
 
 interface PaginationProps {
   currentPage: number;
@@ -9,6 +10,9 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, setCurrentPage, totalPages }: PaginationProps) {
+  const { width: screenWidth } = useWindowSize();
+  const isMobile = screenWidth < 768;
+
   const goToPrevBlock = () => {
     setCurrentPage(Math.max(currentPage - 9, 1));
   };
@@ -30,7 +34,12 @@ export default function Pagination({ currentPage, setCurrentPage, totalPages }: 
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    const maxVisiblePages = 9;
+    let maxVisiblePages;
+    if (isMobile) {
+      maxVisiblePages = 5;
+    } else {
+      maxVisiblePages = 9;
+    }
 
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
