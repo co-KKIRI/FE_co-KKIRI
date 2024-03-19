@@ -9,6 +9,7 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { STACKS } from "@/constants/stacks";
 import { ICONS } from "@/constants/icons";
 import { breakpoints } from "@/styles/tokens";
+import { STACK_CHIP_LIMIT } from "@/constants/cardChipLimits";
 
 interface StacksProps {
   stacks: string[];
@@ -23,14 +24,16 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
   useEffect(() => {
     if (variant === "card") {
       const { desktop } = breakpoints;
-      let limit = 5;
+      const { mobile, desktopNarrow, desktopWide } = STACK_CHIP_LIMIT;
+
+      let limit = mobile;
 
       if (windowWidth >= desktop) {
-        limit = isSidebarOpenNarrow ? 5 : 4;
+        limit = isSidebarOpenNarrow ? desktopNarrow : desktopWide;
       }
       setDisplayPositions(stacks.slice(0, limit));
     }
-  }, [windowWidth, stacks, isSidebarOpenNarrow, variant]);
+  }, [variant, stacks, windowWidth, isSidebarOpenNarrow]);
 
   return (
     <Wrapper>

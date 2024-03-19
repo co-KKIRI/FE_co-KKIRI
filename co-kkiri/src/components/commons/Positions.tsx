@@ -8,6 +8,7 @@ import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { breakpoints } from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
+import { POSITION_CHIP_LIMIT } from "@/constants/cardChipLimits";
 
 interface PositionsProps {
   positions: string[];
@@ -15,7 +16,7 @@ interface PositionsProps {
   page?: "home" | "studyList";
 }
 
-export default function Positions({ positions, variant = "profile", page }: PositionsProps) {
+export default function Positions({ positions, variant = "profile", page = "home" }: PositionsProps) {
   const [displayPositions, setDisplayPositions] = useState<string[]>(positions);
   const { width: windowWidth } = useWindowSize();
   const isSidebarOpenNarrow = useResponsiveSidebar();
@@ -23,14 +24,18 @@ export default function Positions({ positions, variant = "profile", page }: Posi
   useEffect(() => {
     if (variant === "card") {
       const { tablet, desktop } = breakpoints;
-      let limit = 2;
+      const pageLimits = POSITION_CHIP_LIMIT[page];
+
+      let limit = pageLimits.mobile;
 
       if (windowWidth >= tablet) {
-        limit = 3;
-        if (windowWidth >= desktop) {
-          limit = isSidebarOpenNarrow ? (page === "home" ? 4 : 3) : 2;
-        }
+        limit = pageLimits.tablet;
       }
+
+      if (windowWidth >= desktop) {
+        limit = isSidebarOpenNarrow ? pageLimits.desktopNarrow : pageLimits.desktopWide;
+      }
+
       setDisplayPositions(positions.slice(0, limit));
     }
   }, [windowWidth, positions, isSidebarOpenNarrow, variant, page]);
