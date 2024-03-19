@@ -6,7 +6,7 @@ interface ButtonType {
   label: string;
   variant: ButtonVariant;
   disabled: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const BUTTON_TYPE: ButtonType[] = [
@@ -40,7 +40,6 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "스터디 진행 중",
     variant: "primary",
     disabled: true,
-    onClick: () => {},
   },
   {
     type: "PROGRESS_END",
