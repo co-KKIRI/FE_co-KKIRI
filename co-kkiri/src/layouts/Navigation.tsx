@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import useSideBarStore from "@/stores/sideBarStore";
 import styled from "styled-components";
@@ -9,8 +8,6 @@ import { useWindowSize } from "usehooks-ts";
 import { slideIn, slideOut } from "@/utils/animation";
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-
   const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
   const toggleSideBar = useSideBarStore((state) => state.toggleSideBar);
 
@@ -19,7 +16,6 @@ export default function Navigation() {
 
   const handleSideBarOpen = () => {
     toggleSideBar();
-    setIsOpen(!isOpen);
   };
 
   return (
@@ -30,7 +26,7 @@ export default function Navigation() {
           {!isTabletOrMobile ? (
             <SideBar onClose={() => {}} />
           ) : (
-            isOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
+            isSideBarOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
           )}
         </SideBarWrapper>
       )}
