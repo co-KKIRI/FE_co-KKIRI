@@ -17,6 +17,7 @@ import questionMark from "@/assets/icons/question-mark.svg";
 import categorySelected from "@/assets/icons/category_selected.svg";
 import calendar from "@/assets/icons/calendar.svg";
 import reset from "@/assets/icons/reset.svg";
+import more from "@/assets/icons/more.svg";
 import { Images } from "@/types/ImageTypes";
 import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
 
@@ -95,10 +96,14 @@ export const ICONS: Images = {
   },
   reset: {
     src: reset,
-    alt: "초기화"
+    alt: "초기화",
   },
   arrowRightGray: {
     src: arrowRightGray,
     alt: "이동하기",
+  },
+  more: {
+    src: more,
+    alt: "생략",
   },
 };

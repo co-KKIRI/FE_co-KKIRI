@@ -55,6 +55,6 @@ const Box = styled.article`
 
   ${mobile} {
     align-items: normal;
-    gap: 4rem;
+    gap: 2rem;
   }
 `;

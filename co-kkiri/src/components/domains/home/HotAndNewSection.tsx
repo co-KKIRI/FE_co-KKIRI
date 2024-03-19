@@ -40,7 +40,7 @@ export default function HotAndNewSection({ category, path, cardDataList }: Cards
 
 const {
   typography: { font20Bold },
-  mediaQueries: { desktop, tablet },
+  mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Box = styled.section`
@@ -58,6 +58,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 2rem;
+
+  ${mobile} {
+    padding-bottom: 0;
+  }
 
   h2 {
     ${font20Bold}

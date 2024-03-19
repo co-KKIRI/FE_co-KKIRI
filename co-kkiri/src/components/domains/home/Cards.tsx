@@ -66,10 +66,10 @@ const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
 
   ${mobile} {
     gap: 1rem;
+    padding: 2rem;
     overflow: scroll;
     width: calc(100% + 2rem * 2);
     margin-left: -${spacing.mobile};
-    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
 

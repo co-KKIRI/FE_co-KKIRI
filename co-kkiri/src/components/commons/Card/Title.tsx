@@ -18,6 +18,7 @@ const {
 const CardTitle = styled.h3`
   ${font16Bold}
   color: ${color.black[1]};
+  height: 4.2rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
