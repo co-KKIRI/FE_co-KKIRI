@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { MouseEvent, ReactNode, RefObject } from "react";
 
 interface DropdownButtonProps {
-  selectOption: string;
+  selectOption: ReactNode;
   onClick: () => void;
   $iconType: "date" | "default";
   $isSelected: boolean;
+  dropButtonRef?: RefObject<HTMLButtonElement>;
 }
 
 interface ContainerProps {
   $iconType: "date" | "default";
   $isSelected: boolean;
+  $isReactElement: boolean;
 }
 
 /**
@@ -23,15 +26,26 @@ interface ContainerProps {
  * @property {"date"|"default"} $iconType
  */
 
-export default function SquareDropButton({ selectOption, onClick, $iconType, $isSelected }: DropdownButtonProps) {
+export default function SquareDropButton({
+  selectOption,
+  onClick,
+  $iconType,
+  $isSelected,
+  dropButtonRef,
+}: DropdownButtonProps) {
   const iconSources = {
     date: { src: ICONS.calendar.src, alt: ICONS.calendar.alt },
     default: { src: ICONS.popover.src, alt: ICONS.popover.alt },
   };
 
   return (
-    <Container onClick={onClick} $iconType={$iconType} $isSelected={$isSelected}>
-      <div>{selectOption}</div>
+    <Container
+      onClick={onClick}
+      $iconType={$iconType}
+      $isSelected={$isSelected}
+      $isReactElement={typeof selectOption !== "string"}
+      ref={dropButtonRef}>
+      <Box>{selectOption}</Box>
       <img src={iconSources[$iconType].src} alt={iconSources[$iconType].alt} />
     </Container>
   );
@@ -44,10 +58,11 @@ const Container = styled.button<ContainerProps>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 2rem;
+  padding: ${({ $isReactElement }) => ($isReactElement ? `1.2rem 2rem` : `0 2rem`)};
   gap: 0.4rem;
   border-radius: 0.5rem;
-  height: 4.8rem;
+  height: ${({ $isReactElement }) => ($isReactElement ? `fit-content` : `4.8rem`)};
+  min-height: 4.8rem;
   ${typography.font16Medium}
   color : ${({ $isSelected }) => ($isSelected ? color.black[1] : color.black[3])};
   border: 0.1rem solid ${color.gray[2]};
@@ -55,4 +70,8 @@ const Container = styled.button<ContainerProps>`
   & img {
     width: 1.8rem;
   }
+`;
+
+const Box = styled.div`
+  flex-shrink: 1;
 `;
