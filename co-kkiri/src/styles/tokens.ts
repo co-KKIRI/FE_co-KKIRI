@@ -57,6 +57,7 @@ const DESIGN_TOKEN = {
     popover: "z-index: 60",
     default: "z-index: 1",
     toast: "z-index: 120",
+    modal: "z-index: 100",
   },
   boxShadow: {
     content: "0px 4px 20px rgba(0, 0, 0, 0.08)",

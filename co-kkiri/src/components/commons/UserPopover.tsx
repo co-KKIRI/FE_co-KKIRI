@@ -36,7 +36,7 @@ const Container = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
-  ${zIndex.dropdown}
+  ${zIndex.popover}
 
   ${mediaQueries.desktop} {
     right: 4rem;
