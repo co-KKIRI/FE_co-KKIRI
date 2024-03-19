@@ -8,7 +8,7 @@ interface ProjectChipProps {
 }
 
 export default function ProjectChip({ label }: ProjectChipProps) {
-  const getTypeLabel = (type: "STUDY" | "PROJECT") => {
+  const getTypeLabel = (type: CategoryList) => {
     switch (type) {
       case "STUDY":
         return "스터디";
@@ -16,10 +16,10 @@ export default function ProjectChip({ label }: ProjectChipProps) {
         return "프로젝트";
     }
   };
-  return <Container label={getTypeLabel(label)} />;
+  return <Container label={getTypeLabel(label)} $labelDesign={label} />;
 }
 
-type ProjectVariant = "스터디" | "프로젝트";
+type ProjectVariant = CategoryList;
 
 const ProjectChipStyle = css`
   padding: 0.6rem 3rem;
@@ -27,18 +27,18 @@ const ProjectChipStyle = css`
 `;
 
 const VARIANT_STYLE: VariantStyle<ProjectVariant> = {
-  스터디: css`
+  STUDY: css`
     background-color: #daf4af;
     color: #588f00;
     ${ProjectChipStyle}
   `,
-  프로젝트: css`
+  PROJECT: css`
     background-color: #ffdbe4;
     color: #c71b44;
     ${ProjectChipStyle}
   `,
 };
 
-const Container = styled(DefaultChip)<{ label: ProjectVariant }>`
-  ${({ label }) => VARIANT_STYLE[label]}
+const Container = styled(DefaultChip)<{ $labelDesign: ProjectVariant }>`
+  ${({ $labelDesign }) => VARIANT_STYLE[$labelDesign]}
 `;
