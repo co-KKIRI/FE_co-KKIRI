@@ -21,6 +21,10 @@ import more from "@/assets/icons/more.svg";
 import { Images } from "@/types/ImageTypes";
 import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
 import scrollTop from "@/assets/icons/scroll_top.svg";
+import accept from "@/assets/icons/accept.svg";
+import reject from "@/assets/icons/reject.svg";
+import leaderIcon from "@/assets/icons/leader/leader.svg";
+import leaderBackground from "@/assets/icons/leader/leader_background.svg";
 
 export const ICONS: Images = {
   arrowRight: {
@@ -108,4 +112,20 @@ export const ICONS: Images = {
     alt: "생략",
   },
   scrollTop: { src: scrollTop, alt: "화면 최상단으로 스크롤 이동" },
+  accept: {
+    src: accept,
+    alt: "수락",
+  },
+  reject: {
+    src: reject,
+    alt: "거절",
+  },
+  leaderIcon: {
+    src: leaderIcon,
+    alt: "리더 아이콘",
+  },
+  leaderBackground: {
+    src: leaderBackground,
+    alt: "리더 아이콘 배경",
+  },
 };
