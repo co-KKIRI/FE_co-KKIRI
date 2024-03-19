@@ -1,6 +1,15 @@
 //get
 export const homeAddress = "/main/list";
 
+export const AuthAddress = {
+  google: {
+    //get
+    login: "/auth/google/login",
+    //post
+    redirect: "/auth/google/redirect",
+  },
+};
+
 export const PostAddress = {
   //post
   recruit: "/post/recruit",
