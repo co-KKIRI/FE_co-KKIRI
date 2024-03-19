@@ -9,19 +9,19 @@ import { StackPositionFilter, mappedFilter } from "./constants";
 import { getFilterKey } from "@/utils/ObjectUtils";
 
 interface SelectLayoutProps {
+  stacks: string[];
   onStacksChange: (selectedStacks: string[]) => void;
+  isDeletedChip?: boolean;
+  className?: string;
 }
 
-export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
+export default function SelectLayout({ stacks, onStacksChange, isDeletedChip, className }: SelectLayoutProps) {
   const [filter, setFilter] = useState<StackPositionFilter>("ALL");
-  const [selectedStacks, setSelectedStacks] = useState<string[]>([]);
 
-  useEffect(() => {
-    onStacksChange(selectedStacks);
-  }, [selectedStacks, onStacksChange]);
+  useEffect(() => {}, [stacks, onStacksChange]);
 
   return (
-    <Container $isSelectedStacks={selectedStacks.length !== 0}>
+    <Container $isSelectedStacks={!!isDeletedChip && stacks.length !== 0} className={className}>
       <FilterList
         type="filter"
         currentFilter={mappedFilter[filter]}
@@ -32,26 +32,26 @@ export default function SelectLayout({ onStacksChange }: SelectLayoutProps) {
         }}
       />
       <StackChipList
-        selectedStacks={selectedStacks}
+        selectedStacks={stacks}
         filter={filter}
         onStackChipClick={(stack) => {
-          if (selectedStacks.includes(stack)) {
-            setSelectedStacks((prevStacks) => prevStacks.filter((prevStack) => prevStack !== stack));
+          if (stacks.includes(stack)) {
+            onStacksChange(stacks.filter((prevStack) => prevStack !== stack));
           } else {
-            setSelectedStacks((prevStacks) => [...prevStacks, stack]);
+            onStacksChange([...stacks, stack]);
           }
         }}
       />
       <ResetButton
         onReset={() => {
-          setSelectedStacks([]);
+          onStacksChange([]);
         }}
       />
-      {selectedStacks.length !== 0 && (
+      {!!isDeletedChip && stacks.length !== 0 && (
         <DeleteStackChipList
-          stacks={selectedStacks}
+          stacks={stacks}
           onDeleteStack={(stack) => {
-            setSelectedStacks((prevStacks) => prevStacks.filter((prevStack) => prevStack !== stack));
+            onStacksChange(stacks.filter((prevStack) => prevStack !== stack));
           }}
         />
       )}
