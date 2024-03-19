@@ -38,7 +38,7 @@ export default function DropMenu({ options, isOpen, handleSelectOption, $borderT
   );
 }
 
-const { typography, color } = DESIGN_TOKEN;
+const { typography, color, zIndex } = DESIGN_TOKEN;
 
 const Container = styled.div<ContainerProps>`
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
@@ -54,7 +54,7 @@ const COMMON_STYLE = css`
   background-color: ${color.white};
   position: absolute;
   top: 4.2rem;
-  z-index: 1;
+  ${zIndex.dropdown}
 `;
 
 const VARIANT_STYLE = {
