@@ -1,24 +1,23 @@
-import styled from "styled-components";
 import { useState } from "react";
-import useOpenToggle from "@/hooks/useOpenToggle";
+import { format } from "date-fns";
+
+import "@/styles/globals.css";
+import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { DatePickerWithRange } from "./DatePickerWithRange";
+
+import useOpenToggle from "@/hooks/useOpenToggle";
 import SquareDropButton from "../commons/SquareDropButton";
+import { Calendar } from "./ui/calendar";
 
 export default function DeadlineDropdown() {
-  const [selectOption, setSelectOption] = useState("마감 기간");
+  const [selectOption, setSelectOption] = useState<Date>();
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
-
+  const date = selectOption ? format(selectOption, "yyyy.MM.dd") : "마감 기간";
   return (
     <Container ref={ref}>
-      <SquareDropButton
-        $iconType="date"
-        onClick={toggleDropdown}
-        selectOption={selectOption}
-        $isSelected={isSelected}
-      />
-      {isOpen && <DatePickerWithRange />}
+      <SquareDropButton $iconType="date" onClick={toggleDropdown} selectOption={date} $isSelected={isSelected} />
+      {isOpen && <Calendar mode="single" selected={selectOption} onSelect={setSelectOption} initialFocus />}
     </Container>
   );
 }
