@@ -4,15 +4,15 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
 interface UserPopoverProps {
-  isOpen: boolean;
+  isPopoverOpen: boolean;
   handleSelectOption: (options: string) => void;
 }
 
-export default function UserPopover({ isOpen, handleSelectOption }: UserPopoverProps) {
+export default function UserPopover({ isPopoverOpen, handleSelectOption }: UserPopoverProps) {
   const { popover } = DROPDOWN_INFO;
 
   return (
-    <Container $isOpen={isOpen}>
+    <Container $isPopoverOpen={isPopoverOpen}>
       <Box>
         {popover.map((options) => (
           <Link to={options.path} key={options.option}>
@@ -31,11 +31,12 @@ export default function UserPopover({ isOpen, handleSelectOption }: UserPopoverP
 
 const { typography, mediaQueries, color, boxShadow, zIndex } = DESIGN_TOKEN;
 
-const Container = styled.div<{ $isOpen: boolean }>`
-  position: absolute;
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  transition: opacity 0.2s ease-in-out;
+const Container = styled.div<{ $isPopoverOpen: boolean }>`
   ${zIndex.popover}
+  display: ${({ $isPopoverOpen }) => ($isPopoverOpen ? "block" : "none")};
+  opacity: ${({ $isPopoverOpen }) => ($isPopoverOpen ? 1 : 0)};
+  transition: opacity 0.2s ease-in-out;
+  position: absolute;
 
   ${mediaQueries.desktop} {
     right: 4rem;
