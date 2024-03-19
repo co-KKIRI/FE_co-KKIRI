@@ -6,6 +6,7 @@ const resetStyle = css`
     padding: 0;
     font: inherit;
     color: inherit;
+    font-family: "Pretendard Variable", sans-serif;
     scrollbar-gutter: stable;
   }
 
@@ -59,12 +60,28 @@ const resetStyle = css`
     padding: 0px;
   }
 
+  h1 {
+    font-size: 2em;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.33em;
+    font-weight: 600;
+  }
+
   strong {
     font-weight: 700;
   }
+
   i {
     font-style: italic;
   }
+
   em {
     font-style: italic;
   }

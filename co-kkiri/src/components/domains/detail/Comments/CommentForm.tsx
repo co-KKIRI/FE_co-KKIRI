@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import CommentTextarea from "./Textarea/CommentTextarea";
-import Button from "./Button";
+import CommentTextarea from "./CommentTextarea";
+import Button from "@/components/commons/Button";
 import { ChangeEvent, useState } from "react";
 
 export default function CommentForm() {

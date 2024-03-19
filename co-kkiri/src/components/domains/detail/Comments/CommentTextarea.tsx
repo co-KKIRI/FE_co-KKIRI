@@ -1,4 +1,4 @@
-import Textarea from ".";
+import Textarea from "@/components/commons/Textarea";
 import { ChangeEvent } from "react";
 
 interface CommentTextareaProps {

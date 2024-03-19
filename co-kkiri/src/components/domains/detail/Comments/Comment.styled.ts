@@ -4,7 +4,6 @@ import styled from "styled-components";
 const {
   color,
   typography: { font16Medium, font14Semibold },
-  mediaQueries: { desktop, tablet, mobile },
 } = DESIGN_TOKEN;
 
 export const Container = styled.div`
@@ -13,16 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 1.2rem;
-
-  ${desktop} {
-    width: 50rem;
-  }
-  ${tablet} {
-    width: 35rem;
-  }
-  ${mobile} {
-    width: 32rem;
-  }
+  width: 100%;
 `;
 
 export const TopBox = styled.div`

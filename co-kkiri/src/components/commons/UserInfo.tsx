@@ -1,15 +1,16 @@
 import { IMAGES } from "@/constants/images";
 import DESIGN_TOKEN from "@/styles/tokens";
-import styled from "styled-components";
+import { styled, css } from "styled-components";
 
 interface UserInfoProps {
   user: {
     nickname: string;
     profileImage: string;
   };
+  nicknameBold?: boolean;
 }
 
-export default function UserInfo({ user }: UserInfoProps) {
+export default function UserInfo({ user, nicknameBold }: UserInfoProps) {
   return (
     <UserInfoWrapper>
       {user.profileImage ? (
@@ -17,12 +18,14 @@ export default function UserInfo({ user }: UserInfoProps) {
       ) : (
         <img src={IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
       )}
-      <Nickname>{user.nickname}</Nickname>
+      <Nickname $bold={nicknameBold}>{user.nickname}</Nickname>
     </UserInfoWrapper>
   );
 }
 
-const { typography } = DESIGN_TOKEN;
+const {
+  typography: { font14Medium, font14Semibold },
+} = DESIGN_TOKEN;
 
 const UserInfoWrapper = styled.div`
   display: flex;
@@ -36,6 +39,6 @@ const ProfileImg = styled.img`
   object-fit: cover;
 `;
 
-const Nickname = styled.div`
-  ${typography.font14Medium};
+const Nickname = styled.div<{ $bold?: boolean }>`
+  ${({ $bold }) => ($bold ? `${font14Semibold}` : `${font14Medium}`)}
 `;
