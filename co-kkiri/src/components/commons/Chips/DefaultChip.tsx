@@ -9,7 +9,7 @@ interface Icon {
 }
 
 interface DefaultChipProps {
-  label: string;
+  label?: string;
   imgUrl?: string;
   icon?: Icon;
 
@@ -38,8 +38,8 @@ export default function DefaultChip({
       $isSelected={isSelected}
       $isClickable={onClick || onIconClick ? true : false}
       onClick={!icon ? onClick : undefined}>
-      {imgUrl && <Image stack={{ name: label, img: imgUrl }} />}
-      <span className="label">{label}</span>
+      {imgUrl && <Image stack={{ name: label || "", img: imgUrl }} />}
+      {label && <span className="label">{label}</span>}
       {icon && <img className="icon" src={icon.src} alt={icon.alt} onClick={onIconClick} />}
     </Container>
   );
@@ -79,8 +79,8 @@ const Container = styled.div<DefaultChipContainerStyleProps>`
   }
 
   & .icon {
-    width: 1.4rem;
-    height: 1.4rem;
+    max-width: 1.4rem;
+    max-height: 1.4rem;
     ${({ $isClickable }) => $isClickable && `cursor: pointer;`}
   }
 

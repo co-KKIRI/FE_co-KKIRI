@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { useWindowSize } from "usehooks-ts";
 import styled from "styled-components";
+
 import StackComponent from "./Stack";
+import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { STACKS } from "@/constants/stacks";
+import { ICONS } from "@/constants/icons";
 import { breakpoints } from "@/styles/tokens";
 
 interface StacksProps {
@@ -35,7 +39,7 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
       ) : (
         displayPositions.map((stack) => <StackComponent key={stack} stack={STACKS[stack]} />)
       )}
-      {variant === "card" && stacks.length > displayPositions.length && <StackComponent className="more" />}
+      {variant === "card" && stacks.length > displayPositions.length && <MoreChip imgUrl={ICONS.more.src} />}
     </Wrapper>
   );
 }
@@ -43,4 +47,17 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
 const Wrapper = styled.div`
   display: flex;
   gap: 0.6rem;
+`;
+
+const MoreChip = styled(DefaultChip)`
+  padding: 0;
+
+  & div {
+    display: flex; // DefaultChip의 mobile에서 Image가 none 되는 것을 막기 위해
+  }
+
+  & img {
+    width: auto;
+    height: auto;
+  }
 `;

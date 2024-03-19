@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { useWindowSize } from "usehooks-ts";
 import styled from "styled-components";
+
 import PositionChip from "./Chips/PositionChip";
+import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { breakpoints } from "@/styles/tokens";
+import { ICONS } from "@/constants/icons";
 
 interface PositionsProps {
   positions: string[];
@@ -38,7 +42,7 @@ export default function Positions({ positions, variant = "profile", page }: Posi
       ) : (
         displayPositions.map((position) => <PositionChip key={position} label={position} />)
       )}
-      {variant === "card" && positions.length > displayPositions.length && <PositionChip label="..." />}
+      {variant === "card" && positions.length > displayPositions.length && <MoreChip icon={ICONS.more} />}
     </Wrapper>
   );
 }
@@ -46,4 +50,8 @@ export default function Positions({ positions, variant = "profile", page }: Posi
 const Wrapper = styled.div`
   display: flex;
   gap: 0.6rem;
+`;
+
+const MoreChip = styled(DefaultChip)`
+  height: 2.2rem;
 `;
