@@ -17,9 +17,7 @@ export default function Stack({ stack, className }: StackProps) {
           src: stack.img,
           alt: stack.name,
         }
-      : className === "more"
-        ? ICONS.more
-        : ICONS.questionMark;
+      : ICONS.questionMark;
 
   return (
     <Background className={className}>
@@ -41,12 +39,6 @@ const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  //임시
-  &.more img {
-    width: auto;
-    height: auto;
-  }
 `;
 
 const Icon = styled.img`

@@ -76,7 +76,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
         </S.UpperBox>
         <S.BreakLine />
         <S.FooterBox>
-          <UserInfo user={{ nickname: memberNickname, profileImage: memberProfileImg }} />
+          <UserInfo user={{ nickname: memberNickname, profileImageUrl: memberProfileImg }} />
           <S.CountWrapper>
             <Count icon={ICONS.eye} count={postViews} />
             <Count icon={ICONS.comment} count={postCommentsNum} />
