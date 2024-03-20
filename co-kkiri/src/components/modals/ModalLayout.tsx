@@ -14,6 +14,7 @@ interface ModalLayoutProps {
   tabletWidth?: number;
   desktopWidth: number;
   onClose: () => void;
+  className?: string;
 }
 
 export default function ModalLayout({
@@ -24,6 +25,7 @@ export default function ModalLayout({
   onClick,
   modalType,
   onClose,
+  className,
 }: ModalLayoutProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +48,8 @@ export default function ModalLayout({
           $mobileWidth={mobileWidth}
           $tabletWidth={tabletWidth}
           $desktopWidth={desktopWidth}
-          $isSidebar={modalType === "sidebar"}>
+          $isSidebar={modalType === "sidebar"}
+          className={className}>
           {!modalType && ("confirm" || "sidebar") && (
             <CloseButton onClick={onClick}>
               <img src={close} alt="닫기 아이콘" />
