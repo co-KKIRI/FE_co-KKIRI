@@ -12,12 +12,12 @@ export type ProjectDetailKey =
 
 // 구체적인 렌더링 방식
 export type RenderType = "text" | "positionChip" | "stackIcon" | "personNumber";
-
+export type ContentType = string | string[] | number;
 // ProjectDetailCard 내부에서 Table에게 전달할 Table Config
 export type ProjectDetailConfig = {
   [key in ProjectDetailKey]: {
     label: string;
-    content: string | string[];
+    content: ContentType;
     renderType: RenderType;
   };
 };
