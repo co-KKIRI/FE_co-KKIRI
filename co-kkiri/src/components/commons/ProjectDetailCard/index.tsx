@@ -7,10 +7,11 @@ import ProjectDetailRow from "./ProjectDetailRow";
 import { CategoryList } from "@/types/categoryTypes";
 
 interface ProjectDetailCardProps extends ProjectDetailContentType {
+  type?: "mystudy";
   ProjectCategory: CategoryList;
 }
 
-export default function ProjectDetailCard({ ProjectCategory, ...projectDetailContents }: ProjectDetailCardProps) {
+export default function ProjectDetailCard({ type, ProjectCategory, ...projectDetailContents }: ProjectDetailCardProps) {
   // 이 친구가 여기 있으면 안될 것 같은데 추후에 코드를 수정해서 밖으로 빼던 해야할 듯 합니다
   const projectDetailConfig: ProjectDetailConfig = {
     recruitEndAt: {
@@ -51,7 +52,7 @@ export default function ProjectDetailCard({ ProjectCategory, ...projectDetailCon
   };
 
   return (
-    <Container>
+    <Container type={type}>
       <Box>
         <ProjectChip label={ProjectCategory} />
       </Box>
@@ -66,7 +67,7 @@ export default function ProjectDetailCard({ ProjectCategory, ...projectDetailCon
 
 const { color, boxShadow, mediaQueries } = DESIGN_TOKEN;
 
-const Container = styled.div`
+const Container = styled.div<{ type?: string }>`
   height: fit-content;
 
   padding: 8rem 3rem 3rem;
@@ -82,11 +83,11 @@ const Container = styled.div`
   }
 
   ${mediaQueries.tablet} {
-    width: 50rem;
+    width: ${({ type }) => (type === "manage" ? "32rem" : "50rem")};
   }
 
   ${mediaQueries.desktop} {
-    width: 35rem;
+    width: ${({ type }) => (type === "manage" ? "50rem" : "35rem")};
   }
 `;
 
