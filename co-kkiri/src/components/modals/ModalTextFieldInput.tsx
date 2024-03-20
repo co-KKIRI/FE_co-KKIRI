@@ -33,6 +33,8 @@ export default function ModalTextFieldInput({ name, control }: ModalTextFieldInp
       rules={RULES[name]}
       render={({ field, fieldState }) => (
         <OneLinerInput
+          label={LABELS[name]}
+          isRequired={REQUIRED[name]}
           isError={fieldState.error}
           helperText={fieldState.error?.message}
           placeholder={PLACEHOLDERS[name]}
@@ -45,6 +47,6 @@ export default function ModalTextFieldInput({ name, control }: ModalTextFieldInp
 
 const OneLinerInput = styled(TextFieldInput)`
   height: 4.8rem;
-  
+
   line-height: normal;
 `;
