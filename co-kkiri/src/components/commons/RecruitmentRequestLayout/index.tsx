@@ -31,7 +31,7 @@ interface RecruitLayoutProps {
   submitButtonText: string;
 }
 
-export default function RecruitLayout({
+export default function RecruitmentRequestLayout({
   handleSelectType,
   handleSelectOption,
   handleSelectStack,
@@ -60,7 +60,7 @@ export default function RecruitLayout({
           </S.RadioButtonBox>
           <S.SelectBox>
             <h3>마감기간</h3>
-            <DeadlineDropdown />
+            <DeadlineDropdown setSelectedOptions={setSelectedOptions} />
           </S.SelectBox>
           <S.SelectBox>
             <h3>진행 기간</h3>
