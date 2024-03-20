@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 interface DropdownMenuProps {
-  options: string[];
-  handleSelectOption: (option: string) => void;
+  options: string[] | number[];
+  handleSelectOption: (option: string | number) => void;
   isOpen: boolean;
   $borderType: "round" | "square";
 }
@@ -24,7 +24,7 @@ interface ContainerProps {
 export default function DropMenu({ options, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
   return (
     <Container $isOpen={isOpen} $borderType={$borderType}>
-      {options.map((option: string) => (
+      {options.map((option: string | number) => (
         <Option
           $borderType={$borderType}
           onClick={() => {

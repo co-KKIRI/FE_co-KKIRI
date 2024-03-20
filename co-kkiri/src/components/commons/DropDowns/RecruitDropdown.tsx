@@ -7,23 +7,24 @@ import SquareDropButton from "./commons/SquareDropButton";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 
 interface RecruitDropdownProps {
-  menuInfoType: "progressWay" | "memberCount" | "progressPeriod" | "contactForm";
+  menuInfoType: "progressWay" | "capacity" | "progressPeriod" | "contactWay";
+  onClick: (option: string | number) => void;
 }
 
 /**
  * RecruitDropdown 컴포넌트
  * @param  menuInfoType: 드랍메뉴 내용
- * @property {"progressWay" | "memberCount" | "progressPeriod" | "contactForm"} menuInfoType
+ * @property {"progressWay" | "capacity" | "progressPeriod" | "contactWay"} menuInfoType
  * */
-export default function RecruitDropdown({ menuInfoType }: RecruitDropdownProps) {
+export default function RecruitDropdown({ menuInfoType, onClick }: RecruitDropdownProps) {
   const { recruitment } = DROPDOWN_INFO;
-
-  const [selectOption, setSelectOption] = useState(recruitment[menuInfoType].defaultValue);
+  const [selectOption, setSelectOption] = useState<string | number>(recruitment[menuInfoType].defaultValue);
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string) => {
+  const handleSelectOption = (option: string | number) => {
     setSelectOption(option);
+    onClick(option);
     setIsSelected(true);
     toggleDropdown();
   };

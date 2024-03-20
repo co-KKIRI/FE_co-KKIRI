@@ -6,13 +6,14 @@ interface RadioButtonProps {
   children?: ReactNode;
   value: string;
   defaultChecked?: boolean;
+  onClick?: () => void;
 }
 
-export default function RadioButton({ children, value, defaultChecked }: RadioButtonProps) {
+export default function RadioButton({ children, value, defaultChecked, onClick }: RadioButtonProps) {
   return (
     <Label>
       {children}
-      <RadioInput type="radio" name="invite" value={value} defaultChecked={defaultChecked} />
+      <RadioInput onClick={onClick} type="radio" name="invite" value={value} defaultChecked={defaultChecked} />
     </Label>
   );
 }

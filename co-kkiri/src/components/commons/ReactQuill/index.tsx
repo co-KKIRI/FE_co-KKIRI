@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
@@ -19,9 +19,24 @@ const formats = [
   "image",
 ];
 
-export default function QuillEditor() {
-  const [values, setValues] = useState("");
+interface RecruitmentRequest {
+  type: string;
+  recruitEndAt: string;
+  progressPeriod: string;
+  capacity: number;
+  contactWay: string;
+  progressWay: string;
+  stacks: string[];
+  positions: string[];
+  title: string;
+  content: string;
+}
 
+export default function QuillEditor({
+  setSelectedOptions,
+}: {
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
+}) {
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -30,17 +45,30 @@ export default function QuillEditor() {
     };
   }, []);
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      title: e.target.value,
+    }));
+  };
+
+  const handleContentChange = (content: string) => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      content: content,
+    }));
+  };
+
   return (
     <Container>
-      <input placeholder="제목을 입력해주세요!" />
+      <input placeholder="제목을 입력해주세요!" onChange={handleTitleChange} />
       <CustomToolbar />
       <ReactQuillWrapper>
         <ReactQuill
           theme="snow"
           modules={modules}
           formats={formats}
-          value={values}
-          onChange={setValues}
+          onChange={handleContentChange}
           className="custom-quill-editor"
           placeholder="프로젝트를 소개해주세요!"
         />
@@ -48,7 +76,6 @@ export default function QuillEditor() {
     </Container>
   );
 }
-
 const { color, typography } = DESIGN_TOKEN;
 
 const Container = styled.div`
