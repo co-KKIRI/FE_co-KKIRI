@@ -91,4 +91,8 @@ const LinkInput = styled.input`
   border: 0.1rem solid ${color.gray[2]};
   border-radius: 0.5rem;
   width: 100%;
+
+  &:focus {
+    outline: none;
+  }
 `;

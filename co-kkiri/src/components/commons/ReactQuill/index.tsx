@@ -77,6 +77,11 @@ const Container = styled.div`
     border-radius: 0.5rem;
     padding: 0 1.885rem;
     margin-bottom: 1.2rem;
+
+    &::placeholder {
+      ${typography.font16Semibold};
+      color: ${color.gray[1]};
+    }
   }
 `;
 

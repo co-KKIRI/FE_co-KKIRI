@@ -35,12 +35,12 @@ export default function RecruitmentRequestLayout({
           <h3>모집 구분</h3>
           <span>
             <S.RadioButtonWarper>
-              <RadioButton value="STUDY" onClick={() => handleSelectType("STUDY")} />
-              <span>스터디</span>
-            </S.RadioButtonWarper>
-            <S.RadioButtonWarper>
               <RadioButton value="PROJECT" onClick={() => handleSelectType("PROJECT")} />
               <span>프로젝트</span>
+            </S.RadioButtonWarper>
+            <S.RadioButtonWarper>
+              <RadioButton value="STUDY" onClick={() => handleSelectType("STUDY")} />
+              <span>스터디</span>
             </S.RadioButtonWarper>
           </span>
         </S.RadioButtonBox>

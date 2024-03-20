@@ -55,7 +55,7 @@ export default function Recruit() {
         : [...prevOptions.positions, position],
     }));
   };
-
+  console.log(selectedOptions);
   return (
     <S.Container>
       <S.SelectContainer>
