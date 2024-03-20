@@ -78,6 +78,10 @@ const Container = styled.div`
     padding: 0 1.885rem;
     margin-bottom: 1.2rem;
 
+    &:focus {
+      outline: none;
+    }
+
     &::placeholder {
       ${typography.font16Semibold};
       color: ${color.gray[1]};
