@@ -1,4 +1,4 @@
-//스터디모집하기, 수정하기 (연락 링크 추가 예정)
+/**스터디모집하기, 수정하기 (연락 링크 추가 예정)*/
 export type RecruitApiRequestDto = {
   type: "STUDY" | "PROJECT";
   recruitEndAt: string;
@@ -27,12 +27,20 @@ type PostInfo = {
   postCommentsNum: number;
 };
 
-//스터디 목록
+/**스터디 목록*/
 export type ListApiResponseDto = {
   postList: PostInfo[];
 };
 
-//스터디 상세
+export type ListApiRequestDto = {
+  meetingType?: "ALL" | "STUDY" | "PROJECT";
+  position?: string[];
+  progressWay?: string;
+  stack?: string[];
+  sortBy?: "LATEST" | "BYDEADLINE" | "BYVIEW";
+};
+
+/**스터디 상세*/
 export type PostDetailApiResponseDto = {
   postTitle: string;
   postContent: string;
@@ -52,25 +60,30 @@ export type PostDetailApiResponseDto = {
   stacks: string[];
   commentsNum: number;
 };
-
-//지원
+/**스터디 지원 */
 export type ApplyPostApiRequestDto = {
   memberId: number;
 };
 
-type AppliedPostMember = {
+/**스터디 지원 목록 */
+export type AppliedMemberListApiRequestDto = {
+  order: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
+  page: number; // 요청할 페이지
+  take: number; // 몇개 가져올지
+};
+
+type AppliedMember = {
   teamMemberId: number;
   memberId: number;
   nickname: string;
   profileImageUrl: string;
 };
 
-//지원 목록
 export type AppliedMemberListApiResponseDto = {
-  appliedPostMemberList: AppliedPostMember[];
+  appliedPostMemberList: AppliedMember[];
 };
 
-//스터디/프로젝트 정보
+/**스터디 프로젝트 정보 */
 export type StudyManagementApiResponseDto = {
   postId: number;
   postTitle: string; //제목
@@ -83,25 +96,25 @@ export type StudyManagementApiResponseDto = {
   isLeader: boolean; // 방장인지 아닌지
 };
 
-// 스카우트 스터티/프로젝트 목록
 type ScoutPost = {
   postId: number;
   title: string;
 };
 
+/**스카우트 스터디/프로젝트 목록 -백엔드 확인요망*/
 export type ScoutListApiResponseDto = {
   content: ScoutPost[];
   // meta: Pageable  페이지네이션 정보, 추후 추가 예정
 };
 
-// 스카우트하기
+/**스카우트하기 */
 export type InviteMemberRequestDto = {
   postId: number;
   memberId: number;
   message: string;
 };
 
-// 이미지 업로드
+/**이미지 업로드하기 */
 export type ImageUploadApiResponseDto = {
   uploadUrl: string;
 };

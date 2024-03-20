@@ -1,5 +1,4 @@
 // 스터디 상세 스터디 댓글 목록
-
 type CommentInfo = {
   commentId: number;
   commentProfileImg: string;

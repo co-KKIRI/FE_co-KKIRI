@@ -10,14 +10,14 @@ export type UserInfoApiResponseDto = {
   isVisibleProfile: boolean;
 };
 
-//마이 페이지 팀 초대된 목록
-type TeamInvite = {
+//마이 페이지 초대된 팀 목록
+type InvitedTeam = {
   teamInviteId: number;
   postTitle: string;
 };
 
-export type TeamInviteApiResponseDto = {
-  inviteList: TeamInvite[];
+export type InvitedTeamListApiResponseDto = {
+  inviteList: InvitedTeam[];
 };
 
 // 마이 페이지 스크랩 목록

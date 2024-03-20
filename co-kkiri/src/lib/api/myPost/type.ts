@@ -1,11 +1,11 @@
-type AppliedPost = {
+type MyAppliedPost = {
   appliedPostId: number;
   title: string;
 };
 
 // 나의 스터디 내가 신청한 스터디 목록
-export type AppliedListApiResponseDto = {
-  appliedPostList: AppliedPost[];
+export type MyAppliedListApiResponseDto = {
+  appliedPostList: MyAppliedPost[];
 };
 
 type RecruitedPost = {

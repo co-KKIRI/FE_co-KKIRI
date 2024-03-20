@@ -2,7 +2,7 @@ import { BASE_URL } from "./axios";
 //get
 export const homeAddress = "/main/list";
 
-export const AuthAddress = {
+export const authAddress = {
   google: {
     //get
     login: `${BASE_URL}/auth/google/login`,
@@ -11,7 +11,7 @@ export const AuthAddress = {
   },
 };
 
-export const PostAddress = {
+export const postAddress = {
   //post
   recruit: "/post/recruit",
   //get
@@ -29,9 +29,9 @@ export const PostAddress = {
   //patch
   recruitEnd: (postId: number) => `/post/${postId}/recruit-end`,
   //patch
-  recruitStart: (postId: number) => `/post/${postId}/recruit-start`,
+  recruitStart: (postId: number) => `/post/${postId}/recruit-start`, // 백엔드 확인 요망
   //patch
-  recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`,
+  recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`, // 백엔드 확인 요망
   //post
   invite: "/post/invite",
 };
@@ -79,7 +79,7 @@ export const teamAddress = {
   reject: "/team/reject",
 };
 
-export const MyPostAddress = {
+export const myPostAddress = {
   //get
   applyList: "/my-post/apply/list",
   //get

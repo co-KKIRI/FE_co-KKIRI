@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
-export type HttpMethod = "get" | "post" | "put" | "delete";
+export type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
 
-export interface ServiceResponse<T> {
+export interface ApiRequestResponse<T> {
   data?: T | null;
   errorMessage: string | null;
 }
@@ -20,7 +20,7 @@ export async function apiRequest<T, U>(
   data?: U,
   params?: Record<string, unknown>,
   config?: AxiosRequestConfig,
-): Promise<ServiceResponse<T>> {
+): Promise<ApiRequestResponse<T>> {
   try {
     const request: AxiosRequestConfig = {
       url,
