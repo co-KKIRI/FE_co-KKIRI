@@ -8,12 +8,13 @@ interface TextFieldInputProps extends InputHTMLAttributes<HTMLInputElement> {
   isRequired?: boolean;
   isError: FieldError | undefined;
   helperText?: string;
+  className?: string;
 }
 
 const TextFieldInput = forwardRef<HTMLInputElement, TextFieldInputProps>(
-  ({ label, id, value, placeholder = "", isRequired = false, isError, helperText = "", ...props }, ref) => {
+  ({ label, id, value, placeholder = "", isRequired = false, isError, helperText = "", className, ...props }, ref) => {
     return (
-      <Wrapper>
+      <Wrapper className={className}>
         <Label htmlFor={id}>
           {label}
           {isRequired && <span className="required-mark"> *</span>}

@@ -7,6 +7,7 @@ import { FormData } from "./EditUserProfileModal/EditUserProfileModalLayout";
 interface ModalTextFieldInputProps {
   name: ModalTextFieldInputConfig;
   control: Control<FormData>;
+  className?: string;
 }
 
 /**
@@ -24,7 +25,7 @@ interface ModalTextFieldInputProps {
  * 자세한 사용법은 노션에 정리해 놓을게요!
  */
 
-export default function ModalTextFieldInput({ name, control }: ModalTextFieldInputProps) {
+export default function ModalTextFieldInput({ name, control, className }: ModalTextFieldInputProps) {
   return (
     <Controller
       name={name}
@@ -38,6 +39,7 @@ export default function ModalTextFieldInput({ name, control }: ModalTextFieldInp
           helperText={fieldState.error?.message}
           placeholder={PLACEHOLDERS[name]}
           {...field}
+          className={className}
         />
       )}
     />
