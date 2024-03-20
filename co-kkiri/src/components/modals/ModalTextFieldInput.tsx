@@ -1,13 +1,12 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 import TextFieldInput from "@/components/modals/TextFieldInput";
-import { LABELS, PLACEHOLDERS, REQUIRED, RULES } from "@/constants/textInputRules";
+import { LABELS, ModalTextFieldInputConfig, PLACEHOLDERS, REQUIRED, RULES } from "@/constants/textInputRules";
 import styled from "styled-components";
-
-type ModalTextFieldInputName = "nickname" | "link" | "introduce";
+import { FormData } from "./EditUserProfileModal/EditUserProfileModalLayout";
 
 interface ModalTextFieldInputProps {
-  name: ModalTextFieldInputName;
-  control: Control;
+  name: ModalTextFieldInputConfig;
+  control: Control<FormData>;
 }
 
 /**
@@ -16,7 +15,7 @@ interface ModalTextFieldInputProps {
  * react-hook-form의 Controller를 사용하여, 입력 값의 유효성 검사 및 상태 관리를 수행합니다.
  * name, control은 필수 입력값입니다.
  *
- * @property {string} name - 텍스트 필드의 이름으로 "nickname" | "link" | "introduce"에 따라 hook form의 조건이 결정 됩니다.
+ * @property {string} name - 텍스트 필드의 이름으로 "nickname" | "position" | "career" | "link" | "stacks" | "introduce" 에 따라 hook form의 조건이 결정 됩니다.
  * @property {Control} control - react-hook-form의 Control 객체
  *
  * @example
