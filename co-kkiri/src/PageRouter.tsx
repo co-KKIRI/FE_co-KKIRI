@@ -42,7 +42,8 @@ const PageRouter = () => {
           <Route path={CASTING} element={<Casting />} />
           <Route path={MY_PAGE} element={<MyPage />} />
           <Route path={MY_STUDY} element={<MyStudy />} />
-          <Route path={MANAGE} element={<Manage />} />
+          //TODO: Manage 페이지에 id값을 넘겨줘야함
+          <Route path={MANAGE} element={<Manage id={1} />} />
           <Route path={PROFILE} element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Route>

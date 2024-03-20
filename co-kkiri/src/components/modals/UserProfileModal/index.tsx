@@ -3,10 +3,11 @@ import ModalLayout from "../ModalLayout";
 import { IMAGES } from "@/constants/images";
 import Stacks from "@/components/commons/Stacks";
 import Positions from "@/components/commons/Positions";
+import PositionChip from "@/components/commons/Chips/PositionChip";
 
 interface UserProfileModalProps {
   profileImg: string;
-  position: string[];
+  position: string;
   nickname: string;
   career: number;
   stack: string[];
@@ -33,7 +34,7 @@ export default function UserProfileModal({
         ) : (
           <img src={IMAGES.profileImgBig.src} alt={IMAGES.profileImgBig.alt} />
         )}
-        <Positions positions={position} />
+        <PositionChip label={position} />
         <S.ProfileBox>
           <S.ProfileWrapper>
             <S.Nickname>{nickname}</S.Nickname>

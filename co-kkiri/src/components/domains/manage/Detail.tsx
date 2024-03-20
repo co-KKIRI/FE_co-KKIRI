@@ -22,7 +22,7 @@ export default function Detail({ detailInfo }: DetailProps) {
         <Title>{postTitle}</Title>
       </Box>
       <ProjectDetailCard
-        type="manage"
+        type="mystudy"
         ProjectCategory={type}
         recruitEndAt={recruitEndAt}
         progressPeriod={progressPeriod}

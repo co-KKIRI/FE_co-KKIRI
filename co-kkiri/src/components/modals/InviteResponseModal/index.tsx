@@ -10,12 +10,12 @@ interface InviteResponseModalProps {
 }
 const user = {
   nickname: "코끼리",
-  profileImage: "",
+  profileImageUrl: "",
 };
 
 export default function InviteResponseModal({ onClick }: InviteResponseModalProps) {
   return (
-    <ModalLayout desktopWidth={430} mobileWidth={320} onClick={onClick} $borderRadius={10}>
+    <ModalLayout desktopWidth={430} mobileWidth={320} onClick={onClick} onClose={() => {}}>
       <S.Container>
         <h1>초대 메세지</h1>
         <S.ContentContainer>

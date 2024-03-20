@@ -4,16 +4,17 @@ import styled from "styled-components";
 import useOpenToggle from "@/hooks/useOpenToggle";
 
 interface StacksPopoverProps {
+  stacks: string[];
   onStacksChange: (stacks: string[]) => void;
 }
 
-export default function StacksPopover({ onStacksChange }: StacksPopoverProps) {
+export default function StacksPopover({ onStacksChange, stacks }: StacksPopoverProps) {
   const {isOpen, openToggle} = useOpenToggle();
 
   return (
     <Container>
       <FilterDropdown selectOption="기술 스택" isSelected={isOpen} onClick={openToggle} />
-      {isOpen && <SelectLayout onStacksChange={onStacksChange} />}
+      {isOpen && <SelectLayout stacks={stacks} onStacksChange={onStacksChange} />}
     </Container>
   );
 }

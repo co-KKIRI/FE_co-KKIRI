@@ -10,13 +10,10 @@ export default function ModalTestPage() {
 
   const userInfo = {
     profileImg: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    position: [{ name: "프론트엔드" }, { name: "백엔드" }],
+    position: "프론트엔드",
     nickname: "123",
     career: 2,
-    stack: [
-      { name: "react", img: "https://simpleicons.org/icons/react.svg" },
-      { name: "next.js", img: "https://simpleicons.org/icons/nextdotjs.svg" },
-    ],
+    stack: ["react", "next.js"],
     introduce: "잘 부탁드립니다.",
     link: ["https://www.youtube.com"],
   };
@@ -33,6 +30,7 @@ export default function ModalTestPage() {
           stack={userInfo.stack}
           introduce={userInfo.introduce}
           link={userInfo.link}
+          onClose={() => setIsModalOpen(false)}
         />
       )}
     </>

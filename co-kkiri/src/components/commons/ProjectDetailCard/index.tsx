@@ -83,11 +83,11 @@ const Container = styled.div<{ type?: string }>`
   }
 
   ${mediaQueries.tablet} {
-    width: ${({ type }) => (type === "manage" ? "32rem" : "50rem")};
+    width: ${({ type }) => (type === "mystudy" ? "32rem" : "50rem")};
   }
 
   ${mediaQueries.desktop} {
-    width: ${({ type }) => (type === "manage" ? "50rem" : "35rem")};
+    width: ${({ type }) => (type === "mystudy" ? "50rem" : "35rem")};
   }
 `;
 

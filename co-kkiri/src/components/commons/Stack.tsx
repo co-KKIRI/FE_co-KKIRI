@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
-import { Stack } from "@/types/StackTypes";
+import { Stack as StackType } from "@/types/StackTypes";
 import { Image } from "@/types/ImageTypes";
 
 interface StackProps {
-  stack?: Pick<Stack, "name" | "img">;
+  stack?: Pick<StackType, "name" | "img">;
   className?: string;
 }
 
