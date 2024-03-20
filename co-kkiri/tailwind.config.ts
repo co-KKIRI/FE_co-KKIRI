@@ -13,14 +13,14 @@ module.exports = {
         "2xl": "1400px",
       },
     },
-    colors: {
-      primary: {
-        1: "#29C4BA",
-        2: "#BCEBE8",
-        3: "#F1F8F7",
-      },
-    },
     extend: {
+      colors: {
+        primary: {
+          1: "#29C4BA",
+          2: "#BCEBE8",
+          3: "#F1F8F7",
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

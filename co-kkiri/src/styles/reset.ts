@@ -7,7 +7,6 @@ const resetStyle = css`
     font: inherit;
     color: inherit;
     font-family: "Pretendard Variable", sans-serif;
-    scrollbar-gutter: stable;
     font-family: "Pretendard Variable", sans-serif;
   }
 
