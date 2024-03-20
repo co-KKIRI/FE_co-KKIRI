@@ -35,7 +35,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
   ${desktop} {
-    width: 35rem;
+    width: 50rem;
   }
   ${tablet} {
     width: 50rem;

@@ -6,6 +6,7 @@ import SearchInput from "@/components/commons/SearchInput";
 import Filters from "@/components/domains/studyList/Filters";
 import Cards from "@/components/domains/studyList/Cards";
 import Pagination from "@/components/commons/Pagination_test/Pagination";
+import CreatePost from "@/components/commons/FloatingButton/CreatePost";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
@@ -107,6 +108,7 @@ export default function StudyList() {
         <Cards data={pageData} />
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </Box>
+      <CreatePost />
     </Container>
   );
 }
