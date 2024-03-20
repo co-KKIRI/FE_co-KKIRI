@@ -12,6 +12,7 @@ import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 interface RecruitLayoutProps {
   handleSelectType: (type: string) => void;
   handleSelectOption: ({ optionType, option }: { optionType: string; option: string | number }) => void;
+  handleSelectLink: (link: string) => void;
   handleSelectStack: (stacks: string[]) => void;
   handleSelectPosition: (position: string) => void;
   selectedOptions: RecruitmentRequest;
@@ -23,6 +24,7 @@ export default function RecruitmentRequestLayout({
   handleSelectType,
   handleSelectOption,
   handleSelectStack,
+  handleSelectLink,
   handleSelectPosition,
   selectedOptions,
   setSelectedOptions,
@@ -76,6 +78,7 @@ export default function RecruitmentRequestLayout({
             <RecruitDropdown
               menuInfoType="contactWay"
               onClick={(option) => handleSelectOption({ optionType: "contactWay", option })}
+              onChange={(link) => handleSelectLink(link)}
             />
           </S.SelectBox>
         </S.GirdContainer>

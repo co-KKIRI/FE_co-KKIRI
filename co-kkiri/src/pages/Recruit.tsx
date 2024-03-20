@@ -14,6 +14,7 @@ export default function Recruit() {
     positions: [],
     title: "",
     content: "",
+    link: "",
   });
 
   const handleSelectType = (type: string): void => {
@@ -27,6 +28,13 @@ export default function Recruit() {
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [optionType]: option,
+    }));
+  };
+
+  const handleSelectLink = (link: string): void => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      link: link,
     }));
   };
 
@@ -46,8 +54,10 @@ export default function Recruit() {
     }));
   };
 
+  console.log(selectedOptions);
   return (
     <RecruitmentRequestLayout
+      handleSelectLink={handleSelectLink}
       handleSelectType={handleSelectType}
       handleSelectOption={handleSelectOption}
       handleSelectStack={handleSelectStack}

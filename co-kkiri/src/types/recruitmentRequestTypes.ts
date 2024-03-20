@@ -9,4 +9,5 @@ export interface RecruitmentRequest {
   positions: string[];
   title: string;
   content: string;
+  link: string;
 }
