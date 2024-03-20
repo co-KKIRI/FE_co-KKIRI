@@ -5,6 +5,7 @@ import Count from "@/components/commons/Count";
 import { ICONS } from "@/constants/icons";
 import { DetailInfo } from "@/lib/mock/studyDetail";
 import DOMPurify from "dompurify";
+import { createTimePassedMessage } from "@/utils/formatDate";
 
 interface RecruitmentPostProps {
   detailInfo: DetailInfo;
@@ -15,14 +16,14 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
   const {
     postTitle,
     postContent,
-    userProfileImg: profileImage,
+    userProfileImg: profileImageUrl,
     userNickname: nickname,
     createdAt,
     views,
     scraps,
   } = detailInfo;
 
-  const userInfo = { nickname, profileImage };
+  const userInfo = { nickname, profileImageUrl };
   const isMine = true; // 임시
 
   const sanitizedContent = { __html: DOMPurify.sanitize(postContent) };
@@ -34,7 +35,7 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
         <S.PostInfoWrapper>
           <UserInfo user={userInfo} nicknameBold />
           <S.InfoDivider />
-          <S.CreatedDate>2024.3.5</S.CreatedDate> {/* createdAt 데이터 확인후 formatDate 함수 적용해서 변경 예정*/}
+          <S.CreatedDate>{createTimePassedMessage(createdAt)}</S.CreatedDate>
         </S.PostInfoWrapper>
         {isMine && <PostManagementButtons />}
       </S.Box>

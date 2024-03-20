@@ -53,12 +53,12 @@ export const studyDetailData: StudyDetailData = {
 `, //내용
     userProfileImg: "", //작성자 프로필이미지
     userNickname: "코끼리", //작성자 닉네임
-    createdAt: "2024-03-05 13:00:00", //생성 시간 YYYY-M.-D.
+    createdAt: "2024-03-19 13:00:00", //생성 시간 YYYY-M.-D.
     views: 3, //조회수
     isScraped: false, //스크랩 되어있는지 아닌지
     scraps: 22, //스크랩수
     type: "PROJECT", //스터디 종류
-    recruitEndAt: "2024.3.8", // 모집 마감
+    recruitEndAt: "2024-03-30", // 모집 마감
     progressPeriod: "2개월", //진행 기간 => enum 타입으로 넣을 예정
     progressWay: "온/오프라인", //진행 방법 (온라인/오프라인)
     contactWay: "오픈톡", //연락 방법
