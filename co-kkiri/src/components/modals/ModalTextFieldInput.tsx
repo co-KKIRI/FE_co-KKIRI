@@ -1,6 +1,7 @@
 import { Control, Controller } from "react-hook-form";
-import OneLinerInput from "@/components/modals/TextFieldInput";
+import TextFieldInput from "@/components/modals/TextFieldInput";
 import { LABELS, PLACEHOLDERS, REQUIRED, RULES } from "@/constants/textInputRules";
+import styled from "styled-components";
 
 type ModalTextFieldInputName = "nickname" | "link" | "introduce";
 
@@ -32,8 +33,6 @@ export default function ModalTextFieldInput({ name, control }: ModalTextFieldInp
       rules={RULES[name]}
       render={({ field, fieldState }) => (
         <OneLinerInput
-          label={LABELS[name]}
-          isRequired={REQUIRED[name]}
           isError={fieldState.error}
           helperText={fieldState.error?.message}
           placeholder={PLACEHOLDERS[name]}
@@ -43,3 +42,9 @@ export default function ModalTextFieldInput({ name, control }: ModalTextFieldInp
     />
   );
 }
+
+const OneLinerInput = styled(TextFieldInput)`
+  height: 4.8rem;
+  
+  line-height: normal;
+`;

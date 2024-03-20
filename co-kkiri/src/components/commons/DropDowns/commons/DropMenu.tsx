@@ -54,7 +54,6 @@ const COMMON_STYLE = css<{ $borderType?: string }>`
   background-color: ${color.white};
   position: absolute;
   top: ${({ $borderType }) => ($borderType === "round" ? "4.2rem" : "5.4rem")};
-
   ${zIndex.dropdown}
 `;
 
