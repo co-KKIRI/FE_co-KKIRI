@@ -19,7 +19,7 @@ interface GnbProps {
 
 export default function Gnb({ user, onSideBarClick }: GnbProps) {
   const { HOME_PATH, POST_PATH } = ROUTER_PATH;
-  const { ref, isOpen, openToggle: togglePopover } = useOpenToggle();
+  const { ref, isOpen: isPopoverOpen, openToggle: togglePopover } = useOpenToggle();
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
@@ -54,7 +54,7 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
         </S.RightGroupWrapper>
       </S.Box>
       {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} onClose={handleAuthModalOpen} />}
-      <UserPopover isOpen={isOpen} handleSelectOption={handlePopoverOpen} />
+      {user && <UserPopover isPopoverOpen={isPopoverOpen} handleSelectOption={handlePopoverOpen} />}
     </S.Container>
   );
 }

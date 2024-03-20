@@ -52,12 +52,12 @@ const DESIGN_TOKEN = {
     desktop: `@media (min-width: ${breakpoints.desktop}px)`,
   },
   zIndex: {
-    dropdown: "z-index: 20",
-    sticky: "z-index: 40",
-    popover: "z-index: 60",
-    default: "z-index: 1",
-    toast: "z-index: 120",
-    modal: "z-index: 100",
+    dropdown: "z-index: 20;",
+    sticky: "z-index: 40;",
+    popover: "z-index: 60;",
+    default: "z-index: 1;",
+    toast: "z-index: 120;",
+    modal: "z-index: 100;",
   },
   boxShadow: {
     content: "0px 4px 20px rgba(0, 0, 0, 0.08)",
