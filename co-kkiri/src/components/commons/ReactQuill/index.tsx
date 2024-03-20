@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 
 const formats = [
   "header",
@@ -18,19 +19,6 @@ const formats = [
   "background",
   "image",
 ];
-
-interface RecruitmentRequest {
-  type: string;
-  recruitEndAt: string;
-  progressPeriod: string;
-  capacity: number;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
-  positions: string[];
-  title: string;
-  content: string;
-}
 
 export default function QuillEditor({
   setSelectedOptions,

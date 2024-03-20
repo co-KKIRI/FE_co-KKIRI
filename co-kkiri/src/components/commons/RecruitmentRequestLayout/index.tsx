@@ -7,19 +7,7 @@ import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
 import { Dispatch, SetStateAction } from "react";
-
-interface RecruitmentRequest {
-  type: string;
-  recruitEndAt: string;
-  progressPeriod: string;
-  capacity: number;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
-  positions: string[];
-  title: string;
-  content: string;
-}
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 
 interface RecruitLayoutProps {
   handleSelectType: (type: string) => void;

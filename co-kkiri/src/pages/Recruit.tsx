@@ -1,18 +1,6 @@
 import { useState } from "react";
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
-
-interface RecruitmentRequest {
-  type: string;
-  recruitEndAt: string;
-  progressPeriod: string;
-  capacity: number;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
-  positions: string[];
-  title: string;
-  content: string;
-}
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 
 export default function Recruit() {
   const [selectedOptions, setSelectedOptions] = useState<RecruitmentRequest>({

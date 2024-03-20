@@ -8,31 +8,8 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import SquareDropButton from "../commons/SquareDropButton";
 import { Calendar } from "./ui/calendar";
-interface RecruitmentRequest {
-  type: string;
-  recruitEndAt: string;
-  progressPeriod: string;
-  capacity: number;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
-  positions: string[];
-  title: string;
-  content: string;
-}
 
-interface RecruitmentRequest {
-  type: string;
-  recruitEndAt: string;
-  progressPeriod: string;
-  capacity: number;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
-  positions: string[];
-  title: string;
-  content: string;
-}
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 
 interface DeadlineDropdownProps {
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
