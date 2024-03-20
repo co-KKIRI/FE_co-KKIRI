@@ -1,6 +1,8 @@
 import { useState } from "react";
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import Button from "@/components/commons/Button";
+import * as S from "./styled";
 
 export default function Recruit() {
   const [selectedOptions, setSelectedOptions] = useState<RecruitmentRequest>({
@@ -31,7 +33,7 @@ export default function Recruit() {
     }));
   };
 
-  const handleSelectLink = (link: string): void => {
+  const handleChangeLink = (link: string): void => {
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       link: link,
@@ -54,17 +56,23 @@ export default function Recruit() {
     }));
   };
 
-  console.log(selectedOptions);
   return (
-    <RecruitmentRequestLayout
-      handleSelectLink={handleSelectLink}
-      handleSelectType={handleSelectType}
-      handleSelectOption={handleSelectOption}
-      handleSelectStack={handleSelectStack}
-      handleSelectPosition={handleSelectPosition}
-      selectedOptions={selectedOptions}
-      setSelectedOptions={setSelectedOptions}
-      submitButtonText="글 등록하기"
-    />
+    <S.Container>
+      <S.SelectContainer>
+        <RecruitmentRequestLayout
+          handleSelectType={handleSelectType}
+          handleSelectOption={handleSelectOption}
+          handleSelectStack={handleSelectStack}
+          handleChangeLink={handleChangeLink}
+          handleSelectPosition={handleSelectPosition}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
+        <S.SubmitButtonBox>
+          <Button variant="primaryLight">취소하기</Button>
+          <Button variant="primary">글 등록하기</Button>
+        </S.SubmitButtonBox>
+      </S.SelectContainer>
+    </S.Container>
   );
 }
