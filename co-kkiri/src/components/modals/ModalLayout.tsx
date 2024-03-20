@@ -85,6 +85,7 @@ const Container = styled.div<{ $isSidebar?: boolean }>`
 `;
 
 const ModalBox = styled.div<ModalBoxProps>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +114,7 @@ const CloseButton = styled.button`
   margin-left: auto;
   width: 1.2rem;
   height: 1.2rem;
-  position: relative;
+  position: absolute;
   right: 2rem;
   top: 2rem;
 `;
