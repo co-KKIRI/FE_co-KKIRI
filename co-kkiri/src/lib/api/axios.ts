@@ -2,8 +2,9 @@ import axios from "axios";
 
 export type HttpMethod = "get" | "post" | "put" | "delete";
 
-const BASE_URL = "";
+export const BASE_URL = "";
 
-const axiosInstance = axios.create({
+export const instance = axios.create({
   baseURL: BASE_URL,
+  withCredentials: true,
 });
