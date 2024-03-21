@@ -22,8 +22,8 @@ export default function UserInfoDropdown({ menuInfoType }: UserInfoDropdownProps
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string) => {
-    setSelectOption(option);
+  const handleSelectOption = (option: string | number) => {
+    setSelectOption(option as string);
     setIsSelected(true);
     toggleDropdown();
   };

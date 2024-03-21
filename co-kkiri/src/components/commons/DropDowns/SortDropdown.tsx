@@ -17,9 +17,9 @@ export default function SortDropdown({ handleSortChange }: SortDropdownProps) {
 
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string) => {
-    handleSortChange(option);
-    setSelectOption(option);
+  const handleSelectOption = (option: string | number) => {
+    handleSortChange(option as string);
+    setSelectOption(option as string);
     setIsSelected(true);
     toggleDropdown();
   };

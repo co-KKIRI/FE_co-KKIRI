@@ -82,7 +82,7 @@ export const SelectChipBox = styled.div`
   flex-direction: column;
   gap: 2rem;
 
-  & div {
+  & > div {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;

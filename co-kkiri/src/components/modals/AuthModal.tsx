@@ -4,7 +4,7 @@ import ModalLayout from "./ModalLayout";
 import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
 import { ROUTER_PATH } from "@/lib/path";
-import { AuthAddress } from "@/lib/api/address";
+import { authAddress } from "@/lib/api/address";
 
 interface AuthModalProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,7 +23,7 @@ export default function AuthModal({ onClick, onClose }: AuthModalProps) {
         <span>로그인 / 회원가입</span>
         <LoginButtonBox>
           <LoginButton $padding={0.9}>
-            <Link to={AuthAddress.google.login}>
+            <Link to={authAddress.google.login}>
               <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
             </Link>
           </LoginButton>
