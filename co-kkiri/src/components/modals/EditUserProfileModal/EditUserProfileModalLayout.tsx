@@ -19,8 +19,13 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
     mode: "onBlur",
   });
 
+  const onSubmitHandler = (data: UserProfile) => {
+    useStore.setState({ userInfo: data });
+    onSubmit(data);
+  };
+
   return (
-    <Container>
+    <Form onSubmit={handleSubmit(onSubmitHandler)}>
       <EditUserImage onSelect={() => {}} isEditable $gridArea="user-image" />
       <ModalTextFieldInput name="nickname" control={control} $gridArea="nickname" />
       <ModalTextFieldDropdown name="position" control={control} $gridArea="position" />
@@ -28,21 +33,16 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
       <ModalTextFieldInput name="link" control={control} $gridArea="link" />
       <ModalTextFieldDropdown name="stack" control={control} $gridArea="stack" />
       <ModalTextFieldInput name="introduce" control={control} $gridArea="introduce" />
-      <SubmitButton
-        variant="primary"
-        onClick={() => {
-          console.log(watch());
-        }}
-        $gridArea="button">
+      <SubmitButton variant="primary" $gridArea="button">
         수정하기
       </SubmitButton>
-    </Container>
+    </Form>
   );
 }
 
 const { mediaQueries } = DESIGN_TOKEN;
 
-const Container = styled.form`
+const Form = styled.form`
   width: 100%;
   display: grid;
   gap: 1.8rem 2rem;
