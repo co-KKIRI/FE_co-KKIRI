@@ -32,7 +32,7 @@ export async function apiRequest<T, U>(
     const response: AxiosResponse<T> = await axiosInstance(request);
     return { data: response.data, errorMessage: null };
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (axios.isAxiosError(error) && error.response) {
       const errorMessage = error.response?.data?.message;
       return { data: null, errorMessage };
     } else {
