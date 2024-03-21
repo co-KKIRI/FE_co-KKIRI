@@ -11,6 +11,7 @@ export const DROPDOWN_INFO = {
     career: {
       defaultValue: "경력",
       options: ["신입", "1년차", "2년차", "3년차", "4년차", "5년차", "5년차 이상"],
+      values: [0, 1, 2, 3, 4, 5, 999],
     },
   },
   recruitment: {
@@ -24,7 +25,8 @@ export const DROPDOWN_INFO = {
     },
     capacity: {
       defaultValue: "모집 인원",
-      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      options: ["1명", "2명", "3명", "4명", "5명", "6명", "7명", "8명", "9명", "10명 이상"],
+      values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 999],
     },
     contactWay: {
       defaultValue: "연락 방식",
