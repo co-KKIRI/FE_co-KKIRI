@@ -25,6 +25,7 @@ import accept from "@/assets/icons/accept.svg";
 import reject from "@/assets/icons/reject.svg";
 import leaderIcon from "@/assets/icons/leader/leader.svg";
 import leaderBackground from "@/assets/icons/leader/leader_background.svg";
+import camera from "@/assets/icons/camera.svg";
 
 export const ICONS: Images = {
   arrowRight: {
@@ -34,6 +35,10 @@ export const ICONS: Images = {
   backspace: {
     src: backspace,
     alt: "뒤로 가기",
+  },
+  camera: {
+    src: camera,
+    alt: "이미지 추가하기",
   },
   category: {
     src: category,
