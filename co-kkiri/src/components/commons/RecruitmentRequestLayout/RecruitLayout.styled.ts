@@ -1,5 +1,4 @@
 import DESIGN_TOKEN from "@/styles/tokens";
-import { useState } from "react";
 import styled from "styled-components";
 
 const { typography, color, mediaQueries } = DESIGN_TOKEN;
@@ -69,6 +68,18 @@ export const RadioButtonWarper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+`;
+
+export const DropdownWrapper = styled.div`
+  width: 36.7rem;
+
+  ${mediaQueries.tablet} {
+    width: 46.2rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 32rem;
+  }
 `;
 
 export const SelectBox = styled.div`

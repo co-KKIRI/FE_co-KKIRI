@@ -1,32 +1,64 @@
 import DeadlineDropdown from "@/components/commons/DropDowns/DeadlineDropdown/DeadlineDropdown";
-import RecruitDropdown from "@/components/commons/DropDowns/RecruitDropdown";
+import Dropdown from "@/components/commons/DropDowns/Dropdown";
 import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselectDropdown";
 import RadioButton from "@/components/commons/RadioButton";
 import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
-import { Dispatch, SetStateAction } from "react";
+import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { useState } from "react";
+import styled from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import { format } from "date-fns";
 
-interface RecruitLayoutProps {
-  handleSelectType: (type: string) => void;
-  handleSelectOption: ({ optionType, option }: { optionType: string; option: string | number }) => void;
-  handleChangeLink: (link: string) => void;
-  handleSelectStack: (stacks: string[]) => void;
-  handleSelectPosition: (position: string) => void;
-  selectedOptions: RecruitmentRequest;
-  setSelectedOptions: Dispatch<SetStateAction<RecruitmentRequest>>;
-}
+export default function RecruitmentRequestLayout() {
+  const {
+    recruitment: { capacity, progressPeriod, progressWay, contactWay },
+  } = DROPDOWN_INFO;
 
-export default function RecruitmentRequestLayout({
-  handleSelectType,
-  handleSelectOption,
-  handleSelectStack,
-  handleChangeLink,
-  handleSelectPosition,
-  selectedOptions,
-  setSelectedOptions,
-}: RecruitLayoutProps) {
+  const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>({
+    type: "",
+    recruitEndAt: "",
+    progressPeriod: "",
+    capacity: 0,
+    contactWay: "",
+    progressWay: "",
+    stacks: [],
+    positions: [],
+    title: "",
+    content: "",
+    link: "",
+  });
+
+  const findOptionByValue = <ValueType, OptionType>(values: ValueType[], options: OptionType[], value: ValueType) => {
+    const index = values.indexOf(value);
+    return options[index];
+  };
+
+  const handleSelectType = (type: string): void => {
+    setSelectedOption((prevOptions) => ({
+      ...prevOptions,
+      type: type,
+    }));
+  };
+
+  const handleSelectStack = (stacks: string[]): void => {
+    setSelectedOption((prevOptions) => ({
+      ...prevOptions,
+      stacks: stacks,
+    }));
+  };
+
+  const handleSelectPosition = (position: string): void => {
+    setSelectedOption((prevOptions) => ({
+      ...prevOptions,
+      positions: prevOptions.positions.includes(position)
+        ? prevOptions.positions.filter((prevPosition) => prevPosition !== position)
+        : [...prevOptions.positions, position],
+    }));
+  };
+
   return (
     <>
       <h1>스터디/프로젝트 정보 입력</h1>
@@ -46,55 +78,83 @@ export default function RecruitmentRequestLayout({
         </S.RadioButtonBox>
         <S.SelectBox>
           <h3>마감기간</h3>
-          <DeadlineDropdown setSelectedOptions={setSelectedOptions} />
+          <DeadlineDropdown
+            placeholder="마감 기간"
+            selectedOption={selectedOption.recruitEndAt}
+            onSelect={(option) => {
+              setSelectedOption((prevOptions) => ({
+                ...prevOptions,
+                recruitEndAt: format(option, "yyyy.MM.dd"),
+              }));
+            }}
+          />
         </S.SelectBox>
         <S.SelectBox>
           <h3>진행 기간</h3>
-          <RecruitDropdown
-            menuInfoType="progressPeriod"
-            onClick={(option) => handleSelectOption({ optionType: "progressPeriod", option })}
+          <Dropdown
+            placeholder={progressPeriod.defaultValue}
+            options={progressPeriod.options}
+            selectedOption={selectedOption.progressPeriod}
+            onSelect={(option) => {
+              setSelectedOption((prevOption) => ({ ...prevOption, progressPeriod: option }));
+            }}
           />
         </S.SelectBox>
         <S.SelectBox>
           <h3>모집 인원</h3>
-          <RecruitDropdown
-            menuInfoType="capacity"
-            onClick={(option) => handleSelectOption({ optionType: "capacity", option })}
+          <Dropdown
+            placeholder={capacity.defaultValue}
+            options={capacity.options}
+            selectedOption={findOptionByValue(capacity.values, capacity.options, selectedOption.capacity)}
+            onSelect={(option) => {
+              const optionIndex = capacity.options.indexOf(option);
+              const value = capacity.values[optionIndex];
+              setSelectedOption((prevOption) => ({ ...prevOption, capacity: value }));
+            }}
           />
         </S.SelectBox>
         <S.SelectBox>
           <h3>진행 방식</h3>
-          <RecruitDropdown
-            menuInfoType="progressWay"
-            onClick={(option) => handleSelectOption({ optionType: "progressWay", option })}
-          />
+          <S.DropdownWrapper>
+            <Dropdown
+              placeholder={progressWay.defaultValue}
+              options={progressWay.options}
+              selectedOption={selectedOption?.progressWay}
+              onSelect={(option) => {
+                setSelectedOption((prevOption) => ({ ...prevOption, progressWay: option }));
+              }}
+            />
+          </S.DropdownWrapper>
         </S.SelectBox>
         <S.SelectBox>
           <h3>연락 방법</h3>
-          <RecruitDropdown
-            menuInfoType="contactWay"
-            onClick={(option) => handleSelectOption({ optionType: "contactWay", option })}
-            onChange={(link) => handleChangeLink(link)}
+          <Dropdown
+            placeholder={contactWay.defaultValue}
+            options={contactWay.options}
+            selectedOption={selectedOption?.contactWay}
+            onSelect={(option) => {
+              setSelectedOption((prevOption) => ({ ...prevOption, contactWay: option }));
+            }}
           />
         </S.SelectBox>
       </S.GirdContainer>
       <S.SelectChipBox>
         <h3>기술 스택</h3>
         <MultiselectDropdown
-          selectedOptions={selectedOptions.stacks}
+          selectedOptions={selectedOption.stacks}
           onSelectChange={(stack) => handleSelectStack(stack)}
         />
       </S.SelectChipBox>
       <S.SelectChipBox>
         <h3>모집 포지션</h3>
         <SelectPositionChipList
-          selectedPositions={selectedOptions.positions}
+          selectedPositions={selectedOption.positions}
           onChipClick={(position) => handleSelectPosition(position)}
         />
       </S.SelectChipBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>
-        <QuillEditor setSelectedOptions={setSelectedOptions} />
+        <QuillEditor setSelectedOption={setSelectedOption} />
       </S.QuillBox>
     </>
   );
