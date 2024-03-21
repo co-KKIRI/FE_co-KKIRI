@@ -4,6 +4,7 @@ import DefaultModalTextFieldDropdown from "./ModalTextFieldDropdown";
 import { useForm } from "react-hook-form";
 import Button from "@/components/commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
+import DefaultEditUserImage from "./UserImage";
 export interface FormData {
   nickname: string;
   position: string;
@@ -28,6 +29,7 @@ export default function EditUserProfileModalLayout() {
 
   return (
     <Container>
+      <EditUserImage onSelect={() => {}} isEditable $gridArea="user-image" />
       <ModalTextFieldInput name="nickname" control={control} $gridArea="nickname" />
       <ModalTextFieldDropdown name="position" control={control} $gridArea="position" />
       <ModalTextFieldDropdown name="career" control={control} $gridArea="career" />
@@ -63,6 +65,10 @@ const Container = styled.section`
     overflow-y: overlay;
     overflow-x: hidden;
   }
+`;
+
+const EditUserImage = styled(DefaultEditUserImage)<{ $gridArea: string }>`
+  grid-area: ${({ $gridArea }) => $gridArea};
 `;
 
 const ModalTextFieldInput = styled(DefaultModalTextFieldInput)<{ $gridArea: string }>`
