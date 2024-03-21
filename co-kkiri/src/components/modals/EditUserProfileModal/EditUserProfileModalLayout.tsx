@@ -7,22 +7,24 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultEditUserImage from "./UserImage";
 export interface FormData {
   nickname: string;
+  profileImageUrl: string;
   position: string;
   career: string;
-  link: string;
-  stacks: string[];
   introduce: string;
+  stack: string[];
+  link: string;
 }
 
 export default function EditUserProfileModalLayout() {
-  const { control, watch } = useForm<FormData>({
+  const { control, watch, setError } = useForm<FormData>({
     defaultValues: {
       nickname: "",
+      profileImageUrl: "",
       position: "",
       career: "",
-      link: "",
-      stacks: [],
       introduce: "",
+      stack: [],
+      link: "",
     },
     mode: "onBlur",
   });
@@ -34,7 +36,7 @@ export default function EditUserProfileModalLayout() {
       <ModalTextFieldDropdown name="position" control={control} $gridArea="position" />
       <ModalTextFieldDropdown name="career" control={control} $gridArea="career" />
       <ModalTextFieldInput name="link" control={control} $gridArea="link" />
-      <ModalTextFieldDropdown name="stacks" control={control} $gridArea="stack" />
+      <ModalTextFieldDropdown name="stack" control={control} $gridArea="stack" />
       <ModalTextFieldInput name="introduce" control={control} $gridArea="introduce" />
       <SubmitButton
         variant="primary"
@@ -50,7 +52,7 @@ export default function EditUserProfileModalLayout() {
 
 const { mediaQueries } = DESIGN_TOKEN;
 
-const Container = styled.section`
+const Container = styled.form`
   width: 100%;
   display: grid;
   gap: 1.8rem 2rem;
