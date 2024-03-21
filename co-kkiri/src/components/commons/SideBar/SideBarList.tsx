@@ -8,7 +8,7 @@ interface SideBarListProps {
 }
 
 export default function SideBarList({ onClick }: SideBarListProps) {
-  const { HOME_PATH, STUDY_LIST_PATH, CASTING } = ROUTER_PATH;
+  const { HOME_PATH, STUDY_LIST_PATH, SCOUT } = ROUTER_PATH;
   return (
     <S.Container>
       <S.HamburgerMenuWrapper onClick={onClick}>
@@ -21,7 +21,7 @@ export default function SideBarList({ onClick }: SideBarListProps) {
         <Link to={STUDY_LIST_PATH}>
           <S.Category>스터디/프로젝트 찾기</S.Category>
         </Link>
-        <Link to={CASTING}>
+        <Link to={SCOUT}>
           <S.Category>스카우트</S.Category>
         </Link>
       </S.CategoryBox>

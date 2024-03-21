@@ -18,7 +18,7 @@ interface GnbProps {
 }
 
 export default function Gnb({ user, onSideBarClick }: GnbProps) {
-  const { HOME_PATH, POST_PATH } = ROUTER_PATH;
+  const { HOME_PATH, RECRUIT_PATH } = ROUTER_PATH;
   const { ref, isOpen: isPopoverOpen, openToggle: togglePopover } = useOpenToggle();
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
           </Link>
         </S.LeftGroupWrapper>
         <S.RightGroupWrapper>
-          <Link to={POST_PATH}>
+          <Link to={RECRUIT_PATH}>
             <S.PostButton>스터디 모집하기</S.PostButton>
           </Link>
           {user ? (
