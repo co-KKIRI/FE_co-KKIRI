@@ -2,20 +2,20 @@ import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselect
 import UserInfoDropdown from "@/components/commons/DropDowns/UserInfoDropdown";
 import { LABELS, ModalTextFieldInputConfig, REQUIRED, RULES } from "@/constants/textInputRules";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { UserProfile } from "@/types/UserTypes";
 import { Control, Controller, ControllerRenderProps, FieldValues } from "react-hook-form";
 import styled from "styled-components";
-import { FormData } from "./EditUserProfileModalLayout";
 
 interface ModalTextFieldDropdownProps {
   name: ModalTextFieldInputConfig;
-  control: Control<FormData>;
+  control: Control<UserProfile>;
   className?: string;
 }
 
 export default function ModalTextFieldDropdown({ name, control, className }: ModalTextFieldDropdownProps) {
   const renderDropdown = (
     name: ModalTextFieldInputConfig,
-    field: ControllerRenderProps<FormData, ModalTextFieldInputConfig>,
+    field: ControllerRenderProps<UserProfile, ModalTextFieldInputConfig>,
   ) => {
     switch (name) {
       case "position":

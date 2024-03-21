@@ -5,27 +5,17 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultEditUserImage from "./UserImage";
-export interface FormData {
-  nickname: string;
-  profileImageUrl: string;
-  position: string;
-  career: string;
-  introduce: string;
-  stack: string[];
-  link: string;
+import { UserProfile } from "@/types/UserTypes";
+import { useStore } from "@/stores/MyProfileStore";
+
+interface EditUserProfileModalLayoutProps {
+  onSubmit: (data: UserProfile) => void;
 }
 
-export default function EditUserProfileModalLayout() {
-  const { control, watch, setError } = useForm<FormData>({
-    defaultValues: {
-      nickname: "",
-      profileImageUrl: "",
-      position: "",
-      career: "",
-      introduce: "",
-      stack: [],
-      link: "",
-    },
+export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfileModalLayoutProps) {
+  const userInfo = useStore((state) => state.userInfo);
+  const { control, handleSubmit } = useForm<UserProfile>({
+    defaultValues: userInfo,
     mode: "onBlur",
   });
 
