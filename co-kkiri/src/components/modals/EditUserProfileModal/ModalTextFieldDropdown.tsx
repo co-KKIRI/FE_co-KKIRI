@@ -1,9 +1,11 @@
+import Dropdown from "@/components/commons/DropDowns/Dropdown";
 import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselectDropdown";
-import UserInfoDropdown from "@/components/commons/DropDowns/UserInfoDropdown";
+import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { LABELS, ModalTextFieldInputConfig, REQUIRED, RULES } from "@/constants/textInputRules";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { UserProfile } from "@/types/UserTypes";
-import { Control, Controller, ControllerRenderProps, FieldValues } from "react-hook-form";
+import { findOptionByValue } from "@/utils/ArrayUtils";
+import { Control, Controller, ControllerRenderProps } from "react-hook-form";
 import styled from "styled-components";
 
 interface ModalTextFieldDropdownProps {
@@ -17,11 +19,34 @@ export default function ModalTextFieldDropdown({ name, control, className }: Mod
     name: ModalTextFieldInputConfig,
     field: ControllerRenderProps<UserProfile, ModalTextFieldInputConfig>,
   ) => {
+    const {
+      user: { position, career },
+    } = DROPDOWN_INFO;
+
     switch (name) {
       case "position":
-        return <UserInfoDropdown menuInfoType="position" onSelect={field.onChange} dropdownRef={field.ref} />;
+        return (
+          <Dropdown
+            placeholder={position.defaultValue}
+            selectedOption={field.value as string}
+            options={position.options}
+            onSelect={field.onChange}
+            dropdownRef={field.ref}
+          />
+        );
       case "career":
-        return <UserInfoDropdown menuInfoType="career" onSelect={field.onChange} />;
+        return (
+          <Dropdown
+            placeholder={career.defaultValue}
+            options={career.options}
+            selectedOption={findOptionByValue<number, string>(career.values, career.options, field.value as number)}
+            onSelect={(option) => {
+              const optionIndex = career.options.indexOf(option);
+              const value = career.values[optionIndex];
+              field.onChange(value);
+            }}
+          />
+        );
       case "stack":
         return (
           <MultiselectDropdown
@@ -45,7 +70,7 @@ export default function ModalTextFieldDropdown({ name, control, className }: Mod
           <Label htmlFor={name}>
             {LABELS[name]}
             {REQUIRED[name] && <span className="required-mark"> *</span>}
-          </Label>{" "}
+          </Label>
           {renderDropdown(name, field)}
           <Text>{fieldState.error?.message}</Text>
         </Wrapper>
