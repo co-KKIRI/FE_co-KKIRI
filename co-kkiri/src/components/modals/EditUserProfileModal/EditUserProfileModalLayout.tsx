@@ -22,6 +22,7 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
   const onSubmitHandler = (data: UserProfile) => {
     useStore.setState({ userInfo: data });
     onSubmit(data);
+    
   };
 
   return (
