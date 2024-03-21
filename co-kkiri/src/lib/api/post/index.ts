@@ -1,0 +1,71 @@
+import { imageAddress, postAddress } from "../address";
+import { apiRequest, ApiRequestResponse } from "../axios";
+import {
+  AppliedMemberListApiRequestDto,
+  AppliedMemberListApiResponseDto,
+  ApplyPostApiRequestDto,
+  InviteMemberRequestDto,
+  ListApiRequestDto,
+  ListApiResponseDto,
+  PostDetailApiResponseDto,
+  RecruitApiRequestDto,
+  ScoutListApiResponseDto,
+  StudyManagementApiResponseDto,
+} from "./type";
+
+/** 스터디 모집하기 */
+export const createPost = (data: RecruitApiRequestDto) => apiRequest("post", postAddress.recruit, data);
+
+/**스터디 리스트 가져오기
+ *
+ *@param {ListApiRequestDto}  qs  쿼리스트링을 객체로 받습니다.
+ */
+export const getPostList = (qs: ListApiRequestDto): Promise<ApiRequestResponse<ListApiResponseDto>> =>
+  apiRequest("get", postAddress.list, null, qs);
+
+/** 스카우트 목록 리스트 백엔드 확인 요망*/
+export const getPostListForScout = (): Promise<ApiRequestResponse<ScoutListApiResponseDto>> =>
+  apiRequest("get", postAddress.scout);
+
+/** 스터디 글 가져오기*/
+export const getPostDetail = (postId: number): Promise<ApiRequestResponse<PostDetailApiResponseDto>> =>
+  apiRequest("get", postAddress.postId(postId));
+
+/** 스터디 글 삭제하기 */
+export const deletePost = (postId: number) => apiRequest("delete", postAddress.postId(postId));
+
+/** 스터디 글 지원하기 */
+export const applyPost = (postId: number, data: ApplyPostApiRequestDto) =>
+  apiRequest("post", postAddress.apply(postId), data);
+
+/** 스터디 글 지원하기 */
+export const getAppliedMemberList = (
+  postId: number,
+  qs: AppliedMemberListApiRequestDto,
+): Promise<ApiRequestResponse<AppliedMemberListApiResponseDto>> =>
+  apiRequest("get", postAddress.apply(postId), null, qs);
+
+/** 스터디 글 수정하기 */
+export const modifyPost = (postId: number, data: RecruitApiRequestDto) =>
+  apiRequest("patch", postAddress.modify(postId), data);
+
+/** 스터디 프로젝트 정보  */
+export const getStudyManagement = (postId: number): Promise<ApiRequestResponse<StudyManagementApiResponseDto>> =>
+  apiRequest("get", postAddress.management(postId));
+
+/** 스터디 멤버 초대하기 */
+export const inviteMember = (data: InviteMemberRequestDto) => apiRequest("post", postAddress.invite, data);
+
+//아래 함수들은 api 문서 수정되면 한번에 반영해놓겠습니다.
+
+/** 스터디 모집 시작하기*/
+export const recruitStart = (postId: number) => apiRequest("patch", postAddress.recruitStart(postId));
+
+/** 스터디 모집 마감하기 */
+export const recruitEnd = (postId: number) => apiRequest("patch", postAddress.recruitEnd(postId));
+
+/** 스터디 모집 완료하기 */
+export const recruitComplete = (postId: number) => apiRequest("patch", postAddress.recruitComplete(postId));
+
+//** 이미지 url 가져오기 */
+export const getImageUploadUrl = () => apiRequest("post", imageAddress);
