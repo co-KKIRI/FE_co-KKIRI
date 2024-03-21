@@ -53,13 +53,15 @@ const Container = styled.section`
   display: grid;
   gap: 1.8rem 2rem;
 
-  grid-template-areas: "nickname position" "link career" "stack stack" "introduce introduce" "button button";
+  grid-template-areas: "user-image user-image" "nickname position" "link career" "stack stack" "introduce introduce" "button button";
   grid-template-columns: 1fr 1fr;
 
   ${mediaQueries.mobile} {
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 62rem;
+    overflow-y: overlay;
+    overflow-x: hidden;
   }
 `;
 

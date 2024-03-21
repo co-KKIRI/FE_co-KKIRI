@@ -47,7 +47,9 @@ export default function ModalTextFieldInput({ name, control, className }: ModalT
 }
 
 const OneLinerInput = styled(TextFieldInput)`
-  height: 4.8rem;
-
   line-height: normal;
+
+  & > input {
+    height: 4.8rem;
+  }
 `;

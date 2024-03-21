@@ -49,17 +49,11 @@ export default function UserInfoDropdown({ menuInfoType, onSelect, dropdownRef }
   );
 }
 
-const { mediaQueries } = DESIGN_TOKEN;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
   position: relative;
   padding: 0;
-  width: 31.4rem;
-
-  ${mediaQueries.mobile} {
-    width: 28rem;
-  }
+  width: 100%;
 `;

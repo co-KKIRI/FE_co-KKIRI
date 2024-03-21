@@ -1,3 +1,4 @@
+import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultModalLayout from "../ModalLayout";
 import EditUserProfileModalLayout from "./EditUserProfileModalLayout";
 import styled from "styled-components";
@@ -14,6 +15,11 @@ export default function EditUserProfileModal({ onClose }: EditUserProfileModalPr
   );
 }
 
+const { mediaQueries } = DESIGN_TOKEN;
+
 const ModalLayout = styled(DefaultModalLayout)`
   padding: 4rem 3rem 3rem 3rem;
+
+  ${mediaQueries.mobile} {
+  }
 `;
