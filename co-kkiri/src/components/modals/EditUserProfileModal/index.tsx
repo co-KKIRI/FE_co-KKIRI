@@ -10,7 +10,11 @@ interface EditUserProfileModalProps {
 export default function EditUserProfileModal({ onClose }: EditUserProfileModalProps) {
   return (
     <ModalLayout desktopWidth={708} mobileWidth={320} onClick={onClose} onClose={onClose}>
-      <EditUserProfileModalLayout />
+      <EditUserProfileModalLayout
+        onSubmit={() => {
+          /*//TODO: ReactQuery*/
+        }}
+      />
     </ModalLayout>
   );
 }
