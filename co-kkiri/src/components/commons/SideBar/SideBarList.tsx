@@ -10,7 +10,8 @@ interface SideBarListProps {
 }
 
 export default function SideBarList({ onClick }: SideBarListProps) {
-  const { HOME_PATH, STUDY_LIST_PATH, CASTING } = ROUTER_PATH;
+
+  const { HOME_PATH, STUDY_LIST_PATH, SCOUT } = ROUTER_PATH;
 
   const { width: screenWidth } = useWindowSize();
   const isTabletOrMobile = screenWidth < 1200;
@@ -35,7 +36,7 @@ export default function SideBarList({ onClick }: SideBarListProps) {
         <Link to={STUDY_LIST_PATH} onClick={toggleSideBarInTabletOrMobile}>
           <S.Category>스터디/프로젝트 찾기</S.Category>
         </Link>
-        <Link to={CASTING} onClick={toggleSideBarInTabletOrMobile}>
+        <Link to={SCOUT} onClick={toggleSideBarInTabletOrMobile}>
           <S.Category>스카우트</S.Category>
         </Link>
       </S.CategoryBox>

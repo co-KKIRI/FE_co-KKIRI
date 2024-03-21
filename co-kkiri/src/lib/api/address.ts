@@ -1,20 +1,23 @@
+import { BASE_URL } from "./axios";
 //get
 export const homeAddress = "/main/list";
 
-export const AuthAddress = {
+export const authAddress = {
   google: {
     //get
-    login: "/auth/google/login",
+    login: `${BASE_URL}/auth/google/login`,
     //post
     redirect: "/auth/google/redirect",
   },
 };
 
-export const PostAddress = {
+export const postAddress = {
   //post
   recruit: "/post/recruit",
   //get
   list: "/post/list",
+  //get
+  scout: "/post/scout",
   //get, delete
   postId: (postId: number) => `/post/${postId}`,
   //get, post
@@ -26,9 +29,11 @@ export const PostAddress = {
   //patch
   recruitEnd: (postId: number) => `/post/${postId}/recruit-end`,
   //patch
-  recruitStart: (postId: number) => `/post/${postId}/recruit-start`,
+  recruitStart: (postId: number) => `/post/${postId}/recruit-start`, // 백엔드 확인 요망
   //patch
-  recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`,
+  recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`, // 백엔드 확인 요망
+  //post
+  invite: "/post/invite",
 };
 
 export const teamMemberAddress = {
@@ -74,7 +79,7 @@ export const teamAddress = {
   reject: "/team/reject",
 };
 
-export const MyPostAddress = {
+export const myPostAddress = {
   //get
   applyList: "/my-post/apply/list",
   //get

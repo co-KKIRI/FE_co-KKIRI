@@ -40,6 +40,7 @@ export default function SquareDropButton({
 
   return (
     <Container
+      type="button"
       onClick={onClick}
       $iconType={$iconType}
       $isSelected={$isSelected}

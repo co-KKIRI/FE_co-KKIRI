@@ -22,13 +22,13 @@ export const DROPDOWN_INFO = {
       defaultValue: "진행 방식",
       options: ["전체", "온라인", "오프라인", "온/오프라인"],
     },
-    memberCount: {
+    capacity: {
       defaultValue: "모집 인원",
-      options: ["인원 미정~10명 이상", "1명", "2명", "3명", "4명", "5명", "6명", "7명", "8명", "9명", "10명"],
+      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
-    contactForm: {
+    contactWay: {
       defaultValue: "연락 방식",
-      options: ["오픈톡", "이메일", "구글폼"],
+      options: ["카카오 오픈톡", "이메일", "구글폼"],
     },
   },
   sort: {

@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 
 const formats = [
   "header",
@@ -19,9 +20,11 @@ const formats = [
   "image",
 ];
 
-export default function QuillEditor() {
-  const [values, setValues] = useState("");
-
+export default function QuillEditor({
+  setSelectedOptions,
+}: {
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
+}) {
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -29,17 +32,31 @@ export default function QuillEditor() {
       },
     };
   }, []);
-  console.log(values);
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      title: e.target.value,
+    }));
+  };
+
+  const handleContentChange = (content: string) => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      content: content,
+    }));
+  };
+
   return (
     <Container>
+      <input placeholder="제목을 입력해주세요!" onChange={handleTitleChange} />
       <CustomToolbar />
       <ReactQuillWrapper>
         <ReactQuill
           theme="snow"
           modules={modules}
           formats={formats}
-          value={values}
-          onChange={setValues}
+          onChange={handleContentChange}
           className="custom-quill-editor"
           placeholder="프로젝트를 소개해주세요!"
         />
@@ -47,11 +64,29 @@ export default function QuillEditor() {
     </Container>
   );
 }
-
 const { color, typography } = DESIGN_TOKEN;
 
 const Container = styled.div`
-  width: 77.3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & input {
+    height: 4.8rem;
+    border: 0.1rem solid ${color.gray[2]};
+    border-radius: 0.5rem;
+    padding: 0 1.885rem;
+    margin-bottom: 1.2rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      ${typography.font16Semibold};
+      color: ${color.gray[1]};
+    }
+  }
 `;
 
 const ReactQuillWrapper = styled.div`
