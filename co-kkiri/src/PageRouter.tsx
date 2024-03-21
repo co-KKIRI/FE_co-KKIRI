@@ -10,9 +10,10 @@ import Scout from "@/pages/Scout";
 import MyPage from "@/pages/MyPage";
 import Manage from "@/pages/Manage";
 import MyStudy from "@/pages/MyStudy";
-import Profile from "@/pages/Profile";
 import { ROUTER_PATH } from "@/lib/path";
 import Navigation from "./layouts/Navigation";
+import GoogleAuth from "./pages/Auth/GoogleAuth";
+import AuthListener from "./components/commons/AuthListener";
 
 const {
   HOME_PATH,
@@ -25,12 +26,13 @@ const {
   MY_PAGE,
   MY_STUDY,
   MANAGE,
-  PROFILE,
+  GOOGLE_REDIRECT,
 } = ROUTER_PATH;
 
 const PageRouter = () => {
   return (
     <Router>
+      <AuthListener />
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route path={HOME_PATH} element={<Home />} />
@@ -44,9 +46,9 @@ const PageRouter = () => {
           <Route path={MY_STUDY} element={<MyStudy />} />
           //TODO: Manage 페이지에 id값을 넘겨줘야함
           <Route path={MANAGE} element={<Manage id={1} />} />
-          <Route path={PROFILE} element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path={GOOGLE_REDIRECT} element={<GoogleAuth />} />
       </Routes>
     </Router>
   );

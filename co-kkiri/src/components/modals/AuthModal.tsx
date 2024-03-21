@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 import ModalLayout from "./ModalLayout";
@@ -5,6 +6,7 @@ import { IMAGES } from "@/constants/images";
 import { Link } from "react-router-dom";
 import { ROUTER_PATH } from "@/lib/path";
 import { authAddress } from "@/lib/api/address";
+import openLoginPopup from "@/utils/openLoginPopup";
 
 interface AuthModalProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -22,10 +24,8 @@ export default function AuthModal({ onClick, onClose }: AuthModalProps) {
         </Link>
         <span>로그인 / 회원가입</span>
         <LoginButtonBox>
-          <LoginButton $padding={0.9}>
-            <Link to={authAddress.google.login}>
-              <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
-            </Link>
+          <LoginButton $padding={0.9} onClick={() => openLoginPopup(authAddress.google.login)}>
+            <img src={IMAGES.googleLogo.src} alt={IMAGES.googleLogo.alt} />
           </LoginButton>
           <LoginButton $padding={1.3}>
             <img src={IMAGES.githubLogo.src} alt={IMAGES.githubLogo.alt} />

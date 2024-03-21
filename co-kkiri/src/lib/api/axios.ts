@@ -7,7 +7,7 @@ export interface ApiRequestResponse<T> {
   errorMessage: string | null;
 }
 
-export const BASE_URL = "";
+export const BASE_URL = "http://52.79.214.183:8080";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,

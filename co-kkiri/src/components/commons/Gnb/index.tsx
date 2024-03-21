@@ -8,6 +8,7 @@ import UserInfo from "../UserInfo";
 import UserPopover from "../UserPopover";
 import AuthModal from "@/components/modals/AuthModal";
 import useOpenToggle from "@/hooks/useOpenToggle";
+import useAuthModalToggleStore from "@/stores/authModalToggle";
 
 interface GnbProps {
   user?: {
@@ -21,11 +22,8 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
   const { HOME_PATH, RECRUIT_PATH } = ROUTER_PATH;
   const { ref, isOpen: isPopoverOpen, openToggle: togglePopover } = useOpenToggle();
 
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-
-  const handleAuthModalOpen = () => {
-    setIsAuthModalOpen(!isAuthModalOpen);
-  };
+  const isAuthModalOpen = useAuthModalToggleStore((state) => state.isAuthModalOpen);
+  const toggleAuthModal = useAuthModalToggleStore((state) => state.toggleAuthModal);
 
   const handlePopoverOpen = () => {
     togglePopover();
@@ -49,11 +47,11 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
           {user ? (
             <UserInfo user={user} onClick={handlePopoverOpen} />
           ) : (
-            <S.SignButton onClick={handleAuthModalOpen}>로그인/회원가입</S.SignButton>
+            <S.SignButton onClick={toggleAuthModal}>로그인/회원가입</S.SignButton>
           )}
         </S.RightGroupWrapper>
       </S.Box>
-      {isAuthModalOpen && <AuthModal onClick={handleAuthModalOpen} onClose={handleAuthModalOpen} />}
+      {isAuthModalOpen && <AuthModal onClick={toggleAuthModal} onClose={toggleAuthModal} />}
       {user && <UserPopover isPopoverOpen={isPopoverOpen} handleSelectOption={handlePopoverOpen} />}
     </S.Container>
   );
