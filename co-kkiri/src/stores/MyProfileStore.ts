@@ -10,6 +10,7 @@ interface EditUserProfileState {
 type EditUserProfileSetter = SetterFromState<EditUserProfileState>;
 
 export const useStore = create<EditUserProfileState & EditUserProfileSetter>((set) => ({
+  profileImage: undefined,
   userInfo: {
     // nickname: "낙경",
     // profileImageUrl: "",

@@ -4,7 +4,7 @@ import DefaultModalTextFieldDropdown from "./ModalTextFieldDropdown";
 import { useForm } from "react-hook-form";
 import Button from "@/components/commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
-import DefaultEditUserImage from "./UserImage";
+import DefaultUserImage from "./UserImage";
 import { UserProfile } from "@/types/UserTypes";
 import { useStore } from "@/stores/MyProfileStore";
 
@@ -14,20 +14,33 @@ interface EditUserProfileModalLayoutProps {
 
 export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfileModalLayoutProps) {
   const userInfo = useStore((state) => state.userInfo);
+
   const { control, handleSubmit } = useForm<UserProfile>({
     defaultValues: userInfo,
     mode: "onBlur",
   });
 
+  /**TODO: 이미지가 먼저, url 받아오고 나머지랑 같이 보내야함 */
   const onSubmitHandler = (data: UserProfile) => {
     useStore.setState({ userInfo: data });
     onSubmit(data);
-    
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmitHandler)}>
-      <EditUserImage onSelect={() => {}} isEditable $gridArea="user-image" />
+      <EditableUserImage
+        profileImgUrl={userInfo.profileImageUrl}
+        onSelect={(file) => {
+          const ProfileImgUrl = URL.createObjectURL(file as File);
+          /**TODO: 실질적인 파일은 다른 곳에서 저장하고 있어야 함
+           * 그리고 Submit할 때만 이미지 데이터 요청을 보내야함
+           * 아직은 이미지 api를 보내는 책임 소재가 불분명함
+           */
+          useStore.setState({ userInfo: { ...userInfo, profileImageUrl: ProfileImgUrl } });
+        }}
+        isEditable
+        $gridArea="user-image"
+      />
       <ModalTextFieldInput name="nickname" control={control} $gridArea="nickname" />
       <ModalTextFieldDropdown name="position" control={control} $gridArea="position" />
       <ModalTextFieldDropdown name="career" control={control} $gridArea="career" />
@@ -60,7 +73,7 @@ const Form = styled.form`
   }
 `;
 
-const EditUserImage = styled(DefaultEditUserImage)<{ $gridArea: string }>`
+const EditableUserImage = styled(DefaultUserImage)<{ $gridArea: string }>`
   grid-area: ${({ $gridArea }) => $gridArea};
 `;
 

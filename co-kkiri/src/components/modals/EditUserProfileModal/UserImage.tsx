@@ -10,7 +10,7 @@ interface EditUserImageProps {
   className?: string;
 }
 
-export default function EditUserImage({ profileImgUrl, isEditable, onSelect, className }: EditUserImageProps) {
+export default function UserImage({ profileImgUrl, isEditable, onSelect, className }: EditUserImageProps) {
   return (
     <Container className={className}>
       <ProfileImg src={profileImgUrl ? profileImgUrl : IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
@@ -38,12 +38,16 @@ const Container = styled.div`
   justify-self: center;
   align-self: center;
 
-  border-radius: 9999rem;
+
 `;
 
 const ProfileImg = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 9999rem;
+  overflow: hidden;
+
+  object-fit: cover;
 `;
 
 const FileSelector = styled(DefaultFileSelector)`
