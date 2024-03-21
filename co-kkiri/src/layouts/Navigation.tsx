@@ -23,10 +23,10 @@ export default function Navigation() {
       <Gnb onSideBarClick={handleSideBarOpen} />
       {isSideBarOpen && (
         <SideBarWrapper $isOpen={isSideBarOpen}>
-          {!isTabletOrMobile ? (
-            <SideBar onClose={() => {}} />
-          ) : (
+          {isTabletOrMobile ? (
             isSideBarOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
+          ) : (
+            <SideBar onClose={() => {}} />
           )}
         </SideBarWrapper>
       )}
