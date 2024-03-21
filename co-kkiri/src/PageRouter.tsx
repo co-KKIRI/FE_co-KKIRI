@@ -3,10 +3,10 @@ import Home from "./pages/Home";
 import StudyList from "@/pages/StudyList";
 import Detail from "@/pages/Detail";
 import Edit from "@/pages/Edit";
-import Post from "@/pages/Post";
+import Recruit from "@/pages/Recruit";
 import Review from "@/pages/Review";
 import NotFound from "@/pages/NotFound";
-import Casting from "@/pages/Casting";
+import Scout from "@/pages/Scout";
 import MyPage from "@/pages/MyPage";
 import Manage from "@/pages/Manage";
 import MyStudy from "@/pages/MyStudy";
@@ -19,9 +19,9 @@ const {
   STUDY_LIST_PATH,
   DETAIL_PATH,
   EDIT_PATH,
-  POST_PATH,
+  RECRUIT_PATH,
   REVIEW_PATH,
-  CASTING,
+  SCOUT,
   MY_PAGE,
   MY_STUDY,
   MANAGE,
@@ -37,9 +37,9 @@ const PageRouter = () => {
           <Route path={STUDY_LIST_PATH} element={<StudyList />} />
           <Route path={DETAIL_PATH} element={<Detail />} />
           <Route path={EDIT_PATH} element={<Edit />} />
-          <Route path={POST_PATH} element={<Post />} />
+          <Route path={RECRUIT_PATH} element={<Recruit />} />
           <Route path={REVIEW_PATH} element={<Review />} />
-          <Route path={CASTING} element={<Casting />} />
+          <Route path={SCOUT} element={<Scout />} />
           <Route path={MY_PAGE} element={<MyPage />} />
           <Route path={MY_STUDY} element={<MyStudy />} />
           //TODO: Manage 페이지에 id값을 넘겨줘야함
