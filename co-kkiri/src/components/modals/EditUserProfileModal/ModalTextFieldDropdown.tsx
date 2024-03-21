@@ -23,7 +23,13 @@ export default function ModalTextFieldDropdown({ name, control, className }: Mod
       case "career":
         return <UserInfoDropdown menuInfoType="career" onSelect={field.onChange} />;
       case "stack":
-        return <MultiselectDropdown selectedOptions={field.value as string[]} onSelectChange={field.onChange} />;
+        return (
+          <MultiselectDropdown
+            limit={RULES.stack.maxLength?.value}
+            selectedOptions={field.value as string[]}
+            onSelectChange={field.onChange}
+          />
+        );
       default:
         return <></>;
     }
