@@ -31,6 +31,7 @@ export const DROPDOWN_INFO = {
     contactWay: {
       defaultValue: "연락 방식",
       options: ["카카오 오픈톡", "이메일", "구글폼", "기타"],
+      placeholder: ["오픈톡 링크", "이메일 주소", "구글폼 주소"],
     },
   },
   sort: {

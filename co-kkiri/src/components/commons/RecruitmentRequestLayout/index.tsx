@@ -9,6 +9,7 @@ import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { useState } from "react";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 import { format } from "date-fns";
+import LinkInput from "./LinkInput";
 
 export default function RecruitmentRequestLayout() {
   const {
@@ -16,7 +17,7 @@ export default function RecruitmentRequestLayout() {
   } = DROPDOWN_INFO;
 
   const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>({
-    type: "STUDY",
+    type: "",
     recruitEndAt: "",
     progressPeriod: "",
     capacity: undefined,
@@ -56,6 +57,7 @@ export default function RecruitmentRequestLayout() {
         : [...prevOptions.positions, position],
     }));
   };
+  console.log(selectedOption);
 
   return (
     <>
@@ -67,7 +69,7 @@ export default function RecruitmentRequestLayout() {
           </h3>
           <span>
             <S.RadioButtonWarper>
-              <RadioButton defaultChecked value="STUDY" onClick={() => handleSelectType("STUDY")} />
+              <RadioButton value="STUDY" onClick={() => handleSelectType("STUDY")} />
               <span>스터디</span>
             </S.RadioButtonWarper>
             <S.RadioButtonWarper>
@@ -138,6 +140,12 @@ export default function RecruitmentRequestLayout() {
             selectedOption={selectedOption?.contactWay}
             onSelect={(option) => {
               setSelectedOption((prevOption) => ({ ...prevOption, contactWay: option }));
+            }}
+          />
+          <LinkInput
+            selectedOption={selectedOption.contactWay}
+            onChange={(link) => {
+              setSelectedOption((prevOption) => ({ ...prevOption, link: link }));
             }}
           />
         </S.SelectBox>
