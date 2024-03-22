@@ -25,6 +25,14 @@ export const Container = styled.form`
 `;
 
 export const GirdContainer = styled.div`
+  & h3 {
+    display: flex;
+
+    & span {
+      color: ${color.red};
+    }
+  }
+
   display: grid;
   gap: 4rem;
   grid-template-areas:
@@ -92,6 +100,12 @@ export const SelectChipBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  & h3 {
+    & span {
+      color: ${color.red};
+    }
+  }
 
   & > div {
     display: flex;

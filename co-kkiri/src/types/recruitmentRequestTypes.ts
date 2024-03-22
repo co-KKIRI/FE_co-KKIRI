@@ -2,7 +2,7 @@ export interface RecruitmentRequest {
   type: string;
   recruitEndAt: string;
   progressPeriod: string;
-  capacity: number;
+  capacity: number | undefined | null;
   contactWay: string;
   progressWay: string;
   stacks: string[];

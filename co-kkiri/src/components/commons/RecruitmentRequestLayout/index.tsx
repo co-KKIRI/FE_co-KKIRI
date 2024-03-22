@@ -7,8 +7,6 @@ import SelectPositionChipList from "@/components/commons/SelectPositionChipList"
 import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { useState } from "react";
-import styled from "styled-components";
-import DESIGN_TOKEN from "@/styles/tokens";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 import { format } from "date-fns";
 
@@ -18,10 +16,10 @@ export default function RecruitmentRequestLayout() {
   } = DROPDOWN_INFO;
 
   const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>({
-    type: "",
+    type: "STUDY",
     recruitEndAt: "",
     progressPeriod: "",
-    capacity: 0,
+    capacity: undefined,
     contactWay: "",
     progressWay: "",
     stacks: [],
@@ -59,28 +57,31 @@ export default function RecruitmentRequestLayout() {
     }));
   };
 
-  
   return (
     <>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
-          <h3>모집 구분</h3>
+          <h3>
+            모집 구분 <span>*</span>
+          </h3>
           <span>
+            <S.RadioButtonWarper>
+              <RadioButton defaultChecked value="STUDY" onClick={() => handleSelectType("STUDY")} />
+              <span>스터디</span>
+            </S.RadioButtonWarper>
             <S.RadioButtonWarper>
               <RadioButton value="PROJECT" onClick={() => handleSelectType("PROJECT")} />
               <span>프로젝트</span>
             </S.RadioButtonWarper>
-            <S.RadioButtonWarper>
-              <RadioButton value="STUDY" onClick={() => handleSelectType("STUDY")} />
-              <span>스터디</span>
-            </S.RadioButtonWarper>
           </span>
         </S.RadioButtonBox>
         <S.SelectBox>
-          <h3>마감기간</h3>
+          <h3>
+            모집 마감 기간 <span>*</span>
+          </h3>
           <DeadlineDropdown
-            placeholder="마감 기간"
+            placeholder="모집 마감 기간"
             selectedOption={selectedOption.recruitEndAt}
             onSelect={(option) => {
               setSelectedOption((prevOptions) => ({
@@ -115,7 +116,9 @@ export default function RecruitmentRequestLayout() {
           />
         </S.SelectBox>
         <S.SelectBox>
-          <h3>진행 방식</h3>
+          <h3>
+            진행 방식 <span>*</span>
+          </h3>
           <S.DropdownWrapper>
             <Dropdown
               placeholder={progressWay.defaultValue}
@@ -147,7 +150,9 @@ export default function RecruitmentRequestLayout() {
         />
       </S.SelectChipBox>
       <S.SelectChipBox>
-        <h3>모집 포지션</h3>
+        <h3>
+          모집 포지션<span>*</span>
+        </h3>
         <SelectPositionChipList
           selectedPositions={selectedOption.positions}
           onChipClick={(position) => handleSelectPosition(position)}
