@@ -9,5 +9,5 @@ export const ROUTER_PATH = {
   MY_PAGE: "/mypage",
   MY_STUDY: "/mystudy",
   MANAGE: "/mystudy/:id",
-  PROFILE: "/profile",
+  GOOGLE_REDIRECT: "/auth/google/redirect",
 };

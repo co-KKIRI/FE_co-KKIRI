@@ -7,7 +7,7 @@ export const authAddress = {
     //get
     login: `${BASE_URL}/auth/google/login`,
     //post
-    redirect: "/auth/google/redirect",
+    redirect: (code: string) => `/auth/google/redirect?code=${code}`,
   },
 };
 
