@@ -15,7 +15,7 @@ export const useUserInfoStore = create<EditUserProfileState & EditUserProfileSet
     nickname: "",
     profileImageUrl: "",
     position: "",
-    career: null,
+    career: undefined,
     introduce: "",
     stack: [],
     link: "",
