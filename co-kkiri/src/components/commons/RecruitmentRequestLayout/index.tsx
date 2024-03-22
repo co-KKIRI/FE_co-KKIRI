@@ -12,12 +12,11 @@ import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller, SubmitHandler, FieldValues } from "react-hook-form";
-
+import DESIGN_TOKEN from "@/styles/tokens";
 export default function RecruitmentRequestLayout() {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
-
   const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>({
     type: "",
     recruitEndAt: "",
@@ -108,8 +107,8 @@ export default function RecruitmentRequestLayout() {
                 </>
               )}
             />
-            {errors.type && <p style={{ color: "red" }}>모집 구분을 선택해주세요.</p>}
           </span>
+          {errors.type && <p>모집 구분을 선택해주세요.</p>}
         </S.RadioButtonBox>
         <S.SelectBox>
           <h3>
@@ -132,10 +131,10 @@ export default function RecruitmentRequestLayout() {
                     field.onChange(format(option, "yyyy.MM.dd"));
                   }}
                 />
+                {errors.recruitEndAt && <p>모집 마감 기간을 선택해주세요.</p>}
               </>
             )}
           />
-          {errors.recruitEndAt && <p style={{ color: "red" }}>모집 마감 기간을 선택해주세요.</p>}
         </S.SelectBox>
         <S.SelectBox>
           <h3>진행 기간</h3>
@@ -183,7 +182,7 @@ export default function RecruitmentRequestLayout() {
               </S.DropdownWrapper>
             )}
           />
-          {errors.progressWay && <p style={{ color: "red" }}>진행방식을 선택해주세요.</p>}
+          {errors.progressWay && <p>진행방식을 선택해주세요.</p>}
         </S.SelectBox>
         <S.SelectBox>
           <h3>연락 방법</h3>
@@ -195,12 +194,36 @@ export default function RecruitmentRequestLayout() {
               setSelectedOption((prevOption) => ({ ...prevOption, contactWay: option }));
             }}
           />
-          <LinkInput
-            selectedOption={selectedOption.contactWay}
-            onChange={(link) => {
-              setSelectedOption((prevOption) => ({ ...prevOption, link: link }));
-            }}
-          />
+          {selectedOption.contactWay !== "기타" && (
+            <>
+              <Controller
+                name={selectedOption.contactWay}
+                control={control}
+                rules={{
+                  pattern: {
+                    value:
+                      selectedOption.contactWay === "이메일"
+                        ? /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+                        : /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})\/?([\w/#.-]*)*(\?[\w=&.-]*)?(#[\w-]*)?$/,
+                    message:
+                      selectedOption.contactWay === "이메일"
+                        ? "올바른 이메일 형식이 아닙니다."
+                        : "올바른 url 형식이 아닙니다",
+                  },
+                }}
+                render={({ field }) => (
+                  <LinkInput
+                    selectedOption={selectedOption.contactWay}
+                    onChange={(link) => {
+                      setSelectedOption((prevOption) => ({ ...prevOption, link: link }));
+                      field.onChange(link);
+                    }}
+                  />
+                )}
+              />
+              {errors[selectedOption.contactWay] && <p>{String(errors[selectedOption.contactWay]?.message)}</p>}
+            </>
+          )}
         </S.SelectBox>
       </S.GirdContainer>
       <S.SelectChipBox>
@@ -230,7 +253,7 @@ export default function RecruitmentRequestLayout() {
             </>
           )}
         />
-        {errors.positions && <p style={{ color: "red" }}>모집 포지션을 선택해주세요.</p>}
+        {errors.positions && <p>모집 포지션을 선택해주세요.</p>}
       </S.SelectChipBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>

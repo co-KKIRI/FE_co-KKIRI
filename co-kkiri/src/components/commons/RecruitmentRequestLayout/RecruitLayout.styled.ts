@@ -33,6 +33,10 @@ export const GirdContainer = styled.div`
     }
   }
 
+  & p {
+    color: ${color.red};
+  }
+
   display: grid;
   gap: 4rem;
   grid-template-areas:
@@ -144,6 +148,10 @@ export const SelectContainer = styled.form`
   flex-direction: column;
   width: 77.4rem;
   gap: 4rem;
+
+  & p {
+    color: ${color.red};
+  }
 
   & h1 {
     border-bottom: 0.1rem solid ${color.gray[2]};
