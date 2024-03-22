@@ -1,4 +1,4 @@
-import { GetTypeFromObject } from "@/types/ObjectUtilTypes";
+import { GetTypeFromObject } from "@/types/objectUtilTypes";
 
 // ProjectDetailCard내 Table에서 사용되는 Key
 export type ProjectDetailKey =

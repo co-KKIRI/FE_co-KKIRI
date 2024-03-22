@@ -1,4 +1,4 @@
-import { Stacks } from "@/types/StackTypes";
+import { Stacks } from "@/types/stackTypes";
 
 export const STACKS: Stacks = {
     "JavaScript": { name: "JavaScript", img: "https://cdn.svgporn.com/logos/javascript.svg", relatedPosition: ["FRONT_END", "BACK_END"] },

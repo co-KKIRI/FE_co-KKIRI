@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { MouseEvent, ReactNode, RefObject } from "react";
+import { RefCallBack } from "react-hook-form";
 
 interface DropdownButtonProps {
   selectOption: ReactNode;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   $iconType: "date" | "default";
   $isSelected: boolean;
-  dropButtonRef?: RefObject<HTMLButtonElement>;
+  dropButtonRef?: RefObject<HTMLButtonElement> | RefCallBack;
 }
 
 interface ContainerProps {

@@ -11,7 +11,7 @@ import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
 import { getItemsPerPage } from "@/utils/getItemsPerPage";
-import { getFilterKey } from "@/utils/ObjectUtils";
+import { getFilterKey } from "@/utils/objectUtils";
 // mock Data
 import { StudyInfo, StudyListData } from "@/lib/mock/studyList";
 

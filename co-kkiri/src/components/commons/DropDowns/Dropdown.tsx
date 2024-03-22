@@ -8,9 +8,10 @@ interface DropdownProps {
   selectedOption?: string;
   options: string[];
   onSelect: (option: string) => void;
+  dropdownRef?: React.RefCallback<HTMLButtonElement>;
 }
 
-export default function Dropdown({ placeholder, selectedOption, options, onSelect }: DropdownProps) {
+export default function Dropdown({ placeholder, selectedOption, options, onSelect, dropdownRef }: DropdownProps) {
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
   const handleSelectOption = (option: string) => {
@@ -25,6 +26,7 @@ export default function Dropdown({ placeholder, selectedOption, options, onSelec
         onClick={toggleDropdown}
         $isSelected={!!selectedOption}
         $iconType="default"
+        dropButtonRef={dropdownRef}
       />
       <DropMenu isOpen={isOpen} handleSelectOption={handleSelectOption} $borderType="square" options={options} />
     </Container>
