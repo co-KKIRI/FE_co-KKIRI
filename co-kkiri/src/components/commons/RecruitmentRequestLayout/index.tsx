@@ -10,6 +10,8 @@ import { useState } from "react";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
+import Button from "../Button";
+import { useForm, Controller, SubmitHandler, FieldValues } from "react-hook-form";
 
 export default function RecruitmentRequestLayout() {
   const {
@@ -57,10 +59,19 @@ export default function RecruitmentRequestLayout() {
         : [...prevOptions.positions, position],
     }));
   };
-  console.log(selectedOption);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+  };
 
   return (
-    <>
+    <S.SelectContainer>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
@@ -68,30 +79,63 @@ export default function RecruitmentRequestLayout() {
             모집 구분 <span>*</span>
           </h3>
           <span>
-            <S.RadioButtonWarper>
-              <RadioButton value="STUDY" onClick={() => handleSelectType("STUDY")} />
-              <span>스터디</span>
-            </S.RadioButtonWarper>
-            <S.RadioButtonWarper>
-              <RadioButton value="PROJECT" onClick={() => handleSelectType("PROJECT")} />
-              <span>프로젝트</span>
-            </S.RadioButtonWarper>
+            <Controller
+              name="type"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <>
+                  <S.RadioButtonWarper>
+                    <RadioButton
+                      value="STUDY"
+                      onClick={() => {
+                        handleSelectType("STUDY");
+                        field.onChange("STUDY");
+                      }}
+                    />
+                    <span>스터디</span>
+                  </S.RadioButtonWarper>
+                  <S.RadioButtonWarper>
+                    <RadioButton
+                      value="PROJECT"
+                      onClick={() => {
+                        handleSelectType("PROJECT");
+                        field.onChange("PROJECT");
+                      }}
+                    />
+                    <span>프로젝트</span>
+                  </S.RadioButtonWarper>
+                </>
+              )}
+            />
+            {errors.type && <p style={{ color: "red" }}>모집 구분을 선택해주세요.</p>}
           </span>
         </S.RadioButtonBox>
         <S.SelectBox>
           <h3>
             모집 마감 기간 <span>*</span>
           </h3>
-          <DeadlineDropdown
-            placeholder="모집 마감 기간"
-            selectedOption={selectedOption.recruitEndAt}
-            onSelect={(option) => {
-              setSelectedOption((prevOptions) => ({
-                ...prevOptions,
-                recruitEndAt: format(option, "yyyy.MM.dd"),
-              }));
-            }}
+          <Controller
+            name="recruitEndAt"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <>
+                <DeadlineDropdown
+                  placeholder="모집 마감 기간"
+                  selectedOption={selectedOption.recruitEndAt}
+                  onSelect={(option) => {
+                    setSelectedOption((prevOptions) => ({
+                      ...prevOptions,
+                      recruitEndAt: format(option, "yyyy.MM.dd"),
+                    }));
+                    field.onChange(format(option, "yyyy.MM.dd"));
+                  }}
+                />
+              </>
+            )}
           />
+          {errors.recruitEndAt && <p style={{ color: "red" }}>모집 마감 기간을 선택해주세요.</p>}
         </S.SelectBox>
         <S.SelectBox>
           <h3>진행 기간</h3>
@@ -121,16 +165,25 @@ export default function RecruitmentRequestLayout() {
           <h3>
             진행 방식 <span>*</span>
           </h3>
-          <S.DropdownWrapper>
-            <Dropdown
-              placeholder={progressWay.defaultValue}
-              options={progressWay.options}
-              selectedOption={selectedOption?.progressWay}
-              onSelect={(option) => {
-                setSelectedOption((prevOption) => ({ ...prevOption, progressWay: option }));
-              }}
-            />
-          </S.DropdownWrapper>
+          <Controller
+            name="progressWay"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <S.DropdownWrapper>
+                <Dropdown
+                  placeholder={progressWay.defaultValue}
+                  options={progressWay.options}
+                  selectedOption={selectedOption?.progressWay}
+                  onSelect={(option) => {
+                    setSelectedOption((prevOption) => ({ ...prevOption, progressWay: option }));
+                    field.onChange(option);
+                  }}
+                />
+              </S.DropdownWrapper>
+            )}
+          />
+          {errors.progressWay && <p style={{ color: "red" }}>진행방식을 선택해주세요.</p>}
         </S.SelectBox>
         <S.SelectBox>
           <h3>연락 방법</h3>
@@ -161,15 +214,34 @@ export default function RecruitmentRequestLayout() {
         <h3>
           모집 포지션<span>*</span>
         </h3>
-        <SelectPositionChipList
-          selectedPositions={selectedOption.positions}
-          onChipClick={(position) => handleSelectPosition(position)}
+        <Controller
+          name="positions"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <>
+              <SelectPositionChipList
+                selectedPositions={selectedOption.positions}
+                onChipClick={(position) => {
+                  handleSelectPosition(position);
+                  field.onChange(position);
+                }}
+              />
+            </>
+          )}
         />
+        {errors.positions && <p style={{ color: "red" }}>모집 포지션을 선택해주세요.</p>}
       </S.SelectChipBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>
         <QuillEditor setSelectedOption={setSelectedOption} />
       </S.QuillBox>
-    </>
+      <S.SubmitButtonBox>
+        <Button variant="primaryLight">취소하기</Button>
+        <Button variant="primary" onClick={handleSubmit(onSubmit)}>
+          글 등록하기
+        </Button>
+      </S.SubmitButtonBox>
+    </S.SelectContainer>
   );
 }

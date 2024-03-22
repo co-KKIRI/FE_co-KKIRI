@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
 import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
-import Button from "@/components/commons/Button";
+
 import * as S from "./styled";
 
 export default function Recruit() {
@@ -21,13 +21,7 @@ export default function Recruit() {
 
   return (
     <S.Container>
-      <S.SelectContainer>
-        <RecruitmentRequestLayout />
-        <S.SubmitButtonBox>
-          <Button variant="primaryLight">취소하기</Button>
-          <Button variant="primary">글 등록하기</Button>
-        </S.SubmitButtonBox>
-      </S.SelectContainer>
+      <RecruitmentRequestLayout />
     </S.Container>
   );
 }
