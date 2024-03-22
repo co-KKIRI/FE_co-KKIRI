@@ -59,6 +59,7 @@ export default function RecruitmentRequestLayout() {
     }));
   };
 
+  
   return (
     <>
       <h1>스터디/프로젝트 정보 입력</h1>
