@@ -2,7 +2,6 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultModalLayout from "../ModalLayout";
 import EditUserProfileModalLayout from "./EditUserProfileModalLayout";
 import styled from "styled-components";
-import useOpenToggle from "@/hooks/useOpenToggle";
 
 interface EditUserProfileModalProps {
   onClose: () => void;

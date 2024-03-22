@@ -4,7 +4,7 @@ import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { LABELS, ModalTextFieldInputConfig, REQUIRED, RULES } from "@/constants/textInputRules";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { UserProfile } from "@/types/userTypes";
-import { findOptionByValue } from "@/utils/arrayUtils";
+import { findOptionByValue } from "@/utils/ArrayUtils";
 import { Control, Controller, ControllerRenderProps } from "react-hook-form";
 import styled from "styled-components";
 
