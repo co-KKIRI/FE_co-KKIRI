@@ -1,5 +1,6 @@
 import { HexColor } from "@/types/styledUtilTypes";
 import { isValidHexColor } from "@/utils/styleUtils";
+import { useId } from "react";
 import styled from "styled-components";
 
 interface CircularProgressBarProps {
@@ -23,16 +24,19 @@ export default function CircularProgressBar({
   animationDuration,
   className,
 }: CircularProgressBarProps) {
+  const id = useId();
+
   return (
     <Container className={className} $strokeWidth={strokeWidth}>
       <svg xmlns="http://www.w3.org/2000/svg" width={`${size / 10}rem`} height={`${size / 10}rem`}>
         <defs>
-          <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse">
+          <linearGradient id={id} gradientUnits="userSpaceOnUse">
             <stop offset="0" stopColor={topColor && isValidHexColor(topColor) ? topColor : "#29C4BA"} />
             <stop offset="1" stopColor={bottomColor && isValidHexColor(bottomColor) ? bottomColor : "#BCEBE8"} />
           </linearGradient>
         </defs>
-        <Background
+        <circle
+          className="background-circle"
           cx={`${size / 20}rem`}
           cy={`${size / 20}rem`}
           r={`${(size - strokeWidth) / 20}rem`}
@@ -46,12 +50,12 @@ export default function CircularProgressBar({
             cx={`${size / 20}rem`}
             cy={`${size / 20}rem`}
             r={`${(size - strokeWidth) / 20}rem`}
-            fill="none"
-            stroke="url(#linear-gradient)"
-            strokeLinecap="round"
             strokeWidth={`${strokeWidth / 10}rem`}
+            fill="none"
+            stroke={`url(#${id})`}
+            strokeLinecap="round"
             pathLength={100}
-            transform="rotate(-90 65 65)"
+            transform={`rotate(-90 ${size / 2} ${size / 2})`}
             strokeDasharray={100}
             $percentage={100 - percentage > 0 ? 100 - percentage : 0}
             $animationDuration={animationDuration}
@@ -75,8 +79,6 @@ const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
 `;
-
-const Background = styled.circle``;
 
 interface ProgressProps {
   $percentage: number;
