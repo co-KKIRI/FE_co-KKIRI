@@ -2,6 +2,8 @@ import Button from "@/components/commons/Button";
 import PositionChip from "@/components/commons/Chips/PositionChip";
 import Stacks from "@/components/commons/Stacks";
 import ToggleButton from "@/components/commons/ToggleButton";
+import EditUserProfileModal from "@/components/modals/EditUserProfileModal";
+import ModalPortal from "@/components/modals/ModalPortal";
 import * as S from "@/components/modals/UserProfileModal/UserProfileModal.styled";
 import { IMAGES } from "@/constants/images";
 import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
@@ -15,6 +17,11 @@ interface UserProfileProps {
 
 // 컴포넌트로 따로 분리하기
 function UserProfile({ user }: UserProfileProps) {
+  const [isEditUserProfileModal, setIsEditUserProfileModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsEditUserProfileModal(!isEditUserProfileModal);
+  };
   return (
     <Section>
       <S.Container>
@@ -43,8 +50,15 @@ function UserProfile({ user }: UserProfileProps) {
             )}
           </S.LinkWrapper>
         </S.LinkBox>
-        <Button variant="ghost">수정하기</Button>
+        <Button variant="ghost" onClick={handleOpenModal}>
+          수정하기
+        </Button>
       </S.Container>
+      {isEditUserProfileModal && (
+        <ModalPortal>
+          <EditUserProfileModal onClose={handleOpenModal} />
+        </ModalPortal>
+      )}
     </Section>
   );
 }
