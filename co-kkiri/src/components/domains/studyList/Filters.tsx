@@ -25,6 +25,7 @@ const { mediaQueries } = DESIGN_TOKEN;
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   ${mediaQueries.tablet} {
     padding: 0 3rem;
