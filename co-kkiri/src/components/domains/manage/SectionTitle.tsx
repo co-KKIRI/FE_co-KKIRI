@@ -3,17 +3,19 @@ import styled from "styled-components";
 
 interface SectionTitleProps {
   title: string;
-  count: number;
+  count?: number;
+  type?: "cardList";
+  lineLength?: "mypage";
 }
 
-export default function SectionTitle({ title, count }: SectionTitleProps) {
+export default function SectionTitle({ title, count, type, lineLength }: SectionTitleProps) {
   return (
     <Container>
       <Wrapper>
         <Title>{title}</Title>
         <Count>{count}</Count>
       </Wrapper>
-      <Line />
+      {type === "cardList" || <Line $lineLength={lineLength === "mypage"} />}
     </Container>
   );
 }
@@ -40,12 +42,15 @@ const Count = styled.div`
   color: ${color.primary[1]};
 `;
 
-const Line = styled.div`
+const Line = styled.div<{ $lineLength?: boolean }>`
   background-color: ${color.gray[2]};
-  width: 28.8rem;
   height: 0.1rem;
-
+  width: ${({ $lineLength }) => ($lineLength ? "32rem" : "28.8rem")};
   ${mediaQueries.desktop} {
     width: 35rem;
+  }
+
+  ${mediaQueries.tablet} {
+    width: ${({ $lineLength }) => $lineLength && "70.8rem"};
   }
 `;
