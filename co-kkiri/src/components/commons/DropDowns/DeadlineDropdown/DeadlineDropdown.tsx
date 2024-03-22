@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { format } from "date-fns";
 
 import "@/styles/globals.css";
@@ -8,34 +7,31 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import SquareDropButton from "../commons/SquareDropButton";
 import { Calendar } from "./ui/calendar";
-
-import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
-
 interface DeadlineDropdownProps {
-  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
+  placeholder: string;
+  selectedOption: string;
+  onSelect: (option: string) => void;
 }
 
-export default function DeadlineDropdown({ setSelectedOptions }: DeadlineDropdownProps) {
-  const [selectOption, setSelectOption] = useState<Date | undefined>();
-  const [isSelected, setIsSelected] = useState(false);
+export default function DeadlineDropdown({ placeholder, selectedOption, onSelect }: DeadlineDropdownProps) {
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
-  const date = selectOption ? format(selectOption, "yyyy.MM.dd") : "마감 기간";
 
   const handleSelectDate = (date: Date | undefined) => {
-    setSelectOption(date);
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      recruitEndAt: date ? format(date, "yyyy.MM.dd") : "",
-    }));
-    setIsSelected(true);
+    date ? onSelect(format(date, "yyyy.MM.dd")) : onSelect("");
     toggleDropdown();
   };
+
   return (
     <Container ref={ref}>
-      <SquareDropButton $iconType="date" onClick={toggleDropdown} selectOption={date} $isSelected={isSelected} />
+      <SquareDropButton
+        $iconType="date"
+        onClick={toggleDropdown}
+        selectOption={selectedOption || placeholder || ""}
+        $isSelected={!!selectedOption}
+      />
       {isOpen && (
         <CalendarWrapper>
-          <Calendar mode="single" selected={selectOption} onSelect={handleSelectDate} initialFocus />
+          <Calendar mode="single" onSelect={handleSelectDate} initialFocus />
         </CalendarWrapper>
       )}
     </Container>
