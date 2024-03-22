@@ -1,5 +1,5 @@
 import DESIGN_TOKEN from "@/styles/tokens";
-import { Image } from "@/types/ImageTypes";
+import { Image } from "@/types/imageTypes";
 import { ChangeEvent, KeyboardEvent, MouseEvent, useRef } from "react";
 import styled from "styled-components";
 

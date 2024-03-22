@@ -2,14 +2,21 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultModalLayout from "../ModalLayout";
 import EditUserProfileModalLayout from "./EditUserProfileModalLayout";
 import styled from "styled-components";
+import useOpenToggle from "@/hooks/useOpenToggle";
 
 interface EditUserProfileModalProps {
   onClose: () => void;
 }
 
 export default function EditUserProfileModal({ onClose }: EditUserProfileModalProps) {
+    
   return (
-    <ModalLayout desktopWidth={708} mobileWidth={320} onClick={onClose} onClose={onClose}>
+    <ModalLayout
+      desktopWidth={708}
+      mobileWidth={320}
+      onClose={() => {
+        onClose();
+      }}>
       <EditUserProfileModalLayout
         onSubmit={() => {
           /*//TODO: ReactQuery*/

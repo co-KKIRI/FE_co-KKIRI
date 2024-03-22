@@ -6,7 +6,7 @@ import DefaultStackChipList from "./StackChipList";
 import DefaultDeleteStackChipList from "./DeleteStackChipList";
 import { useEffect, useState } from "react";
 import { StackPositionFilter, mappedFilter } from "./constants";
-import { getFilterKey } from "@/utils/ObjectUtils";
+import { getFilterKey } from "@/utils/objectUtils";
 
 interface SelectLayoutProps {
   stacks: string[];

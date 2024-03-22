@@ -5,15 +5,15 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultUserImage from "./UserImage";
-import { UserProfile } from "@/types/UserTypes";
-import { useStore } from "@/stores/MyProfileStore";
+import { UserProfile } from "@/types/userTypes";
+import { useUserInfoStore } from "@/stores/userInfoStore";
 
 interface EditUserProfileModalLayoutProps {
   onSubmit: (data: UserProfile) => void;
 }
 
 export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfileModalLayoutProps) {
-  const userInfo = useStore((state) => state.userInfo);
+  const userInfo = useUserInfoStore((state) => state.userInfo);
 
   const { control, handleSubmit } = useForm<UserProfile>({
     defaultValues: userInfo,
@@ -22,8 +22,9 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
 
   /**TODO: 이미지가 먼저, url 받아오고 나머지랑 같이 보내야함 */
   const onSubmitHandler = (data: UserProfile) => {
-    useStore.setState({ userInfo: data });
+    useUserInfoStore.setState({ userInfo: data });
     onSubmit(data);
+    console.log(data);
   };
 
   return (
@@ -36,7 +37,7 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
            * 그리고 Submit할 때만 이미지 데이터 요청을 보내야함
            * 아직은 이미지 api를 보내는 책임 소재가 불분명함
            */
-          useStore.setState({ userInfo: { ...userInfo, profileImageUrl: ProfileImgUrl } });
+          useUserInfoStore.setState({ userInfo: { ...userInfo, profileImageUrl: ProfileImgUrl } });
         }}
         isEditable
         $gridArea="user-image"

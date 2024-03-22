@@ -1,4 +1,4 @@
-import { StackPosition } from "@/types/StackTypes";
+import { StackPosition } from "@/types/stackTypes";
 
 export type StackPositionFilter = "ALL" | StackPosition;
 

@@ -18,7 +18,7 @@ import categorySelected from "@/assets/icons/category_selected.svg";
 import calendar from "@/assets/icons/calendar.svg";
 import reset from "@/assets/icons/reset.svg";
 import more from "@/assets/icons/more.svg";
-import { Images } from "@/types/ImageTypes";
+import { Images } from "@/types/imageTypes";
 import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
 import scrollTop from "@/assets/icons/scroll_top.svg";
 import accept from "@/assets/icons/accept.svg";

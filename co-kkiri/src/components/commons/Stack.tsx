@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
-import { Stack as StackType } from "@/types/StackTypes";
-import { Image } from "@/types/ImageTypes";
+import { Stack as StackType } from "@/types/stackTypes";
+import { Image } from "@/types/imageTypes";
 
 interface StackProps {
   stack?: Pick<StackType, "name" | "img">;

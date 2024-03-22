@@ -2,7 +2,7 @@ import { Control, Controller, FieldValues } from "react-hook-form";
 import TextFieldInput from "@/components/modals/TextFieldInput";
 import { LABELS, ModalTextFieldInputConfig, PLACEHOLDERS, REQUIRED, RULES } from "@/constants/textInputRules";
 import styled from "styled-components";
-import { UserProfile } from "@/types/UserTypes";
+import { UserProfile } from "@/types/userTypes";
 
 interface ModalTextFieldInputProps {
   name: ModalTextFieldInputConfig;
