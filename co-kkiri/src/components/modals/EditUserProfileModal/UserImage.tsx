@@ -6,7 +6,7 @@ import DefaultFileSelector from "./FileSelector";
 interface EditUserImageProps {
   profileImgUrl?: string;
   isEditable?: boolean;
-  onSelect: (file: File | FileList) => void;
+  onSelect?: (file: File | FileList) => void;
   className?: string;
 }
 
@@ -14,7 +14,7 @@ export default function UserImage({ profileImgUrl, isEditable, onSelect, classNa
   return (
     <Container className={className}>
       <ProfileImg src={profileImgUrl ? profileImgUrl : IMAGES.profileImg.src} alt={IMAGES.profileImg.alt} />
-      {isEditable && (
+      {isEditable && onSelect && (
         <FileSelector
           name="profile"
           icon={ICONS.camera}
@@ -37,8 +37,6 @@ const Container = styled.div`
   position: relative;
   justify-self: center;
   align-self: center;
-
-
 `;
 
 const ProfileImg = styled.img`
