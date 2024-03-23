@@ -23,14 +23,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 32rem;
-
-  ${mediaQueries.desktop} {
-    width: 35rem;
-  }
+  width: 35rem;
 
   ${mediaQueries.tablet} {
     width: 70.8rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 32rem;
   }
 `;
 

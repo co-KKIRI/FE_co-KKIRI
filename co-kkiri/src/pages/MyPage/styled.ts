@@ -1,5 +1,3 @@
-import UserInfo from "@/components/domains/myPage/UserInfo";
-import ScrapList from "@/components/domains/myPage/ScrapList";
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
@@ -16,32 +14,48 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12rem;
+  display: grid;
+  gap: 6rem;
+  grid-template:
+    "wrapper"
+    "scrap";
 
-  ${mediaQueries.desktop} {
-    display: grid;
-    gap: 6rem;
-    grid-template:
-      "wrapper"
-      "scrap";
+  ${mediaQueries.tablet} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
+  }
+
+  ${mediaQueries.mobile} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
   }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12rem;
+  gap: 6rem;
+  grid-area: wrapper;
 
-  ${mediaQueries.desktop} {
-    flex-direction: row;
-    gap: 6rem;
-    grid-area: wrapper;
+  ${mediaQueries.tablet} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
+  }
+
+  ${mediaQueries.mobile} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
   }
 `;
 
@@ -51,12 +65,4 @@ export const Lists = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12rem;
-`;
-
-export const UserInfoSection = styled(UserInfo)`
-  grid-area: user;
-`;
-
-export const ScrapListSection = styled(ScrapList)`
-  grid-area: scrap;
 `;

@@ -16,15 +16,12 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
+  row-gap: 3rem;
   display: grid;
   column-gap: 6rem;
   grid-template:
     "detail list"
     "button list";
-
-  ${mediaQueries.desktop} {
-    row-gap: 3rem;
-  }
 
   ${mediaQueries.mobile} {
     display: flex;
