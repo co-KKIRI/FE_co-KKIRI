@@ -1,27 +1,16 @@
-import { useState } from "react";
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
-import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
-
 import * as S from "./styled";
+import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import { useEffect } from "react";
 
 export default function Recruit() {
-  const [selectedOptions, setSelectedOptions] = useState<RecruitmentRequest>({
-    type: "",
-    recruitEndAt: "",
-    progressPeriod: "",
-    capacity: 0,
-    contactWay: "",
-    progressWay: "",
-    stacks: [],
-    positions: [],
-    title: "",
-    content: "",
-    link: "",
-  });
+  const handleSubmit = async (selectedOptions: RecruitmentRequest) => {
+    console.log(selectedOptions);
+  };
 
   return (
     <S.Container>
-      <RecruitmentRequestLayout />
+      <RecruitmentRequestLayout onSubmit={handleSubmit} buttonText="글 등록하기" />
     </S.Container>
   );
 }

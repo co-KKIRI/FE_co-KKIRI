@@ -1,5 +1,5 @@
 export interface RecruitmentRequest {
-  type: string;
+  type: "STUDY" | "PROJECT";
   recruitEndAt: string;
   progressPeriod: string;
   capacity: number | undefined | null;

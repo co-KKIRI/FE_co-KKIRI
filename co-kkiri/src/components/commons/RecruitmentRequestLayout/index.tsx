@@ -11,14 +11,25 @@ import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller, SubmitHandler, FieldValues } from "react-hook-form";
-import DESIGN_TOKEN from "@/styles/tokens";
-export default function RecruitmentRequestLayout() {
+import { useForm, Controller } from "react-hook-form";
+
+interface RecruitmentRequestLayoutProps {
+  onSubmit: (data: RecruitmentRequest) => void;
+  buttonText: string;
+  defaultOption?: RecruitmentRequest;
+}
+
+export default function RecruitmentRequestLayout({
+  onSubmit,
+  buttonText,
+  defaultOption,
+}: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
-  const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>({
-    type: "",
+
+  const initialOption: RecruitmentRequest = {
+    type: "STUDY",
     recruitEndAt: "",
     progressPeriod: "",
     capacity: undefined,
@@ -29,14 +40,18 @@ export default function RecruitmentRequestLayout() {
     title: "",
     content: "",
     link: "",
-  });
+  };
+
+  const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>(
+    defaultOption ? defaultOption : initialOption,
+  );
 
   const findOptionByValue = <ValueType, OptionType>(values: ValueType[], options: OptionType[], value: ValueType) => {
     const index = values.indexOf(value);
     return options[index];
   };
 
-  const handleSelectType = (type: string): void => {
+  const handleSelectType = (type: "STUDY" | "PROJECT"): void => {
     setSelectedOption((prevOptions) => ({
       ...prevOptions,
       type: type,
@@ -60,14 +75,9 @@ export default function RecruitmentRequestLayout() {
   };
 
   const {
-    handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-  };
 
   return (
     <S.SelectContainer>
@@ -86,6 +96,7 @@ export default function RecruitmentRequestLayout() {
                 <>
                   <S.RadioButtonWarper>
                     <RadioButton
+                      defaultChecked
                       value="STUDY"
                       onClick={() => {
                         handleSelectType("STUDY");
@@ -261,8 +272,8 @@ export default function RecruitmentRequestLayout() {
       </S.QuillBox>
       <S.SubmitButtonBox>
         <Button variant="primaryLight">취소하기</Button>
-        <Button variant="primary" onClick={handleSubmit(onSubmit)}>
-          글 등록하기
+        <Button variant="primary" onClick={() => onSubmit(selectedOption)}>
+          {buttonText}
         </Button>
       </S.SubmitButtonBox>
     </S.SelectContainer>
