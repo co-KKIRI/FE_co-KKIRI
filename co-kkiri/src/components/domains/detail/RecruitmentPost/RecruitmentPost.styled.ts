@@ -11,13 +11,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  ${mediaQueries.desktop} {
-    width: 50rem;
-  }
-
-  ${mediaQueries.tablet} {
-    width: 50rem;
-  }
+  width: 50rem;
 
   ${mediaQueries.mobile} {
     width: 32rem;

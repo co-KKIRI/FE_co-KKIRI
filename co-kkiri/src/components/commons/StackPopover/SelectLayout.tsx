@@ -87,6 +87,14 @@ const Container = styled.div<ContainerProps>`
     "stackchips stackchips"
     ${({ $isSelectedStacks }) => $isSelectedStacks && `"deletestackchips deletestackchips"`};
 
+  width: 85.6rem;
+  gap: 3rem;
+
+  ${mediaQueries.tablet} {
+    width: 70rem;
+    gap: 3rem;
+  }
+
   ${mediaQueries.mobile} {
     width: 32rem;
     padding: 2rem 3rem;
@@ -94,16 +102,6 @@ const Container = styled.div<ContainerProps>`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-  }
-
-  ${mediaQueries.tablet} {
-    width: 70rem;
-    gap: 3rem;
-  }
-
-  ${mediaQueries.desktop} {
-    width: 85.6rem;
-    gap: 3rem;
   }
 `;
 

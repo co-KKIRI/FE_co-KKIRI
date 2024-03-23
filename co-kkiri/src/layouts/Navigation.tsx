@@ -49,7 +49,9 @@ const SideBarWrapper = styled.div<SideBarWrapperProps>`
 `;
 
 const OutletWrapper = styled.div<SideBarWrapperProps>`
-  ${mediaQueries.desktop} {
-    padding-left: ${(props) => (props.$isOpen ? "21rem" : 0)};
+  padding-left: ${(props) => (props.$isOpen ? "21rem" : 0)};
+
+  ${mediaQueries.tablet} {
+    padding-left: 0;
   }
 `;

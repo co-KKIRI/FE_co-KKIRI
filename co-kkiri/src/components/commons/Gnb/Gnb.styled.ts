@@ -14,7 +14,6 @@ export const Box = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-
   padding: 2.2rem 4rem;
 
   ${mediaQueries.tablet} {
@@ -45,6 +44,7 @@ export const Logo = styled.img`
     width: 11.9rem;
     height: 2.4rem;
   }
+
   ${mediaQueries.mobile} {
     width: 9.8rem;
     height: 2rem;
@@ -54,6 +54,7 @@ export const Logo = styled.img`
 export const PostButton = styled.div`
   ${typography.font14Bold};
   color: ${color.primary[1]};
+
   ${mediaQueries.mobile} {
     display: none;
   }

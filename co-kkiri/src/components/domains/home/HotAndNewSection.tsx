@@ -40,13 +40,11 @@ export default function HotAndNewSection({ category, path, cardDataList }: Cards
 
 const {
   typography: { font20Bold },
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Box = styled.section`
-  ${desktop} {
-    max-width: 112rem;
-  }
+  max-width: 112rem;
 
   ${tablet} {
     max-width: 70.8rem;

@@ -43,10 +43,8 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   display: grid;
   flex-wrap: wrap;
   gap: 2rem;
-  ${mediaQueries.desktop} {
-    grid-template-columns: repeat(4, 1fr);
-    ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `grid-template-columns: repeat(2, 1fr);`}
-  }
+  grid-template-columns: repeat(4, 1fr);
+  ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `grid-template-columns: repeat(2, 1fr);`}
 
   ${mediaQueries.tablet} {
     grid-template-columns: repeat(2, 1fr);
@@ -62,10 +60,8 @@ const NoResultText = styled.p<{ $isSidebarOpenNarrow: boolean }>`
   color: ${color.black};
   text-align: center;
   margin-top: 2rem;
-  ${mediaQueries.desktop} {
-    width: 112rem;
-    ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `width: 76.8rem;`}
-  }
+  width: 112rem;
+  ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `width: 76.8rem;`}
 
   ${mediaQueries.tablet} {
     width: 76.8rem;

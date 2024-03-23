@@ -22,7 +22,7 @@ export default function Home() {
 
 const {
   spacing,
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Container = styled.main`
@@ -30,11 +30,8 @@ const Container = styled.main`
   flex-direction: column;
   justify-content: center;
   gap: 6rem;
-
-  ${desktop} {
-    padding: ${spacing.desktop};
-    padding-bottom: 12rem;
-  }
+  padding: ${spacing.desktop};
+  padding-bottom: 12rem;
 
   ${tablet} {
     padding: ${spacing.tablet};

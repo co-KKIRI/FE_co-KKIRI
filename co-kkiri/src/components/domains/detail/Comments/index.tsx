@@ -27,16 +27,15 @@ export default function Comments({ commentsNum, className }: CommentsProps) {
 
 const {
   color,
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  ${desktop} {
-    width: 50rem;
-  }
+  width: 50rem;
+
   ${tablet} {
     width: 50rem;
   }

@@ -8,15 +8,13 @@ import ShareAndScrap from "@/components/domains/detail/ShareAndScrap";
 import DetailCard from "@/components/domains/detail/DetailCard";
 
 const {
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  ${desktop} {
-    padding-top: 6.3rem;
-  }
+  padding-top: 6.3rem;
 
   ${tablet} {
     padding-top: 7.2rem;
@@ -29,18 +27,17 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   display: grid;
-  ${desktop} {
-    grid-template:
-      "back  shareAndScrap . ."
-      ". . . ." 1.5rem
-      "post post . card"
-      "post post . ." 3rem
-      "post post . button"
-      "post post . ."
-      ". . . ." 12rem
-      "comments comments . ."
-      / 40.4rem 9.6rem 6rem 35rem;
-  }
+  grid-template:
+    "back  shareAndScrap . ."
+    ". . . ." 1.5rem
+    "post post . card"
+    "post post . ." 3rem
+    "post post . button"
+    "post post . ."
+    ". . . ." 12rem
+    "comments comments . ."
+    / 40.4rem 9.6rem 6rem 35rem;
+
   ${tablet} {
     grid-template:
       "back . ."
@@ -54,6 +51,7 @@ export const Box = styled.div`
       "comments comments comments"
       /38.4rem 2rem 9.6rem;
   }
+
   ${mobile} {
     grid-template:
       "back . ."
@@ -86,10 +84,12 @@ export const PostSection = styled(RecruitmentPost)`
 
 export const DetailCardSection = styled(DetailCard)`
   grid-area: card;
-  ${desktop} {
-    position: sticky;
-    top: 8rem;
-    left: 0;
+  position: sticky;
+  top: 8rem;
+  left: 0;
+
+  ${tablet} {
+    position: static;
   }
 `;
 
@@ -99,9 +99,11 @@ export const CommentsSection = styled(Comments)`
 
 export const ButtonSection = styled(MappedButton)<{ $cardHeight?: number }>`
   grid-area: button;
-  ${desktop} {
-    position: sticky;
-    top: ${({ $cardHeight }) => ($cardHeight ? `${$cardHeight / 10 + 11}rem` : `51.7rem;`)};
-    left: 0;
+  position: sticky;
+  top: ${({ $cardHeight }) => ($cardHeight ? `${$cardHeight / 10 + 11}rem` : `51.7rem;`)};
+  left: 0;
+
+  ${tablet} {
+    position: static;
   }
 `;

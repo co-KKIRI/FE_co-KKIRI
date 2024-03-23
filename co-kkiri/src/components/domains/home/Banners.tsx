@@ -15,17 +15,14 @@ export default function Banners() {
 }
 
 const {
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Box = styled.article`
   display: flex;
   justify-content: center;
   width: 100%;
-
-  ${desktop} {
-    gap: 2rem;
-  }
+  gap: 2rem;
 
   ${tablet} {
     gap: 1.5rem;

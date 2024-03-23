@@ -38,23 +38,20 @@ export default function Cards({ cardDataList }: CardsProps) {
 
 const {
   spacing,
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   display: flex;
-
-  ${desktop} {
-    gap: 2rem;
-    ${({ $isSidebarOpenNarrow }) =>
-      $isSidebarOpenNarrow
-        ? `  display: grid;
+  gap: 2rem;
+  ${({ $isSidebarOpenNarrow }) =>
+    $isSidebarOpenNarrow
+      ? `  display: grid;
     grid-template:
       1fr 1fr /
       1fr 1fr;
     `
-        : ""}
-  }
+      : ""}
 
   ${tablet} {
     display: grid;
@@ -65,6 +62,7 @@ const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   }
 
   ${mobile} {
+    display: flex;
     gap: 1rem;
     padding: 2rem;
     overflow: scroll;
