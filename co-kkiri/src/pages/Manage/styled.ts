@@ -8,19 +8,20 @@ const { mediaQueries } = DESIGN_TOKEN;
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 9.1rem;
+  padding: 9.1rem 0;
+
   ${mediaQueries.mobile} {
-    padding: 5.1rem auto;
+    padding: 5.1rem 0;
   }
 `;
 
 export const Box = styled.div`
   display: grid;
   column-gap: 6rem;
-
   grid-template:
     "detail list"
     "button list";
+
   ${mediaQueries.desktop} {
     row-gap: 3rem;
   }

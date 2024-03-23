@@ -4,13 +4,14 @@ import DESIGN_TOKEN from "@/styles/tokens";
 interface ToggleButtonProps {
   content?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isChecked?: boolean;
 }
 
-export default function ToggleButton({ content, onChange }: ToggleButtonProps) {
+export default function ToggleButton({ content, onChange, isChecked }: ToggleButtonProps) {
   return (
     <Wrapper>
       {content && <Content>{content}</Content>}
-      <Toggle type="checkbox" role="toggle" onChange={onChange} />
+      <Toggle type="checkbox" role="toggle" onChange={onChange} checked={isChecked} />
     </Wrapper>
   );
 }
