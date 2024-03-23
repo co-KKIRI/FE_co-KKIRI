@@ -91,14 +91,14 @@ const Container = styled.div`
 
 const ReactQuillWrapper = styled.div`
   .ql-container {
-    height: 80rem;
+    height: 75.2rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     border: 0.1rem solid ${color.gray[2]};
     border-top: none;
 
     ${mediaQueries.mobile} {
-      height: 48rem;
+      height: 39.7rem;
     }
   }
 
