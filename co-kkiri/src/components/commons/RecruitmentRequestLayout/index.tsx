@@ -126,7 +126,7 @@ export default function RecruitmentRequestLayout() {
                   onSelect={(option) => {
                     setSelectedOption((prevOptions) => ({
                       ...prevOptions,
-                      recruitEndAt: format(option, "yyyy.MM.dd"),
+                      recruitEndAt: option,
                     }));
                     field.onChange(format(option, "yyyy.MM.dd"));
                   }}

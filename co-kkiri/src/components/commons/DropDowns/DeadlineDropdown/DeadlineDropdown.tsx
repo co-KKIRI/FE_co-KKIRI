@@ -18,7 +18,6 @@ export default function DeadlineDropdown({ placeholder, selectedOption, onSelect
 
   const handleSelectDate = (date: Date | undefined) => {
     date ? onSelect(format(date, "yyyy.MM.dd")) : onSelect("");
-    toggleDropdown();
   };
 
   return (
@@ -31,7 +30,7 @@ export default function DeadlineDropdown({ placeholder, selectedOption, onSelect
       />
       {isOpen && (
         <CalendarWrapper>
-          <Calendar mode="single" onSelect={handleSelectDate} initialFocus />
+          <Calendar mode="single" selected={new Date(selectedOption)} onSelect={handleSelectDate} initialFocus />
         </CalendarWrapper>
       )}
     </Container>
@@ -58,10 +57,10 @@ const Container = styled.div`
   }
 `;
 
-//드랍 잘되는지 확인하려고 임시로 디자인했습니다
 const CalendarWrapper = styled.div`
   position: absolute;
   top: 5.4rem;
+  left: 0;
   background-color: white;
   border-radius: 0.5rem;
   border: 0.1rem solid ${color.gray[2]};
