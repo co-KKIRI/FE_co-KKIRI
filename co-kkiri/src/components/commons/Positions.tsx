@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 import { useWindowSize } from "usehooks-ts";
 import styled from "styled-components";
@@ -21,7 +21,7 @@ export default function Positions({ positions, variant = "profile", page = "home
   const { width: windowWidth } = useWindowSize();
   const isSidebarOpenNarrow = useResponsiveSidebar();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (variant === "card") {
       const { tablet, desktop } = breakpoints;
       const pageLimits = POSITION_CHIP_LIMIT[page];

@@ -2,6 +2,7 @@ export type ModalTextFieldInputConfig = "nickname" | "position" | "career" | "li
 
 interface ValidationRule {
   required?: string;
+  minLength?: { value: number; message: string };
   maxLength?: { value: number; message: string };
   pattern?: { value: RegExp; message: string };
 }
@@ -9,7 +10,8 @@ interface ValidationRule {
 export const RULES: Record<ModalTextFieldInputConfig, ValidationRule> = {
   nickname: {
     required: "닉네임을 입력해 주세요",
-    maxLength: { value: 10, message: "닉네임은 10자 이하로 입력해주세요" },
+    minLength: { value: 2, message: "닉네임은 2~10자로 입력해주세요" },
+    maxLength: { value: 10, message: "닉네임은 2~10자로 입력해주세요" },
   },
   position: {},
   career: {},
