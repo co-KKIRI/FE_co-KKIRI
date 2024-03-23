@@ -39,6 +39,7 @@ export const RightGroupWrapper = styled.div`
 export const Logo = styled.img`
   width: 11.9rem;
   height: 2.4rem;
+  cursor: pointer;
 
   ${mediaQueries.tablet} {
     width: 11.9rem;
