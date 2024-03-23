@@ -21,17 +21,11 @@ export type InvitedTeamListApiResponseDto = {
 };
 
 // 마이 페이지 스크랩 목록
-// 카드를 보여줘야하므로 API가 수정되어야 할 듯
-// type MyScrap = {
-//   postId: number;
-//   postTitle: string;
-// }
 type MyScrap = {
-  id: number;
+  postId: number;
   type: "STUDY" | "PROJECT";
   recruitEndAt: string;
-  status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
-  isScraped: boolean;
+  isScrapped: boolean;
   progressWay: string;
   title: string;
   position: string[];

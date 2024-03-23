@@ -45,12 +45,13 @@ const Count = styled.div`
 const Line = styled.div<{ $lineLength?: boolean }>`
   background-color: ${color.gray[2]};
   height: 0.1rem;
-  width: ${({ $lineLength }) => ($lineLength ? "32rem" : "28.8rem")};
-  ${mediaQueries.desktop} {
-    width: 35rem;
-  }
+  width: 35rem;
 
   ${mediaQueries.tablet} {
     width: ${({ $lineLength }) => $lineLength && "70.8rem"};
+  }
+
+  ${mediaQueries.mobile} {
+    width: ${({ $lineLength }) => ($lineLength ? "32rem" : "28.8rem")};
   }
 `;
