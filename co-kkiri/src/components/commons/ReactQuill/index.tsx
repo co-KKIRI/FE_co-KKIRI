@@ -64,7 +64,7 @@ export default function QuillEditor({
     </Container>
   );
 }
-const { color, typography } = DESIGN_TOKEN;
+const { color, typography, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
   width: 100%;
@@ -96,6 +96,10 @@ const ReactQuillWrapper = styled.div`
     border-bottom-right-radius: 0.5rem;
     border: 0.1rem solid ${color.gray[2]};
     border-top: none;
+
+    ${mediaQueries.mobile} {
+      height: 48rem;
+    }
   }
 
   .ql-editor.ql-blank::before {
