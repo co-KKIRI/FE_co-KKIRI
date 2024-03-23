@@ -37,10 +37,7 @@ const Container = styled.div<{ $isPopoverOpen: boolean }>`
   opacity: ${({ $isPopoverOpen }) => ($isPopoverOpen ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
   position: absolute;
-
-  ${mediaQueries.desktop} {
-    right: 4rem;
-  }
+  right: 4rem;
 
   ${mediaQueries.tablet} {
     right: 3rem;

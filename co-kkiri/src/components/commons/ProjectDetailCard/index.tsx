@@ -77,17 +77,14 @@ const Container = styled.div<{ type?: string }>`
 
   border-radius: 1.5rem;
   box-shadow: ${boxShadow.content};
-
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
+  width: ${({ type }) => (type === "mystudy" ? "50rem" : "35rem")};
 
   ${mediaQueries.tablet} {
     width: ${({ type }) => (type === "mystudy" ? "32rem" : "50rem")};
   }
 
-  ${mediaQueries.desktop} {
-    width: ${({ type }) => (type === "mystudy" ? "50rem" : "35rem")};
+  ${mediaQueries.mobile} {
+    width: 32rem;
   }
 `;
 

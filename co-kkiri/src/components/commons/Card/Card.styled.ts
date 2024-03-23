@@ -14,7 +14,7 @@ interface ContainerProps extends PageProp {
 const {
   color,
   boxShadow: { content },
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const desktopWidthByPage = ($isSidebarOpenNarrow: boolean, $page: PageType) => {
@@ -44,9 +44,8 @@ const widthForDevice = ({ $isSidebarOpenNarrow, $page }: ContainerProps) => {
   const mobileWidth = mobileWidthByPage($page);
 
   return css`
-    ${desktop} {
-      width: ${desktopWidth};
-    }
+    width: ${desktopWidth};
+
     ${tablet} {
       width: 34.6rem;
     }

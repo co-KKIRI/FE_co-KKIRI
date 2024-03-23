@@ -33,14 +33,11 @@ const VARIANT_STYLE = {
   floating: css`
     border-radius: 50%;
     box-shadow: ${floatingButton};
-
-    ${mediaQueries.desktop} {
-      width: 7.2rem;
-      height: 7.2rem;
-      position: fixed;
-      bottom: 8rem;
-      right: 4rem;
-    }
+    width: 7.2rem;
+    height: 7.2rem;
+    position: fixed;
+    bottom: 8rem;
+    right: 4rem;
 
     ${mediaQueries.tablet} {
       width: 5.6rem;
@@ -99,7 +96,9 @@ export const Container = styled.button<Container>`
 `;
 
 export const ButtonIcon = styled.img`
-  ${mediaQueries.desktop} {
-    width: 3rem;
+  width: 3rem;
+
+  ${mediaQueries.tablet} {
+    width: 1.85rem;
   }
 `;

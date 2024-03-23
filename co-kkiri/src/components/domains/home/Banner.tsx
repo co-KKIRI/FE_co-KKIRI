@@ -30,17 +30,14 @@ export default function Banner({ image, path }: BannerProps) {
 
 const {
   color,
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Background = styled.figure<{ $isSidebarOpenNarrow: boolean }>`
   background-color: ${color.primary[3]};
   border-radius: 2rem;
-
-  ${desktop} {
-    width: ${({ $isSidebarOpenNarrow }) => ($isSidebarOpenNarrow ? 29 : 36)}rem;
-    height: 24rem;
-  }
+  width: ${({ $isSidebarOpenNarrow }) => ($isSidebarOpenNarrow ? 29 : 36)}rem;
+  height: 24rem;
 
   ${tablet} {
     width: 22.6rem;
@@ -50,7 +47,7 @@ const Background = styled.figure<{ $isSidebarOpenNarrow: boolean }>`
   ${mobile} {
     max-width: 22.6rem;
     width: 100%;
-
+    height: 100%;
     &::after {
       content: "";
       display: block;

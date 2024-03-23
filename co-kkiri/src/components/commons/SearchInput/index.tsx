@@ -35,15 +35,13 @@ export default function SearchInput({ placeholder }: SearchInputProps) {
 const {
   color,
   typography: { font14Medium },
-  mediaQueries: { desktop, tablet, mobile },
+  mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
 const Container = styled.div`
   position: relative;
+  width: 36rem;
 
-  ${desktop} {
-    width: 36rem;
-  }
   ${tablet} {
     width: 32rem;
   }
