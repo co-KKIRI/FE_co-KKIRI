@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { typography, color, mediaQueries } = DESIGN_TOKEN;
 
-export const Container = styled.form`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
