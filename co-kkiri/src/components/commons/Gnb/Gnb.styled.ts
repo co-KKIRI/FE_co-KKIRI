@@ -15,9 +15,8 @@ export const Box = styled.div`
   display: flex;
   justify-content: space-between;
 
-  ${mediaQueries.desktop} {
-    padding: 2.2rem 4rem;
-  }
+  padding: 2.2rem 4rem;
+
   ${mediaQueries.tablet} {
     padding: 2.2rem 3rem;
   }
@@ -39,10 +38,9 @@ export const RightGroupWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
-  ${mediaQueries.desktop} {
-    width: 11.9rem;
-    height: 2.4rem;
-  }
+  width: 11.9rem;
+  height: 2.4rem;
+
   ${mediaQueries.tablet} {
     width: 11.9rem;
     height: 2.4rem;
