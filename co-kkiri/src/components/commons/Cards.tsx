@@ -45,7 +45,7 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   flex-wrap: wrap;
   gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
-  ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `grid-template-columns: repeat(2, 1fr);`}
+  ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `grid-template-columns: repeat(3, 1fr);`}
 
   ${mediaQueries.tablet} {
     grid-template-columns: repeat(2, 1fr);
