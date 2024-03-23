@@ -36,7 +36,7 @@ const Box = styled.div`
     width: 76.8rem;
   }
   ${mediaQueries.mobile} {
-    width: 34rem;
+    width: 36rem;
   }
 `;
 
@@ -69,6 +69,6 @@ const NoResultText = styled.p<{ $isSidebarOpenNarrow: boolean }>`
   }
 
   ${mediaQueries.mobile} {
-    width: 34rem;
+    width: 36rem;
   }
 `;
