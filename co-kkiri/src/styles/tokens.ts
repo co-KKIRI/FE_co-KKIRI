@@ -1,7 +1,6 @@
 export const breakpoints = {
-  mobile: 360,
-  tablet: 768,
-  desktop: 1200,
+  mobile: 767,
+  tablet: 1199,
 };
 
 const DESIGN_TOKEN = {
@@ -47,9 +46,8 @@ const DESIGN_TOKEN = {
     desktop: "4rem",
   },
   mediaQueries: {
-    mobile: `@media (min-width: ${breakpoints.mobile}px) and (max-width: ${breakpoints.tablet}px)`,
-    tablet: `@media (min-width: ${breakpoints.tablet}px) and (max-width: ${breakpoints.desktop}px)`,
-    desktop: `@media (min-width: ${breakpoints.desktop}px)`,
+    mobile: `@media (max-width: ${breakpoints.mobile}px)`,
+    tablet: `@media (max-width: ${breakpoints.tablet}px)`,
   },
   zIndex: {
     dropdown: "z-index: 20;",
