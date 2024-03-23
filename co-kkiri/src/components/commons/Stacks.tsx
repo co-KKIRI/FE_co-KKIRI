@@ -32,6 +32,8 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
         limit = isSidebarOpenNarrow ? desktopNarrow : desktopWide;
       }
       setDisplayPositions(stacks.slice(0, limit));
+    } else if (variant === "profile") {
+      setDisplayPositions(stacks.slice(0, 3));
     }
   }, [variant, stacks, windowWidth, isSidebarOpenNarrow]);
 
