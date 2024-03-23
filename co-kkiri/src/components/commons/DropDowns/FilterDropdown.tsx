@@ -31,7 +31,7 @@ export default function FilterDropdown({ menuInfoType, onSelectFilter }: FilterD
 
   return (
     <Container ref={ref}>
-      <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} />
+      <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} isOpen={isOpen} />
       <DropMenu
         $borderType="round"
         isOpen={isOpen}

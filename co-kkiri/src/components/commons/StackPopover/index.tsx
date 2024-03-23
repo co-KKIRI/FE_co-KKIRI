@@ -9,12 +9,15 @@ interface StacksPopoverProps {
 }
 
 export default function StacksPopover({ onStacksChange, stacks }: StacksPopoverProps) {
-  const {isOpen, openToggle} = useOpenToggle();
+  const { isOpen, openToggle, ref: stacksPopoverRef } = useOpenToggle();
+  const stacksCount = stacks.length ? stacks.length : "";
+
+  const selectOption = `기술 스택 ${stacksCount}`;
 
   return (
-    <Container>
-      <FilterDropdown selectOption="기술 스택" isSelected={isOpen} onClick={openToggle} />
-      {isOpen && <SelectLayout stacks={stacks} onStacksChange={onStacksChange} />}
+    <Container ref={stacksPopoverRef}>
+      <FilterDropdown selectOption={selectOption} isSelected={!!stacksCount} onClick={openToggle} isOpen={isOpen} />
+      {isOpen && <SelectLayout stacks={stacks} onStacksChange={onStacksChange} isDeletedChip />}
     </Container>
   );
 }
