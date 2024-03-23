@@ -23,12 +23,11 @@ export default function Stacks({ stacks, variant = "profile" }: StacksProps) {
 
   useLayoutEffect(() => {
     if (variant === "card") {
-      const { desktop } = breakpoints;
       const { mobile, desktopNarrow, desktopWide } = STACK_CHIP_LIMIT;
 
       let limit = mobile;
 
-      if (windowWidth >= desktop) {
+      if (windowWidth >= 1200) {
         limit = isSidebarOpenNarrow ? desktopNarrow : desktopWide;
       }
       setDisplayPositions(stacks.slice(0, limit));

@@ -6,7 +6,6 @@ import styled from "styled-components";
 import PositionChip from "./Chips/PositionChip";
 import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
-import { breakpoints } from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
 import { POSITION_CHIP_LIMIT } from "@/constants/cardChipLimits";
 
@@ -23,16 +22,15 @@ export default function Positions({ positions, variant = "profile", page = "home
 
   useLayoutEffect(() => {
     if (variant === "card") {
-      const { tablet, desktop } = breakpoints;
       const pageLimits = POSITION_CHIP_LIMIT[page];
 
       let limit = pageLimits.mobile;
 
-      if (windowWidth >= tablet) {
+      if (windowWidth >= 768) {
         limit = pageLimits.tablet;
       }
 
-      if (windowWidth >= desktop) {
+      if (windowWidth >= 1200) {
         limit = isSidebarOpenNarrow ? pageLimits.desktopNarrow : pageLimits.desktopWide;
       }
 
