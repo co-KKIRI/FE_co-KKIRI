@@ -34,7 +34,6 @@ export default function SearchInput({ placeholder }: SearchInputProps) {
 
 const {
   color,
-  typography: { font14Medium },
   mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
@@ -51,7 +50,9 @@ const Container = styled.div`
 `;
 
 const StyledInput = styled.input`
-  ${font14Medium}
+  font-size: 1.4rem;
+  line-height: normal;
+  font-weight: 500;
   background-color: ${color.gray[3]};
   border-radius: 9.8rem;
   border: none;
