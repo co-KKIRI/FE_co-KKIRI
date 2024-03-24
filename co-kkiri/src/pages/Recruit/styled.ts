@@ -1,7 +1,7 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
-const { typography, color, mediaQueries } = DESIGN_TOKEN;
+const { typography, color } = DESIGN_TOKEN;
 
 export const Container = styled.div`
   display: flex;

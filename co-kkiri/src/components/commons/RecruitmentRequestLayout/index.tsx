@@ -80,7 +80,7 @@ export default function RecruitmentRequestLayout({
     control,
     formState: { errors },
   } = useForm();
-
+  console.log(selectedOptions);
   return (
     <S.SelectContainer onSubmit={handleSubmit((selectedOptions: RecruitApiRequestDto) => onSubmit(selectedOptions))}>
       <h1>스터디/프로젝트 정보 입력</h1>
@@ -113,7 +113,7 @@ export default function RecruitmentRequestLayout({
         </S.RadioButtonBox>
         <S.SelectBox>
           <h3>
-            모집 마감 기간 <span>*</span>
+            모집 마감 기간<span>*</span>
           </h3>
           <Controller
             name="recruitEndAt"
@@ -163,7 +163,7 @@ export default function RecruitmentRequestLayout({
         </S.SelectBox>
         <S.SelectBox>
           <h3>
-            진행 방식 <span>*</span>
+            진행 방식<span>*</span>
           </h3>
           <Controller
             name="progressWay"

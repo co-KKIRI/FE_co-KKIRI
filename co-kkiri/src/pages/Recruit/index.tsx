@@ -14,7 +14,6 @@ export default function Recruit() {
   const uploadPost = useMutation<ApiRequestResponse<PostDetailApiResponseDto>, Error, RecruitApiRequestDto>({
     mutationFn: (selectedOptions) => createPost(selectedOptions),
     onSuccess: (postId) => {
-      //업로드 성공하면 해당 모집글 상세페이지로 가야하는데 postId를 어떻게 받아가죠..?(url? 응답?)
       queryClient.invalidateQueries({ queryKey: ["posts"] }); // 키값은 나중에 물어보기
       navigate(`/post/${postId}`);
     },
@@ -22,7 +21,7 @@ export default function Recruit() {
 
   const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {
     if (
-      selectedOptions.recruitEndAt !== null &&
+      selectedOptions.recruitEndAt !== "" &&
       selectedOptions.progressWay !== null &&
       selectedOptions.positions.length > 0
     ) {
