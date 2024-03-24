@@ -22,7 +22,6 @@ export default function Scout() {
   const handlePositionChange = (position: string) => setSelectedFilter((prev) => ({ ...prev, position }));
 
   const handleStacksChange = (stack: string[]) => setSelectedFilter((prev) => ({ ...prev, stack }));
-  console.log(selectedFilter);
 
   return (
     <Container>
