@@ -41,7 +41,7 @@ export const CARD_CORNER_BUTTON: CardCornerButton = {
   },
   view: {
     text: "리뷰 보기",
-    icon: () => ICONS.pen,
+    icon: () => ICONS.arrowRightGray,
     width: 14,
     onClick: () => {},
   },

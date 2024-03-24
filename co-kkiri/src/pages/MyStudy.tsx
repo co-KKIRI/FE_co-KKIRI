@@ -9,33 +9,50 @@ import Cards from "@/components/domains/studyList/Cards";
 import { categoryStudyStatusFilter } from "@/constants/categories";
 import { CategoryStudyStatus } from "@/types/categoryTypes";
 import { getFilterKey } from "@/utils/objectUtils";
-import { StudyListData } from "@/lib/mock/studyList";
 import Button from "@/components/commons/Button";
 import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
 
+//임시
+import { myRecruitingList } from "@/lib/mock/myStudy/recruiting";
+import { myOnGoingList } from "@/lib/mock/myStudy/onGoing";
+import { myCompletedList } from "@/lib/mock/myStudy/completed";
+import { PostInfo, myAppliedList } from "@/lib/mock/myStudy/applied";
+import useMyStudyStore from "@/stores/myStudyStore";
+
 export default function MyStudy() {
-  const [currentCategory, setCurrentCategory] = useState<CategoryStudyStatus>("APPLIED");
-  const [cards, setCards] = useState([]); // type 넣기
+  const { currentCategory, setCurrentCategory } = useMyStudyStore();
+  const [cards, setCards] = useState<PostInfo[]>([]);
 
   const handleCategoryChange = (category: string) => {
     const filterKey = getFilterKey<CategoryStudyStatus>(categoryStudyStatusFilter, category);
     setCurrentCategory(filterKey as CategoryStudyStatus);
   };
 
-  // useEffect(() => {
-  //   // API 요청 함수
-  //   const fetchCards = async () => {
-  //     try {
-  //       const response = await fetch(`YOUR_API_ENDPOINT?status=${currentCategory}`);
-  //       const data = await response.json();
-  //       setCards(data);
-  //     } catch (error) {
-  //       console.error("API 요청 중 오류 발생:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    // // API 요청 함수
+    // const fetchCards = async () => {
+    //   try {
+    //     const response = await fetch(`YOUR_API_ENDPOINT?status=${currentCategory}`);
+    //     const data = await response.json();
+    //     setCards(data);
+    //   } catch (error) {
+    //     console.error("API 요청 중 오류 발생:", error);
+    //   }
+    // };
 
-  //   fetchCards();
-  // }, [currentCategory]);
+    // fetchCards();
+
+    // 임시
+    if (currentCategory === "APPLIED") {
+      setCards(myAppliedList);
+    } else if (currentCategory === "RECRUITING") {
+      setCards(myRecruitingList);
+    } else if (currentCategory === "ON_GOING") {
+      setCards(myOnGoingList);
+    } else if (currentCategory === "COMPLETED") {
+      setCards(myCompletedList);
+    }
+  }, [currentCategory]);
 
   return (
     <Container>
@@ -46,7 +63,7 @@ export default function MyStudy() {
           filters={Object.values(categoryStudyStatusFilter)}
           onFilterClick={handleCategoryChange}
         />
-        <Cards data={StudyListData.result.studyList} />
+        <Cards data={cards} />
         <ButtonSection variant="ghost">더보기</ButtonSection> {/*무한스크롤 로딩 시 disabled*/}
         <ScrollToTop />
       </Box>
