@@ -31,15 +31,15 @@ export default function RecruitmentRequestLayout({
   const initialOption: RecruitApiRequestDto = {
     type: "STUDY",
     recruitEndAt: "",
-    progressPeriod: "",
+    progressPeriod: null,
     capacity: null,
-    contactWay: "",
-    progressWay: "",
-    stacks: [],
+    contactWay: null,
+    progressWay: null,
+    stacks: null,
     positions: [],
-    title: "",
-    content: "",
-    link: "",
+    title: null,
+    content: null,
+    link: null,
   };
 
   //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
@@ -209,7 +209,7 @@ export default function RecruitmentRequestLayout({
           {selectedOption.contactWay !== "기타" && (
             <>
               <Controller
-                name={selectedOption.contactWay}
+                name={selectedOption.contactWay || ""}
                 control={control}
                 rules={{
                   pattern: {
@@ -225,7 +225,7 @@ export default function RecruitmentRequestLayout({
                 }}
                 render={({ field }) => (
                   <LinkInput
-                    selectedOption={selectedOption.contactWay}
+                    selectedOption={selectedOption.contactWay || ""}
                     onChange={(link) => {
                       setSelectedOption((prevOption) => ({ ...prevOption, link: link }));
                       field.onChange(link);
@@ -233,17 +233,19 @@ export default function RecruitmentRequestLayout({
                   />
                 )}
               />
-              {errors[selectedOption.contactWay] && <p>{String(errors[selectedOption.contactWay]?.message)}</p>}
+              {selectedOption.contactWay !== null && errors[selectedOption.contactWay] && (
+                <p>{String(errors[selectedOption.contactWay]?.message)}</p>
+              )}
             </>
           )}
         </S.SelectBox>
       </S.GirdContainer>
       <S.SelectChipBox>
         <h3>기술 스택</h3>
-        <MultiselectDropdown
+        {/* <MultiselectDropdown
           selectedOptions={selectedOption.stacks}
           onSelectChange={(stack) => handleSelectStack(stack)}
-        />
+        /> */}
       </S.SelectChipBox>
       <S.SelectChipBox>
         <h3>

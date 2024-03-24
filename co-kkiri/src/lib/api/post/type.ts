@@ -2,15 +2,15 @@
 export type RecruitApiRequestDto = {
   type: "STUDY" | "PROJECT";
   recruitEndAt: string;
-  progressPeriod: string;
+  progressPeriod: string | null;
   capacity: number | null;
-  contactWay: string;
-  progressWay: string;
-  stacks: string[];
+  contactWay: string | null;
+  progressWay: string | null;
+  stacks: string[] | null;
   positions: string[];
-  title: string;
-  content: string;
-  link: string;
+  title: string | null;
+  content: string | null;
+  link: string | null;
 };
 
 type PostInfo = {
@@ -60,6 +60,7 @@ export type PostDetailApiResponseDto = {
   positions: string[];
   stacks: string[];
   commentsNum: number;
+  link: string;
 };
 /**스터디 지원 */
 export type ApplyPostApiRequestDto = {
