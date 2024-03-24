@@ -34,7 +34,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "안드로이드",
     career: 2,
     stack: ["Swift", "Kotlin"],
-    score: 50,
+    score: 0,
   },
   {
     memberId: 4,
@@ -52,7 +52,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "백엔드",
     career: 0,
     stack: ["Python", "Django", "PostgreSQL"],
-    score: 50,
+    score: 5,
   },
   {
     memberId: 6,
@@ -61,7 +61,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "디자이너",
     career: 1,
     stack: ["TensorFlow", "PyTorch"],
-    score: 50,
+    score: 20,
   },
   {
     memberId: 7,
@@ -79,7 +79,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "IOS",
     career: 4,
     stack: ["React Native", "Java"],
-    score: 50,
+    score: 80,
   },
   {
     memberId: 9,
@@ -88,7 +88,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "백엔드",
     career: 5,
     stack: ["Spring", "Java", "MySQL"],
-    score: 50,
+    score: 40,
   },
   {
     memberId: 10,
@@ -106,7 +106,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "프론트엔드",
     career: 3,
     stack: ["React Query", "Redux", "TypeScript"],
-    score: 50,
+    score: 60,
   },
   {
     memberId: 12,
@@ -115,7 +115,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "백엔드",
     career: 1,
     stack: ["Node.js", "Redis", "Docker"],
-    score: 50,
+    score: 10,
   },
   {
     memberId: 13,
@@ -124,7 +124,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "IOS",
     career: 1,
     stack: ["Flutter", "Dart"],
-    score: 50,
+    score: 20,
   },
   {
     memberId: 14,
@@ -133,7 +133,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "프론트엔드",
     career: 2,
     stack: ["React", "GraphQL", "Apollo"],
-    score: 50,
+    score: 30,
   },
   {
     memberId: 15,
@@ -142,7 +142,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "백엔드",
     career: 4,
     stack: ["Django", "Python", "GraphQL"],
-    score: 50,
+    score: 70,
   },
   {
     memberId: 16,
@@ -151,6 +151,6 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     position: "데브옵스",
     career: 5,
     stack: ["AWS", "Docker", "Kubernetes"],
-    score: 50,
+    score: 20,
   },
 ];
