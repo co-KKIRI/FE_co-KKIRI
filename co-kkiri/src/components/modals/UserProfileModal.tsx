@@ -9,13 +9,27 @@ import DefaultCollapseSection from "../commons/CollapseSection";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import EvaluationChip from "../commons/Chips/EvaluationChip";
 import { isEmptyValue } from "@/utils/validationUtils";
+import { useQuery } from "@tanstack/react-query";
 
 interface UserProfileModalProps {
   userId: number;
 }
 
 export default function UserProfileModal({ userId }: UserProfileModalProps) {
-  const { memberProfile } = getUserFromMock(userId);
+  const { data: memberProfile } = useQuery({
+    queryKey: ["memberProfile", userId],
+    initialData: {
+      memberId: 1,
+      nickname: "김개발",
+      career: null,
+      position: null,
+      stacks: [],
+      score: 40,
+      link: null,
+      introduce: null,
+      tags: {},
+    },
+  });
   const { userId: myId } = useUserInfoStore();
   const { isOpen, setIsOpen } = useOpenToggle();
   return (
@@ -98,47 +112,3 @@ const Link = styled.a`
   color: ${color.black[3]};
   ${typography.font12Medium}
 `;
-
-//TEST용 함수입니다. 추후 삭제해야 합니다.
-function getUserFromMock(userId: number) {
-  /*//TODO: 추후 DTO 맞춰야 함 MemberProfileApiResponseDto**/
-  // return {
-  //   memberProfile: {
-  //     memberId: 1,
-  //     nickname: "김개발",
-  //     profileImgUrl:
-  //       "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb7cXYS%2FbtsF2PRjBBM%2FFm7rMvVakPKHChQKjiMqP1%2Fimg.png",
-  //     career: 3,
-  //     position: "프론트엔드",
-  //     stacks: ["React", "TypeScript"],
-  //     score: 40,
-  //     link: "http://dev.co-kkiri.com",
-  //     introduce: "안녕하세요. 프론트엔드 개발자 코끼리입니다. 잘 부탁드립니다.",
-  //     // {<Tag명>:<이Tag를 받은 개수>, <Tag명>:<이Tag를 받은 개수>, …}
-  //     tags: {
-  //       // "시간 약속을 잘 지켜요 ⏰": 10,
-  //       // "문서정리를 잘해주세요 📑": 5,
-  //       // "코드리뷰를 잘해요 📝": 3,
-  //       // "팀원들과 소통을 잘해요 🗣": 2,
-  //       // "많은 정보 공유 감사합니다 🔗": 1,
-  //       // "리더십이 좋아요 😎": 1,
-  //       // "분위기 메이커 💃🕺": 1,
-  //       // "GPT인 줄 알았어요! 🤖": 1,
-  //     },
-  //   },
-  // };
-
-  return {
-    memberProfile: {
-      memberId: 1,
-      nickname: "김개발",
-      career: null,
-      position: null,
-      stacks: [],
-      score: 40,
-      link: null,
-      introduce: null,
-      tags: {},
-    },
-  };
-}
