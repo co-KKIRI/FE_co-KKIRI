@@ -21,9 +21,9 @@ const formats = [
 ];
 
 export default function QuillEditor({
-  setSelectedOption,
+  setSelectedOptions,
 }: {
-  setSelectedOption: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }) {
   const modules = useMemo(() => {
     return {
@@ -34,14 +34,14 @@ export default function QuillEditor({
   }, []);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       title: e.target.value,
     }));
   };
 
   const handleContentChange = (content: string) => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       content: content,
     }));

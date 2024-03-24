@@ -21,7 +21,16 @@ export default function Recruit() {
   });
 
   const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {
-    uploadPost.mutate(selectedOptions);
+    if (
+      selectedOptions.recruitEndAt !== null &&
+      selectedOptions.progressWay !== null &&
+      selectedOptions.positions.length > 0
+    ) {
+      uploadPost.mutate(selectedOptions);
+    } else {
+      alert("필수값을 입력해주세요");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (

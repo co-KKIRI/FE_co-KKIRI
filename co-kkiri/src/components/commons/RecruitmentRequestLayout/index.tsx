@@ -32,7 +32,7 @@ export default function RecruitmentRequestLayout({
     type: "STUDY",
     recruitEndAt: "",
     progressPeriod: null,
-    capacity: null,
+    capacity: 10,
     contactWay: null,
     progressWay: null,
     stacks: null,
@@ -43,7 +43,7 @@ export default function RecruitmentRequestLayout({
   };
 
   //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
-  const [selectedOption, setSelectedOption] = useState<RecruitApiRequestDto>(
+  const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>(
     defaultOption ? defaultOption : initialOption,
   );
 
@@ -53,21 +53,21 @@ export default function RecruitmentRequestLayout({
   };
 
   const handleSelectType = (type: "STUDY" | "PROJECT"): void => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       type: type,
     }));
   };
 
   const handleSelectStack = (stacks: string[]): void => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       stacks: stacks,
     }));
   };
 
   const handleSelectPosition = (position: string): void => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       positions: prevOptions.positions.includes(position)
         ? prevOptions.positions.filter((prevPosition) => prevPosition !== position)
@@ -76,12 +76,13 @@ export default function RecruitmentRequestLayout({
   };
 
   const {
+    handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
   return (
-    <S.SelectContainer>
+    <S.SelectContainer onSubmit={handleSubmit((selectedOptions: RecruitApiRequestDto) => onSubmit(selectedOptions))}>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
@@ -89,38 +90,26 @@ export default function RecruitmentRequestLayout({
             모집 구분 <span>*</span>
           </h3>
           <span>
-            <Controller
-              name="type"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <>
-                  <S.RadioButtonWarper>
-                    <RadioButton
-                      defaultChecked
-                      value="STUDY"
-                      onClick={() => {
-                        handleSelectType("STUDY");
-                        field.onChange("STUDY");
-                      }}
-                    />
-                    <span>스터디</span>
-                  </S.RadioButtonWarper>
-                  <S.RadioButtonWarper>
-                    <RadioButton
-                      value="PROJECT"
-                      onClick={() => {
-                        handleSelectType("PROJECT");
-                        field.onChange("PROJECT");
-                      }}
-                    />
-                    <span>프로젝트</span>
-                  </S.RadioButtonWarper>
-                </>
-              )}
-            />
+            <S.RadioButtonWarper>
+              <RadioButton
+                defaultChecked
+                value="STUDY"
+                onClick={() => {
+                  handleSelectType("STUDY");
+                }}
+              />
+              <span>스터디</span>
+            </S.RadioButtonWarper>
+            <S.RadioButtonWarper>
+              <RadioButton
+                value="PROJECT"
+                onClick={() => {
+                  handleSelectType("PROJECT");
+                }}
+              />
+              <span>프로젝트</span>
+            </S.RadioButtonWarper>
           </span>
-          {errors.type && <p>모집 구분을 선택해주세요.</p>}
         </S.RadioButtonBox>
         <S.SelectBox>
           <h3>
@@ -134,9 +123,9 @@ export default function RecruitmentRequestLayout({
               <>
                 <DeadlineDropdown
                   placeholder="모집 마감 기간"
-                  selectedOption={selectedOption.recruitEndAt}
+                  selectedOption={selectedOptions.recruitEndAt}
                   onSelect={(option) => {
-                    setSelectedOption((prevOptions) => ({
+                    setSelectedOptions((prevOptions) => ({
                       ...prevOptions,
                       recruitEndAt: option,
                     }));
@@ -153,9 +142,9 @@ export default function RecruitmentRequestLayout({
           <Dropdown
             placeholder={progressPeriod.defaultValue}
             options={progressPeriod.options}
-            selectedOption={selectedOption.progressPeriod}
+            selectedOption={selectedOptions.progressPeriod}
             onSelect={(option) => {
-              setSelectedOption((prevOption) => ({ ...prevOption, progressPeriod: option }));
+              setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option }));
             }}
           />
         </S.SelectBox>
@@ -164,11 +153,11 @@ export default function RecruitmentRequestLayout({
           <Dropdown
             placeholder={capacity.defaultValue}
             options={capacity.options}
-            selectedOption={findOptionByValue(capacity.values, capacity.options, selectedOption.capacity)}
+            selectedOption={findOptionByValue(capacity.values, capacity.options, selectedOptions.capacity)}
             onSelect={(option) => {
               const optionIndex = capacity.options.indexOf(option);
               const value = capacity.values[optionIndex];
-              setSelectedOption((prevOption) => ({ ...prevOption, capacity: value }));
+              setSelectedOptions((prevOption) => ({ ...prevOption, capacity: value }));
             }}
           />
         </S.SelectBox>
@@ -185,9 +174,9 @@ export default function RecruitmentRequestLayout({
                 <Dropdown
                   placeholder={progressWay.defaultValue}
                   options={progressWay.options}
-                  selectedOption={selectedOption?.progressWay}
+                  selectedOption={selectedOptions.progressWay}
                   onSelect={(option) => {
-                    setSelectedOption((prevOption) => ({ ...prevOption, progressWay: option }));
+                    setSelectedOptions((prevOption) => ({ ...prevOption, progressWay: option }));
                     field.onChange(option);
                   }}
                 />
@@ -201,40 +190,40 @@ export default function RecruitmentRequestLayout({
           <Dropdown
             placeholder={contactWay.defaultValue}
             options={contactWay.options}
-            selectedOption={selectedOption?.contactWay}
+            selectedOption={selectedOptions.contactWay}
             onSelect={(option) => {
-              setSelectedOption((prevOption) => ({ ...prevOption, contactWay: option }));
+              setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option }));
             }}
           />
-          {selectedOption.contactWay !== "기타" && (
+          {selectedOptions.contactWay !== "기타" && (
             <>
               <Controller
-                name={selectedOption.contactWay || ""}
+                name={selectedOptions.contactWay || ""}
                 control={control}
                 rules={{
                   pattern: {
                     value:
-                      selectedOption.contactWay === "이메일"
+                      selectedOptions.contactWay === "이메일"
                         ? /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
                         : /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})\/?([\w/#.-]*)*(\?[\w=&.-]*)?(#[\w-]*)?$/,
                     message:
-                      selectedOption.contactWay === "이메일"
+                      selectedOptions.contactWay === "이메일"
                         ? "올바른 이메일 형식이 아닙니다."
                         : "올바른 url 형식이 아닙니다",
                   },
                 }}
                 render={({ field }) => (
                   <LinkInput
-                    selectedOption={selectedOption.contactWay || ""}
+                    selectedOption={selectedOptions.contactWay || ""}
                     onChange={(link) => {
-                      setSelectedOption((prevOption) => ({ ...prevOption, link: link }));
+                      setSelectedOptions((prevOption) => ({ ...prevOption, link: link }));
                       field.onChange(link);
                     }}
                   />
                 )}
               />
-              {selectedOption.contactWay !== null && errors[selectedOption.contactWay] && (
-                <p>{String(errors[selectedOption.contactWay]?.message)}</p>
+              {selectedOptions.contactWay !== null && errors[selectedOptions.contactWay] && (
+                <p>{String(errors[selectedOptions.contactWay]?.message)}</p>
               )}
             </>
           )}
@@ -258,7 +247,7 @@ export default function RecruitmentRequestLayout({
           render={({ field }) => (
             <>
               <SelectPositionChipList
-                selectedPositions={selectedOption.positions}
+                selectedPositions={selectedOptions.positions}
                 onChipClick={(position) => {
                   handleSelectPosition(position);
                   field.onChange(position);
@@ -271,11 +260,15 @@ export default function RecruitmentRequestLayout({
       </S.SelectChipBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>
-        <QuillEditor setSelectedOption={setSelectedOption} />
+        <QuillEditor setSelectedOptions={setSelectedOptions} />
       </S.QuillBox>
       <S.SubmitButtonBox>
         <Button variant="primaryLight">취소하기</Button>
-        <Button variant="primary" onClick={() => onSubmit(selectedOption)}>
+        <Button
+          variant="primary"
+          onClick={() => {
+            onSubmit(selectedOptions);
+          }}>
           {buttonText}
         </Button>
       </S.SubmitButtonBox>
