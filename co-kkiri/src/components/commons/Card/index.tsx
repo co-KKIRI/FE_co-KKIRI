@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";
-import Scrap from "../Scrap";
+import CardCornerButton from "../CardCornerButton";
 import Stacks from "../Stacks";
 import Positions from "../Positions";
 import Count from "../Count";
@@ -58,7 +58,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap isScraped={isScraped} width={36} />
+            <CardCornerButton isScraped={isScraped} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -66,7 +66,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap isScraped={isScraped} width={28} />}
+            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />

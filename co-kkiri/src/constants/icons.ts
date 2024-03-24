@@ -27,6 +27,7 @@ import leaderBackground from "@/assets/icons/leader/leader_background.svg";
 import camera from "@/assets/icons/camera.svg";
 import circleArrow from "@/assets/icons/circle_arrow.svg";
 import manage from "@/assets/icons/manage.svg";
+import pen from "@/assets/icons/pen.svg";
 import { Images } from "@/types/imageTypes";
 
 export const ICONS: Images = {
@@ -142,5 +143,9 @@ export const ICONS: Images = {
   manage: {
     src: manage,
     alt: "관리 아이콘",
+  },
+  pen: {
+    src: pen,
+    alt: "리뷰 작성 아이콘",
   },
 };
