@@ -12,12 +12,12 @@ interface CollapseSectionProps {
 
 export default function CollapseSection({ title, children, isCollapsed, onClick, className }: CollapseSectionProps) {
   return (
-    <Container>
+    <Container className={className}>
       <Header onClick={onClick}>
         <Icon src={ICONS.circleArrow.src} alt={ICONS.circleArrow.alt} $isCollapsed={isCollapsed} />
         <p>{title}</p>
       </Header>
-      {!isCollapsed && <Section>{children}</Section>}
+      {!isCollapsed && <>{children}</>}
     </Container>
   );
 }
@@ -46,11 +46,6 @@ const Header = styled.div`
   :hover {
     cursor: pointer;
   }
-`;
-
-const Section = styled.div`
-  width: 100%;
-  height: fit-content;
 `;
 
 const Icon = styled.img<{ $isCollapsed: boolean }>`
