@@ -7,16 +7,16 @@ import SelectPositionChipList from "@/components/commons/SelectPositionChipList"
 import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
 import { useState } from "react";
-import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller } from "react-hook-form";
 
 interface RecruitmentRequestLayoutProps {
-  onSubmit: (data: RecruitmentRequest) => void;
+  onSubmit: (data: RecruitApiRequestDto) => void;
   buttonText: string;
-  defaultOption?: RecruitmentRequest;
+  defaultOption?: RecruitApiRequestDto;
 }
 
 export default function RecruitmentRequestLayout({
@@ -28,11 +28,11 @@ export default function RecruitmentRequestLayout({
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
 
-  const initialOption: RecruitmentRequest = {
+  const initialOption: RecruitApiRequestDto = {
     type: "STUDY",
     recruitEndAt: "",
     progressPeriod: "",
-    capacity: undefined,
+    capacity: null,
     contactWay: "",
     progressWay: "",
     stacks: [],
@@ -42,7 +42,8 @@ export default function RecruitmentRequestLayout({
     link: "",
   };
 
-  const [selectedOption, setSelectedOption] = useState<RecruitmentRequest>(
+  //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
+  const [selectedOption, setSelectedOption] = useState<RecruitApiRequestDto>(
     defaultOption ? defaultOption : initialOption,
   );
 

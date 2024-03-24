@@ -3,7 +3,7 @@ export type RecruitApiRequestDto = {
   type: "STUDY" | "PROJECT";
   recruitEndAt: string;
   progressPeriod: string;
-  capacity: number;
+  capacity: number | null;
   contactWay: string;
   progressWay: string;
   stacks: string[];

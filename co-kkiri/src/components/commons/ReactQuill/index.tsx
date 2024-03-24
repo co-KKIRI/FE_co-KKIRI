@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 
 const formats = [
   "header",
@@ -23,7 +23,7 @@ const formats = [
 export default function QuillEditor({
   setSelectedOption,
 }: {
-  setSelectedOption: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
+  setSelectedOption: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }) {
   const modules = useMemo(() => {
     return {
