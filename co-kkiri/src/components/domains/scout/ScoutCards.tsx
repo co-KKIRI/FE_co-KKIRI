@@ -10,14 +10,16 @@ interface ScoutCardsProps {
 
 export default function ScoutCards({ userProfiles }: ScoutCardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
+
   return (
     <Container>
       {userProfiles.length === 0 ? (
         <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없어요.</NoResultText>
       ) : (
         <Wrapper $isSidebarOpenNarrow={isSidebarOpenNarrow}>
-          {userProfiles?.map(({ profileImageUrl, nickname, position, career, stack: stacks, score }) => (
+          {userProfiles?.map(({ memberId, profileImageUrl, nickname, position, career, stack: stacks, score }) => (
             <UserProfileCard
+              key={memberId}
               profileImgUrl={profileImageUrl}
               nickname={nickname}
               position={position}
