@@ -16,9 +16,10 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { getCardCornerType } from "@/utils/getCardCornerType";
 import { ICONS } from "@/constants/icons";
 import { PostInfo } from "@/lib/api/post/type";
+import { Pages } from "@/types/pagesTypes";
 
 interface CardProps {
-  page?: "home" | "studyList";
+  page?: Pages;
   cardData: PostInfo;
 }
 
@@ -40,12 +41,12 @@ export default function Card({ page = "home", cardData }: CardProps) {
     commentCount,
   } = cardData;
   const isSidebarOpenNarrow = useResponsiveSidebar();
-  const cardCornerType = getCardCornerType(currentCategory, status);
+  const cardCornerType = getCardCornerType(page, currentCategory, status);
 
   return (
     <Link to={`/list/${postId}`}>
       <S.Container $page={page} $isSidebarOpenNarrow={isSidebarOpenNarrow}>
-        {page === "studyList" && (
+        {page !== "home" && (
           <S.TypeWrapper>
             <S.ProjectChip>
               <ProjectChip label={type} />
@@ -63,7 +64,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
           <S.ContentWrapper>
             <Title title={title} />
             <Positions positions={positions} variant="card" page={page} />
-            {page === "studyList" && <Stacks stacks={stacks} variant="card" />}
+            {page !== "home" && <Stacks stacks={stacks} variant="card" />}
           </S.ContentWrapper>
         </S.UpperBox>
         <S.BreakLine />

@@ -63,7 +63,7 @@ export default function MyStudy() {
           filters={Object.values(categoryStudyStatusFilter)}
           onFilterClick={handleCategoryChange}
         />
-        <Cards data={cards} />
+        <Cards data={cards} page="myStudy" />
         <ButtonSection variant="ghost">더보기</ButtonSection> {/*무한스크롤 로딩 시 disabled*/}
         <ScrollToTop />
       </Box>

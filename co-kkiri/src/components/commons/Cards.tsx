@@ -1,14 +1,16 @@
 import Card from "@/components/commons/Card";
-import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { ListApiResponseDto } from "@/lib/api/post/type";
-import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
+import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
+import { Pages } from "@/types/pagesTypes";
 
 interface CardsProps {
   data: ListApiResponseDto["postList"];
+  page?: Pages;
 }
 
-export default function Cards({ data }: CardsProps) {
+export default function Cards({ data, page = "studyList" }: CardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
 
   return (
@@ -18,7 +20,7 @@ export default function Cards({ data }: CardsProps) {
       ) : (
         <CardList $isSidebarOpenNarrow={isSidebarOpenNarrow}>
           {data.map((data) => (
-            <Card key={data.postId} page="studyList" cardData={data} />
+            <Card key={data.postId} cardData={data} page={page} />
           ))}
         </CardList>
       )}
