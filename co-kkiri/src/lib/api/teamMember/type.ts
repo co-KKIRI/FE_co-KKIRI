@@ -18,7 +18,7 @@ type PageMeta = {
 };
 
 export type TeamMemberApiResponseDto = {
-  data: PostTeamMember[];
+  postTeamMemberList: PostTeamMember[];
 };
 
 export type TeamMemberApiRequestDto = {
