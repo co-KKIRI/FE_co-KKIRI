@@ -37,10 +37,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 28.8rem;
+  width: 35rem;
 
-  ${mediaQueries.desktop} {
-    width: 35rem;
+  ${mediaQueries.tablet} {
+    width: 28.8rem;
+  }
+  ${mediaQueries.mobile} {
+    width: 28.8rem;
   }
 `;
 

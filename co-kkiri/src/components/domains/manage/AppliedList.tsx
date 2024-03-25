@@ -41,8 +41,12 @@ const Container = styled.div`
   gap: 2rem;
   width: 28.8rem;
 
-  ${mediaQueries.desktop} {
-    width: 35rem;
+  ${mediaQueries.tablet} {
+    width: 28.8rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 28.8rem;
   }
 `;
 

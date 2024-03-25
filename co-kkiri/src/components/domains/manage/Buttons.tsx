@@ -19,7 +19,7 @@ export default function Buttons({ buttonType, isLeader }: ButtonsProps) {
         (buttonInfo) =>
           buttonInfo.type === buttonType &&
           buttonInfo.isLeader === isLeader && (
-            <ButtonWrapper key={buttonInfo.label} numOfButtons={numOfButtons}>
+            <ButtonWrapper key={buttonInfo.label} $numOfButtons={numOfButtons}>
               <Button variant={buttonInfo.variant} disabled={buttonInfo.disabled} onClick={buttonInfo.onClick}>
                 {buttonInfo.label}
               </Button>
@@ -38,10 +38,14 @@ const Box = styled.div`
   gap: 1.2rem;
 `;
 
-const ButtonWrapper = styled.div<{ numOfButtons: number }>`
-  width: ${(props) => (props.numOfButtons === 1 ? "32rem" : "15.6rem")};
+const ButtonWrapper = styled.div<{ $numOfButtons: number }>`
+  width: ${({ $numOfButtons }) => ($numOfButtons === 1 ? "50rem" : "24.4rem")};
 
-  ${mediaQueries.desktop} {
-    width: ${(props) => (props.numOfButtons === 1 ? "50rem" : "24.4rem")};
+  ${mediaQueries.tablet} {
+    width: ${({ $numOfButtons }) => ($numOfButtons === 1 ? "32rem" : "15.6rem")};
+  }
+
+  ${mediaQueries.mobile} {
+    width: ${({ $numOfButtons }) => ($numOfButtons === 1 ? "32rem" : "15.6rem")};
   }
 `;

@@ -32,11 +32,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: grid;
   flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-
-  ${mediaQueries.desktop} {
-    grid-template-columns: repeat(3, 1fr);
-  }
 
   ${mediaQueries.tablet} {
     grid-template-columns: repeat(2, 1fr);

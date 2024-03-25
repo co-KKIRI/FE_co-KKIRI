@@ -64,8 +64,13 @@ const InfoWrapper = styled.div`
 const Title = styled.div`
   ${typography.font24Bold}
   color: ${color.black[2]};
-  width: 32rem;
-  ${mediaQueries.desktop} {
-    width: 50rem;
+  width: 50rem;
+
+  ${mediaQueries.tablet} {
+    width: 32rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 32rem;
   }
 `;
