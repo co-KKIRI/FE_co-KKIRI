@@ -27,7 +27,7 @@ export type MyScrap = {
   postId: number;
   type: CategoryList;
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];

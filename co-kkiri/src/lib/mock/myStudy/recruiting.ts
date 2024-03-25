@@ -5,7 +5,7 @@ type PostInfo = {
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];
@@ -22,7 +22,7 @@ export const myRecruitingList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-09-01",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "온라인",
     title: "풀스택 개발자 되기",
     positions: ["프론트엔드", "백엔드"],
@@ -37,7 +37,7 @@ export const myRecruitingList: PostInfo[] = [
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-09-15",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "오프라인",
     title: "사회적 문제 해결을 위한 앱 개발",
     positions: ["UI/UX 디자이너", "프론트엔드"],
@@ -52,7 +52,7 @@ export const myRecruitingList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-09-30",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "혼합",
     title: "컴퓨터 과학 깊게 이해하기",
     positions: ["학생", "개발자"],
@@ -67,7 +67,7 @@ export const myRecruitingList: PostInfo[] = [
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-10-10",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "온라인",
     title: "지속 가능한 환경을 위한 기술 개발",
     positions: ["백엔드", "데이터 사이언티스트"],
@@ -82,7 +82,7 @@ export const myRecruitingList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-10-25",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "오프라인",
     title: "알고리즘 마스터하기",
     positions: ["학생", "개발자"],

@@ -46,7 +46,7 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
       <ModalTextFieldDropdown name="position" control={control} $gridArea="position" />
       <ModalTextFieldDropdown name="career" control={control} $gridArea="career" />
       <ModalTextFieldInput name="link" control={control} $gridArea="link" />
-      <ModalTextFieldDropdown name="stack" control={control} $gridArea="stack" />
+      <ModalTextFieldDropdown name="stacks" control={control} $gridArea="stacks" />
       <ModalTextFieldInput name="introduce" control={control} $gridArea="introduce" />
       <SubmitButton variant="primary" $gridArea="button">
         수정하기

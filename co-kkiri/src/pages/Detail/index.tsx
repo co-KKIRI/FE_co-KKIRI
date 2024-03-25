@@ -13,7 +13,7 @@ export default function Detail() {
     <S.Container>
       <S.Box>
         <S.GoBackButton />
-        <S.ShareAndScrapButton isScrapped={detailInfo.isScrapped} />
+        <S.ShareAndScrapButton isScraped={detailInfo.isScraped} />
         <S.PostSection detailInfo={detailInfo} />
         <S.DetailCardSection cardRef={cardRef} detailInfo={detailInfo} />
         <S.CommentsSection commentsNum={detailInfo.commentsNum} />

@@ -5,7 +5,7 @@ export type PostInfo = {
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];
@@ -22,7 +22,7 @@ export const myAppliedList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-04-30",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "온라인",
     title: "리액트 스터디 모임",
     positions: ["프론트엔드"],
@@ -37,7 +37,7 @@ export const myAppliedList: PostInfo[] = [
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-05-15",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "오프라인",
     title: "모바일 앱 개발 프로젝트",
     positions: ["프론트엔드", "백엔드"],
@@ -52,7 +52,7 @@ export const myAppliedList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-05-20",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "온라인",
     title: "자바스크립트 심화 과정",
     positions: ["프론트엔드"],
@@ -67,7 +67,7 @@ export const myAppliedList: PostInfo[] = [
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-06-01",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "혼합",
     title: "웹 애플리케이션 개발",
     positions: ["프론트엔드", "백엔드", "디자이너"],
@@ -82,7 +82,7 @@ export const myAppliedList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-06-10",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "오프라인",
     title: "파이썬 기초부터 시작하기",
     positions: ["백엔드"],
@@ -97,7 +97,7 @@ export const myAppliedList: PostInfo[] = [
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-07-01",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "온라인",
     title: "인공지능 학습 플랫폼 개발",
     positions: ["백엔드", "데이터 사이언티스트"],
@@ -112,7 +112,7 @@ export const myAppliedList: PostInfo[] = [
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-07-15",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "혼합",
     title: "클라우드 인프라 구축 및 운영",
     positions: ["백엔드"],
@@ -127,7 +127,7 @@ export const myAppliedList: PostInfo[] = [
     type: "PROJECT",
     status: "DONE",
     recruitEndAt: "2024-07-30",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "오프라인",
     title: "게임 개발 프로젝트",
     positions: ["게임 디자이너", "프론트엔드"],
@@ -142,7 +142,7 @@ export const myAppliedList: PostInfo[] = [
     type: "STUDY",
     status: "PROGRESS_END",
     recruitEndAt: "2024-08-05",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "온라인",
     title: "데이터 분석 입문",
     positions: ["데이터 사이언티스트"],
@@ -157,7 +157,7 @@ export const myAppliedList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-08-20",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "혼합",
     title: "블록체인 기반 프로젝트 개발",
     positions: ["백엔드", "블록체인 엔지니어"],

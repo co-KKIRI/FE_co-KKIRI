@@ -5,7 +5,7 @@ type PostInfo = {
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];
@@ -22,7 +22,7 @@ export const myCompletedList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS_END",
     recruitEndAt: "2024-11-01",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "온라인",
     title: "심화 머신러닝 스터디",
     positions: ["데이터 사이언티스트", "머신러닝 엔지니어"],
@@ -37,7 +37,7 @@ export const myCompletedList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS_END",
     recruitEndAt: "2025-01-05",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "오프라인",
     title: "지역 사회를 위한 모바일 앱 개발",
     positions: ["안드로이드 개발자", "UI/UX 디자이너"],
@@ -52,7 +52,7 @@ export const myCompletedList: PostInfo[] = [
     type: "STUDY",
     status: "DONE",
     recruitEndAt: "2025-01-15",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "혼합",
     title: "최신 웹 기술 스터디",
     positions: ["프론트엔드 개발자", "백엔드 개발자"],
@@ -67,7 +67,7 @@ export const myCompletedList: PostInfo[] = [
     type: "PROJECT",
     status: "DONE",
     recruitEndAt: "2025-02-01",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "온라인",
     title: "재활용을 돕는 스마트 시스템 개발",
     positions: ["풀스택 개발자", "데이터 사이언티스트"],
@@ -82,7 +82,7 @@ export const myCompletedList: PostInfo[] = [
     type: "STUDY",
     status: "DONE",
     recruitEndAt: "2025-02-20",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "오프라인",
     title: "고급 알고리즘 문제 해결",
     positions: ["학생", "소프트웨어 엔지니어"],
