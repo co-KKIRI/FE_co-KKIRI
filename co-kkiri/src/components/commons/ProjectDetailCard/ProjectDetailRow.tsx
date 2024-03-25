@@ -3,6 +3,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";
 import { ContentType, RenderType } from "./types";
+import Stacks from "../Stacks";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -32,15 +33,7 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
       case "stackIcon":
         if (Array.isArray(content)) {
           //TODO: 임시, 추후 stackIcon으로 변경
-          return (
-            <div className="chip stack">
-              {content.map((item) => (
-                <div key={item}>
-                  <img src={item} />
-                </div>
-              ))}
-            </div>
-          );
+          return <Stacks stacks={content} />;
         }
     }
   }, [content, renderType]);
