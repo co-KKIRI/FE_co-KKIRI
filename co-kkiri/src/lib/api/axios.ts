@@ -20,7 +20,7 @@ export async function apiRequest<T, U>(
   data?: U,
   params?: Record<string, unknown>,
   config?: AxiosRequestConfig,
-): Promise<ApiRequestResponse<T>> {
+): Promise<T> {
   try {
     const request: AxiosRequestConfig = {
       url,
@@ -30,11 +30,10 @@ export async function apiRequest<T, U>(
       ...config,
     };
     const response: AxiosResponse<T> = await axiosInstance(request);
-    return { data: response.data, errorMessage: null };
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      const errorMessage = error.response?.data?.message;
-      return { data: null, errorMessage };
+      throw error;
     } else {
       console.error(`${method} Error : `, error);
       throw error;
