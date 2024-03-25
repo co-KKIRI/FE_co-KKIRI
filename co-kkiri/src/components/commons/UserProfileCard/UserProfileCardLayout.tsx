@@ -4,12 +4,13 @@ import DefaultUserImage from "@/components/modals/EditUserProfileModal/UserImage
 import DetailedPositionChip from "../Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import Stacks from "../Stacks";
+import { isEmptyValue } from "@/utils/validationUtils";
 
 interface UserProfileCardProps {
   profileImgUrl?: string;
   nickname: string;
-  position: string;
-  career: number;
+  position: string | null;
+  career: number | null;
   stacks: string[];
   score: number;
 }
@@ -28,13 +29,18 @@ export default function UserProfileCardLayout({
         <CircularProgressBar size={130} strokeWidth={8} percentage={score} animationDuration={1} />
         <UserImage profileImgUrl={profileImgUrl} onSelect={() => {}} />
       </ProgressBox>
-      <PositionChip label={position} />
+      <PositionChip label={isEmptyValue(position) ? EmptyMessage.position : position!} />
       <Nickname>{nickname}</Nickname>
-      <Career>경력 {career}년차</Career>
+      <Career>{isEmptyValue(position) ? EmptyMessage.career : `경력 ${career}년차`}</Career>
       <Stacks stacks={stacks} />
     </Container>
   );
 }
+
+const EmptyMessage = {
+  career: "경력을 아직 작성하지 않았어요!",
+  position: "포지션",
+};
 
 const { color, typography } = DESIGN_TOKEN;
 

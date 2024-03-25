@@ -26,6 +26,7 @@ import reject from "@/assets/icons/reject.svg";
 import leaderIcon from "@/assets/icons/leader/leader.svg";
 import leaderBackground from "@/assets/icons/leader/leader_background.svg";
 import camera from "@/assets/icons/camera.svg";
+import circleArrow from "@/assets/icons/circle_arrow.svg";
 
 export const ICONS: Images = {
   arrowRight: {
@@ -42,6 +43,10 @@ export const ICONS: Images = {
   },
   category: {
     src: category,
+    alt: "메뉴 펼치기",
+  },
+  circleArrow:{
+    src: circleArrow,
     alt: "메뉴 펼치기",
   },
   close: {

@@ -1,5 +1,5 @@
 import { HexColor } from "@/types/styledUtilTypes";
-import { isValidHexColor } from "@/utils/styleUtils";
+import { isValidHexColor } from "@/utils/validationUtils";
 import { useId } from "react";
 import styled from "styled-components";
 
