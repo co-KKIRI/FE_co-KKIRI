@@ -57,8 +57,8 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
         <ProjectChip label={ProjectCategory} />
       </Box>
       <ProjectDetailTable>
-        {Object.values(projectDetailConfig).map((value, index) => {
-          return <ProjectDetailRow key={index} {...value} />;
+        {Object.values(projectDetailConfig).map((value) => {
+          return <ProjectDetailRow key={value.label} {...value} />;
         })}
       </ProjectDetailTable>
     </Container>
