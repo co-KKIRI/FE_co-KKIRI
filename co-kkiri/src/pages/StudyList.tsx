@@ -4,7 +4,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import FilterList from "@/components/commons/FilterList";
 import SearchInput from "@/components/commons/SearchInput";
 import Filters from "@/components/domains/studyList/Filters";
-import Cards from "@/components/domains/studyList/Cards";
+import Cards from "@/components/commons/Cards";
 import Pagination from "@/components/commons/Pagination_test/Pagination";
 import CreatePost from "@/components/commons/FloatingButton/CreatePost";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
