@@ -20,7 +20,7 @@ export default function Edit() {
   });
 
   // useMutation을 사용하여 데이터 수정하기
-  const editPost = useMutation<ApiRequestResponse<PostDetailApiResponseDto>, Error, RecruitApiRequestDto>({
+  const editPost = useMutation<{ result: { postId: number } }, Error, RecruitApiRequestDto>({
     mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+postId!, selectedOptions),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] });

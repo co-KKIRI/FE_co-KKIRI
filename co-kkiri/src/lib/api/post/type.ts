@@ -9,7 +9,7 @@ export type RecruitApiRequestDto = {
   capacity: number | null;
   contactWay: string | null;
   progressWay: string | null;
-  stacks: string[] | null;
+  stacks: string[];
   positions: string[];
   title: string | null;
   content: string | null;

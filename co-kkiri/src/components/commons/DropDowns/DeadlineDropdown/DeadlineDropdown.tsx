@@ -17,7 +17,8 @@ export default function DeadlineDropdown({ placeholder, selectedOption, onSelect
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
   const handleSelectDate = (date: Date | undefined) => {
-    date ? onSelect(format(date, "yyyy.MM.dd")) : onSelect("");
+    const formattedDate = date ? format(date, "yyyy-MM-dd 23:59:59") : "";
+    onSelect(formattedDate);
   };
 
   return (
@@ -30,7 +31,12 @@ export default function DeadlineDropdown({ placeholder, selectedOption, onSelect
       />
       {isOpen && (
         <CalendarWrapper>
-          <Calendar mode="single" selected={new Date(selectedOption)} onSelect={handleSelectDate} initialFocus />
+          <Calendar
+            mode="single"
+            selected={selectedOption ? new Date(selectedOption) : undefined}
+            onSelect={handleSelectDate}
+            initialFocus
+          />
         </CalendarWrapper>
       )}
     </Container>

@@ -11,14 +11,13 @@ export default function Recruit() {
   const navigate = useNavigate();
 
   // 포스트 업로드하기
-  const uploadPost = useMutation<ApiRequestResponse<PostDetailApiResponseDto>, Error, RecruitApiRequestDto>({
-    mutationFn: (selectedOptions) => createPost(selectedOptions),
-    onSuccess: (postId) => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] }); // 키값은 나중에 물어보기
-      navigate(`/post/${postId}`);
+  const uploadPost = useMutation<{ result: { postId: number } }, Error, RecruitApiRequestDto>({
+    mutationFn: (selectedOptions: RecruitApiRequestDto) => createPost(selectedOptions),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      navigate(`/post/${data.result.postId}`);
     },
   });
-
   const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {
     if (
       selectedOptions.recruitEndAt !== "" &&
@@ -29,6 +28,7 @@ export default function Recruit() {
     } else {
       alert("필수값을 입력해주세요");
       window.scrollTo({ top: 0, behavior: "smooth" });
+      console.log(selectedOptions, "요청안돼");
     }
   };
 

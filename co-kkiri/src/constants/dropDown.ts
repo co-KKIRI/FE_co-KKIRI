@@ -41,7 +41,7 @@ export const DROPDOWN_INFO = {
     capacity: {
       defaultValue: "모집 인원",
       options: ["인원 미정", "1명", "2명", "3명", "4명", "5명", "6명", "7명", "8명", "9명", "10명 이상"],
-      values: [null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 999],
+      values: [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 999],
     },
     contactWay: {
       defaultValue: "연락 방식",

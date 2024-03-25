@@ -166,6 +166,23 @@ export const QuillBox = styled.div`
   }
 `;
 
+export const TitleInput = styled.input`
+  height: 4.8rem;
+  border: 0.1rem solid ${color.gray[2]};
+  border-radius: 0.5rem;
+  padding: 0 1.885rem;
+  margin-bottom: 1.2rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    ${typography.font16Semibold};
+    color: ${color.gray[1]};
+  }
+`;
+
 export const SubmitButtonBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 15.6rem);
