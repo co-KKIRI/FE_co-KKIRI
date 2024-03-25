@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { LinkProps as RouterLinkProps, Link as RouterLink } from "react-router-dom";
 import { Image } from "@/types/imageTypes";
+import DESIGN_TOKEN from "@/styles/tokens";
 
 export interface LinkProps extends RouterLinkProps {
   label?: string;
@@ -31,6 +32,8 @@ export default function Link({ label, icon, linkType, className, to, ...rest }: 
   );
 }
 
+const { color } = DESIGN_TOKEN;
+
 const Wrapper = styled.p`
   display: flex;
   align-items: center;
@@ -40,4 +43,9 @@ const Wrapper = styled.p`
     width: 1.8rem;
     height: 1.8rem;
   }
+
+  &:hover {
+    color: ${color.primary[1]};
+  }
+
 `;
