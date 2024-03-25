@@ -65,8 +65,6 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
   );
 }
 
-// 어떤 값을 key 값으로 써야할 지 잘 모르겟어서 index로 처리해놨습니다.
-
 const { color, boxShadow, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div<{ type?: string }>`
