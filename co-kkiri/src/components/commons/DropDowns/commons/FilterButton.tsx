@@ -6,19 +6,20 @@ import { ICONS } from "@/constants/icons";
 interface FilterButtonProps {
   selectOption: string;
   isSelected: boolean;
+  isOpen?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const { popover, popoverSelected } = ICONS;
 
-export default function FilterButton({ selectOption, onClick, isSelected }: FilterButtonProps) {
+export default function FilterButton({ selectOption, onClick, isSelected, isOpen }: FilterButtonProps) {
   return (
     <Container $isSelected={isSelected} onClick={onClick}>
       {selectOption}
       {isSelected ? (
-        <Arrow $isSelected src={popoverSelected.src} alt={popoverSelected.alt} />
+        <Arrow $isOpen={isOpen} src={popoverSelected.src} alt={popoverSelected.alt} />
       ) : (
-        <Arrow src={popover.src} alt={popover.alt} />
+        <Arrow $isOpen={isOpen} src={popover.src} alt={popover.alt} />
       )}
     </Container>
   );
@@ -49,12 +50,12 @@ const Container = styled.button<Container>`
 `;
 
 interface Arrow {
-  $isSelected?: boolean;
+  $isOpen?: boolean;
 }
 
 const Arrow = styled.img<Arrow>`
   width: 1.2rem;
   height: 1.2rem;
 
-  ${({ $isSelected }) => $isSelected && `transform: rotate(180deg);`}
+  ${({ $isOpen }) => $isOpen && `transform: rotate(180deg);`}
 `;
