@@ -54,8 +54,6 @@ export default function UserProfileModal({ userId }: UserProfileModalProps) {
 }
 
 const emptyMessages = {
-  link: "링크 없음",
-  introduce: "한줄소개를 아직 작성하지 않았어요!",
   tags: "아직 받은 태그가 없어요.",
 };
 

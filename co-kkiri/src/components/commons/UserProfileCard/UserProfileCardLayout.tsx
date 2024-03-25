@@ -16,9 +16,9 @@ interface UserProfileCardProps {
   career: number | null;
   stacks: string[];
   score: number;
-  introduce: string | null;
-  link: string | null;
-  cardType?: "mypage";
+  introduce?: string | null;
+  link?: string | null;
+  cardType?: "mypage" | "scout";
 }
 
 export default function UserProfileCardLayout({
@@ -49,19 +49,21 @@ export default function UserProfileCardLayout({
         <Career>{isEmptyValue(position) ? emptyMessages.career : `경력 ${career}년차`}</Career>
         <Stacks stacks={stacks} />
       </InfoBox>
-      <Box>
-        <Introduce>{isEmptyValue(introduce) ? emptyMessages.introduce : introduce}</Introduce>
-        <Link href={link || ""} target="_blank" rel="noopener noreferrer">
-          <p>{isEmptyValue(link) ? emptyMessages.link : link}</p>
-        </Link>
-      </Box>
-      <ButtonBox>
-        {cardType && (
+      {!(cardType === "scout") && (
+        <Box>
+          <Introduce>{isEmptyValue(introduce) ? emptyMessages.introduce : introduce}</Introduce>
+          <Link href={link || ""} target="_blank" rel="noopener noreferrer">
+            <p>{isEmptyValue(link) ? emptyMessages.link : link}</p>
+          </Link>
+        </Box>
+      )}
+      {cardType === "mypage" && (
+        <ButtonBox>
           <Button variant="ghost" onClick={handleEditModalOpen}>
             수정 하기
           </Button>
-        )}
-      </ButtonBox>
+        </ButtonBox>
+      )}
       {isEditModalOpen && <EditUserProfileModal onClose={handleEditModalOpen} />}
     </Container>
   );
