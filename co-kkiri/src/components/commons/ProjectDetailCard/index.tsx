@@ -32,7 +32,7 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
     contactWay: {
       label: "연락 방식",
       content: projectDetailContents.contactWay,
-      renderType: "text",
+      renderType: "link",
     },
     capacity: {
       label: "모집 인원",

@@ -1,10 +1,11 @@
-import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";
 import { ContentType, RenderType } from "./types";
 import DefaultStacks from "../Stacks";
 import DefaultPositions from "../Positions";
+import Link from "../Link";
+import { ICONS } from "@/constants/icons";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -13,13 +14,19 @@ export interface ProjectDetailRowProps {
 }
 
 export default function ProjectDetailRow({ label, content, renderType }: ProjectDetailRowProps) {
-  //Chip이랑 Icon은 배열이어야만 정상적으로 render함
+  //positions이랑 stacks은 배열이어야만 정상적으로 render함
   const renderContent = useCallback(() => {
     switch (renderType) {
       case "text":
-        return <p>{content}</p>;
+        if (typeof content === "string") {
+          return <p>{content}</p>;
+        }
+        break;
       case "capacity":
-        return <p>{content}명</p>;
+        if (typeof content === "number") {
+          return <p>{content}명</p>;
+        }
+        break;
       case "positions":
         if (Array.isArray(content)) {
           return <Positions positions={content} />;
@@ -28,6 +35,12 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
       case "stacks":
         if (Array.isArray(content)) {
           return <Stacks stacks={content} />;
+        }
+        break;
+      case "link":
+        // 타입 가드를 사용하여 Link 컴포넌트임을 보장
+        if (typeof content === "object" && "to" in content) {
+          return <Link {...content} icon={ICONS.link} />;
         }
     }
   }, [content, renderType]);
@@ -52,7 +65,7 @@ const Container = styled.div`
 
   ${typography.font16Semibold}
 
-  & > .text {
+  p {
     color: ${color.black[1]};
   }
 `;
@@ -66,6 +79,7 @@ const Positions = styled(DefaultPositions)`
   flex-wrap: wrap;
   flex-shrink: 1;
 `;
+
 const Stacks = styled(DefaultStacks)`
   flex-wrap: wrap;
   flex-shrink: 1;
