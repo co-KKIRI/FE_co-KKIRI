@@ -9,6 +9,8 @@ interface UserProfileCardProps {
   career: number;
   stacks: string[];
   score: number;
+  introduce: string;
+  link: string;
 }
 
 export default function UserProfileCard(props: UserProfileCardProps) {

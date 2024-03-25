@@ -35,14 +35,6 @@ export default function UserProfileModal({ userId }: UserProfileModalProps) {
   return (
     <ModalLayout desktopWidth={430} tabletWidth={430} mobileWidth={320} onClose={() => {}}>
       <UserProfileCardLayout {...memberProfile} />
-      <Box>
-        <Introduce>
-          {isEmptyValue(memberProfile.introduce) ? emptyMessages.introduce : memberProfile.introduce}
-        </Introduce>
-        <Link href={memberProfile.link || ""} target="_blank" rel="noopener noreferrer">
-          <p>{isEmptyValue(memberProfile.link) ? emptyMessages.link : memberProfile.link}</p>
-        </Link>
-      </Box>
       <Divider />
       <CollapseSection title="유저가 받은 태그" isCollapsed={isOpen} onClick={() => setIsOpen(!isOpen)}>
         {isEmptyValue(memberProfile.tags) ? (

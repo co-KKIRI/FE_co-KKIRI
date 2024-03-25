@@ -13,6 +13,8 @@ interface UserProfileCardProps {
   career: number | null;
   stacks: string[];
   score: number;
+  introduce: string | null;
+  link: string | null;
 }
 
 export default function UserProfileCardLayout({
@@ -22,24 +24,37 @@ export default function UserProfileCardLayout({
   career,
   stacks,
   score,
+  introduce,
+  link,
 }: UserProfileCardProps) {
   return (
     <Container>
-      <ProgressBox>
-        <CircularProgressBar size={130} strokeWidth={8} percentage={score} animationDuration={1} />
-        <UserImage profileImgUrl={profileImgUrl} onSelect={() => {}} />
-      </ProgressBox>
-      <PositionChip label={isEmptyValue(position) ? EmptyMessage.position : position!} />
-      <Nickname>{nickname}</Nickname>
-      <Career>{isEmptyValue(position) ? EmptyMessage.career : `경력 ${career}년차`}</Career>
-      <Stacks stacks={stacks} />
+      <InfoBox>
+        <ProgressWrapper>
+          <CircularProgressBar size={130} strokeWidth={8} percentage={score} animationDuration={1} />
+          <UserImage profileImgUrl={profileImgUrl} onSelect={() => {}} />
+        </ProgressWrapper>
+        <PositionChip label={isEmptyValue(position) ? emptyMessages.position : position!} />
+        <Nickname>{nickname}</Nickname>
+        <Career>{isEmptyValue(position) ? emptyMessages.career : `경력 ${career}년차`}</Career>
+        <Stacks stacks={stacks} />
+      </InfoBox>
+      <Box>
+        <Introduce>{isEmptyValue(introduce) ? emptyMessages.introduce : introduce}</Introduce>
+        <Link href={link || ""} target="_blank" rel="noopener noreferrer">
+          <p>{isEmptyValue(link) ? emptyMessages.link : link}</p>
+        </Link>
+      </Box>
     </Container>
   );
 }
 
-const EmptyMessage = {
+const emptyMessages = {
   career: "경력을 아직 작성하지 않았어요!",
   position: "포지션",
+  link: "링크 없음",
+  introduce: "한줄소개를 아직 작성하지 않았어요!",
+  tags: "아직 받은 태그가 없어요.",
 };
 
 const { color, typography } = DESIGN_TOKEN;
@@ -48,14 +63,14 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2.2rem;
 `;
 
-const ProgressBox = styled.div`
+const ProgressWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-bottom: 1.2rem;
 `;
 
@@ -64,6 +79,12 @@ const UserImage = styled(DefaultUserImage)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const PositionChip = styled(DetailedPositionChip)`
@@ -80,4 +101,23 @@ const Career = styled.p`
   color: ${color.primary[1]};
 
   margin-bottom: 2rem;
+`;
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+`;
+
+const Introduce = styled.p`
+  color: ${color.black[1]};
+
+  ${typography.font14Medium}
+  text-align: center;
+`;
+
+const Link = styled.a`
+  color: ${color.black[3]};
+  ${typography.font12Medium}
 `;
