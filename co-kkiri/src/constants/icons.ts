@@ -28,6 +28,7 @@ import camera from "@/assets/icons/camera.svg";
 import circleArrow from "@/assets/icons/circle_arrow.svg";
 import manage from "@/assets/icons/manage.svg";
 import pen from "@/assets/icons/pen.svg";
+import link from "@/assets/icons/link.svg";
 import { Images } from "@/types/imageTypes";
 
 export const ICONS: Images = {
@@ -62,6 +63,10 @@ export const ICONS: Images = {
   deleted: {
     src: deleted,
     alt: "삭제하기",
+  },
+  link: {
+    src: link,
+    alt: "링크",
   },
   popover: {
     src: arrowDown,
