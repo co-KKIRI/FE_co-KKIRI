@@ -4,8 +4,8 @@ import DropMenu from "./commons/DropMenu";
 import styled from "styled-components";
 
 interface DropdownProps {
-  placeholder?: string;
-  selectedOption?: string;
+  placeholder: string;
+  selectedOption?: string | null;
   options: string[];
   onSelect: (option: string) => void;
   dropdownRef?: React.RefCallback<HTMLButtonElement>;

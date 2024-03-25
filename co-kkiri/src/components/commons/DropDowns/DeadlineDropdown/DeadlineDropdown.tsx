@@ -8,7 +8,7 @@ import useOpenToggle from "@/hooks/useOpenToggle";
 import SquareDropButton from "../commons/SquareDropButton";
 import { Calendar } from "./ui/calendar";
 interface DeadlineDropdownProps {
-  placeholder: string;
+  placeholder: string | null;
   selectedOption: string;
   onSelect: (option: string) => void;
 }

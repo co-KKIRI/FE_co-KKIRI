@@ -9,12 +9,12 @@ interface LinkInputProps {
 
 export default function LinkInput({ selectedOption, onChange }: LinkInputProps) {
   const { recruitment } = DROPDOWN_INFO;
-  const optionIndex = recruitment.contactWay.options?.indexOf(selectedOption);
-  const value = recruitment.contactWay.placeholder[optionIndex];
+  const optionIndex = recruitment.contactWay.options.indexOf(selectedOption);
+  const value = selectedOption ? String(recruitment.contactWay.placeholder[optionIndex]) : "";
 
   return (
     <Container>
-      {selectedOption !== "기타" ? <Input placeholder={value} onChange={(e) => onChange(e.target.value)} /> : null}
+      {selectedOption !== "기타" && <Input placeholder={value} onChange={(e) => onChange(e.target.value)} />}
     </Container>
   );
 }

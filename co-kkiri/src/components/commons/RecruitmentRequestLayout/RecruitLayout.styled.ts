@@ -24,12 +24,38 @@ export const Container = styled.form`
   }
 `;
 
+export const SelectContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 77.4rem;
+  gap: 4rem;
+
+  & p {
+    ${typography.font12Medium}
+    color: ${color.red};
+  }
+
+  & h1 {
+    border-bottom: 0.1rem solid ${color.gray[2]};
+    padding-bottom: 2rem;
+  }
+
+  ${mediaQueries.tablet} {
+    width: 46.2rem;
+  }
+
+  ${mediaQueries.mobile} {
+    width: 32rem;
+  }
+`;
+
 export const GirdContainer = styled.div`
   & h3 {
     display: flex;
 
     & span {
       color: ${color.red};
+      margin-left: 0.2rem;
     }
   }
 
@@ -74,10 +100,6 @@ export const RadioButtonBox = styled.div`
     display: flex;
     gap: 3rem;
   }
-
-  & p {
-    margin-top: -1.2rem;
-  }
 `;
 
 export const RadioButtonWarper = styled.div`
@@ -102,16 +124,24 @@ export const SelectBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  height: 10.1rem;
+
+  & p {
+    position: relative;
+    top: -0.4rem;
+  }
 `;
 
 export const SelectChipBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 9.5rem;
 
   & h3 {
     & span {
       color: ${color.red};
+      margin-left: 0.2rem;
     }
   }
 
@@ -122,7 +152,7 @@ export const SelectChipBox = styled.div`
   }
 
   & p {
-    margin-top: -0.95rem;
+    margin-top: -1.2rem;
   }
 `;
 
@@ -141,28 +171,4 @@ export const SubmitButtonBox = styled.div`
   grid-template-columns: repeat(2, 15.6rem);
   gap: 1.2rem;
   justify-content: end;
-`;
-
-export const SelectContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 77.4rem;
-  gap: 4rem;
-
-  & p {
-    color: ${color.red};
-  }
-
-  & h1 {
-    border-bottom: 0.1rem solid ${color.gray[2]};
-    padding-bottom: 2rem;
-  }
-
-  ${mediaQueries.tablet} {
-    width: 46.2rem;
-  }
-
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
 `;

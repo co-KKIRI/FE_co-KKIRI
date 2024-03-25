@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { RecruitmentRequest } from "@/types/recruitmentRequestTypes";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 
 const formats = [
   "header",
@@ -21,9 +21,9 @@ const formats = [
 ];
 
 export default function QuillEditor({
-  setSelectedOption,
+  setSelectedOptions,
 }: {
-  setSelectedOption: React.Dispatch<React.SetStateAction<RecruitmentRequest>>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }) {
   const modules = useMemo(() => {
     return {
@@ -34,14 +34,14 @@ export default function QuillEditor({
   }, []);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       title: e.target.value,
     }));
   };
 
   const handleContentChange = (content: string) => {
-    setSelectedOption((prevOptions) => ({
+    setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       content: content,
     }));
