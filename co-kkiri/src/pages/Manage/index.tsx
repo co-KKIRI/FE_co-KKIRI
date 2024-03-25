@@ -13,10 +13,8 @@ interface ManageProps {
 
 export default function Manage({ postId = 1 }: ManageProps) {
   const [detailInfo, setDetailInfo] = useState<StudyManagementApiResponseDto>();
-  const [appliedMemberList, setAppliedMemberList] = useState<AppliedMemberListApiResponseDto["appliedPostMemberList"]>(
-    [],
-  );
-  const [memberList, setMemberList] = useState<TeamMemberApiResponseDto["postTeamMemberList"]>([]);
+  const [appliedMemberList, setAppliedMemberList] = useState<AppliedMemberListApiResponseDto["data"]>([]);
+  const [memberList, setMemberList] = useState<TeamMemberApiResponseDto["data"]>([]);
 
   const handleAcceptMember = async (teamMemberId: number) => {
     try {
@@ -68,7 +66,7 @@ export default function Manage({ postId = 1 }: ManageProps) {
       });
       try {
         if (response && response.data) {
-          setAppliedMemberList(response.data.appliedPostMemberList);
+          setAppliedMemberList(response.data.data);
         }
       } catch (error) {
         console.error(error);
@@ -86,7 +84,7 @@ export default function Manage({ postId = 1 }: ManageProps) {
       });
       try {
         if (response && response.data) {
-          setMemberList(response.data.postTeamMemberList);
+          setMemberList(response.data.data);
         }
       } catch (error) {
         console.log(error);

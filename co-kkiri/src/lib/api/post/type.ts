@@ -82,7 +82,7 @@ type AppliedMember = {
 };
 
 export type AppliedMemberListApiResponseDto = {
-  appliedPostMemberList: AppliedMember[];
+  data: AppliedMember[];
 };
 
 /**스터디 프로젝트 정보 */
