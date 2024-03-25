@@ -1,12 +1,11 @@
 import Card from "@/components/commons/Card";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
-import { PostInfo } from "@/lib/mock/myStudy/applied";
-import { StudyInfo } from "@/lib/mock/studyList";
+import { ListApiResponseDto } from "@/lib/api/post/type";
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
 interface CardsProps {
-  data: StudyInfo[] | PostInfo[];
+  data: ListApiResponseDto["postList"];
 }
 
 export default function Cards({ data }: CardsProps) {
@@ -19,7 +18,7 @@ export default function Cards({ data }: CardsProps) {
       ) : (
         <CardList $isSidebarOpenNarrow={isSidebarOpenNarrow}>
           {data.map((data) => (
-            <Card key={data.id} page="studyList" cardData={data} />
+            <Card key={data.postId} page="studyList" cardData={data} />
           ))}
         </CardList>
       )}

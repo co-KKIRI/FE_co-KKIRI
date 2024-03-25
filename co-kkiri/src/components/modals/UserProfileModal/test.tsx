@@ -13,9 +13,9 @@ export default function ModalTestPage() {
     position: "프론트엔드",
     nickname: "123",
     career: 2,
-    stack: ["react", "next.js"],
+    stacks: ["react", "next.js"],
     introduce: "잘 부탁드립니다.",
-    link: ["https://www.youtube.com"],
+    link: "https://www.youtube.com",
   };
 
   return (
@@ -27,7 +27,7 @@ export default function ModalTestPage() {
           position={userInfo.position}
           nickname={userInfo.nickname}
           career={userInfo.career}
-          stack={userInfo.stack}
+          stacks={userInfo.stacks}
           introduce={userInfo.introduce}
           link={userInfo.link}
           onClose={() => setIsModalOpen(false)}

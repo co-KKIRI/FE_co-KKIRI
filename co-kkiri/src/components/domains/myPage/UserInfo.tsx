@@ -36,7 +36,7 @@ function UserProfile({ user }: UserProfileProps) {
             <S.Nickname>{user.nickname}</S.Nickname>
             <S.Career>{user.career ? `경력 ${user.career}년차` : "경력을 아직 작성하지 않았어요!"}</S.Career>
           </S.ProfileWrapper>
-          <Stacks stacks={user.stack} />
+          <Stacks stacks={user.stacks} />
           <S.Introduce>{user.introduce ? user.introduce : "한줄소개를 아직 작성하지 않았어요!"}</S.Introduce>
         </S.ProfileBox>
         <S.LinkBox>

@@ -7,7 +7,7 @@ import { CARD_CORNER_BUTTON, CardCornerButtonType } from "@/constants/cardCorner
 //임시
 interface CardCornerButtonProps {
   cardCornerType?: CardCornerButtonType;
-  isScraped?: boolean;
+  isScrapped?: boolean;
   postId?: number;
   width?: number;
   className?: string;
@@ -18,28 +18,28 @@ interface CardCornerButtonProps {
  *
  * @param {CardCornerButtonType} cardCornerType - 버튼의 타입을 결정합니다. ("scrap", "manage", "write", "view" 중 하나)
  * 각 타입의 icon 이미지, width, text, onClick은 CARD_CORNER_BUTTON객체에서 관리합니다.
- * @param {boolean} isScraped - 스크랩 버튼의 경우, 현재 스크랩이 되어있는지 여부를 나타냅니다.
+ * @param {boolean} isScrapped - 스크랩 버튼의 경우, 현재 스크랩이 되어있는지 여부를 나타냅니다.
  * @param {number} [postId] - 관리, 리뷰 작성 버튼의 경우, 해당 포스트의 ID입니다.
  *
  * @example
- * <CardCornerButton cardCornerType="scrap" isScraped={true} />
+ * <CardCornerButton cardCornerType="scrap" isScrapped={true} />
  * <CardCornerButton cardCornerType="manage" postId={123} />
  */
 export default function CardCornerButton({
   cardCornerType = "scrap",
-  isScraped = false,
+  isScrapped = false,
   postId,
   className,
 }: CardCornerButtonProps) {
   const navigate = useNavigate();
-  const [isScrapedValue, toggle] = useToggle(isScraped);
+  const [isScrappedValue, toggle] = useToggle(isScrapped);
   const { text, icon, width, onClick } = CARD_CORNER_BUTTON[cardCornerType as CardCornerButtonType];
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (cardCornerType === "scrap") {
-      onClick({ isScraped: isScrapedValue, toggle });
+      onClick({ isScrapped: isScrappedValue, toggle });
     } else if (cardCornerType === "manage" || (cardCornerType === "write" && postId)) {
       onClick({ postId, navigate });
     }
@@ -48,7 +48,7 @@ export default function CardCornerButton({
   return (
     <Wrapper onClick={handleClick} className={className} $cardCornerType={cardCornerType}>
       {text && <Text $cardCornerType={cardCornerType}>{text}</Text>}
-      <Icon src={icon(isScrapedValue).src} alt={icon(isScrapedValue).alt} $width={width} />
+      <Icon src={icon(isScrappedValue).src} alt={icon(isScrappedValue).alt} $width={width} />
     </Wrapper>
   );
 }

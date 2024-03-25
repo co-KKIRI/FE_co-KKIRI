@@ -7,14 +7,14 @@ import DESIGN_TOKEN from "@/styles/tokens";
 interface ScrapListProps extends MyScrapApiResponseDto {}
 
 export default function ScrapList({ scrapList }: ScrapListProps) {
-  const count = scrapList.filter((scrap) => scrap.isScraped).length;
+  const count = scrapList.filter((scrap) => scrap.isScrapped).length;
 
   return (
     <Container>
       <SectionTitle title="스터디/프로젝트 스크랩 목록" count={count} type="cardList" />
       <Wrapper>
         {scrapList?.map((scrap) => {
-          return scrap.isScraped && <Card key={scrap.id} page="studyList" cardData={scrap} />;
+          return scrap.isScrapped && <Card key={scrap.postId} page="studyList" cardData={scrap} />;
         })}
       </Wrapper>
     </Container>

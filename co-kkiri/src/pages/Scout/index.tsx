@@ -8,20 +8,20 @@ import { searchedMemberProfiles } from "@/lib/mock/scout/searchMemberList";
 
 export interface SelectedFilter {
   position: string;
-  stack: string[];
+  stacks: string[];
 }
 
 export default function Scout() {
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>({
     position: "",
-    stack: [],
+    stacks: [],
   });
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 2;
 
   const handlePositionChange = (position: string) => setSelectedFilter((prev) => ({ ...prev, position }));
 
-  const handleStacksChange = (stack: string[]) => setSelectedFilter((prev) => ({ ...prev, stack }));
+  const handleStacksChange = (stacks: string[]) => setSelectedFilter((prev) => ({ ...prev, stacks }));
 
   return (
     <S.Container>

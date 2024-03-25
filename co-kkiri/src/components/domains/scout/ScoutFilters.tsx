@@ -7,8 +7,8 @@ import { DROPDOWN_INFO } from "@/constants/dropDown";
 
 interface ScoutFiltersProps {
   selectedFilter: SelectedFilter;
-  handleStacksChange: (stack: string[]) => void;
-  handlePositionChange: (position: string) => void;
+  handleStacksChange: (stacks: string[]) => void;
+  handlePositionChange: (positions: string) => void;
 }
 
 export default function ScoutFilters({ selectedFilter, handleStacksChange, handlePositionChange }: ScoutFiltersProps) {
@@ -22,7 +22,7 @@ export default function ScoutFilters({ selectedFilter, handleStacksChange, handl
   return (
     <Container>
       <FilterDropdown menuInfoType="position" onSelectFilter={onSelectPosition} />
-      <StacksPopover stacks={selectedFilter.stack} onStacksChange={(stack) => handleStacksChange(stack)} />
+      <StacksPopover stacks={selectedFilter.stacks} onStacksChange={(stack) => handleStacksChange(stack)} />
     </Container>
   );
 }

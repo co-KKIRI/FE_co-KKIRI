@@ -19,7 +19,7 @@ export const useUserInfoStore = create<UserInfoState & UserInfoSetter>((set) => 
     position: "",
     career: undefined,
     introduce: "",
-    stack: [],
+    stacks: [],
     link: "",
   },
   isVisible: false,

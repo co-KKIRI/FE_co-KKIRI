@@ -1,3 +1,5 @@
+import { CategoryList } from "@/types/categoryTypes";
+
 // 마이 페이지 유저 정보
 export type UserInfoApiResponseDto = {
   nickname: string;
@@ -5,7 +7,7 @@ export type UserInfoApiResponseDto = {
   position: string;
   career: number;
   introduce: string;
-  stack: string[];
+  stacks: string[];
   link: string;
   isVisibleProfile: boolean;
 };
@@ -21,19 +23,19 @@ export type InvitedTeamListApiResponseDto = {
 };
 
 // 마이 페이지 스크랩 목록
-type MyScrap = {
+export type MyScrap = {
   postId: number;
-  type: "STUDY" | "PROJECT";
+  type: CategoryList;
   recruitEndAt: string;
   isScrapped: boolean;
   progressWay: string;
   title: string;
-  position: string[];
-  stack: string[];
+  positions: string[];
+  stacks: string[];
   memberNickname: string;
   memberProfileImg: string;
-  postViews: number;
-  postCommentsNum: number;
+  viewCount: number;
+  commentCount: number;
 };
 
 export type MyScrapApiResponseDto = {
@@ -47,7 +49,7 @@ export type UserInfoEditApiRequestDto = {
   position: string;
   career: number;
   introduce: string;
-  stack: string[];
+  stacks: string[];
   link: string;
 };
 

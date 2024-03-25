@@ -58,7 +58,7 @@ export default function StudyList() {
           .sort((a, b) => new Date(a.recruitEndAt).getTime() - new Date(b.recruitEndAt).getTime());
         break;
       case sort.options[2]:
-        sortedData = filteredPageData.slice().sort((a, b) => b.postViews - a.postViews);
+        sortedData = filteredPageData.slice().sort((a, b) => b.viewCount - a.viewCount);
         break;
       default:
         sortedData = filteredPageData;
@@ -83,7 +83,7 @@ export default function StudyList() {
   useEffect(() => {
     const filteredData = StudyListData.result.studyList.filter((data) => {
       const categoryFilter = category === "ALL" || data.type === category;
-      const positionFilter = !selectedPosition || data.position.includes(selectedPosition);
+      const positionFilter = !selectedPosition || data.positions.includes(selectedPosition);
       const progressWayFilter = !selectedProgressWay || data.progressWay === selectedProgressWay;
 
       return categoryFilter && positionFilter && progressWayFilter;

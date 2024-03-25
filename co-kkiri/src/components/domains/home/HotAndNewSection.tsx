@@ -3,27 +3,12 @@ import DESIGN_TOKEN from "@/styles/tokens";
 
 import More from "./More";
 import Cards from "./Cards";
-
-//임시
-interface CardData {
-  id: number;
-  type: "STUDY" | "PROJECT";
-  recruitEndAt: string;
-  isScraped: boolean;
-  progressWay: string;
-  title: string;
-  position: string[];
-  stack: string[];
-  memberNickname: string;
-  memberProfileImg: string;
-  postViews: number;
-  postCommentsNum: number;
-}
+import { ListApiResponseDto } from "@/lib/api/post/type";
 
 interface CardsProps {
   category: string;
   path: string;
-  cardDataList: CardData[];
+  cardDataList: ListApiResponseDto["postList"];
 }
 
 export default function HotAndNewSection({ category, path, cardDataList }: CardsProps) {

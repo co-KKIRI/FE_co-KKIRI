@@ -1,5 +1,7 @@
+import { CategoryList } from "./categoryTypes";
+
 export interface RecruitmentRequest {
-  type: "STUDY" | "PROJECT";
+  type: CategoryList;
   recruitEndAt: string;
   progressPeriod: string;
   capacity: number | undefined | null;

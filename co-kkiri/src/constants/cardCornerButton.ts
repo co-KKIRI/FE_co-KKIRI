@@ -4,11 +4,11 @@ export type CardCornerButtonType = "scrap" | "manage" | "write" | "view";
 
 export type CardCornerButton = {
   [key in CardCornerButtonType]: {
-    icon: (isScraped: boolean) => { src: string; alt: string };
+    icon: (isScrapped: boolean) => { src: string; alt: string };
     width?: number;
     text?: string;
     onClick: (params: {
-      isScraped?: boolean;
+      isScrapped?: boolean;
       toggle?: () => void;
       postId?: number;
       navigate?: (path: string) => void;
@@ -18,9 +18,9 @@ export type CardCornerButton = {
 
 export const CARD_CORNER_BUTTON: CardCornerButton = {
   scrap: {
-    icon: (isScraped: boolean) => (isScraped ? ICONS.scrapFull : ICONS.scrapEmpty),
+    icon: (isScrapped: boolean) => (isScrapped ? ICONS.scrapFull : ICONS.scrapEmpty),
     width: 36,
-    onClick: ({ isScraped, toggle }) => {
+    onClick: ({ isScrapped, toggle }) => {
       toggle?.();
     },
   },

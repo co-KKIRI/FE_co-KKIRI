@@ -1,6 +1,9 @@
+import { CategoryListFilter } from "@/constants/categories";
+import { CategoryList } from "@/types/categoryTypes";
+
 /**스터디모집하기, 수정하기 (연락 링크 추가 예정)*/
 export type RecruitApiRequestDto = {
-  type: "STUDY" | "PROJECT";
+  type: CategoryList;
   recruitEndAt: string;
   progressPeriod: string | null;
   capacity: number | null;
@@ -13,19 +16,20 @@ export type RecruitApiRequestDto = {
   link: string | null;
 };
 
-type PostInfo = {
+export type PostInfo = {
   postId: number;
-  type: "STUDY" | "PROJECT";
+  type: CategoryList;
+  status?: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScraped: boolean;
+  isScrapped: boolean;
   progressWay: string;
   title: string;
-  position: string[];
-  stack: string[];
+  positions: string[];
+  stacks: string[];
   memberNickname: string;
   memberProfileImg: string;
-  postViews: number;
-  postCommentsNum: number;
+  viewCount: number;
+  commentCount: number;
 };
 
 /**스터디 목록*/
@@ -34,10 +38,10 @@ export type ListApiResponseDto = {
 };
 
 export type ListApiRequestDto = {
-  meetingType?: "ALL" | "STUDY" | "PROJECT";
-  position?: string[];
+  meetingType?: CategoryListFilter;
+  positions?: string[];
   progressWay?: string;
-  stack?: string[];
+  stacks?: string[]; //stacks 통일 요청
   sortBy?: "LATEST" | "BYDEADLINE" | "BYVIEW";
 };
 
@@ -45,13 +49,13 @@ export type ListApiRequestDto = {
 export type PostDetailApiResponseDto = {
   postTitle: string;
   postContent: string;
-  userProfileImg: string;
-  userNickname: string;
+  memberProfileImg: string;
+  memberNickname: string;
   createdAt: string; //생성 시간 YYYY-MM-DD HH:MM:SS
   views: number;
-  isScraped: boolean;
+  isScrapped: boolean;
   scraps: number;
-  type: "STUDY" | "PROJECT";
+  type: CategoryList;
   recruitEndAt: string;
   progressPeriod: string; //진행 기간 => enum 타입으로 넣을 예정
   progressWay: string;
@@ -60,7 +64,7 @@ export type PostDetailApiResponseDto = {
   positions: string[];
   stacks: string[];
   commentsNum: number;
-  link: string;
+  link?: string;
 };
 /**스터디 지원 */
 export type ApplyPostApiRequestDto = {
@@ -79,6 +83,7 @@ type AppliedMember = {
   memberId: number;
   nickname: string;
   profileImageUrl: string;
+  position: string;
 };
 
 export type AppliedMemberListApiResponseDto = {
@@ -89,7 +94,7 @@ export type AppliedMemberListApiResponseDto = {
 export type StudyManagementApiResponseDto = {
   postId: number;
   postTitle: string; //제목
-  type: "STUDY" | "PROJECT"; //스터디 종류
+  type: CategoryList; //스터디 종류
   recruitEndAt: string;
   progressPeriod: string;
   progressWay: string; //진행 방법 (온라인/오프라인)
