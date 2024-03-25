@@ -5,7 +5,7 @@ type PostInfo = {
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];
@@ -22,7 +22,7 @@ export const myOnGoingList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-11-01",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "온라인",
     title: "인공지능 기반 음성 인식 프로젝트",
     positions: ["머신러닝 엔지니어", "백엔드"],
@@ -37,7 +37,7 @@ export const myOnGoingList: PostInfo[] = [
     type: "STUDY",
     status: "PROGRESS",
     recruitEndAt: "2024-11-15",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "혼합",
     title: "고급 자바스크립트 스터디",
     positions: ["프론트엔드 개발자"],
@@ -52,7 +52,7 @@ export const myOnGoingList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-12-01",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "오프라인",
     title: "스마트 홈 IoT 시스템 개발",
     positions: ["임베디드 개발자", "프론트엔드"],
@@ -67,7 +67,7 @@ export const myOnGoingList: PostInfo[] = [
     type: "STUDY",
     status: "PROGRESS",
     recruitEndAt: "2024-12-15",
-    isScrapped: true,
+    isScraped: true,
     progressWay: "온라인",
     title: "데이터 분석 심화 과정",
     positions: ["데이터 사이언티스트"],
@@ -82,7 +82,7 @@ export const myOnGoingList: PostInfo[] = [
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2025-01-01",
-    isScrapped: false,
+    isScraped: false,
     progressWay: "혼합",
     title: "가상현실 게임 개발 프로젝트",
     positions: ["게임 디자이너", "프론트엔드"],

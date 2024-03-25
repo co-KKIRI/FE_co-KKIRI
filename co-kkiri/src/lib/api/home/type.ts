@@ -1,10 +1,12 @@
+import { CategoryList } from "@/types/categoryTypes";
+
 //홈 페이지 카드 리스트
 export type MainPostInfo = {
   postId: number;
   type: CategoryList;
   recruitEndAt: string;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE"; //ready 상태만 옴
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string; // 온라인/오프라인
   title: string;
   positions: string[]; //  ex) ["FRONTEND","BACKEND","DESIGNER"]

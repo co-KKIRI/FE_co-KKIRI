@@ -7,7 +7,7 @@ export interface DetailInfo {
   memberNickname: string; //작성자 닉네임
   createdAt: string; //생성 시간 YYYY-MM-DD HH:MM:SS
   views: number; //조회수
-  isScrapped: boolean; //스크랩 되어있는지 아닌지
+  isScraped: boolean; //스크랩 되어있는지 아닌지
   scraps: number; //스크랩수
   type: CategoryList; //스터디 종류
   recruitEndAt: string; // 모집 마감
@@ -57,7 +57,7 @@ export const studyDetailData: StudyDetailData = {
     memberNickname: "코끼리", //작성자 닉네임
     createdAt: "2024-03-19 13:00:00", //생성 시간 YYYY-M.-D.
     views: 3, //조회수
-    isScrapped: false, //스크랩 되어있는지 아닌지
+    isScraped: false, //스크랩 되어있는지 아닌지
     scraps: 22, //스크랩수
     type: "PROJECT", //스터디 종류
     recruitEndAt: "2024-03-30", // 모집 마감

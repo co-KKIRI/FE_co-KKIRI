@@ -21,7 +21,7 @@ export type PostInfo = {
   type: CategoryList;
   status?: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
-  isScrapped: boolean;
+  isScraped: boolean;
   progressWay: string;
   title: string;
   positions: string[];
@@ -53,7 +53,7 @@ export type PostDetailApiResponseDto = {
   memberNickname: string;
   createdAt: string; //생성 시간 YYYY-MM-DD HH:MM:SS
   views: number;
-  isScrapped: boolean;
+  isScraped: boolean;
   scraps: number;
   type: CategoryList;
   recruitEndAt: string;
