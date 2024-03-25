@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller } from "react-hook-form";
+import { CategoryList } from "@/types/categoryTypes";
 
 interface RecruitmentRequestLayoutProps {
   onSubmit: (data: RecruitApiRequestDto) => void;
@@ -52,7 +53,7 @@ export default function RecruitmentRequestLayout({
     return options[index];
   };
 
-  const handleSelectType = (type: "STUDY" | "PROJECT"): void => {
+  const handleSelectType = (type: CategoryList): void => {
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       type: type,
