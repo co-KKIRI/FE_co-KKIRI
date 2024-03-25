@@ -11,6 +11,7 @@ interface UserProfileCardProps {
   score: number;
   introduce: string;
   link: string;
+  cardType?: "mypage";
 }
 
 export default function UserProfileCard(props: UserProfileCardProps) {

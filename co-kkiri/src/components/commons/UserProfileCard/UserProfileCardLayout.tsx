@@ -5,6 +5,9 @@ import DetailedPositionChip from "../Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import Stacks from "../Stacks";
 import { isEmptyValue } from "@/utils/validationUtils";
+import Button from "../Button";
+import { useState } from "react";
+import EditUserProfileModal from "@/components/modals/EditUserProfileModal";
 
 interface UserProfileCardProps {
   profileImgUrl?: string;
@@ -15,6 +18,7 @@ interface UserProfileCardProps {
   score: number;
   introduce: string | null;
   link: string | null;
+  cardType?: "mypage";
 }
 
 export default function UserProfileCardLayout({
@@ -26,7 +30,13 @@ export default function UserProfileCardLayout({
   score,
   introduce,
   link,
+  cardType,
 }: UserProfileCardProps) {
+  const [isEditModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleEditModalOpen = () => {
+    setIsModalOpen(!isEditModalOpen);
+  };
   return (
     <Container>
       <InfoBox>
@@ -45,6 +55,14 @@ export default function UserProfileCardLayout({
           <p>{isEmptyValue(link) ? emptyMessages.link : link}</p>
         </Link>
       </Box>
+      <ButtonBox>
+        {cardType && (
+          <Button variant="ghost" onClick={handleEditModalOpen}>
+            수정 하기
+          </Button>
+        )}
+      </ButtonBox>
+      {isEditModalOpen && <EditUserProfileModal onClose={handleEditModalOpen} />}
     </Container>
   );
 }
@@ -57,7 +75,7 @@ const emptyMessages = {
   tags: "아직 받은 태그가 없어요.",
 };
 
-const { color, typography } = DESIGN_TOKEN;
+const { color, typography, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.article`
   display: flex;
@@ -120,4 +138,12 @@ const Introduce = styled.p`
 const Link = styled.a`
   color: ${color.black[3]};
   ${typography.font12Medium}
+`;
+
+const ButtonBox = styled.div`
+  padding-top: 2rem;
+  width: 37rem;
+  ${mediaQueries.mobile} {
+    width: 28rem;
+  }
 `;
