@@ -13,9 +13,10 @@ interface PositionsProps {
   positions: string[];
   variant?: "card" | "profile";
   page?: "home" | "studyList";
+  className?: string;
 }
 
-export default function Positions({ positions, variant = "profile", page = "home" }: PositionsProps) {
+export default function Positions({ positions, variant = "profile", page = "home", className }: PositionsProps) {
   const [displayPositions, setDisplayPositions] = useState<string[]>(positions);
   const { width: windowWidth } = useWindowSize();
   const isSidebarOpenNarrow = useResponsiveSidebar();
@@ -39,7 +40,7 @@ export default function Positions({ positions, variant = "profile", page = "home
   }, [windowWidth, positions, isSidebarOpenNarrow, variant, page]);
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       {variant === "profile" && displayPositions.length === 0 ? (
         <PositionChip label="포지션" />
       ) : (

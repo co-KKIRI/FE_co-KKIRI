@@ -3,7 +3,8 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";
 import { ContentType, RenderType } from "./types";
-import Stacks from "../Stacks";
+import DefaultStacks from "../Stacks";
+import DefaultPositions from "../Positions";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -21,13 +22,7 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
         return <p>{content}명</p>;
       case "positions":
         if (Array.isArray(content)) {
-          return (
-            <div className="chip position">
-              {content.map((item) => (
-                <PositionChip key={item} label={item} />
-              ))}
-            </div>
-          );
+          return <Positions positions={content} />;
         }
         break;
       case "stacks":
@@ -39,9 +34,9 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
 
   return (
     <Container>
-      <div className="label">
+      <Label>
         <span>{label}</span>
-      </div>
+      </Label>
       {renderContent()}
     </Container>
   );
@@ -57,26 +52,22 @@ const Container = styled.div`
 
   ${typography.font16Semibold}
 
-  & > .label {
-    width: 10rem;
-    color: ${color.gray[1]};
-  }
-
   & > .text {
     color: ${color.black[1]};
   }
+`;
 
-  & > .chip {
-    display: flex;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-  }
+const Label = styled.div`
+  width: 10rem;
+  color: ${color.gray[1]};
+`;
 
-  & > .chip.position {
-    gap: 0.6rem;
-  }
-
-  & > .chip.stack {
-    gap: 0.8rem;
-  }
+const Positions = styled(DefaultPositions)`
+  flex-wrap: wrap;
+  flex-shrink: 1;
+`;
+const Stacks = styled(DefaultStacks)`
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  gap: 0.8rem;
 `;
