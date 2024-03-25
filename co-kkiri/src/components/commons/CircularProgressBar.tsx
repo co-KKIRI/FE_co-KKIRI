@@ -86,7 +86,7 @@ interface ProgressProps {
 }
 
 const Progress = styled.circle<ProgressProps>`
-  @keyframes progress {
+  @keyframes ${({ $percentage }) => `progress-${$percentage}`} {
     from {
       stroke-dashoffset: 100;
     }
@@ -95,6 +95,6 @@ const Progress = styled.circle<ProgressProps>`
     }
   }
 
-  animation: progress ${({ $animationDuration }) => ($animationDuration ? `${$animationDuration}s` : `0.8s`)} ease-out
+  animation: ${({ $percentage }) => `progress-${$percentage}`} ${({ $animationDuration }) => ($animationDuration ? `${$animationDuration}s` : `0.8s`)} ease-out
     forwards 1;
 `;
