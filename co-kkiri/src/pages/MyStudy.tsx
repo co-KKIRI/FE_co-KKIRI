@@ -4,7 +4,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
 import FilterList from "@/components/commons/FilterList";
-import Cards from "@/components/domains/studyList/Cards";
+import Cards from "@/components/commons/Cards";
 
 import { categoryStudyStatusFilter } from "@/constants/categories";
 import { CategoryStudyStatus } from "@/types/categoryTypes";

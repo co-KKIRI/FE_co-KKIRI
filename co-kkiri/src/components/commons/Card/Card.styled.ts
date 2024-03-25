@@ -23,7 +23,7 @@ const desktopWidthByPage = ($isSidebarOpenNarrow: boolean, $page: PageType) => {
     case "home":
       return $isSidebarOpenNarrow ? "44.5rem" : "26.5rem";
     case "studyList":
-      return $isSidebarOpenNarrow ? "34.6rem" : "26.5rem";
+      return $isSidebarOpenNarrow ? "29rem" : "26.5rem";
     default:
       return "26.5rem";
   }

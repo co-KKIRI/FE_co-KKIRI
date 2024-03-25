@@ -3,16 +3,20 @@ import UserInfo from "@/components/commons/UserInfo";
 import styled from "styled-components";
 import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { postTeamMemberData } from "@/lib/mock/manage/postTeamMember";
 import LeaderIcon from "./LeaderIcon";
+import { TeamMemberApiResponseDto } from "@/lib/api/teamMember/type";
 
-export default function MemberList() {
-  const detailInfo = postTeamMemberData.result.postTeamMemberList;
+interface MemberListProps {
+  detailInfo: TeamMemberApiResponseDto["data"];
+  handleOutMember: (teamMemberId: number) => void;
+}
+
+export default function MemberList({ detailInfo, handleOutMember }: MemberListProps) {
   return (
     <Container>
-      <SectionTitle title="현재 팀원" count={detailInfo.length} />
+      <SectionTitle title="현재 팀원" count={detailInfo?.length || 0} />
       <Members>
-        {detailInfo.map((info) => (
+        {detailInfo?.map((info) => (
           <Box key={info.memberId}>
             <MemberWrapper>
               <UserInfo user={{ nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
@@ -23,7 +27,9 @@ export default function MemberList() {
               )}
               <PositionChip label={info.position} />
             </MemberWrapper>
-            <DeleteWrapper>{info.isLeader || <button>삭제</button>}</DeleteWrapper>
+            <DeleteWrapper onClick={() => handleOutMember(info.teamMemberId)}>
+              {info.isLeader || <button>삭제</button>}
+            </DeleteWrapper>
           </Box>
         ))}
       </Members>

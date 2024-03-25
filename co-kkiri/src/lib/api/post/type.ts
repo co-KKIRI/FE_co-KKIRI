@@ -82,7 +82,7 @@ type AppliedMember = {
 };
 
 export type AppliedMemberListApiResponseDto = {
-  appliedPostMemberList: AppliedMember[];
+  data: AppliedMember[];
 };
 
 /**스터디 프로젝트 정보 */
@@ -90,12 +90,15 @@ export type StudyManagementApiResponseDto = {
   postId: number;
   postTitle: string; //제목
   type: "STUDY" | "PROJECT"; //스터디 종류
+  recruitEndAt: string;
+  progressPeriod: string;
   progressWay: string; //진행 방법 (온라인/오프라인)
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE"; // 스터디 진행 상태
   contactWay: string; //연락 방법
   capacity: number; //모집 인원 ==> 테이블에 추가 예정
   positions: string[]; //포지션
   isLeader: boolean; // 방장인지 아닌지
+  stacks: string[];
 };
 
 type ScoutPost = {

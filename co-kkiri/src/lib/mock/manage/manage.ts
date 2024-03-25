@@ -9,7 +9,7 @@ export interface ManageInfo {
   contactWay: string; //연락 방법
   capacity: number; //모집 인원 ==> 테이블에 추가 예정
   positions: string[]; //포지션
-  stacks: string[]; //기술스택
+  stack: string[]; //기술스택
   isLeader: boolean; // 방장인지 아닌지
 }
 
@@ -30,7 +30,7 @@ export const manageData: ManageData = {
       contactWay: "오픈톡",
       capacity: 5,
       positions: ["백엔드", "프론트엔드"],
-      stacks: ["Ethereum", "React"],
+      stack: ["Ethereum", "React"],
       isLeader: true,
     },
     {
@@ -44,7 +44,7 @@ export const manageData: ManageData = {
       contactWay: "오픈톡",
       capacity: 3,
       positions: [],
-      stacks: ["Java", "Python", "C++"],
+      stack: ["Java", "Python", "C++"],
       isLeader: false,
     },
     {
@@ -58,7 +58,7 @@ export const manageData: ManageData = {
       contactWay: "오픈톡",
       capacity: 7,
       positions: [],
-      stacks: ["MySQL", "MongoDB"],
+      stack: ["MySQL", "MongoDB"],
       isLeader: true,
     },
     {
@@ -72,7 +72,7 @@ export const manageData: ManageData = {
       contactWay: "오픈톡",
       capacity: 4,
       positions: ["프론트엔드", "백엔드"],
-      stacks: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
+      stack: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
       isLeader: true,
     },
     {
@@ -86,7 +86,7 @@ export const manageData: ManageData = {
       contactWay: "오픈톡",
       capacity: 6,
       positions: ["안드로이드", "IOS", "백엔드"],
-      stacks: ["Java", "Kotlin", "Swift"],
+      stack: ["Java", "Kotlin", "Swift"],
       isLeader: false,
     },
   ],
