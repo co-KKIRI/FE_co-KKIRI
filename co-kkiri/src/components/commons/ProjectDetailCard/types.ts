@@ -11,7 +11,7 @@ export type ProjectDetailKey =
   | "stacks";
 
 // 구체적인 렌더링 방식
-export type RenderType = "text" | "positionChip" | "stackIcon" | "personNumber";
+export type RenderType = "text" | "positions" | "stacks" | "capacity";
 export type ContentType = string | string[] | number;
 // ProjectDetailCard 내부에서 Table에게 전달할 Table Config
 export type ProjectDetailConfig = {

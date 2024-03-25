@@ -37,17 +37,17 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
     capacity: {
       label: "모집 인원",
       content: projectDetailContents.capacity,
-      renderType: "personNumber",
+      renderType: "capacity",
     },
     positions: {
       label: "모집 포지션",
       content: projectDetailContents.positions,
-      renderType: "positionChip",
+      renderType: "positions",
     },
     stacks: {
       label: "기술 스택",
       content: projectDetailContents.stacks,
-      renderType: "stackIcon",
+      renderType: "stacks",
     },
   };
 

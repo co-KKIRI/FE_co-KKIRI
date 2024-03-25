@@ -17,9 +17,9 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
     switch (renderType) {
       case "text":
         return <p>{content}</p>;
-      case "personNumber":
+      case "capacity":
         return <p>{content}명</p>;
-      case "positionChip":
+      case "positions":
         if (Array.isArray(content)) {
           return (
             <div className="chip position">
@@ -30,9 +30,8 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
           );
         }
         break;
-      case "stackIcon":
+      case "stacks":
         if (Array.isArray(content)) {
-          //TODO: 임시, 추후 stackIcon으로 변경
           return <Stacks stacks={content} />;
         }
     }
