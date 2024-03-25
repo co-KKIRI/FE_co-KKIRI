@@ -5,7 +5,7 @@ type MemberProfile = {
   profileImageUrl: string;
   career: number;
   position: string;
-  stack: string[];
+  stacks: string[];
   gauge: number;
   // tage: Tag // TODO: 추후 작업예정
 };
@@ -21,7 +21,7 @@ export type SearchedMemberProfile = {
   profileImageUrl: string;
   position: string;
   career: number;
-  stack: string[];
+  stacks: string[];
   score: number;
 };
 
@@ -41,7 +41,7 @@ export type SearchedMemberProfileApiResponseDto = {
 
 export type SearchedMemberProfileApiRequestDto = {
   position?: string; // 포지션
-  stack?: string[]; // 스택
+  stacks?: string[]; // 스택
   order?: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
   page?: number; // 요청할 페이지
   take?: number; // 몇개 가져올지

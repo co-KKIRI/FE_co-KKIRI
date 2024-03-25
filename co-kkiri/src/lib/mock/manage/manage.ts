@@ -1,7 +1,9 @@
+import { CategoryList } from "@/types/categoryTypes";
+
 export interface ManageInfo {
   postId: number;
   postTitle: string; //제목
-  type: "STUDY" | "PROJECT"; //스터디 종류
+  type: CategoryList; //스터디 종류
   recruitEndAt: string;
   progressPeriod: string;
   progressWay: string; //진행 방법 (온라인/오프라인)

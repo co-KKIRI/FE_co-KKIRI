@@ -15,60 +15,42 @@ import UserInfo from "../UserInfo";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { getCardCornerType } from "@/utils/getCardCornerType";
 import { ICONS } from "@/constants/icons";
-//임시
-import { PostInfo } from "@/lib/mock/myStudy/applied";
-
-//임시
-interface CardData {
-  id: number;
-  type: "STUDY" | "PROJECT";
-  status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
-  recruitEndAt: string;
-  isScraped: boolean;
-  progressWay: string;
-  title: string;
-  position: string[];
-  stack: string[];
-  memberNickname: string;
-  memberProfileImg: string;
-  postViews: number;
-  postCommentsNum: number;
-}
+import { PostInfo } from "@/lib/api/post/type";
 
 interface CardProps {
   page?: "home" | "studyList";
-  cardData: CardData | PostInfo;
+  cardData: PostInfo;
 }
 
 export default function Card({ page = "home", cardData }: CardProps) {
   const { currentCategory } = useMyStudyStore();
   const {
-    id,
+    postId,
     type,
     status,
-    isScraped,
+    isScrapped,
     recruitEndAt,
     progressWay,
     title,
-    position,
-    stack,
+    positions,
+    stacks,
     memberNickname,
     memberProfileImg,
-    postViews,
-    postCommentsNum,
+    viewCount,
+    commentCount,
   } = cardData;
   const isSidebarOpenNarrow = useResponsiveSidebar();
   const cardCornerType = getCardCornerType(currentCategory, status);
 
   return (
-    <Link to={`/list/${id}`}>
+    <Link to={`/list/${postId}`}>
       <S.Container $page={page} $isSidebarOpenNarrow={isSidebarOpenNarrow}>
         {page === "studyList" && (
           <S.TypeWrapper>
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <CardCornerButton isScraped={isScraped} cardCornerType={cardCornerType} postId={id} />
+            <CardCornerButton isScrapped={isScrapped} cardCornerType={cardCornerType} postId={postId} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -76,20 +58,20 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} />}
+            {page === "home" && <S.HomeCardCornerButton isScrapped={isScrapped} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <Positions positions={position} variant="card" page={page} />
-            {page === "studyList" && <Stacks stacks={stack} variant="card" />}
+            <Positions positions={positions} variant="card" page={page} />
+            {page === "studyList" && <Stacks stacks={stacks} variant="card" />}
           </S.ContentWrapper>
         </S.UpperBox>
         <S.BreakLine />
         <S.FooterBox>
           <UserInfo user={{ nickname: memberNickname, profileImageUrl: memberProfileImg }} />
           <S.CountWrapper>
-            <Count icon={ICONS.eye} count={postViews} />
-            <Count icon={ICONS.comment} count={postCommentsNum} />
+            <Count icon={ICONS.eye} count={viewCount} />
+            <Count icon={ICONS.comment} count={commentCount} />
           </S.CountWrapper>
         </S.FooterBox>
       </S.Container>

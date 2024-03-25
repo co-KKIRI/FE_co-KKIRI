@@ -5,14 +5,15 @@ import Stacks from "@/components/commons/Stacks";
 import Positions from "@/components/commons/Positions";
 import PositionChip from "@/components/commons/Chips/PositionChip";
 
+// extends??
 interface UserProfileModalProps {
   profileImg: string;
   position: string;
   nickname: string;
   career: number;
-  stack: string[];
+  stacks: string[];
   introduce: string;
-  link: string[];
+  link: string;
   onClose: () => void;
 }
 
@@ -21,7 +22,7 @@ export default function UserProfileModal({
   position,
   nickname,
   career,
-  stack,
+  stacks,
   introduce,
   link,
   onClose,
@@ -40,19 +41,19 @@ export default function UserProfileModal({
             <S.Nickname>{nickname}</S.Nickname>
             <S.Career>{career ? `경력 ${career}년차` : "경력을 아직 작성하지 않았어요!"}</S.Career>
           </S.ProfileWrapper>
-          <Stacks stacks={stack} />
+          <Stacks stacks={stacks} />
           <S.Introduce>{introduce ? introduce : "한줄소개를 아직 작성하지 않았어요!"}</S.Introduce>
         </S.ProfileBox>
         <S.LinkBox>
           <S.Line />
           <S.LinkWrapper>
-            {link.length > 0
-              ? link.map((link) => (
-                  <a key={link} href={link} target="_blank" rel="noopner noreferrer">
-                    {link}
-                  </a>
-                ))
-              : "링크없음"}
+            {link ? (
+              <a key={link} href={link} target="_blank" rel="noopner noreferrer">
+                {link}
+              </a>
+            ) : (
+              "링크없음"
+            )}
           </S.LinkWrapper>
         </S.LinkBox>
       </S.Container>

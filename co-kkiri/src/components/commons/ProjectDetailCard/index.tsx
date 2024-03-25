@@ -57,13 +57,15 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
         <ProjectChip label={ProjectCategory} />
       </Box>
       <ProjectDetailTable>
-        {Object.values(projectDetailConfig).map((value) => {
-          return <ProjectDetailRow {...value} />;
+        {Object.values(projectDetailConfig).map((value, index) => {
+          return <ProjectDetailRow key={index} {...value} />;
         })}
       </ProjectDetailTable>
     </Container>
   );
 }
+
+// 어떤 값을 key 값으로 써야할 지 잘 모르겟어서 index로 처리해놨습니다.
 
 const { color, boxShadow, mediaQueries } = DESIGN_TOKEN;
 

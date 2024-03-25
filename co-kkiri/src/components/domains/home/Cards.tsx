@@ -3,25 +3,10 @@ import DESIGN_TOKEN from "@/styles/tokens";
 
 import Card from "@/components/commons/Card";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
-
-//임시
-interface CardData {
-  id: number;
-  type: "STUDY" | "PROJECT";
-  recruitEndAt: string;
-  isScraped: boolean;
-  progressWay: string;
-  title: string;
-  position: string[];
-  stack: string[];
-  memberNickname: string;
-  memberProfileImg: string;
-  postViews: number;
-  postCommentsNum: number;
-}
+import { ListApiResponseDto } from "@/lib/api/post/type";
 
 interface CardsProps {
-  cardDataList: CardData[];
+  cardDataList: ListApiResponseDto["postList"];
 }
 
 export default function Cards({ cardDataList }: CardsProps) {
@@ -30,7 +15,7 @@ export default function Cards({ cardDataList }: CardsProps) {
   return (
     <Wrapper $isSidebarOpenNarrow={isSidebarOpenNarrow}>
       {cardDataList.map((cardData) => (
-        <Card key={cardData.id} page="home" cardData={cardData} />
+        <Card key={cardData.postId} page="home" cardData={cardData} />
       ))}
     </Wrapper>
   );

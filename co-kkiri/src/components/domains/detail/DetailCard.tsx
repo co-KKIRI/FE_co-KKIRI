@@ -1,9 +1,9 @@
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
-import { DetailInfo } from "@/lib/mock/studyDetail";
+import { PostDetailApiResponseDto } from "@/lib/api/post/type";
 import { formatDate } from "@/utils/formatDate";
 
 interface DetailCardProps {
-  detailInfo: DetailInfo;
+  detailInfo: PostDetailApiResponseDto;
   className?: string;
   cardRef: React.RefObject<HTMLDivElement>;
 }

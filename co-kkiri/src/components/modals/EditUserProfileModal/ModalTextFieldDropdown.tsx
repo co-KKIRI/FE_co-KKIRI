@@ -47,10 +47,10 @@ export default function ModalTextFieldDropdown({ name, control, className }: Mod
             }}
           />
         );
-      case "stack":
+      case "stacks":
         return (
           <MultiselectDropdown
-            limit={RULES.stack.maxLength?.value}
+            limit={RULES.stacks.maxLength?.value}
             selectedOptions={field.value as string[]}
             onSelectChange={field.onChange}
           />

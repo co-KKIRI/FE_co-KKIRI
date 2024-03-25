@@ -3,15 +3,15 @@ import Share from "@/components/domains/detail/Share";
 import CardCornerButton from "@/components/commons/CardCornerButton";
 
 interface ShareAndScrapProps {
-  isScraped: boolean;
+  isScrapped: boolean;
   className?: string;
 }
 
-export default function ShareAndScrap({ isScraped, className }: ShareAndScrapProps) {
+export default function ShareAndScrap({ isScrapped, className }: ShareAndScrapProps) {
   return (
     <Container className={className}>
       <Share />
-      <ScrapSection isScraped={isScraped} />
+      <ScrapSection isScrapped={isScrapped} />
     </Container>
   );
 }

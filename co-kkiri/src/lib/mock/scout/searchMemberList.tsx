@@ -4,7 +4,7 @@ type SearchedMemberProfile = {
   profileImageUrl: string;
   position: string;
   career: number;
-  stack: string[];
+  stacks: string[];
   score: number;
 };
 
@@ -15,7 +15,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "프론트엔드",
     career: 3,
-    stack: ["JavaScript", "React", "Redux"],
+    stacks: ["JavaScript", "React", "Redux"],
     score: 50,
   },
   {
@@ -24,7 +24,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "백엔드",
     career: 5,
-    stack: ["Node.js", "MongoDB", "GraphQL"],
+    stacks: ["Node.js", "MongoDB", "GraphQL"],
     score: 50,
   },
   {
@@ -33,7 +33,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "안드로이드",
     career: 2,
-    stack: ["Swift", "Kotlin"],
+    stacks: ["Swift", "Kotlin"],
     score: 0,
   },
   {
@@ -42,7 +42,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "프론트엔드",
     career: 4,
-    stack: ["Vue.js", "TypeScript", "GraphQL"],
+    stacks: ["Vue.js", "TypeScript", "GraphQL"],
     score: 50,
   },
   {
@@ -51,7 +51,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "백엔드",
     career: 0,
-    stack: ["Python", "Django", "PostgreSQL"],
+    stacks: ["Python", "Django", "PostgreSQL"],
     score: 5,
   },
   {
@@ -60,7 +60,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "디자이너",
     career: 1,
-    stack: ["TensorFlow", "PyTorch"],
+    stacks: ["TensorFlow", "PyTorch"],
     score: 20,
   },
   {
@@ -69,7 +69,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "프론트엔드",
     career: 3,
-    stack: ["Angular", "TypeScript"],
+    stacks: ["Angular", "TypeScript"],
     score: 50,
   },
   {
@@ -78,7 +78,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "IOS",
     career: 4,
-    stack: ["React Native", "Java"],
+    stacks: ["React Native", "Java"],
     score: 80,
   },
   {
@@ -87,7 +87,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "백엔드",
     career: 5,
-    stack: ["Spring", "Java", "MySQL"],
+    stacks: ["Spring", "Java", "MySQL"],
     score: 40,
   },
   {
@@ -96,7 +96,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "디자이너",
     career: 2,
-    stack: ["Figma", "Adobe XD"],
+    stacks: ["Figma", "Adobe XD"],
     score: 50,
   },
   {
@@ -105,7 +105,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "프론트엔드",
     career: 3,
-    stack: ["React Query", "Redux", "TypeScript"],
+    stacks: ["React Query", "Redux", "TypeScript"],
     score: 60,
   },
   {
@@ -114,7 +114,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "백엔드",
     career: 1,
-    stack: ["Node.js", "Redis", "Docker"],
+    stacks: ["Node.js", "Redis", "Docker"],
     score: 10,
   },
   {
@@ -123,7 +123,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "IOS",
     career: 1,
-    stack: ["Flutter", "Dart"],
+    stacks: ["Flutter", "Dart"],
     score: 20,
   },
   {
@@ -132,7 +132,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "프론트엔드",
     career: 2,
-    stack: ["React", "GraphQL", "Apollo"],
+    stacks: ["React", "GraphQL", "Apollo"],
     score: 30,
   },
   {
@@ -141,7 +141,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "백엔드",
     career: 4,
-    stack: ["Django", "Python", "GraphQL"],
+    stacks: ["Django", "Python", "GraphQL"],
     score: 70,
   },
   {
@@ -150,7 +150,7 @@ export const searchedMemberProfiles: SearchedMemberProfile[] = [
     profileImageUrl: "",
     position: "데브옵스",
     career: 5,
-    stack: ["AWS", "Docker", "Kubernetes"],
+    stacks: ["AWS", "Docker", "Kubernetes"],
     score: 20,
   },
 ];

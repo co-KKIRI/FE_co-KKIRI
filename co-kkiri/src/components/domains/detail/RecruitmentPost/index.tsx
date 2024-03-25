@@ -3,12 +3,12 @@ import UserInfo from "@/components/commons/UserInfo";
 import PostManagementButtons from "../PostManagementButtons";
 import Count from "@/components/commons/Count";
 import { ICONS } from "@/constants/icons";
-import { DetailInfo } from "@/lib/mock/studyDetail";
 import DOMPurify from "dompurify";
 import { createTimePassedMessage } from "@/utils/formatDate";
+import { PostDetailApiResponseDto } from "@/lib/api/post/type";
 
 interface RecruitmentPostProps {
-  detailInfo: DetailInfo;
+  detailInfo: PostDetailApiResponseDto;
   className?: string;
 }
 
@@ -16,8 +16,8 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
   const {
     postTitle,
     postContent,
-    userProfileImg: profileImageUrl,
-    userNickname: nickname,
+    memberProfileImg: profileImageUrl,
+    memberNickname: nickname,
     createdAt,
     views,
     scraps,
