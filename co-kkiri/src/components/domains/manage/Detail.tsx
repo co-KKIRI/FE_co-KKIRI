@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
-import { PostManagementApiResponseDto } from "@/lib/api/post/type";
+import { StudyManagementApiResponseDto } from "@/lib/api/post/type";
 
 interface DetailProps {
-  detailInfo: PostManagementApiResponseDto;
+  detailInfo: StudyManagementApiResponseDto;
 }
 
 export default function Detail({ detailInfo }: DetailProps) {
-  const { postTitle, type, recruitEndAt, progressPeriod, progressWay, contactWay, capacity, positions, stack } =
+  const { postTitle, type, recruitEndAt, progressPeriod, progressWay, contactWay, capacity, positions, stacks } =
     detailInfo;
 
   return (
@@ -31,7 +31,7 @@ export default function Detail({ detailInfo }: DetailProps) {
         progressWay={progressWay}
         contactWay={contactWay}
         capacity={capacity}
-        stacks={stack}
+        stacks={stacks}
       />
     </Container>
   );
