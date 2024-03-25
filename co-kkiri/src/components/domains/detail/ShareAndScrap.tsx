@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Share from "@/components/domains/detail/Share";
-import Scrap from "@/components/commons/Scrap";
+import CardCornerButton from "@/components/commons/CardCornerButton";
 
 interface ShareAndScrapProps {
   isScraped: boolean;
@@ -11,7 +11,7 @@ export default function ShareAndScrap({ isScraped, className }: ShareAndScrapPro
   return (
     <Container className={className}>
       <Share />
-      <Scrap isScraped={isScraped} width={42} />
+      <ScrapSection isScraped={isScraped} />
     </Container>
   );
 }
@@ -20,4 +20,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
+`;
+
+const ScrapSection = styled(CardCornerButton)`
+  img {
+    width: 4.2rem;
+  }
 `;

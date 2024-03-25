@@ -1,21 +1,28 @@
-import * as S from "./Card.styled";
 import { Link } from "react-router-dom";
+import useMyStudyStore from "@/stores/myStudyStore";
+
+import * as S from "./Card.styled";
+
 import Header from "./Header";
 import Title from "./Title";
 import ProjectChip from "../Chips/ProjectChip";
-import Scrap from "../Scrap";
+import CardCornerButton from "../CardCornerButton";
 import Stacks from "../Stacks";
 import Positions from "../Positions";
 import Count from "../Count";
 import UserInfo from "../UserInfo";
 
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
+import { getCardCornerType } from "@/utils/getCardCornerType";
 import { ICONS } from "@/constants/icons";
+//임시
+import { PostInfo } from "@/lib/mock/myStudy/applied";
 
 //임시
 interface CardData {
   id: number;
   type: "STUDY" | "PROJECT";
+  status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
   isScraped: boolean;
   progressWay: string;
@@ -30,14 +37,15 @@ interface CardData {
 
 interface CardProps {
   page?: "home" | "studyList";
-  cardData: CardData;
+  cardData: CardData | PostInfo;
 }
 
 export default function Card({ page = "home", cardData }: CardProps) {
-  const isSidebarOpenNarrow = useResponsiveSidebar();
+  const { currentCategory } = useMyStudyStore();
   const {
     id,
     type,
+    status,
     isScraped,
     recruitEndAt,
     progressWay,
@@ -49,6 +57,8 @@ export default function Card({ page = "home", cardData }: CardProps) {
     postViews,
     postCommentsNum,
   } = cardData;
+  const isSidebarOpenNarrow = useResponsiveSidebar();
+  const cardCornerType = getCardCornerType(currentCategory, status);
 
   return (
     <Link to={`/list/${id}`}>
@@ -58,7 +68,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.ProjectChip>
               <ProjectChip label={type} />
             </S.ProjectChip>
-            <Scrap isScraped={isScraped} width={36} />
+            <CardCornerButton isScraped={isScraped} cardCornerType={cardCornerType} postId={id} />
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
@@ -66,7 +76,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <Scrap isScraped={isScraped} width={28} />}
+            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />

@@ -18,7 +18,6 @@ import categorySelected from "@/assets/icons/category_selected.svg";
 import calendar from "@/assets/icons/calendar.svg";
 import reset from "@/assets/icons/reset.svg";
 import more from "@/assets/icons/more.svg";
-import { Images } from "@/types/imageTypes";
 import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
 import scrollTop from "@/assets/icons/scroll_top.svg";
 import accept from "@/assets/icons/accept.svg";
@@ -27,6 +26,9 @@ import leaderIcon from "@/assets/icons/leader/leader.svg";
 import leaderBackground from "@/assets/icons/leader/leader_background.svg";
 import camera from "@/assets/icons/camera.svg";
 import circleArrow from "@/assets/icons/circle_arrow.svg";
+import manage from "@/assets/icons/manage.svg";
+import pen from "@/assets/icons/pen.svg";
+import { Images } from "@/types/imageTypes";
 
 export const ICONS: Images = {
   arrowRight: {
@@ -45,7 +47,7 @@ export const ICONS: Images = {
     src: category,
     alt: "메뉴 펼치기",
   },
-  circleArrow:{
+  circleArrow: {
     src: circleArrow,
     alt: "메뉴 펼치기",
   },
@@ -137,5 +139,13 @@ export const ICONS: Images = {
   leaderBackground: {
     src: leaderBackground,
     alt: "리더 아이콘 배경",
+  },
+  manage: {
+    src: manage,
+    alt: "관리 아이콘",
+  },
+  pen: {
+    src: pen,
+    alt: "리뷰 작성 아이콘",
   },
 };

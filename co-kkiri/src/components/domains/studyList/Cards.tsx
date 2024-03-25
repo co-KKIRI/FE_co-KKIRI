@@ -1,11 +1,12 @@
 import Card from "@/components/commons/Card";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
+import { PostInfo } from "@/lib/mock/myStudy/applied";
 import { StudyInfo } from "@/lib/mock/studyList";
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
 interface CardsProps {
-  data: StudyInfo[];
+  data: StudyInfo[] | PostInfo[];
 }
 
 export default function Cards({ data }: CardsProps) {

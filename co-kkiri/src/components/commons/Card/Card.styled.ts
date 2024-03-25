@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import CardCornerButton from "../CardCornerButton";
 
 type PageType = "home" | "studyList";
 
@@ -105,7 +106,13 @@ export const HeaderWrapper = styled.header<PageProp>`
 `;
 
 export const HeaderPadding = styled.div<PageProp>`
-  ${({ $page }) => ($page === "home" ? `padding-top: 1rem; padding-bottom: 0.4rem;` : "")};
+  ${({ $page }) => ($page === "home" ? `padding-top: 1rem; padding-bottom: 0.4rem;` : "")}
+`;
+
+export const HomeCardCornerButton = styled(CardCornerButton)`
+  img {
+    width: 2.8rem;
+  }
 `;
 
 export const ContentWrapper = styled.main`
