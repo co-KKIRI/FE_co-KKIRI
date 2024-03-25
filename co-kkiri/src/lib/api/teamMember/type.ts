@@ -4,6 +4,7 @@ type PostTeamMember = {
   memberId: number;
   nickname: string;
   profileImageUrl: string;
+  position: string;
   isLeader: boolean;
 };
 
@@ -17,8 +18,7 @@ type PageMeta = {
 };
 
 export type TeamMemberApiResponseDto = {
-  postTeamMemberList: PostTeamMember[];
-  meta: PageMeta;
+  data: PostTeamMember[];
 };
 
 export type TeamMemberApiRequestDto = {

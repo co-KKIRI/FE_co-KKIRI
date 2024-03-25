@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
-import { ManageInfo } from "@/lib/mock/manage/manage";
+import { PostManagementApiResponseDto } from "@/lib/api/post/type";
 
 interface DetailProps {
-  detailInfo: ManageInfo;
-  className?: string;
+  detailInfo: PostManagementApiResponseDto;
 }
 
 export default function Detail({ detailInfo }: DetailProps) {
-  const { postTitle, type, recruitEndAt, progressPeriod, progressWay, contactWay, capacity, positions, stacks } =
+  const { postTitle, type, recruitEndAt, progressPeriod, progressWay, contactWay, capacity, positions, stack } =
     detailInfo;
+
   return (
     <Container>
       <Box>
@@ -21,6 +21,7 @@ export default function Detail({ detailInfo }: DetailProps) {
         </InfoWrapper>
         <Title>{postTitle}</Title>
       </Box>
+
       <ProjectDetailCard
         type="mystudy"
         ProjectCategory={type}
@@ -30,7 +31,7 @@ export default function Detail({ detailInfo }: DetailProps) {
         progressWay={progressWay}
         contactWay={contactWay}
         capacity={capacity}
-        stacks={stacks}
+        stacks={stack}
       />
     </Container>
   );

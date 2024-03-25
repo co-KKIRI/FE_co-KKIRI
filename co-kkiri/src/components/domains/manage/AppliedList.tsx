@@ -1,28 +1,41 @@
-import { appliedMemberData } from "@/lib/mock/manage/appliedMember";
 import SectionTitle from "./SectionTitle";
 import UserInfo from "@/components/commons/UserInfo";
 import styled from "styled-components";
 import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
+import { AppliedMemberListApiResponseDto } from "@/lib/api/post/type";
 
-export default function AppliedList() {
-  const detailInfo = appliedMemberData.result.appliedPostMemberList;
+interface AppliedListProps {
+  detailInfo: AppliedMemberListApiResponseDto["data"];
+  handleAcceptMember: (teamMemberId: number) => void;
+  handleRejectMember: (teamMemberId: number) => void;
+}
+
+export default function AppliedList({ detailInfo, handleAcceptMember, handleRejectMember }: AppliedListProps) {
+  const handleAccept = (teamMemberId: number) => {
+    handleAcceptMember(teamMemberId);
+  };
+
+  const handleReject = (teamMemberId: number) => {
+    handleRejectMember(teamMemberId);
+  };
+
   return (
     <Container>
-      <SectionTitle title="신청 목록" count={detailInfo.length} />
+      <SectionTitle title="신청 목록" count={detailInfo?.length || 0} />
       <Members>
-        {detailInfo.map((info) => (
+        {detailInfo?.map((info) => (
           <Box key={info.memberId}>
             <MemberWrapper>
               <UserInfo user={{ nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
               <PositionChip label={info.position} />
             </MemberWrapper>
             <AcceptWrapper>
-              <button>
+              <button onClick={() => handleAccept(info.teamMemberId)}>
                 <img src={ICONS.accept.src} alt={ICONS.accept.alt} />
               </button>
-              <button>
+              <button onClick={() => handleReject(info.teamMemberId)}>
                 <img src={ICONS.reject.src} alt={ICONS.reject.alt} />
               </button>
             </AcceptWrapper>
