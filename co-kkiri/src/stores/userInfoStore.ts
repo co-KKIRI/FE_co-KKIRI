@@ -7,6 +7,7 @@ import { create } from "zustand";
 interface UserInfoState {
   userId: number | null;
   userInfo: UserProfile | null;
+  isLoading: boolean;
   isVisible: boolean;
 }
 
@@ -22,15 +23,18 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
   userId: null,
   profileImage: undefined,
   userInfo: null,
+  isLoading: true,
   isVisible: false,
 
   setUserId: (userId) => set({ userId }),
   setUserInfo: (userInfo) => set({ userInfo }),
+  setIsLoading: (isLoading) => set({ isLoading }),
   setIsVisible: (isVisible) => set({ isVisible }),
   fetchUserInfo: async () => {
+    let userProfile: UserProfile | null = null;
     try {
       const data: UserInfoSummaryResponseDto = await getUserInfoSummary();
-      const userProfile: UserProfile = {
+      userProfile = {
         nickname: data.nickname,
         profileImageUrl: data.profileImageUrl,
         position: "",
@@ -39,9 +43,10 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
         stacks: [],
         link: "",
       };
-      set({ userInfo: userProfile });
     } catch (error) {
       console.error("Failed to fetch user info:", error);
+    } finally {
+      set({ userInfo: userProfile, isLoading: false });
     }
   },
 }));
