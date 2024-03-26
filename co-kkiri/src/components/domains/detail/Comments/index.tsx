@@ -6,17 +6,17 @@ import { commentList, CommentInfo } from "@/lib/mock/commentList";
 import Button from "@/components/commons/Button";
 
 interface CommentsProps {
-  commentsNum: number;
+  commentCount: number;
   className?: string;
 }
 
-export default function Comments({ commentsNum, className }: CommentsProps) {
+export default function Comments({ commentCount, className }: CommentsProps) {
   const comments: CommentInfo[] = commentList.result.comments;
   return (
     <Container className={className}>
       <Wrapper>
         <Label>댓글</Label>
-        <Count>{commentsNum}</Count>
+        <Count>{commentCount}</Count>
       </Wrapper>
       <CommentForm />
       <CommentWrapper>

@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 import UserProfileModal from "../modals/UserProfileModal";
 interface UserInfoProps {
   user: {
-    id: number;
+    id?: number;
     nickname: string;
     profileImageUrl: string;
   };
@@ -20,7 +20,7 @@ export default function UserInfo({ user, nicknameBold }: UserInfoProps) {
   };
   return (
     <UserInfoWrapper onClick={handleUserProfileModalOpen}>
-      {isUserProfileModalOpen && <UserProfileModal userId={user.id} />}
+      {isUserProfileModalOpen && user.id && <UserProfileModal userId={user.id} />}
       {user.profileImageUrl ? (
         <ProfileImg src={user.profileImageUrl} alt="프로필 사진" />
       ) : (

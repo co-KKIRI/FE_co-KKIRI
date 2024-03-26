@@ -22,6 +22,7 @@ export const Title = styled.div`
   ${font24Bold}
   color:${color.black[1]};
   width: 100%;
+  flex-shrink: 0;
 `;
 
 export const Box = styled.div`
@@ -29,6 +30,7 @@ export const Box = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  flex-shrink: 0;
 `;
 
 export const PostInfoWrapper = styled.div`
@@ -62,10 +64,12 @@ export const Content = styled.div`
   color:${color.black[2]};
   width: 100%;
   margin-top: 1rem;
+  flex-grow: 1;
 `;
 
 export const CountWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  flex-shrink: 0;
 `;
