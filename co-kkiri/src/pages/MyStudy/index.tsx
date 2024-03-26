@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 
-import styled from "styled-components";
-import DESIGN_TOKEN from "@/styles/tokens";
+import * as S from "./styled";
 
-import FilterList from "@/components/commons/FilterList";
 import Cards from "@/components/commons/Cards";
+import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
 
 import { categoryStudyStatusFilter } from "@/constants/categories";
 import { CategoryStudyStatus } from "@/types/categoryTypes";
 import { getFilterKey } from "@/utils/objectUtils";
-import Button from "@/components/commons/Button";
-import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
 
 //임시
 import { myRecruitingList } from "@/lib/mock/myStudy/recruiting";
@@ -55,56 +52,19 @@ export default function MyStudy() {
   }, [currentCategory]);
 
   return (
-    <Container>
-      <Box>
-        <FilterListSection
+    <S.Container>
+      <S.Box>
+        <S.Title>나의 스터디/프로젝트</S.Title>
+        <S.FilterListSection
           type="category"
           currentFilter={categoryStudyStatusFilter[currentCategory]}
           filters={Object.values(categoryStudyStatusFilter)}
           onFilterClick={handleCategoryChange}
         />
-        <Cards data={cards} />
-        <ButtonSection variant="ghost">더보기</ButtonSection> {/*무한스크롤 로딩 시 disabled*/}
+        <Cards data={cards} page="myStudy" />
+        <S.ButtonSection variant="ghost">더보기</S.ButtonSection> {/*무한스크롤 로딩 시 disabled*/}
         <ScrollToTop />
-      </Box>
-    </Container>
+      </S.Box>
+    </S.Container>
   );
 }
-
-const {
-  spacing,
-  mediaQueries: { tablet, mobile },
-} = DESIGN_TOKEN;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Box = styled.div`
-  display: inline-grid;
-  padding-top: 2.6rem;
-  padding-bottom: 12rem;
-`;
-
-const FilterListSection = styled(FilterList)`
-  padding-bottom: 4rem;
-  ${tablet} {
-    padding-left: ${spacing.tablet};
-  }
-
-  ${mobile} {
-    padding-left: ${spacing.mobile};
-  }
-`;
-
-const ButtonSection = styled(Button)`
-  width: 15.8rem;
-  margin-top: 6rem;
-  justify-self: center;
-
-  ${mobile} {
-    width: 32rem;
-    margin-top: 4rem;
-  }
-`;

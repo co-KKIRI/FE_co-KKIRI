@@ -26,6 +26,7 @@ export default function ScoutCards({ userProfiles }: ScoutCardsProps) {
               career={career}
               stacks={stacks}
               score={score}
+              cardType="scout"
             />
           ))}
         </Wrapper>
