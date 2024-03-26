@@ -1,5 +1,5 @@
 import { memberAddress } from "../address";
-import { ApiRequestResponse, apiRequest } from "../axios";
+import { apiRequest } from "../axios";
 import {
   MemberProfileApiResponseDto,
   SearchedMemberProfileApiRequestDto,
@@ -7,7 +7,7 @@ import {
 } from "./type";
 
 /** 유저 프로필 가져오기 */
-export const getMemberProfile = (memberId: number): Promise<ApiRequestResponse<MemberProfileApiResponseDto>> =>
+export const getMemberProfile = (memberId: number): Promise<MemberProfileApiResponseDto> =>
   apiRequest("get", memberAddress.memberId(memberId));
 
 /** 유저 프로필 검색
@@ -16,5 +16,4 @@ export const getMemberProfile = (memberId: number): Promise<ApiRequestResponse<M
  */
 export const getSearchedMemberProfile = (
   qs: SearchedMemberProfileApiRequestDto,
-): Promise<ApiRequestResponse<SearchedMemberProfileApiResponseDto>> =>
-  apiRequest("get", memberAddress.search, null, qs);
+): Promise<SearchedMemberProfileApiResponseDto> => apiRequest("get", memberAddress.search, null, qs);
