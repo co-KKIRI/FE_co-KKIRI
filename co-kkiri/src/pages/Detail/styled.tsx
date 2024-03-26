@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import BackButton from "@/components/commons/BackButton";
-import MappedButton from "@/components/domains/detail/MappedButton";
+import StatusBasedButton from "@/components/domains/detail/StatusBasedButton";
 import RecruitmentPost from "@/components/domains/detail/RecruitmentPost";
 import Comments from "@/components/domains/detail/Comments";
 import ShareAndScrap from "@/components/domains/detail/ShareAndScrap";
@@ -97,7 +97,7 @@ export const CommentsSection = styled(Comments)`
   grid-area: comments;
 `;
 
-export const ButtonSection = styled(MappedButton)<{ $cardHeight?: number }>`
+export const ButtonSection = styled(StatusBasedButton)<{ $cardHeight?: number }>`
   grid-area: button;
   position: sticky;
   top: ${({ $cardHeight }) => ($cardHeight ? `${$cardHeight / 10 + 11}rem` : `51.7rem;`)};
