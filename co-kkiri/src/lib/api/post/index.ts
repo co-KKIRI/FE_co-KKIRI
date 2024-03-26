@@ -26,8 +26,8 @@ export const getPostDetail = (postId: number): Promise<PostDetailApiResponseDto>
   apiRequest("get", postAddress.postId(postId));
 
 /** 스터디 글 작성하기 */
-export const createPost = (data: RecruitApiRequestDto): Promise<{ result: { postId: number } }> =>
-  apiRequest<{ result: { postId: number } }, RecruitApiRequestDto>("post", postAddress.recruit, data);
+export const createPost = (data: RecruitApiRequestDto): Promise<{ postId: number }> =>
+  apiRequest<{ postId: number }, RecruitApiRequestDto>("post", postAddress.recruit, data);
 
 /** 스터디 글 수정하기 */
 export const modifyPost = (postId: number, data: RecruitApiRequestDto) =>

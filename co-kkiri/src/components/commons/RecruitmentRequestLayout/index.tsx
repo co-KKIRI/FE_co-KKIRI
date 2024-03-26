@@ -17,36 +17,19 @@ import { CategoryList } from "@/types/categoryTypes";
 interface RecruitmentRequestLayoutProps {
   onSubmit: (data: RecruitApiRequestDto) => void;
   buttonText: string;
-  defaultOption?: RecruitApiRequestDto;
+  selectedOptions: RecruitApiRequestDto;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }
 
 export default function RecruitmentRequestLayout({
+  selectedOptions,
+  setSelectedOptions,
   onSubmit,
   buttonText,
-  defaultOption,
 }: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
-
-  const initialOption: RecruitApiRequestDto = {
-    type: "STUDY",
-    recruitEndAt: "",
-    progressPeriod: "",
-    capacity: 999,
-    contactWay: "",
-    progressWay: "",
-    stacks: [],
-    positions: [],
-    title: "",
-    content: "",
-    link: "",
-  };
-
-  //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
-  const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>(
-    defaultOption ? defaultOption : initialOption,
-  );
 
   const findOptionByValue = <ValueType, OptionType>(values: ValueType[], options: OptionType[], value: ValueType) => {
     const index = values.indexOf(value);
@@ -74,6 +57,17 @@ export default function RecruitmentRequestLayout({
     }));
   };
 
+  const handleRequestFailed = () => {
+    if (
+      selectedOptions.recruitEndAt == "" &&
+      selectedOptions.progressWay == "" &&
+      selectedOptions.positions.length == 0
+    ) {
+      alert("필수값을 입력해주세요");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const {
     handleSubmit,
     control,
@@ -83,8 +77,7 @@ export default function RecruitmentRequestLayout({
   console.log(selectedOptions);
 
   return (
-    <S.SelectContainer
-      onSubmit={handleSubmit((selectedOptions: FieldValues) => onSubmit(selectedOptions as RecruitApiRequestDto))}>
+    <S.SelectContainer onSubmit={handleSubmit(() => onSubmit(selectedOptions))}>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
@@ -273,7 +266,7 @@ export default function RecruitmentRequestLayout({
                   />
                 )}
               />
-              {selectedOptions.contactWay !== null && errors[selectedOptions.contactWay] && (
+              {selectedOptions.contactWay !== "기타" && errors[selectedOptions.contactWay] && (
                 <p>{String(errors[selectedOptions.contactWay]?.message)}</p>
               )}
             </>
@@ -360,7 +353,13 @@ export default function RecruitmentRequestLayout({
       </S.QuillBox>
       <S.SubmitButtonBox>
         <Button variant="primaryLight">취소하기</Button>
-        <Button variant="primary">{buttonText}</Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            handleRequestFailed();
+          }}>
+          {buttonText}
+        </Button>
       </S.SubmitButtonBox>
     </S.SelectContainer>
   );

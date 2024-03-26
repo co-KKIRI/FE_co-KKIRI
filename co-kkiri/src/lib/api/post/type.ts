@@ -13,7 +13,7 @@ export type RecruitApiRequestDto = {
   positions: string[];
   title: string;
   content: string;
-  link: string;
+  link?: string;
 };
 
 export type PostInfo = {
