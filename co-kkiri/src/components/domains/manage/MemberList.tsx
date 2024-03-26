@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteTeamMember } from "@/lib/api/teamMember";
 
 interface MemberListProps {
-  detailInfo: TeamMemberApiResponseDto["data"];
+  detailInfo: TeamMemberApiResponseDto["data"] | null | undefined;
 }
 
 export default function MemberList({ detailInfo }: MemberListProps) {
@@ -36,7 +36,7 @@ export default function MemberList({ detailInfo }: MemberListProps) {
         {detailInfo?.map((info) => (
           <Box key={info.memberId}>
             <MemberWrapper>
-              <UserInfo user={{ nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
+              <UserInfo user={{ id: info.memberId, nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
               {info.isLeader && (
                 <Leader>
                   <LeaderIcon />
