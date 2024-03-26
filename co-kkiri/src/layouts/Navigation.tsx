@@ -6,10 +6,8 @@ import Gnb from "@/components/commons/Gnb";
 import SideBar from "@/components/commons/SideBar";
 import { useWindowSize } from "usehooks-ts";
 import { slideIn, slideOut } from "@/utils/animation";
-import { useState } from "react";
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
   const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
   const toggleSideBar = useSideBarStore((state) => state.toggleSideBar);
 
@@ -25,8 +23,8 @@ export default function Navigation() {
       <Gnb onSideBarClick={handleSideBar} />
       <SideBarWrapper $isOpen={isSideBarOpen}>
         {isSideBarOpen && isTabletOrMobile && <SideBar onClick={handleSideBar} onClose={handleSideBar} />}
+        {!isTabletOrMobile && <SideBar onClose={() => {}} />}
       </SideBarWrapper>
-      <SideBarWrapper $isOpen={isSideBarOpen}>{!isTabletOrMobile && <SideBar onClose={() => {}} />}</SideBarWrapper>
       <OutletWrapper $isOpen={isSideBarOpen}>
         <Outlet />
       </OutletWrapper>
