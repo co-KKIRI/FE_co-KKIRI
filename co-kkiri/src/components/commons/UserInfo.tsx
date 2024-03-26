@@ -1,19 +1,26 @@
 import { IMAGES } from "@/constants/images";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { useState } from "react";
 import { styled } from "styled-components";
-
+import UserProfileModal from "../modals/UserProfileModal";
 interface UserInfoProps {
   user: {
+    id: number;
     nickname: string;
     profileImageUrl: string;
   };
   nicknameBold?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function UserInfo({ user, onClick, nicknameBold }: UserInfoProps) {
+export default function UserInfo({ user, nicknameBold }: UserInfoProps) {
+  const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState<boolean>(false);
+
+  const handleUserProfileModalOpen = () => {
+    setIsUserProfileModalOpen(!isUserProfileModalOpen);
+  };
   return (
-    <UserInfoWrapper onClick={onClick}>
+    <UserInfoWrapper onClick={handleUserProfileModalOpen}>
+      {isUserProfileModalOpen && <UserProfileModal userId={user.id} />}
       {user.profileImageUrl ? (
         <ProfileImg src={user.profileImageUrl} alt="프로필 사진" />
       ) : (
@@ -33,6 +40,10 @@ const UserInfoWrapper = styled.div`
   align-items: center;
   gap: 0.8rem;
   cursor: pointer;
+
+  img {
+    border-radius: 50%;
+  }
 `;
 
 const ProfileImg = styled.img`

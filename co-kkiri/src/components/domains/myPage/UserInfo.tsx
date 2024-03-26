@@ -1,82 +1,9 @@
-import Button from "@/components/commons/Button";
-import PositionChip from "@/components/commons/Chips/PositionChip";
-import Stacks from "@/components/commons/Stacks";
 import ToggleButton from "@/components/commons/ToggleButton";
-import EditUserProfileModal from "@/components/modals/EditUserProfileModal";
-import ModalPortal from "@/components/modals/ModalPortal";
-import * as S from "@/components/modals/UserProfileModal/UserProfileModal.styled";
-import { IMAGES } from "@/constants/images";
+import UserProfileCard from "@/components/commons/UserProfileCard";
 import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useState } from "react";
 import styled from "styled-components";
-
-interface UserProfileProps {
-  user: UserInfoApiResponseDto;
-}
-
-// 컴포넌트로 따로 분리하기
-function UserProfile({ user }: UserProfileProps) {
-  const [isEditUserProfileModal, setIsEditUserProfileModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsEditUserProfileModal(!isEditUserProfileModal);
-  };
-  return (
-    <Section>
-      <S.Container>
-        {user.profileImageUrl ? (
-          <S.ProfileImg src={user.profileImageUrl} alt="프로필 이미지" />
-        ) : (
-          <img src={IMAGES.profileImgBig.src} alt={IMAGES.profileImgBig.alt} />
-        )}
-        <PositionChip label={user.position} />
-        <S.ProfileBox>
-          <S.ProfileWrapper>
-            <S.Nickname>{user.nickname}</S.Nickname>
-            <S.Career>{user.career ? `경력 ${user.career}년차` : "경력을 아직 작성하지 않았어요!"}</S.Career>
-          </S.ProfileWrapper>
-          <Stacks stacks={user.stacks} />
-          <S.Introduce>{user.introduce ? user.introduce : "한줄소개를 아직 작성하지 않았어요!"}</S.Introduce>
-        </S.ProfileBox>
-        <S.LinkBox>
-          <S.LinkWrapper>
-            {user.link ? (
-              <a key={user.link} href={user.link} target="_blank" rel="noopner noreferrer">
-                {user.link}
-              </a>
-            ) : (
-              "링크없음"
-            )}
-          </S.LinkWrapper>
-        </S.LinkBox>
-        <Button variant="ghost" onClick={handleOpenModal}>
-          수정하기
-        </Button>
-      </S.Container>
-      {isEditUserProfileModal && (
-        <ModalPortal>
-          <EditUserProfileModal onClose={handleOpenModal} />
-        </ModalPortal>
-      )}
-    </Section>
-  );
-}
-
-const { typography, color, mediaQueries } = DESIGN_TOKEN;
-
-const Section = styled.div`
-  background-color: ${color.white};
-  width: 43rem;
-  height: 50.6rem;
-  border-radius: 1rem;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
-  padding: 4.1rem 3rem 3rem;
-  ${mediaQueries.mobile} {
-    width: 32rem;
-    height: 50.6rem;
-  }
-`;
 
 interface UserInfoProps {
   user: UserInfoApiResponseDto;
@@ -91,7 +18,16 @@ export default function UserInfo({ user }: UserInfoProps) {
 
   return (
     <Container>
-      <UserProfile user={user} />
+      <UserProfileCard
+        nickname={user.nickname}
+        position={user.position}
+        career={user.career}
+        stacks={user.stacks}
+        score={40}
+        introduce={user.introduce}
+        link={user.link}
+        cardType="mypage"
+      />
       <Box>
         <Scout>
           <ToggleButton content="스카우트 동의" onChange={handleIsVisibleProfile} isChecked={isChecked} />
@@ -101,6 +37,8 @@ export default function UserInfo({ user }: UserInfoProps) {
     </Container>
   );
 }
+
+const { typography, color, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
   width: 43rem;
