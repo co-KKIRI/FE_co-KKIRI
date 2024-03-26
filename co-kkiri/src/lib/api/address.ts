@@ -96,8 +96,14 @@ export const myPostAddress = {
   reviewInfo: "/my-post/complete/review/info",
 };
 
-//get
-export const memberAddress = { memberId: (memberId: number) => `/member/${memberId}`, search: "/member/search" };
+export const memberAddress = {
+  //get
+  userInfoSummary: "/member/info/summary",
+  //get
+  memberId: (memberId: number) => `/member/${memberId}`,
+  //get
+  search: "/member/search",
+};
 
 //post
 export const imageAddress = "/image";
