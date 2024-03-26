@@ -1,7 +1,7 @@
 import { CategoryList } from "@/types/categoryTypes";
 
 type PostInfo = {
-  id: number;
+  postId: number;
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
@@ -18,7 +18,7 @@ type PostInfo = {
 
 export const myOnGoingList: PostInfo[] = [
   {
-    id: 16,
+    postId: 16,
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-11-01",
@@ -33,7 +33,7 @@ export const myOnGoingList: PostInfo[] = [
     commentCount: 18,
   },
   {
-    id: 17,
+    postId: 17,
     type: "STUDY",
     status: "PROGRESS",
     recruitEndAt: "2024-11-15",
@@ -48,7 +48,7 @@ export const myOnGoingList: PostInfo[] = [
     commentCount: 25,
   },
   {
-    id: 18,
+    postId: 18,
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-12-01",
@@ -63,7 +63,7 @@ export const myOnGoingList: PostInfo[] = [
     commentCount: 30,
   },
   {
-    id: 19,
+    postId: 19,
     type: "STUDY",
     status: "PROGRESS",
     recruitEndAt: "2024-12-15",
@@ -78,7 +78,7 @@ export const myOnGoingList: PostInfo[] = [
     commentCount: 12,
   },
   {
-    id: 20,
+    postId: 20,
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2025-01-01",
