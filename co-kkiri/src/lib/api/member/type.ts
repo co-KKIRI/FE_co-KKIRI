@@ -1,5 +1,5 @@
 // 유저 프로필 조회
-type MemberProfile = {
+export type MemberProfile = {
   memberId: number;
   nickname: string;
   profileImageUrl: string;
