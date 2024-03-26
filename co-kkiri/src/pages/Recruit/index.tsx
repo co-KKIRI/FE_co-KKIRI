@@ -1,10 +1,9 @@
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
 import * as S from "./styled";
-import { PostDetailApiResponseDto, RecruitApiRequestDto } from "@/lib/api/post/type";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { createPost } from "@/lib/api/post";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { ApiRequestResponse } from "@/lib/api/axios";
 
 export default function Recruit() {
   const queryClient = useQueryClient();
@@ -28,7 +27,6 @@ export default function Recruit() {
     } else {
       alert("필수값을 입력해주세요");
       window.scrollTo({ top: 0, behavior: "smooth" });
-      console.log(selectedOptions, "요청안돼");
     }
   };
 

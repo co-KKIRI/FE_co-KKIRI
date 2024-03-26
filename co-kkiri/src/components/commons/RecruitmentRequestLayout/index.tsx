@@ -6,15 +6,13 @@ import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller, FieldValues } from "react-hook-form";
 import { CategoryList } from "@/types/categoryTypes";
-import styled from "styled-components";
-import Positions from "../Positions";
 
 interface RecruitmentRequestLayoutProps {
   onSubmit: (data: RecruitApiRequestDto) => void;
@@ -116,6 +114,7 @@ export default function RecruitmentRequestLayout({
             <S.RadioButtonWarper>
               <Controller
                 name="type"
+                defaultValue="PROJECT"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -138,6 +137,7 @@ export default function RecruitmentRequestLayout({
           </h3>
           <Controller
             name="recruitEndAt"
+            defaultValue={selectedOptions.recruitEndAt}
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -184,6 +184,7 @@ export default function RecruitmentRequestLayout({
           <h3>모집 인원</h3>
           <Controller
             name="capacity"
+            defaultValue={selectedOptions.capacity}
             control={control}
             render={({ field }) => (
               <Dropdown
@@ -206,6 +207,7 @@ export default function RecruitmentRequestLayout({
           </h3>
           <Controller
             name="progressWay"
+            defaultValue={selectedOptions.progressWay}
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -228,6 +230,7 @@ export default function RecruitmentRequestLayout({
           <h3>연락 방법</h3>
           <Controller
             name="contactWay"
+            defaultValue={selectedOptions.contactWay}
             control={control}
             render={({ field }) => (
               <Dropdown
@@ -246,6 +249,7 @@ export default function RecruitmentRequestLayout({
             <>
               <Controller
                 name={selectedOptions.contactWay || ""}
+                defaultValue={selectedOptions.link}
                 control={control}
                 rules={{
                   pattern: {
@@ -262,9 +266,9 @@ export default function RecruitmentRequestLayout({
                 render={({ field }) => (
                   <LinkInput
                     selectedOption={selectedOptions.contactWay || ""}
-                    onChange={(link) => {
-                      setSelectedOptions((prevOption) => ({ ...prevOption, link: link }));
-                      field.onChange(link);
+                    onChange={(newLink) => {
+                      setSelectedOptions((prevOption) => ({ ...prevOption, link: newLink }));
+                      field.onChange(newLink);
                     }}
                   />
                 )}
@@ -280,6 +284,7 @@ export default function RecruitmentRequestLayout({
         <h3>기술 스택</h3>
         <Controller
           name="stacks"
+          defaultValue={selectedOptions.stacks}
           control={control}
           render={({ field }) => (
             <MultiselectDropdown
@@ -298,6 +303,7 @@ export default function RecruitmentRequestLayout({
         </h3>
         <Controller
           name="positions"
+          defaultValue={selectedOptions.positions}
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -319,6 +325,7 @@ export default function RecruitmentRequestLayout({
         <h1>스터디/프로젝트 소개</h1>
         <Controller
           name="title"
+          defaultValue={selectedOptions.title}
           control={control}
           render={({ field }) => (
             <S.TitleInput
@@ -336,6 +343,7 @@ export default function RecruitmentRequestLayout({
         />
         <Controller
           name="content"
+          defaultValue={selectedOptions.content}
           control={control}
           render={({ field }) => (
             <QuillEditor
