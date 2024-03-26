@@ -1,5 +1,5 @@
 import { myPostAddress } from "../address";
-import { ApiRequestResponse, apiRequest } from "../axios";
+import { apiRequest } from "../axios";
 import {
   CompletedListApiResponseDto,
   MyAppliedListApiResponseDto,
@@ -8,19 +8,16 @@ import {
 } from "./type";
 
 /** 내가 신청한 스터디 목록 가져오기 */
-export const getApplyList = (): Promise<ApiRequestResponse<MyAppliedListApiResponseDto>> =>
-  apiRequest("get", myPostAddress.applyList);
+export const getApplyList = (): Promise<MyAppliedListApiResponseDto> => apiRequest("get", myPostAddress.applyList);
 
 /** 내가 모집한 스터디 목록 가져오기 */
-export const getRecruitList = (): Promise<ApiRequestResponse<RecruitedListApiResponseDto>> =>
-  apiRequest("get", myPostAddress.recruitList);
+export const getRecruitList = (): Promise<RecruitedListApiResponseDto> => apiRequest("get", myPostAddress.recruitList);
 
 /** 내가 진행중인 스터디 목록 가져오기 */
-export const getOnGoingList = (): Promise<ApiRequestResponse<OnGoingListApiResponseDto>> =>
-  apiRequest("get", myPostAddress.onGoingList);
+export const getOnGoingList = (): Promise<OnGoingListApiResponseDto> => apiRequest("get", myPostAddress.onGoingList);
 
 /** 내가 완료한 스터디 목록 가져오기 */
-export const getCompletedList = (): Promise<ApiRequestResponse<CompletedListApiResponseDto>> =>
+export const getCompletedList = (): Promise<CompletedListApiResponseDto> =>
   apiRequest("get", myPostAddress.completedList);
 
 /** 진행중인 스터디 완료하기 */

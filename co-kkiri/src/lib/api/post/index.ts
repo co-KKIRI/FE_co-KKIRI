@@ -1,5 +1,5 @@
 import { imageAddress, postAddress } from "../address";
-import { apiRequest, ApiRequestResponse } from "../axios";
+import { apiRequest } from "../axios";
 import {
   AppliedMemberListApiRequestDto,
   AppliedMemberListApiResponseDto,
@@ -18,11 +18,11 @@ import {
  *
  *@param {ListApiRequestDto}  qs  쿼리스트링을 객체로 받습니다.
  */
-export const getPostList = (qs: ListApiRequestDto): Promise<ApiRequestResponse<ListApiResponseDto>> =>
+export const getPostList = (qs: ListApiRequestDto): Promise<ListApiResponseDto> =>
   apiRequest("get", postAddress.list, null, qs);
 
 /** 스터디 상세 보기*/
-export const getPostDetail = (postId: number): Promise<ApiRequestResponse<PostDetailApiResponseDto>> =>
+export const getPostDetail = (postId: number): Promise<PostDetailApiResponseDto> =>
   apiRequest("get", postAddress.postId(postId));
 
 /** 스터디 글 작성하기 */
@@ -48,18 +48,16 @@ export const applyPost = (postId: number, data: ApplyPostApiRequestDto) =>
 export const getAppliedMemberList = (
   postId: number,
   qs: AppliedMemberListApiRequestDto,
-): Promise<ApiRequestResponse<AppliedMemberListApiResponseDto>> =>
-  apiRequest("get", postAddress.apply(postId), null, qs);
+): Promise<AppliedMemberListApiResponseDto> => apiRequest("get", postAddress.apply(postId), null, qs);
 
 /** 스터디 초대를 위한 내가 만든 스터디 리스트 */
-export const getPostListForInvite = (): Promise<ApiRequestResponse<ScoutListApiResponseDto>> =>
-  apiRequest("get", postAddress.scout);
+export const getPostListForInvite = (): Promise<ScoutListApiResponseDto> => apiRequest("get", postAddress.scout);
 
 /** 스터디 초대하기 */
 export const inviteMember = (data: InviteMemberRequestDto) => apiRequest("post", postAddress.invite, data);
 
 /** 스터디 프로젝트 정보  */
-export const getStudyManagement = (postId: number): Promise<ApiRequestResponse<StudyManagementApiResponseDto>> =>
+export const getStudyManagement = (postId: number): Promise<StudyManagementApiResponseDto> =>
   apiRequest("get", postAddress.management(postId));
 
 //아래 함수들은 api 문서 수정되면 한번에 반영해놓겠습니다.
