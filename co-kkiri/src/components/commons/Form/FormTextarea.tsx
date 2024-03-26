@@ -29,7 +29,7 @@ export default function FormTextArea({
         value={value}
         onChange={onChange}
         $isError={isError}
-        //화면 크기 감지해서 row 값 정해야함
+        //TODO: 화면 크기 감지해서 row 값 정해야함
         rows={5}
       />
       <HelperText>{helperText}</HelperText>

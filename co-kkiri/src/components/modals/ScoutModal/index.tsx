@@ -25,7 +25,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
   >({
     queries: [
       {
-        //스카우트를 위한 현재 초대 가능한 스터디/프로젝트 목록 가져오기
+        //TODO: 스카우트를 위한 현재 초대 가능한 스터디/프로젝트 목록 가져오기
         queryKey: ["post", "scout"],
         initialData: {
           data: [
@@ -93,7 +93,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
             <RHFDropdown
               formFieldName="postId"
               placeholder="스터디/프로젝트 선택"
-              //실 데이터 가져와야함
+              //TODO: 실 데이터 가져와야함
               options={results.options.map((option) => option.title)}
               control={control}
               errorMessage="스터디/프로젝트를 선택해주세요"
