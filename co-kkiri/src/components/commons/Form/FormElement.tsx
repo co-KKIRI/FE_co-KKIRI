@@ -6,7 +6,7 @@ export interface InputProps {
   onChange: (value: string) => void;
   value: string;
   isError?: boolean;
-  helperText: string;
+  helperText?: string;
 }
 
 interface FormElementProps {
