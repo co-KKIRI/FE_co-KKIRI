@@ -37,7 +37,6 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: end;
   position: relative;
   padding: 0;
   gap: 0.8rem;

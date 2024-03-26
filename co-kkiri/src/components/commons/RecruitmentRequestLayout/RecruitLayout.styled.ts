@@ -30,11 +30,6 @@ export const SelectContainer = styled.form`
   width: 77.4rem;
   gap: 4rem;
 
-  & p {
-    ${typography.font12Medium}
-    color: ${color.red};
-  }
-
   & h1 {
     border-bottom: 0.1rem solid ${color.gray[2]};
     padding-bottom: 2rem;
@@ -129,6 +124,8 @@ export const SelectBox = styled.div`
   & p {
     position: relative;
     top: -0.4rem;
+    ${typography.font12Medium}
+    color: ${color.red};
   }
 `;
 
@@ -153,6 +150,9 @@ export const SelectChipBox = styled.div`
 
   & p {
     margin-top: -1.2rem;
+
+    ${typography.font12Medium}
+    color: ${color.red};
   }
 `;
 

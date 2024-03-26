@@ -48,7 +48,7 @@ export const handleSelectStack = (
   }));
 };
 
-// 모집유형 선택
+// 모집 선택
 export const handleSelectType = (
   type: CategoryList,
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>,

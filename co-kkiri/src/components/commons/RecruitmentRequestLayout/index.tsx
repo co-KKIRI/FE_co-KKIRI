@@ -1,7 +1,6 @@
 import DeadlineDropdown from "@/components/commons/DropDowns/DeadlineDropdown/DeadlineDropdown";
 import Dropdown from "@/components/commons/DropDowns/Dropdown";
 import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselectDropdown";
-import RadioButton from "@/components/commons/RadioButton";
 import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
@@ -10,14 +9,10 @@ import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller, FieldValues, SubmitHandler } from "react-hook-form";
-import {
-  handleSelectPosition,
-  findOptionByValue,
-  handleRecruitFail,
-  handleSelectStack,
-  handleSelectType,
-} from "./utils";
+import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
+
+import { handleSelectPosition, findOptionByValue, handleRecruitFail, handleSelectStack } from "./utils";
+import RadioButtonField from "./RadioButtonField";
 
 interface RecruitmentRequestLayoutProps {
   onSubmit: SubmitHandler<FieldValues>;
@@ -40,7 +35,7 @@ export default function RecruitmentRequestLayout({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onBlur" });
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -51,43 +46,8 @@ export default function RecruitmentRequestLayout({
             모집 구분 <span>*</span>
           </h3>
           <span>
-            <S.RadioButtonWarper>
-              <Controller
-                name="type"
-                defaultValue="STUDY"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <RadioButton
-                    defaultChecked
-                    value="STUDY"
-                    onClick={() => {
-                      handleSelectType("STUDY", setSelectedOptions);
-                      field.onChange("STUDY");
-                    }}
-                  />
-                )}
-              />
-              <span>스터디</span>
-            </S.RadioButtonWarper>
-            <S.RadioButtonWarper>
-              <Controller
-                name="type"
-                defaultValue="PROJECT"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <RadioButton
-                    value="PROJECT"
-                    onClick={() => {
-                      handleSelectType("PROJECT", setSelectedOptions);
-                      field.onChange("PROJECT");
-                    }}
-                  />
-                )}
-              />
-              <span>프로젝트</span>
-            </S.RadioButtonWarper>
+            <RadioButtonField name="type" value="STUDY" control={control} setSelectedOptions={setSelectedOptions} />
+            <RadioButtonField name="type" value="PROJECT" control={control} setSelectedOptions={setSelectedOptions} />
           </span>
         </S.RadioButtonBox>
         <S.SelectBox>
@@ -224,6 +184,7 @@ export default function RecruitmentRequestLayout({
                 }}
                 render={({ field }) => (
                   <LinkInput
+                    onBlur={field.onBlur}
                     selectedOption={selectedOptions.contactWay || ""}
                     onChange={(newLink) => {
                       setSelectedOptions((prevOption) => ({ ...prevOption, link: newLink }));
