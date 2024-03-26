@@ -8,7 +8,7 @@ type ButtonMapped = {
   type?: ConfirmType;
 };
 
-interface StatusButtonConfig {
+export interface StatusButtonConfig {
   NOT_APPLIED: ButtonMapped;
   APPLIED: ButtonMapped;
   INVITED: ButtonMapped;
