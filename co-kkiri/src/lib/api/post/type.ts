@@ -5,15 +5,15 @@ import { CategoryList } from "@/types/categoryTypes";
 export type RecruitApiRequestDto = {
   type: CategoryList;
   recruitEndAt: string;
-  progressPeriod: string | null;
-  capacity: number | null;
-  contactWay: string | null;
-  progressWay: string | null;
+  progressPeriod: string;
+  capacity: number;
+  contactWay: string;
+  progressWay: string;
   stacks: string[];
   positions: string[];
-  title: string | null;
-  content: string | null;
-  link: string | null;
+  title: string;
+  content: string;
+  link: string;
 };
 
 export type PostInfo = {

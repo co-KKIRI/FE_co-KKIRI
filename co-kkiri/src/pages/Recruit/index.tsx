@@ -14,7 +14,8 @@ export default function Recruit() {
     mutationFn: (selectedOptions: RecruitApiRequestDto) => createPost(selectedOptions),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
-      navigate(`/post/${data.result.postId}`);
+      // navigate(`/post/${data.result.postId}`);
+      console.log(data);
     },
   });
   const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {

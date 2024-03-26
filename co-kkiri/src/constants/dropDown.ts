@@ -41,13 +41,13 @@ export const DROPDOWN_INFO = {
     capacity: {
       defaultValue: "모집 인원",
       options: ["인원 미정", "1명", "2명", "3명", "4명", "5명", "6명", "7명", "8명", "9명", "10명 이상"],
-      values: [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 999],
+      values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 999],
     },
     contactWay: {
       defaultValue: "연락 방식",
       options: ["기타", "카카오 오픈톡", "이메일", "구글폼"],
-      values: [null, "카카오 오픈톡", "이메일", "구글폼"],
-      placeholder: [null, "오픈톡 링크", "이메일 주소", "구글폼 주소"],
+      values: ["기타", "카카오 오픈톡", "이메일", "구글폼"],
+      placeholder: ["기타", "오픈톡 링크", "이메일 주소", "구글폼 주소"],
     },
   },
   sort: {

@@ -32,15 +32,15 @@ export default function RecruitmentRequestLayout({
   const initialOption: RecruitApiRequestDto = {
     type: "STUDY",
     recruitEndAt: "",
-    progressPeriod: null,
-    capacity: null,
-    contactWay: null,
-    progressWay: null,
+    progressPeriod: "",
+    capacity: 999,
+    contactWay: "",
+    progressWay: "",
     stacks: [],
     positions: [],
-    title: null,
-    content: null,
-    link: null,
+    title: "",
+    content: "",
+    link: "",
   };
 
   //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
@@ -236,7 +236,7 @@ export default function RecruitmentRequestLayout({
               <Dropdown
                 placeholder={contactWay.defaultValue}
                 options={contactWay.options}
-                selectedOption={findOptionByValue(contactWay.values, contactWay.options, selectedOptions.contactWay)}
+                selectedOption={selectedOptions.contactWay}
                 onSelect={(option) => {
                   setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option }));
                   field.onChange(option);
