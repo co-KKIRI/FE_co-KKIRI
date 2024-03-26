@@ -9,7 +9,6 @@ interface DropdownProps {
   selectedOption?: string | null;
   options: string[];
   isError?: boolean;
-  helperText?: string;
   onSelect: (option: string) => void;
   dropdownRef?: React.RefCallback<HTMLButtonElement>;
 }
@@ -20,7 +19,6 @@ export default function Dropdown({
   options,
   onSelect,
   isError,
-  helperText,
   dropdownRef,
 }: DropdownProps) {
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
@@ -40,7 +38,6 @@ export default function Dropdown({
         dropButtonRef={dropdownRef}
         isError={isError}
       />
-      <HelperText>{helperText}</HelperText>
       <DropMenu isOpen={isOpen} handleSelectOption={handleSelectOption} $borderType="square" options={options} />
     </Container>
   );
@@ -58,10 +55,4 @@ const Container = styled.div<ContainerProps>`
   position: relative;
   padding: 0;
   gap: 0.8rem;
-`;
-
-const HelperText = styled.p`
-  text-align: start;
-  color: ${color.red};
-  ${typography.font12Medium}
 `;
