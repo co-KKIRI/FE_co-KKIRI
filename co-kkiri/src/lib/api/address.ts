@@ -69,7 +69,7 @@ export const myPageAddress = {
   //patch
   visibleProfile: "/my-page/visible-profile",
   //delete
-  myPage: "/my-page",
+  myPage: "/my-page/info",
 };
 
 export const teamAddress = {

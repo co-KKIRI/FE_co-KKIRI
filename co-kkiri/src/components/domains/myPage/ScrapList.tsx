@@ -4,16 +4,17 @@ import Card from "@/components/commons/Card";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-interface ScrapListProps extends MyScrapApiResponseDto {}
-
-export default function ScrapList({ scrapList }: ScrapListProps) {
-  const count = scrapList.filter((scrap) => scrap.isScraped).length;
+interface ScrapListProps {
+  data: MyScrapApiResponseDto["data"];
+}
+export default function ScrapList({ data }: ScrapListProps) {
+  const count = data.filter((scrap) => scrap.isScraped).length;
 
   return (
     <Container>
       <SectionTitle title="스터디/프로젝트 스크랩 목록" count={count} type="cardList" />
       <Wrapper>
-        {scrapList?.map((scrap) => {
+        {data.map((scrap) => {
           return scrap.isScraped && <Card key={scrap.postId} page="studyList" cardData={scrap} />;
         })}
       </Wrapper>
@@ -26,7 +27,9 @@ const { mediaQueries } = DESIGN_TOKEN;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 2rem;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`

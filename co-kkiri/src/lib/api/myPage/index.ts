@@ -1,7 +1,9 @@
 import { myPageAddress } from "../address";
 import { apiRequest } from "../axios";
 import {
+  InvitedTeamListApiRequestDto,
   InvitedTeamListApiResponseDto,
+  MyScrapApiRequestDto,
   MyScrapApiResponseDto,
   UserInfoApiResponseDto,
   UserInfoEditApiRequestDto,
@@ -15,11 +17,16 @@ export const getUserInfo = (): Promise<UserInfoApiResponseDto> => apiRequest("ge
 export const editUserInfo = (data: UserInfoEditApiRequestDto) => apiRequest("patch", myPageAddress.userInfo, data);
 
 /** 초대된 팀 목록 가져오기 */
-export const getInvitedTeamList = (): Promise<InvitedTeamListApiResponseDto> =>
-  apiRequest("get", myPageAddress.inviteList);
+export const getInvitedTeamList = (qs: InvitedTeamListApiRequestDto): Promise<InvitedTeamListApiResponseDto> =>
+  apiRequest("get", myPageAddress.inviteList, null, qs);
 
 /** 스크랩 목록 가져오기 */
-export const getScrapList = (): Promise<MyScrapApiResponseDto> => apiRequest("get", myPageAddress.scrapList);
+export const getScrapList = (qs: MyScrapApiRequestDto): Promise<MyScrapApiResponseDto> =>
+  apiRequest("get", myPageAddress.scrapList, null, qs);
+
+/** 프로필 공개 여부 가져오기 */
+export const getVisibleProfileStatus = (): Promise<VisibleProfileStatusApiRequestDto> =>
+  apiRequest("get", myPageAddress.visibleProfile);
 
 /** 프로필 공개 여부 수정하기 */
 export const editVisibleProfileStatus = (data: VisibleProfileStatusApiRequestDto) =>
