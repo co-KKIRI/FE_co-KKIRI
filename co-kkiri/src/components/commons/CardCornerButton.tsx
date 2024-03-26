@@ -61,7 +61,7 @@ const {
 const Wrapper = styled.div<{ $cardCornerType: CardCornerButtonType | null }>`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
   cursor: pointer;
   ${({ $cardCornerType }) =>
     $cardCornerType === "write" || $cardCornerType === "view" ? `padding-top:0.5rem; padding-bottom: 1.5rem;` : ""};
