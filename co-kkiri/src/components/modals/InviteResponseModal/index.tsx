@@ -6,19 +6,19 @@ import { ICONS } from "@/constants/icons";
 import { Link } from "react-router-dom";
 
 interface InviteResponseModalProps {
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: () => void;
 }
 const user = {
   nickname: "코끼리",
   profileImageUrl: "",
 };
 
-export default function InviteResponseModal({ onClick }: InviteResponseModalProps) {
+export default function InviteResponseModal({ onClose }: InviteResponseModalProps) {
   return (
-    <ModalLayout desktopWidth={430} mobileWidth={320} onClick={onClick} onClose={() => {}}>
+    <ModalLayout desktopWidth={430} mobileWidth={320} onClose={onClose}>
       <S.Container>
-        <h1>초대 메세지</h1>
         <S.ContentContainer>
+          <h1>초대 메세지</h1>
           <S.SenderInfoBox>
             <h6>초대자</h6>
             <UserInfo user={user} />
@@ -40,7 +40,7 @@ export default function InviteResponseModal({ onClick }: InviteResponseModalProp
             </p>
           </S.MessageBox>
           <S.SubmitButtonBox>
-            <Button type="submit" variant="red">
+            <Button type="submit" variant="red" onClick={onClose}>
               거절하기
             </Button>
             <Button type="submit" variant="primary">

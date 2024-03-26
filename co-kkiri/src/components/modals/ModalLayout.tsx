@@ -22,7 +22,6 @@ export default function ModalLayout({
   tabletWidth,
   desktopWidth,
   children,
-  onClick,
   modalType,
   onClose,
   className,
@@ -51,7 +50,7 @@ export default function ModalLayout({
           $isSidebar={modalType === "sidebar"}
           className={className}>
           {!modalType && ("confirm" || "sidebar") && (
-            <CloseButton onClick={onClick}>
+            <CloseButton onClick={onClose}>
               <img src={close} alt="닫기 아이콘" />
             </CloseButton>
           )}

@@ -4,7 +4,7 @@ import Button from "../commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CONFIRM_TYPE } from "@/constants/modal";
 
-type ConfirmType = keyof typeof CONFIRM_TYPE;
+export type ConfirmType = keyof typeof CONFIRM_TYPE;
 
 interface ConfirmModalProps {
   type: ConfirmType;
@@ -17,7 +17,9 @@ export default function ConfirmModal({ type, onClose }: ConfirmModalProps) {
       <Container>
         <Message>{CONFIRM_TYPE[type].massage}</Message>
         <Wrapper>
-          <Button variant="primaryLight">{CONFIRM_TYPE[type].cancel}</Button>
+          <Button variant="primaryLight" onClick={onClose}>
+            {CONFIRM_TYPE[type].cancel}
+          </Button>
           <Button variant="primary">{CONFIRM_TYPE[type].agree}</Button>
         </Wrapper>
       </Container>
@@ -28,20 +30,20 @@ export default function ConfirmModal({ type, onClose }: ConfirmModalProps) {
 const { color, mediaQueries } = DESIGN_TOKEN;
 
 const Container = styled.div`
-  width: 35rem;
+  width: 43rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4rem;
   padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 
   ${mediaQueries.mobile} {
-    width: 26rem;
+    width: 32rem;
     gap: 3rem;
-    padding-top: 5rem;
-    padding-bottom: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
   }
 `;
 

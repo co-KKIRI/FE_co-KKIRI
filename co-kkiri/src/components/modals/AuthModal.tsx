@@ -9,15 +9,14 @@ import { authAddress } from "@/lib/api/address";
 import openLoginPopup from "@/utils/openLoginPopup";
 
 interface AuthModalProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onClose: () => void;
 }
 
-export default function AuthModal({ onClick, onClose }: AuthModalProps) {
+export default function AuthModal({ onClose }: AuthModalProps) {
   const { HOME_PATH } = ROUTER_PATH;
 
   return (
-    <ModalLayout desktopWidth={558} mobileWidth={320} onClick={onClick} onClose={onClose}>
+    <ModalLayout desktopWidth={558} mobileWidth={320} onClose={onClose}>
       <Container>
         <Link to={HOME_PATH}>
           <Logo src={IMAGES.logo.src} alt={IMAGES.logo.src} />
