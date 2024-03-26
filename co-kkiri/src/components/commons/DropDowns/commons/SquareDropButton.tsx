@@ -9,6 +9,7 @@ interface DropdownButtonProps {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   $iconType: "date" | "default";
   $isSelected: boolean;
+  isError?: boolean;
   dropButtonRef?: RefObject<HTMLButtonElement> | RefCallBack;
 }
 
@@ -16,6 +17,7 @@ interface ContainerProps {
   $iconType: "date" | "default";
   $isSelected: boolean;
   $isReactElement: boolean;
+  $isError?: boolean;
 }
 
 /**
@@ -32,6 +34,7 @@ export default function SquareDropButton({
   onClick,
   $iconType,
   $isSelected,
+  isError,
   dropButtonRef,
 }: DropdownButtonProps) {
   const iconSources = {
@@ -46,6 +49,7 @@ export default function SquareDropButton({
       $iconType={$iconType}
       $isSelected={$isSelected}
       $isReactElement={typeof selectOption !== "string"}
+      $isError={isError}
       ref={dropButtonRef}>
       <Box>{selectOption}</Box>
       <img src={iconSources[$iconType].src} alt={iconSources[$iconType].alt} />
@@ -72,6 +76,11 @@ const Container = styled.button<ContainerProps>`
   & img {
     width: 1.8rem;
   }
+
+  ${({ $isError }) =>
+    $isError &&
+    `  border-color: ${color.red};
+`}
 `;
 
 const Box = styled.div`
