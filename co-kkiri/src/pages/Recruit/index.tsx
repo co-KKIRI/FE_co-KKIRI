@@ -5,6 +5,7 @@ import { createPost } from "@/lib/api/post";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { validateFormData } from "@/components/commons/RecruitmentRequestLayout/utils";
 
 export default function Recruit() {
   const queryClient = useQueryClient();
@@ -24,7 +25,7 @@ export default function Recruit() {
     link: "",
   });
 
-  // 포스트 업로드하기
+  // 포스트 업로드
   const uploadPost = useMutation<{ postId: number }, Error, RecruitApiRequestDto>({
     mutationFn: (selectedOptions: RecruitApiRequestDto) => createPost(selectedOptions),
     onSuccess: (data) => {
@@ -33,12 +34,9 @@ export default function Recruit() {
     },
   });
 
-  const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {
-    if (
-      selectedOptions.recruitEndAt !== "" &&
-      selectedOptions.progressWay !== "" &&
-      selectedOptions.positions.length > 0
-    ) {
+  // 포스트 업로드 요청 처리
+  const handleSubmit = () => {
+    if (validateFormData(selectedOptions)) {
       uploadPost.mutate(selectedOptions);
     }
   };

@@ -6,16 +6,21 @@ import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
-import { useState } from "react";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller, FieldValues } from "react-hook-form";
-import { CategoryList } from "@/types/categoryTypes";
+import { useForm, Controller, FieldValues, SubmitHandler } from "react-hook-form";
+import {
+  handleSelectPosition,
+  findOptionByValue,
+  handleRecruitFail,
+  handleSelectStack,
+  handleSelectType,
+} from "./utils";
 
 interface RecruitmentRequestLayoutProps {
-  onSubmit: (data: RecruitApiRequestDto) => void;
+  onSubmit: SubmitHandler<FieldValues>;
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
@@ -31,53 +36,14 @@ export default function RecruitmentRequestLayout({
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
 
-  const findOptionByValue = <ValueType, OptionType>(values: ValueType[], options: OptionType[], value: ValueType) => {
-    const index = values.indexOf(value);
-    return options[index];
-  };
-
-  const handleSelectType = (type: CategoryList): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      type: type,
-    }));
-  };
-
-  const handleSelectStack = (stacks: string[]): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      stacks: stacks,
-    }));
-  };
-
-  const handleSelectPosition = (position: string[]): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      positions: position,
-    }));
-  };
-
-  const handleRequestFailed = () => {
-    if (
-      selectedOptions.recruitEndAt == "" &&
-      selectedOptions.progressWay == "" &&
-      selectedOptions.positions.length == 0
-    ) {
-      alert("필수값을 입력해주세요");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
-  console.log(selectedOptions);
-
   return (
-    <S.SelectContainer onSubmit={handleSubmit(() => onSubmit(selectedOptions))}>
+    <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
@@ -96,7 +62,7 @@ export default function RecruitmentRequestLayout({
                     defaultChecked
                     value="STUDY"
                     onClick={() => {
-                      handleSelectType("STUDY");
+                      handleSelectType("STUDY", setSelectedOptions);
                       field.onChange("STUDY");
                     }}
                   />
@@ -114,7 +80,7 @@ export default function RecruitmentRequestLayout({
                   <RadioButton
                     value="PROJECT"
                     onClick={() => {
-                      handleSelectType("PROJECT");
+                      handleSelectType("PROJECT", setSelectedOptions);
                       field.onChange("PROJECT");
                     }}
                   />
@@ -283,7 +249,7 @@ export default function RecruitmentRequestLayout({
             <MultiselectDropdown
               selectedOptions={selectedOptions.stacks}
               onSelectChange={(stack) => {
-                handleSelectStack(stack);
+                handleSelectStack(stack, setSelectedOptions);
                 field.onChange(stack);
               }}
             />
@@ -306,7 +272,7 @@ export default function RecruitmentRequestLayout({
                 const updatedPositions = selectedOptions.positions.includes(selectedPosition)
                   ? selectedOptions.positions.filter((prevPosition) => prevPosition !== selectedPosition)
                   : [...selectedOptions.positions, selectedPosition];
-                handleSelectPosition(updatedPositions);
+                handleSelectPosition(updatedPositions, setSelectedOptions);
                 field.onChange(updatedPositions);
               }}
             />
@@ -356,7 +322,7 @@ export default function RecruitmentRequestLayout({
         <Button
           variant="primary"
           onClick={() => {
-            handleRequestFailed();
+            handleRecruitFail(selectedOptions);
           }}>
           {buttonText}
         </Button>
