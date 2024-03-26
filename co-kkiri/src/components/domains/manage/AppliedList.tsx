@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { acceptMember, rejectMember } from "@/lib/api/teamMember";
 
 interface AppliedListProps {
-  detailInfo: AppliedMemberListApiResponseDto["data"];
+  detailInfo: AppliedMemberListApiResponseDto["data"] | null | undefined;
 }
 
 export default function AppliedList({ detailInfo }: AppliedListProps) {
@@ -50,7 +50,7 @@ export default function AppliedList({ detailInfo }: AppliedListProps) {
         {detailInfo?.map((info) => (
           <Box key={info.memberId}>
             <MemberWrapper>
-              <UserInfo user={{ nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
+              <UserInfo user={{ id: info.memberId, nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
               <PositionChip label={info.position} />
             </MemberWrapper>
             <AcceptWrapper>

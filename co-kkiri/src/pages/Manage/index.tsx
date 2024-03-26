@@ -14,8 +14,10 @@ interface ManageProps {
 
 export default function Manage({ postId }: ManageProps) {
   const [detailInfo, setDetailInfo] = useState<StudyManagementApiResponseDto>();
-  const [appliedMemberList, setAppliedMemberList] = useState<AppliedMemberListApiResponseDto["data"]>([]);
-  const [memberList, setMemberList] = useState<TeamMemberApiResponseDto["data"]>([]);
+  const [appliedMemberList, setAppliedMemberList] = useState<
+    AppliedMemberListApiResponseDto["data"] | null | undefined
+  >();
+  const [memberList, setMemberList] = useState<TeamMemberApiResponseDto["data"] | null | undefined>();
 
   const {
     data: detailInfoData,
