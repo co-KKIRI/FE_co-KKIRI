@@ -1,8 +1,11 @@
-import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useCallback } from "react";
 import styled from "styled-components";
 import { ContentType, RenderType } from "./types";
+import DefaultStacks from "../Stacks";
+import DefaultPositions from "../Positions";
+import Link from "../Link";
+import { ICONS } from "@/constants/icons";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -11,45 +14,42 @@ export interface ProjectDetailRowProps {
 }
 
 export default function ProjectDetailRow({ label, content, renderType }: ProjectDetailRowProps) {
-  //Chip이랑 Icon은 배열이어야만 정상적으로 render함
+  //positions이랑 stacks은 배열이어야만 정상적으로 render함
   const renderContent = useCallback(() => {
     switch (renderType) {
       case "text":
-        return <p>{content}</p>;
-      case "personNumber":
-        return <p>{content}명</p>;
-      case "positionChip":
-        if (Array.isArray(content)) {
-          return (
-            <div className="chip position">
-              {content.map((item) => (
-                <PositionChip key={item} label={item} />
-              ))}
-            </div>
-          );
+        if (typeof content === "string") {
+          return <p>{content}</p>;
         }
         break;
-      case "stackIcon":
+      case "capacity":
+        if (typeof content === "number") {
+          return <p>{content}명</p>;
+        }
+        break;
+      case "positions":
         if (Array.isArray(content)) {
-          //TODO: 임시, 추후 stackIcon으로 변경
-          return (
-            <div className="chip stack">
-              {content.map((item) => (
-                <div key={item}>
-                  <img src={item} />
-                </div>
-              ))}
-            </div>
-          );
+          return <Positions positions={content} />;
+        }
+        break;
+      case "stacks":
+        if (Array.isArray(content)) {
+          return <Stacks stacks={content} />;
+        }
+        break;
+      case "link":
+        // 타입 가드를 사용하여 Link 컴포넌트임을 보장
+        if (typeof content === "object" && "to" in content) {
+          return <Link {...content} icon={ICONS.link} />;
         }
     }
   }, [content, renderType]);
 
   return (
     <Container>
-      <div className="label">
+      <Label>
         <span>{label}</span>
-      </div>
+      </Label>
       {renderContent()}
     </Container>
   );
@@ -65,26 +65,23 @@ const Container = styled.div`
 
   ${typography.font16Semibold}
 
-  & > .label {
-    width: 10rem;
-    color: ${color.gray[1]};
-  }
-
-  & > .text {
+  p {
     color: ${color.black[1]};
   }
+`;
 
-  & > .chip {
-    display: flex;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-  }
+const Label = styled.div`
+  width: 10rem;
+  color: ${color.gray[1]};
+`;
 
-  & > .chip.position {
-    gap: 0.6rem;
-  }
+const Positions = styled(DefaultPositions)`
+  flex-wrap: wrap;
+  flex-shrink: 1;
+`;
 
-  & > .chip.stack {
-    gap: 0.8rem;
-  }
+const Stacks = styled(DefaultStacks)`
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  gap: 0.8rem;
 `;

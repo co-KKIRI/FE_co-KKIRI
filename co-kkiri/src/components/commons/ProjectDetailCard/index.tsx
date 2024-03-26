@@ -32,22 +32,22 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
     contactWay: {
       label: "연락 방식",
       content: projectDetailContents.contactWay,
-      renderType: "text",
+      renderType: "link",
     },
     capacity: {
       label: "모집 인원",
       content: projectDetailContents.capacity,
-      renderType: "personNumber",
+      renderType: "capacity",
     },
     positions: {
       label: "모집 포지션",
       content: projectDetailContents.positions,
-      renderType: "positionChip",
+      renderType: "positions",
     },
     stacks: {
       label: "기술 스택",
       content: projectDetailContents.stacks,
-      renderType: "stackIcon",
+      renderType: "stacks",
     },
   };
 
@@ -57,15 +57,13 @@ export default function ProjectDetailCard({ type, ProjectCategory, ...projectDet
         <ProjectChip label={ProjectCategory} />
       </Box>
       <ProjectDetailTable>
-        {Object.values(projectDetailConfig).map((value, index) => {
-          return <ProjectDetailRow key={index} {...value} />;
+        {Object.values(projectDetailConfig).map((value) => {
+          return <ProjectDetailRow key={value.label} {...value} />;
         })}
       </ProjectDetailTable>
     </Container>
   );
 }
-
-// 어떤 값을 key 값으로 써야할 지 잘 모르겟어서 index로 처리해놨습니다.
 
 const { color, boxShadow, mediaQueries } = DESIGN_TOKEN;
 

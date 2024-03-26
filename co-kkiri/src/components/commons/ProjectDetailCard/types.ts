@@ -1,4 +1,5 @@
 import { GetTypeFromObject } from "@/types/objectUtilTypes";
+import { LinkProps as Link } from "../Link";
 
 // ProjectDetailCard내 Table에서 사용되는 Key
 export type ProjectDetailKey =
@@ -11,8 +12,8 @@ export type ProjectDetailKey =
   | "stacks";
 
 // 구체적인 렌더링 방식
-export type RenderType = "text" | "positionChip" | "stackIcon" | "personNumber";
-export type ContentType = string | string[] | number;
+export type RenderType = "text" | "positions" | "stacks" | "capacity" | "link";
+export type ContentType = string | string[] | number | Link;
 // ProjectDetailCard 내부에서 Table에게 전달할 Table Config
 export type ProjectDetailConfig = {
   [key in ProjectDetailKey]: {

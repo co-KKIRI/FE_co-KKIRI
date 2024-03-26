@@ -19,7 +19,7 @@ export default function DetailCard({ detailInfo, className, cardRef }: DetailCar
         progressPeriod={progressPeriod}
         positions={positions}
         progressWay={progressWay}
-        contactWay={contactWay}
+        contactWay={{ label: contactWay, to: "https://www.naver.com", linkType: "external"}}
         capacity={capacity}
         stacks={stacks}
       />
