@@ -28,7 +28,7 @@ const TEXTAREA_TYPE: VariantStyle<TextareaType> = {
     background-color: ${color.white};
     width: 100%;
     //height: 미정
-    //padding: 미정
+    padding: 1rem 2rem;
   `,
 };
 
