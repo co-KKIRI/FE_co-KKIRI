@@ -5,42 +5,20 @@ import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { ICONS } from "@/constants/icons";
 import { AppliedMemberListApiResponseDto } from "@/lib/api/post/type";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { acceptMember, rejectMember } from "@/lib/api/teamMember";
 
 interface AppliedListProps {
   detailInfo: AppliedMemberListApiResponseDto["data"];
+  handleAcceptMember: (teamMemberId: number) => void;
+  handleRejectMember: (teamMemberId: number) => void;
 }
 
-export default function AppliedList({ detailInfo }: AppliedListProps) {
-  const queryClient = useQueryClient();
-  const handleAccept = useMutation({
-    mutationFn: (teamMemberId: number) => acceptMember(teamMemberId),
-    onSuccess: () => {
-      console.log("요청 성공");
-      queryClient.invalidateQueries();
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
-
-  const handleAcceptMember = (teamMemberId: number) => {
-    handleAccept.mutate(teamMemberId);
+export default function AppliedList({ detailInfo, handleAcceptMember, handleRejectMember }: AppliedListProps) {
+  const handleAccept = (teamMemberId: number) => {
+    handleAcceptMember(teamMemberId);
   };
 
-  const handleReject = useMutation({
-    mutationFn: (teamMemberId: number) => rejectMember(teamMemberId),
-    onSuccess: () => {
-      console.log("요청 성공");
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
-
-  const handleRejectMember = (teamMemberId: number) => {
-    handleReject.mutate(teamMemberId);
+  const handleReject = (teamMemberId: number) => {
+    handleRejectMember(teamMemberId);
   };
 
   return (
@@ -54,10 +32,10 @@ export default function AppliedList({ detailInfo }: AppliedListProps) {
               <PositionChip label={info.position} />
             </MemberWrapper>
             <AcceptWrapper>
-              <button onClick={() => handleAcceptMember(info.teamMemberId)}>
+              <button onClick={() => handleAccept(info.teamMemberId)}>
                 <img src={ICONS.accept.src} alt={ICONS.accept.alt} />
               </button>
-              <button onClick={() => handleRejectMember(info.teamMemberId)}>
+              <button onClick={() => handleReject(info.teamMemberId)}>
                 <img src={ICONS.reject.src} alt={ICONS.reject.alt} />
               </button>
             </AcceptWrapper>

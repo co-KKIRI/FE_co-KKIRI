@@ -5,30 +5,13 @@ import PositionChip from "@/components/commons/Chips/PositionChip";
 import DESIGN_TOKEN from "@/styles/tokens";
 import LeaderIcon from "./LeaderIcon";
 import { TeamMemberApiResponseDto } from "@/lib/api/teamMember/type";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteTeamMember } from "@/lib/api/teamMember";
 
 interface MemberListProps {
   detailInfo: TeamMemberApiResponseDto["data"];
+  handleOutMember: (teamMemberId: number) => void;
 }
 
-export default function MemberList({ detailInfo }: MemberListProps) {
-  const queryClient = useQueryClient();
-  const handleOut = useMutation({
-    mutationFn: (teamMemberId: number) => deleteTeamMember(teamMemberId),
-    onSuccess: () => {
-      console.log("요청 성공");
-      queryClient.invalidateQueries();
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
-
-  const handleOutMember = (teamMemberId: number) => {
-    handleOut.mutate(teamMemberId);
-  };
-
+export default function MemberList({ detailInfo, handleOutMember }: MemberListProps) {
   return (
     <Container>
       <SectionTitle title="현재 팀원" count={detailInfo?.length || 0} />
@@ -45,7 +28,7 @@ export default function MemberList({ detailInfo }: MemberListProps) {
               <PositionChip label={info.position} />
             </MemberWrapper>
             <DeleteWrapper onClick={() => handleOutMember(info.teamMemberId)}>
-              {!info.isLeader && <button>삭제</button>}
+              {info.isLeader || <button>삭제</button>}
             </DeleteWrapper>
           </Box>
         ))}

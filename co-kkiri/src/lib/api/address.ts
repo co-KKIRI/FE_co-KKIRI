@@ -44,7 +44,7 @@ export const teamMemberAddress = {
   //patch
   reject: (teamMemberId: number) => `/post/team-member/${teamMemberId}/reject`,
   //delete
-  out: (teamMemberId: number) => `/post/team-member/${teamMemberId}`,
+  out: (teamMemberId: number) => `/post/team-member/${teamMemberId}/out`,
 };
 
 export const commentAddress = {

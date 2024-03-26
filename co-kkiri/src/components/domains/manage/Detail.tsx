@@ -3,7 +3,6 @@ import { ICONS } from "@/constants/icons";
 import DESIGN_TOKEN from "@/styles/tokens";
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
 import { StudyManagementApiResponseDto } from "@/lib/api/post/type";
-import { useEffect } from "react";
 
 interface DetailProps {
   detailInfo: StudyManagementApiResponseDto;

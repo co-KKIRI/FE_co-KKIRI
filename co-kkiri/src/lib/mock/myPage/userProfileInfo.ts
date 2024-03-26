@@ -14,7 +14,7 @@ export const userProfileInfoData: UserProfileInfoData = {
       position: "프론트엔드",
       career: 1,
       introduce: "안녕하세요. 주니어 개발자 코끼리입니다.",
-      stacks: ["React", "Next.js"],
+      stack: ["React", "Next.js"],
       link: "https://www.youtube.com",
       isVisibleProfile: true,
     },

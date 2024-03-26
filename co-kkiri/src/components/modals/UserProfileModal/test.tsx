@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserProfileModal from "@/components/modals/UserProfileModal_invalid";
+import UserProfileModal from "@/components/modals/UserProfileModal/";
 
 export default function ModalTestPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
