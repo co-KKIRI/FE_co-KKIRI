@@ -9,7 +9,7 @@ export const categoryListFilter: { [key in CategoryListFilter]: string } = {
 };
 
 export const categoryStudyStatusFilter: { [key in CategoryStudyStatus]: string } = {
-  APPLIED: "신청 스터디",
+  APPLIED: "신청중",
   RECRUITING: "모집중",
   ON_GOING: "진행중",
   COMPLETED: "완료",

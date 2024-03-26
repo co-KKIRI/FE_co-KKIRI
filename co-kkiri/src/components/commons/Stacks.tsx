@@ -8,7 +8,6 @@ import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { STACKS } from "@/constants/stacks";
 import { ICONS } from "@/constants/icons";
-import { breakpoints } from "@/styles/tokens";
 import { STACK_CHIP_LIMIT } from "@/constants/cardChipLimits";
 
 interface StacksProps {

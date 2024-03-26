@@ -1,7 +1,7 @@
 import { CategoryList } from "@/types/categoryTypes";
 
 export type PostInfo = {
-  id: number;
+  postId: number;
   type: CategoryList;
   status: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   recruitEndAt: string;
@@ -18,7 +18,7 @@ export type PostInfo = {
 
 export const myAppliedList: PostInfo[] = [
   {
-    id: 1,
+    postId: 1,
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-04-30",
@@ -33,7 +33,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 12,
   },
   {
-    id: 2,
+    postId: 2,
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-05-15",
@@ -48,7 +48,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 25,
   },
   {
-    id: 3,
+    postId: 3,
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-05-20",
@@ -63,7 +63,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 18,
   },
   {
-    id: 4,
+    postId: 4,
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-06-01",
@@ -78,7 +78,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 20,
   },
   {
-    id: 5,
+    postId: 5,
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-06-10",
@@ -93,7 +93,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 10,
   },
   {
-    id: 6,
+    postId: 6,
     type: "PROJECT",
     status: "READY",
     recruitEndAt: "2024-07-01",
@@ -108,7 +108,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 30,
   },
   {
-    id: 7,
+    postId: 7,
     type: "STUDY",
     status: "READY",
     recruitEndAt: "2024-07-15",
@@ -123,7 +123,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 15,
   },
   {
-    id: 8,
+    postId: 8,
     type: "PROJECT",
     status: "DONE",
     recruitEndAt: "2024-07-30",
@@ -138,7 +138,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 40,
   },
   {
-    id: 9,
+    postId: 9,
     type: "STUDY",
     status: "PROGRESS_END",
     recruitEndAt: "2024-08-05",
@@ -153,7 +153,7 @@ export const myAppliedList: PostInfo[] = [
     commentCount: 9,
   },
   {
-    id: 10,
+    postId: 10,
     type: "PROJECT",
     status: "PROGRESS",
     recruitEndAt: "2024-08-20",
@@ -161,7 +161,7 @@ export const myAppliedList: PostInfo[] = [
     progressWay: "혼합",
     title: "블록체인 기반 프로젝트 개발",
     positions: ["백엔드", "블록체인 엔지니어"],
-    stacks: ["Ethereum", "Solidity"],
+    stacks: ["Ethereum", "SolpostIdity"],
     memberNickname: "블록체인마스터",
     memberProfileImg: "profile10.jpg",
     viewCount: 300,

@@ -12,6 +12,7 @@ body {
   font-size: 1.6rem;
   font-family: "Pretendard";
   font-weight: 400;
+  overflow-y:scroll;
 }
 
 `;

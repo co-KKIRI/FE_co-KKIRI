@@ -13,7 +13,7 @@ export default function Home() {
       <Banners />
       <Box>
         {Object.entries(HOT_AND_NEW_LIST).map(([key, { title, path }]) => (
-          <HotAndNewSection key={key} category={title} path={path} cardDataList={mainStudyList.result[key]} />
+          <HotAndNewSection key={key} category={title} path={path} cardDataList={mainStudyList[key]} />
         ))}
       </Box>
     </Container>

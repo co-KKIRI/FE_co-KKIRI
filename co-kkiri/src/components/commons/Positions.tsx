@@ -7,12 +7,13 @@ import PositionChip from "./Chips/PositionChip";
 import DefaultChip from "./Chips/DefaultChip";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { ICONS } from "@/constants/icons";
-import { POSITION_CHIP_LIMIT } from "@/constants/cardChipLimits";
+import { Pages } from "@/types/pagesTypes";
+import { getPositionChipLimit } from "@/utils/getPositionChipLimit";
 
 interface PositionsProps {
   positions: string[];
   variant?: "card" | "profile";
-  page?: "home" | "studyList";
+  page?: Pages;
 }
 
 export default function Positions({ positions, variant = "profile", page = "home" }: PositionsProps) {
@@ -22,7 +23,7 @@ export default function Positions({ positions, variant = "profile", page = "home
 
   useLayoutEffect(() => {
     if (variant === "card") {
-      const pageLimits = POSITION_CHIP_LIMIT[page];
+      const pageLimits = getPositionChipLimit(page);
 
       let limit = pageLimits.mobile;
 

@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import CardCornerButton from "../CardCornerButton";
-
-type PageType = "home" | "studyList";
+import { Pages } from "@/types/pagesTypes";
 
 interface PageProp {
-  $page: PageType;
+  $page: Pages;
 }
 
 interface ContainerProps extends PageProp {
@@ -18,25 +17,21 @@ const {
   mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
-const desktopWidthByPage = ($isSidebarOpenNarrow: boolean, $page: PageType) => {
+const desktopWidthByPage = ($isSidebarOpenNarrow: boolean, $page: Pages) => {
   switch ($page) {
     case "home":
       return $isSidebarOpenNarrow ? "44.5rem" : "26.5rem";
-    case "studyList":
-      return $isSidebarOpenNarrow ? "29rem" : "26.5rem";
     default:
-      return "26.5rem";
+      return $isSidebarOpenNarrow ? "29rem" : "26.5rem";
   }
 };
 
-const mobileWidthByPage = ($page: PageType) => {
+const mobileWidthByPage = ($page: Pages) => {
   switch ($page) {
     case "home":
       return "26.5rem";
-    case "studyList":
-      return "32rem";
     default:
-      return "26.5rem";
+      return "32rem";
   }
 };
 
@@ -79,22 +74,18 @@ export const UpperBox = styled.div<PageProp>`
     switch ($page) {
       case "home":
         return `padding: 1rem 2rem 1.8rem;`;
-      case "studyList":
-        return `padding: 0.5rem 2rem 1.5rem;`;
       default:
-        return "";
+        return `padding: 0.5rem 2rem 1.5rem;`;
     }
   }};
 `;
 
-const paddingBottomByPage = ($page: PageType) => {
+const paddingBottomByPage = ($page: Pages) => {
   switch ($page) {
     case "home":
       return "0.8rem";
-    case "studyList":
-      return "1.2rem";
     default:
-      return "0.8rem";
+      return "1.2rem";
   }
 };
 
