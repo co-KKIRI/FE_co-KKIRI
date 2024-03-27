@@ -6,6 +6,7 @@ import DefaultStacks from "../Stacks";
 import DefaultPositions from "../Positions";
 import Link from "../Link";
 import { ICONS } from "@/constants/icons";
+import { getEmailLink } from "@/utils/validationUtils";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -37,10 +38,32 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
           return <Stacks stacks={content} />;
         }
         break;
-      case "link":
+      case "contactWay":
         // 타입 가드를 사용하여 Link 컴포넌트임을 보장
-        if (typeof content === "object" && "to" in content) {
-          return <Link {...content} icon={ICONS.link} />;
+        if (typeof content === "object" && "label" in content) {
+          switch (content.label) {
+            case "기타": {
+              return <RowContent>기타 {content.content || "afdasdfasdfaasdfadfasfadfasdf"}</RowContent>;
+            }
+            case "카카오 오픈톡": {
+              return <Link label="카카오 오픈톡" to={content.content || ""} icon={ICONS.link} linkType="external" />;
+            }
+            case "구글폼": {
+              return <Link label="구글폼" to={content.content || ""} icon={ICONS.link} linkType="external" />;
+            }
+            case "이메일": {
+              return (
+                <Link
+                  label="이메일"
+                  to={content.content ? getEmailLink(content.content) : ""}
+                  icon={ICONS.link}
+                  linkType="external"
+                />
+              );
+            }
+            default:
+              return <p>준비 중</p>;
+          }
         }
     }
   }, [content, renderType]);
