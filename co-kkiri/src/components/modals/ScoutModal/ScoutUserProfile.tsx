@@ -30,7 +30,9 @@ const Container = styled.div`
 const Profile = styled.img`
   width: 4.8rem;
   height: 4.8rem;
+
   border-radius: 9999rem;
+  border: 0.1rem solid ${color.gray[3]};
 
   object-fit: cover;
 `;
