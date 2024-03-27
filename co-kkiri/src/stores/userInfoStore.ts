@@ -1,5 +1,5 @@
-import { getUserInfoSummary } from "@/lib/api/auth";
-import { UserInfoSummaryResponseDto } from "@/lib/api/auth/type";
+import { getUserInfo } from "@/lib/api/myPage";
+import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
 import { SetterFromState } from "@/types/objectUtilTypes";
 import { UserProfile } from "@/types/userTypes";
 import { create } from "zustand";
@@ -33,15 +33,16 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
   fetchUserInfo: async () => {
     let userProfile: UserProfile | null = null;
     try {
-      const data: UserInfoSummaryResponseDto = await getUserInfoSummary();
+      const data: UserInfoApiResponseDto = await getUserInfo();
+      const { nickname, profileImageUrl, position, career, introduce, link } = data;
       userProfile = {
-        nickname: data.nickname,
-        profileImageUrl: data.profileImageUrl,
-        position: "",
-        career: undefined,
-        introduce: "",
-        stacks: [],
-        link: "",
+        nickname,
+        profileImageUrl,
+        position,
+        career,
+        introduce,
+        stacks: data.stack,
+        link,
       };
     } catch (error) {
       console.error("Failed to fetch user info:", error);
