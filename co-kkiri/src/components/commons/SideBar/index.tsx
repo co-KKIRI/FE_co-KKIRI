@@ -20,7 +20,7 @@ export default function SideBar({ onClick, onClose }: SideBarProps) {
         </ModalLayout>
       ) : (
         <S.Background>
-          <SideBarList onClick={onClick} />
+          <SideBarList />
         </S.Background>
       )}
     </>

@@ -60,6 +60,31 @@ export const PostButton = styled.div`
   }
 `;
 
+export const UserInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+
+  img {
+    border-radius: 50%;
+  }
+`;
+
+export const ProfileImg = styled.img`
+  width: 3.6rem;
+  height: 3.6rem;
+  object-fit: cover;
+`;
+
+export const Nickname = styled.div`
+  ${typography.font14Medium}
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+`;
+
 export const SignButton = styled.button`
   ${typography.font14Medium};
   &:hover {

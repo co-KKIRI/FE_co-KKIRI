@@ -14,22 +14,17 @@ export default function Navigation() {
   const { width: screenWidth } = useWindowSize();
   const isTabletOrMobile = screenWidth < 1200;
 
-  const handleSideBarOpen = () => {
+  const handleSideBar = () => {
     toggleSideBar();
   };
 
   return (
     <>
-      <Gnb onSideBarClick={handleSideBarOpen} />
-      {isSideBarOpen && (
-        <SideBarWrapper $isOpen={isSideBarOpen}>
-          {isTabletOrMobile ? (
-            isSideBarOpen && <SideBar onClick={handleSideBarOpen} onClose={handleSideBarOpen} />
-          ) : (
-            <SideBar onClose={() => {}} />
-          )}
-        </SideBarWrapper>
-      )}
+      <Gnb onSideBarClick={handleSideBar} />
+      <SideBarWrapper $isOpen={isSideBarOpen}>
+        {isSideBarOpen && isTabletOrMobile && <SideBar onClick={handleSideBar} onClose={handleSideBar} />}
+        {!isTabletOrMobile && <SideBar onClose={() => {}} />}
+      </SideBarWrapper>
       <OutletWrapper $isOpen={isSideBarOpen}>
         <Outlet />
       </OutletWrapper>

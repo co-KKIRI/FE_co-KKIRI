@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./Gnb.styled";
 import { ROUTER_PATH } from "@/lib/path";
 import { ICONS } from "@/constants/icons";
 import { IMAGES } from "@/constants/images";
-import UserInfo from "../UserInfo";
 import UserPopover from "../UserPopover";
 import AuthModal from "@/components/modals/AuthModal";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import useAuthModalToggleStore from "@/stores/authModalToggle";
+import GnbUserInfo from "./GnbUserInfo";
 
 interface GnbProps {
   user?: {
+    id: number;
     nickname: string;
     profileImageUrl: string;
   };
@@ -45,7 +45,7 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
             <S.PostButton>스터디 모집하기</S.PostButton>
           </Link>
           {user ? (
-            <UserInfo user={user} onClick={handlePopoverOpen} />
+            <GnbUserInfo user={user} onClick={handlePopoverOpen} />
           ) : (
             <S.SignButton onClick={toggleAuthModal}>로그인/회원가입</S.SignButton>
           )}

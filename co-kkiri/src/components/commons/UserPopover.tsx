@@ -34,8 +34,6 @@ const { typography, mediaQueries, color, boxShadow, zIndex } = DESIGN_TOKEN;
 const Container = styled.div<{ $isPopoverOpen: boolean }>`
   ${zIndex.popover}
   display: ${({ $isPopoverOpen }) => ($isPopoverOpen ? "block" : "none")};
-  opacity: ${({ $isPopoverOpen }) => ($isPopoverOpen ? 1 : 0)};
-  transition: opacity 0.2s ease-in-out;
   position: absolute;
   right: 4rem;
 
