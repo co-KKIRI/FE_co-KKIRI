@@ -6,23 +6,25 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { Pages } from "@/types/pagesTypes";
 
 interface CardsProps {
-  data: ListApiResponseDto["postList"];
+  data: ListApiResponseDto["data"] | null | undefined;
   page?: Pages;
 }
 
-export default function Cards({ data, page = "studyList" }: CardsProps) {
+export default function Cards({ data, page }: CardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
 
   return (
     <Box>
-      {data.length === 0 ? (
-        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없어요.</NoResultText>
-      ) : (
+      {data ? (
         <CardList $isSidebarOpenNarrow={isSidebarOpenNarrow}>
           {data.map((data) => (
-            <Card key={data.postId} cardData={data} page={page} />
+            <div key={data.postId}>
+              <Card cardData={data} page={page} />
+            </div>
           ))}
         </CardList>
+      ) : (
+        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없어요.</NoResultText>
       )}
     </Box>
   );
