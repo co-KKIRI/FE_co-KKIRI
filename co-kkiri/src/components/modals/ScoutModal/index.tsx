@@ -8,21 +8,21 @@ import { InviteMemberRequestDto, ScoutListApiResponseDto, ScoutPost } from "../.
 import { useForm } from "react-hook-form";
 import RHFTextArea from "../../commons/Form/RHFTextArea";
 import { useQueries } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { MemberProfileApiResponseDto } from "@/lib/api/member/type";
 import { MemberProfile } from "../../../lib/api/member/type";
 import ScoutUserProfile from "./ScoutUserProfile";
-import { Nickname } from "../../commons/UserProfileCard/UserProfileCardLayout.styled";
 
 interface ScoutModalProps {
   memberId: number;
 }
 
+type CombinedResults = {
+  options: ScoutPost[];
+  userInfo: Pick<MemberProfile, "nickname" | "profileImageUrl" | "position">;
+};
+
 export default function ScoutModal({ memberId }: ScoutModalProps) {
-  const results = useQueries<
-    (ScoutListApiResponseDto | MemberProfileApiResponseDto)[],
-    { options: ScoutPost[]; userInfo: Pick<MemberProfile, "nickname" | "profileImageUrl" | "position"> }
-  >({
+  const results = useQueries<(ScoutListApiResponseDto | MemberProfileApiResponseDto)[], CombinedResults>({
     queries: [
       {
         //TODO: 스카우트를 위한 현재 초대 가능한 스터디/프로젝트 목록 가져오기
@@ -73,10 +73,16 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
     mode: "onSubmit",
   });
 
+
   return (
     <ModalLayout desktopWidth={430} mobileWidth={320} onClose={() => {}}>
       <Title>유저 초대하기</Title>
-      <FormBox onSubmit={handleSubmit((data) => console.log(data))}>
+      <FormBox onSubmit={handleSubmit((data) => console.log(data)
+        // 데이터 매핑처리
+
+
+        // mutate
+        )}>
         <FormElement
           label="초대할 유저"
           InputComponent={
