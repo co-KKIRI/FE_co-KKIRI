@@ -8,7 +8,7 @@ export default function NotFound() {
   const navigate = useNavigate();
   return (
     <Container>
-      <img src={IMAGES.logo404.src} alt={IMAGES.logo404.alt} />
+      <img src={IMAGES.logoAnimation.src} alt={IMAGES.logoAnimation.alt} />
       <Box>
         <Wrapper>
           <Title>404 ERROR</Title>
