@@ -2,25 +2,51 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
-import { commentList, CommentInfo } from "@/lib/mock/commentList";
 import Button from "@/components/commons/Button";
+import { useQuery } from "@tanstack/react-query";
+import { getCommentList } from "@/lib/api/comment";
 
 interface CommentsProps {
-  commentCount: number;
+  postId: number;
   className?: string;
 }
 
-export default function Comments({ commentCount, className }: CommentsProps) {
-  const comments: CommentInfo[] = commentList.result.comments;
+export default function Comments({ postId, className }: CommentsProps) {
+  const {
+    data: commentsData,
+    isError,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["comments", postId],
+    queryFn: () => getCommentList(postId, { order: "DESC", page: 1, take: 10 }),
+  });
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return console.error(error.message);
+    // 에러 및 로딩 처리 통일
+  }
+
+  const {
+    data: comments,
+    meta: { totalCount },
+  } = commentsData;
+
   return (
     <Container className={className}>
       <Wrapper>
         <Label>댓글</Label>
-        <Count>{commentCount}</Count>
+        <Count>{totalCount}</Count>
       </Wrapper>
       <CommentForm />
       <CommentWrapper>
-        {comments?.map((commentInfo) => <Comment key={commentInfo.commentId} commentInfo={commentInfo} />)}
+        {comments?.map((commentInfo) => (
+          <Comment key={commentInfo.commentId} commentInfo={commentInfo} postId={postId} />
+        ))}
       </CommentWrapper>
       {comments.length > 10 && <LoadMoreButton variant="ghost">더보기</LoadMoreButton>}
     </Container>
@@ -29,7 +55,7 @@ export default function Comments({ commentCount, className }: CommentsProps) {
 
 const {
   color,
-  mediaQueries: { tablet, mobile },
+  mediaQueries: { mobile },
 } = DESIGN_TOKEN;
 
 const Container = styled.div`
@@ -37,6 +63,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
   width: 50rem;
+  margin-bottom: 12rem;
 
   ${mobile} {
     width: 32rem;
@@ -66,5 +93,4 @@ const CommentWrapper = styled.div`
 
 const LoadMoreButton = styled(Button)`
   margin-top: -1rem;
-  margin-bottom: 12rem;
 `;
