@@ -3,7 +3,7 @@ import DefaultModalLayout from "../ModalLayout";
 import DESIGN_TOKEN from "@/styles/tokens";
 import Button from "../../commons/Button";
 import FormElement from "../../commons/Form/FormElement";
-import RHFDropdown from "../../commons/Form/RHFDropdown";
+import RHFDropdown, { Option } from "../../commons/Form/RHFDropdown";
 import { InviteMemberRequestDto, ScoutListApiResponseDto, ScoutPost } from "../../../lib/api/post/type";
 import { useForm } from "react-hook-form";
 import RHFTextArea from "../../commons/Form/RHFTextArea";
@@ -17,7 +17,7 @@ interface ScoutModalProps {
 }
 
 type CombinedResults = {
-  options: ScoutPost[];
+  options: Option<number>[];
   userInfo: Pick<MemberProfile, "nickname" | "profileImageUrl" | "position">;
 };
 
@@ -34,7 +34,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
             { postId: 4, title: "프로젝트 파트너 찾아요" },
             { postId: 5, title: "프론트엔드 개발자 모집" },
             { postId: 6, title: "백엔드 개발자 모집" },
-            { postId: 7, title: "풀스택 개발자 모집" },
+            { postId: 7, title: "백엔드 개발자 모집" },
             { postId: 8, title: "디자이너 모집" },
             { postId: 9, title: "기획자 모집" },
             { postId: 10, title: "테스터 모집" },
@@ -55,12 +55,12 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
       },
     ],
     combine: (results) => {
-      console.log(results);
-      const options = results[0].data as ScoutListApiResponseDto;
+      const rawOptions = results[0].data as ScoutListApiResponseDto;
+      const options = rawOptions.data.map<Option<number>>((option) => ({ value: option.postId, label: option.title }));
       const {
         memberProfile: { nickname, profileImageUrl, position },
       } = results[1].data as MemberProfileApiResponseDto;
-      return { options: options.data, userInfo: { nickname, profileImageUrl, position } };
+      return { options: options, userInfo: { nickname, profileImageUrl, position } };
     },
   });
 
@@ -73,15 +73,15 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
     mode: "onSubmit",
   });
 
-
   return (
     <ModalLayout desktopWidth={430} mobileWidth={320} onClose={() => {}}>
       <Title>유저 초대하기</Title>
-      <FormBox onSubmit={handleSubmit((data) => console.log(data)
-        // 데이터 매핑처리
+      <FormBox
+        onSubmit={handleSubmit(
+          (data) => console.log(data),
+          // 데이터 매핑처리
 
-
-        // mutate
+          // mutate
         )}>
         <FormElement
           label="초대할 유저"
@@ -100,7 +100,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
               formFieldName="postId"
               placeholder="스터디/프로젝트 선택"
               //TODO: 실 데이터 가져와야함
-              options={results.options.map((option) => option.title)}
+              options={results.options}
               control={control}
               errorMessage="스터디/프로젝트를 선택해주세요"
               isEssential
