@@ -20,10 +20,19 @@ export default function StudyList() {
   const itemsPerPage = useItemsPerPage();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["/post/list", { meetingType: currentCategory, page: currentPage, take: itemsPerPage }],
     queryFn: () => getPostList({ meetingType: currentCategory, page: currentPage, take: itemsPerPage }),
   });
+
+  if (error) {
+    console.error(error);
+  }
+
+  // 임시
+  if (isLoading) {
+    <div>Loading...</div>;
+  }
 
   const handleCategoryChange = (category: string) => {
     const filterKey = getFilterKey<CategoryList>(categoryListFilter, category);
