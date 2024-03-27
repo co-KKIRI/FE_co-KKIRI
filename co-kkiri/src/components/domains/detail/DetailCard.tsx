@@ -1,4 +1,5 @@
 import ProjectDetailCard from "@/components/commons/ProjectDetailCard";
+import { ContactWay } from "@/components/commons/ProjectDetailCard/types";
 import { PostDetails } from "@/lib/api/post/type";
 import { formatDate } from "@/utils/formatDate";
 
@@ -20,7 +21,7 @@ export default function DetailCard({ postDetails, className, cardRef }: DetailCa
         progressPeriod={progressPeriod}
         positions={positions}
         progressWay={progressWay}
-        contactWay={{ label: contactWay, to: "https://www.naver.com", linkType: "external" }}
+        contactWay={{ label: contactWay as ContactWay, content: link }}
         capacity={capacity}
         stacks={stacks}
       />
