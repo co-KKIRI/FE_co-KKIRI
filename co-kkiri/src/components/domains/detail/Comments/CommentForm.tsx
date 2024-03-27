@@ -17,8 +17,11 @@ export default function CommentForm() {
 
   const handleCommentSubmit = () => {
     const newComment = { content };
-    uploadMutation.mutate(newComment);
-    setContent("");
+    uploadMutation.mutate(newComment, {
+      onSuccess: () => {
+        setContent("");
+      },
+    });
   };
 
   return (

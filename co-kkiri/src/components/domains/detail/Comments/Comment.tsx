@@ -34,8 +34,14 @@ export default function Comment({ commentInfo, postId }: CommentProps) {
 
   const handleEditComment = () => {
     const editedComment = { content };
-    editMutation.mutate({ commentId, content: editedComment });
-    setIsEditing(false);
+    editMutation.mutate(
+      { commentId, content: editedComment },
+      {
+        onSuccess: () => {
+          setIsEditing(false);
+        },
+      },
+    );
   };
 
   const handleDeleteComment = () => {
