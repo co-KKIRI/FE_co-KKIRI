@@ -1,66 +1,43 @@
-import styled from "styled-components";
-import DefaultModalLayout from "../ModalLayout";
-import DESIGN_TOKEN from "@/styles/tokens";
-import Button from "../../commons/Button";
-import FormElement from "../../commons/Form/FormElement";
-import RHFDropdown, { Option } from "../../commons/Form/RHFDropdown";
-import { InviteMemberRequestDto, ScoutListApiResponseDto, ScoutPost } from "../../../lib/api/post/type";
-import { useForm } from "react-hook-form";
-import RHFTextArea from "../../commons/Form/RHFTextArea";
-import { useQueries } from "@tanstack/react-query";
 import { MemberProfileApiResponseDto } from "@/lib/api/member/type";
-import { MemberProfile } from "../../../lib/api/member/type";
+import { scoutList, scoutMember } from "@/lib/mock/scout/scoutList";
+import DESIGN_TOKEN from "@/styles/tokens";
+import { useQueries } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import { InviteMemberRequestDto, ScoutListApiResponseDto } from "../../../lib/api/post/type";
+import RHFDropdown, { Option } from "../../commons/Form/RHFDropdown";
+import DefaultModalLayout from "../ModalLayout";
+import { CombinedResults } from "./types";
+import { mapSubmitData } from "./utils";
+import Button from "@/components/commons/Button";
+import FormElement from "@/components/commons/Form/FormElement";
+import RHFTextArea from "@/components/commons/Form/RHFTextArea";
 import ScoutUserProfile from "./ScoutUserProfile";
 
 interface ScoutModalProps {
   memberId: number;
 }
 
-type CombinedResults = {
-  options: Option[];
-  userInfo: Pick<MemberProfile, "nickname" | "profileImageUrl" | "position">;
-};
-
 export default function ScoutModal({ memberId }: ScoutModalProps) {
-  const results = useQueries<(ScoutListApiResponseDto | MemberProfileApiResponseDto)[], CombinedResults>({
+  const values = useQueries<(ScoutListApiResponseDto | MemberProfileApiResponseDto)[], CombinedResults>({
     queries: [
       {
         //TODO: 스카우트를 위한 현재 초대 가능한 스터디/프로젝트 목록 가져오기
         queryKey: ["post", "scout"],
-        initialData: {
-          data: [
-            { postId: 1, title: "으쌰으쌰파티파티" },
-            { postId: 3, title: "React 뿌수기 하실분" },
-            { postId: 4, title: "프로젝트 파트너 찾아요" },
-            { postId: 5, title: "프론트엔드 개발자 모집" },
-            { postId: 6, title: "백엔드 개발자 모집" },
-            { postId: 7, title: "백엔드 개발자 모집" },
-            { postId: 8, title: "디자이너 모집" },
-            { postId: 9, title: "기획자 모집" },
-            { postId: 10, title: "테스터 모집" },
-          ],
-        },
+        initialData: scoutList,
         refetchOnWindowFocus: false,
       },
       {
         queryKey: ["member", memberId],
-        initialData: {
-          memberProfile: {
-            nickname: "테스트유저",
-            profileImageUrl: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-            position: "프론트엔드",
-          },
-        },
+        initialData: scoutMember,
         refetchOnWindowFocus: false,
       },
     ],
     combine: (results) => {
       const rawOptions = results[0].data as ScoutListApiResponseDto;
       const options = rawOptions.data.map<Option>((option) => ({ value: option.postId, label: option.title }));
-      const {
-        memberProfile: { nickname, profileImageUrl, position },
-      } = results[1].data as MemberProfileApiResponseDto;
-      return { options: options, userInfo: { nickname, profileImageUrl, position } };
+      const { memberProfile } = results[1].data as MemberProfileApiResponseDto;
+      return { options: options, userInfo: memberProfile };
     },
   });
 
@@ -73,26 +50,19 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
     mode: "onSubmit",
   });
 
+  const onSubmitHandler = () => {
+    handleSubmit((data) => {
+      const mappedData = mapSubmitData(values, data);
+      console.log(mappedData);
+      //TODO: mutate
+    });
+  };
+
   return (
     <ModalLayout desktopWidth={430} mobileWidth={320} onClose={() => {}}>
       <Title>유저 초대하기</Title>
-      <FormBox
-        onSubmit={handleSubmit(
-          (data) => console.log(data),
-          // 데이터 매핑처리
-
-          // mutate
-        )}>
-        <FormElement
-          label="초대할 유저"
-          FormFieldComponent={
-            <ScoutUserProfile
-              nickname={results.userInfo.nickname}
-              profileImageUrl={results.userInfo.profileImageUrl}
-              position={results.userInfo.position}
-            />
-          }
-        />
+      <FormBox onSubmit={onSubmitHandler}>
+        <FormElement label="초대할 유저" FormFieldComponent={<ScoutUserProfile {...values.userInfo} />} />
         <FormElement
           label="스터디/프로젝트 선택"
           FormFieldComponent={
@@ -100,7 +70,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
               formFieldName="postId"
               placeholder="스터디/프로젝트 선택"
               //TODO: 실 데이터 가져와야함
-              options={results.options}
+              options={values.options}
               control={control}
               errorMessage="스터디/프로젝트를 선택해주세요"
               isEssential
@@ -136,7 +106,6 @@ const Title = styled.h1`
   color: ${color.black[1]};
   ${typography.font20Bold}
 `;
-
 const FormBox = styled.form`
   width: 100%;
 
