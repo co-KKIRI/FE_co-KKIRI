@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { googleLogin } from "@/lib/api/auth";
 import useAuthModalToggleStore from "@/stores/authModalToggle";
+import { useUserInfoStore } from "@/stores/userInfoStore";
 
 const AuthListener = () => {
   const setIsAuthModalOpen = useAuthModalToggleStore((state) => state.setIsAuthModalOpen);
+  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
 
   const getAccessToken = async (code: string) => {
     const response = await googleLogin(code);
@@ -11,9 +13,10 @@ const AuthListener = () => {
   };
 
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    const handleMessage = async (event: MessageEvent) => {
       if (event.data && event.data.type === "OAuthSuccess") {
-        getAccessToken(event.data.code);
+        await getAccessToken(event.data.code);
+        await fetchUserInfo();
         setIsAuthModalOpen(false);
       }
     };
@@ -23,7 +26,7 @@ const AuthListener = () => {
     return () => {
       window.removeEventListener("message", handleMessage);
     };
-  }, [setIsAuthModalOpen]);
+  }, [fetchUserInfo, setIsAuthModalOpen]);
 
   return null;
 };

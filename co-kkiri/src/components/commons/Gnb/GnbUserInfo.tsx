@@ -1,12 +1,9 @@
 import { IMAGES } from "@/constants/images";
 import * as S from "./Gnb.styled";
+import { UserProfile } from "@/types/userTypes";
 
 interface GnbUserInfoProps {
-  user: {
-    id: number;
-    nickname: string;
-    profileImageUrl: string;
-  };
+  user: UserProfile;
   onClick: () => void;
 }
 

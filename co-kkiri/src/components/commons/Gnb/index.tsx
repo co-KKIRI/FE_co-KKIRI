@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./Gnb.styled";
 import { ROUTER_PATH } from "@/lib/path";
@@ -8,26 +9,29 @@ import AuthModal from "@/components/modals/AuthModal";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import useAuthModalToggleStore from "@/stores/authModalToggle";
 import GnbUserInfo from "./GnbUserInfo";
+import { useUserInfoStore } from "@/stores/userInfoStore";
 
 interface GnbProps {
-  user?: {
-    id: number;
-    nickname: string;
-    profileImageUrl: string;
-  };
   onSideBarClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Gnb({ user, onSideBarClick }: GnbProps) {
+export default function Gnb({ onSideBarClick }: GnbProps) {
   const { HOME_PATH, RECRUIT_PATH } = ROUTER_PATH;
   const { ref, isOpen: isPopoverOpen, openToggle: togglePopover } = useOpenToggle();
 
   const isAuthModalOpen = useAuthModalToggleStore((state) => state.isAuthModalOpen);
   const toggleAuthModal = useAuthModalToggleStore((state) => state.toggleAuthModal);
+  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
+  const user = useUserInfoStore((state) => state.userInfo);
+  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
 
   const handlePopoverOpen = () => {
     togglePopover();
   };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo]);
 
   return (
     <S.Container ref={ref}>
@@ -51,7 +55,7 @@ export default function Gnb({ user, onSideBarClick }: GnbProps) {
           )}
         </S.RightGroupWrapper>
       </S.Box>
-      {isAuthModalOpen && <AuthModal onClick={toggleAuthModal} onClose={toggleAuthModal} />}
+      {isAuthModalOpen && <AuthModal onClose={toggleAuthModal} />}
       {user && <UserPopover isPopoverOpen={isPopoverOpen} handleSelectOption={handlePopoverOpen} />}
     </S.Container>
   );
