@@ -33,7 +33,7 @@ export default function RHFDropdown<ControlType extends FieldValues>({
           placeholder={placeholder}
           value={options.find((option) => option.value === field.value) || { label: "", value: "" }}
           options={options}
-          onChange={(option) => {
+          onChange={(option: Option) => {
             field.onChange(option.value);
           }}
           isError={fieldState.invalid}
