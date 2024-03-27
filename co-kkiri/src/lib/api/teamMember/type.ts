@@ -8,15 +8,6 @@ type PostTeamMember = {
   isLeader: boolean;
 };
 
-type PageMeta = {
-  page: number;
-  take: number; // 가져올 갯수
-  totalCount: number; // 전체 갯수
-  pageCount: number; // 페이지 갯수
-  hasPreviousPage: boolean; // 이전 페이지가 있는지
-  hasNextPage: boolean; // 다음 페이지가 있는지
-};
-
 export type TeamMemberApiResponseDto = {
   data: PostTeamMember[];
 };
