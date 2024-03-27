@@ -1,28 +1,28 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import FormDropdown from "./FormDropdown";
 
-export type Option<ValueType> = {
+export type Option = {
   label: string;
-  value: ValueType;
+  value: unknown;
 };
 
-interface RHFDropdownProps<ControlType extends FieldValues, ValueType> {
+interface RHFDropdownProps<ControlType extends FieldValues> {
   placeholder: string;
-  options: Option<ValueType>[];
+  options: Option[];
   formFieldName: Path<ControlType>;
   control: Control<ControlType>;
   isEssential?: boolean;
   errorMessage?: string;
 }
 
-export default function RHFDropdown<ControlType extends FieldValues, ValueType>({
+export default function RHFDropdown<ControlType extends FieldValues>({
   placeholder,
   options,
   formFieldName,
   control,
   isEssential,
   errorMessage,
-}: RHFDropdownProps<ControlType, ValueType>) {
+}: RHFDropdownProps<ControlType>) {
   return (
     <Controller
       name={formFieldName}
@@ -31,9 +31,11 @@ export default function RHFDropdown<ControlType extends FieldValues, ValueType>(
       render={({ field, fieldState }) => (
         <FormDropdown
           placeholder={placeholder}
-          value={field.value}
+          value={options.find((option) => option.value === field.value) || { label: "", value: "" }}
           options={options}
-          onChange={field.onChange}
+          onChange={(option) => {
+            field.onChange(option.value);
+          }}
           isError={fieldState.invalid}
           helperText={fieldState.error?.message}
         />

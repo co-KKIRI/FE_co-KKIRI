@@ -5,7 +5,7 @@ const { MY_PAGE, MY_STUDY } = ROUTER_PATH;
 
 type DropdownInfo = {
   [key: string]: {
-    [key: string]: Array<Option<unknown>>;
+    [key: string]: Array<Option>;
   };
 };
 

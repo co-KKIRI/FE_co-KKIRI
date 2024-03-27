@@ -2,10 +2,11 @@ import styled from "styled-components";
 import Dropdown from "../DropDowns/Dropdown";
 import { FormFieldProps } from "./FormElement";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { Option } from "./RHFDropdown";
 
-interface FormDropdownProps extends FormFieldProps {
+interface FormDropdownProps extends FormFieldProps<Option> {
   placeholder: string;
-  options: string[];
+  options: Option[];
 }
 
 export default function FormDropdown({
@@ -20,7 +21,7 @@ export default function FormDropdown({
     <Container>
       <Dropdown
         placeholder={placeholder}
-        selectedOption={value}
+        selectedOption={value.label}
         options={options}
         onSelect={onChange}
         isError={isError}

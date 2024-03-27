@@ -3,13 +3,14 @@ import SquareDropButton from "./commons/SquareDropButton";
 import DropMenu from "./commons/DropMenu";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { Option } from "../Form/RHFDropdown";
 
 interface DropdownProps {
   placeholder: string;
   selectedOption?: string | null;
-  options: string[];
+  options: Option[];
   isError?: boolean;
-  onSelect: (option: string) => void;
+  onSelect: (option: Option) => void;
   dropdownRef?: React.RefCallback<HTMLButtonElement>;
 }
 
@@ -23,7 +24,7 @@ export default function Dropdown({
 }: DropdownProps) {
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string) => {
+  const handleSelectOption = (option: Option) => {
     onSelect(option);
     toggleDropdown();
   };
