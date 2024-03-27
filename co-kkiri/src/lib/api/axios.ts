@@ -2,6 +2,11 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
 
+export interface ApiRequestResponse<T> {
+  data?: T | null;
+  errorMessage?: string | null;
+}
+
 export const BASE_URL = "http://localhost:8080";
 
 export const axiosInstance = axios.create({

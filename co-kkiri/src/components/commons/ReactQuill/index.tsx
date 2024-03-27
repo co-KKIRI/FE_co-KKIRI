@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { ChangeEvent, useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
@@ -20,11 +20,7 @@ const formats = [
   "image",
 ];
 
-export default function QuillEditor({
-  setSelectedOptions,
-}: {
-  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
-}) {
+export default function QuillEditor({ onChange }: { onChange: (value: string) => void }) {
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -33,61 +29,23 @@ export default function QuillEditor({
     };
   }, []);
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      title: e.target.value,
-    }));
-  };
-
-  const handleContentChange = (content: string) => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      content: content,
-    }));
-  };
-
   return (
-    <Container>
-      <input placeholder="제목을 입력해주세요!" onChange={handleTitleChange} />
+    <>
       <CustomToolbar />
       <ReactQuillWrapper>
         <ReactQuill
           theme="snow"
           modules={modules}
           formats={formats}
-          onChange={handleContentChange}
+          onChange={onChange}
           className="custom-quill-editor"
           placeholder="프로젝트를 소개해주세요!"
         />
       </ReactQuillWrapper>
-    </Container>
+    </>
   );
 }
 const { color, typography, mediaQueries } = DESIGN_TOKEN;
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  & input {
-    height: 4.8rem;
-    border: 0.1rem solid ${color.gray[2]};
-    border-radius: 0.5rem;
-    padding: 0 1.885rem;
-    margin-bottom: 1.2rem;
-
-    &:focus {
-      outline: none;
-    }
-
-    &::placeholder {
-      ${typography.font16Semibold};
-      color: ${color.gray[1]};
-    }
-  }
-`;
 
 const ReactQuillWrapper = styled.div`
   .ql-container {

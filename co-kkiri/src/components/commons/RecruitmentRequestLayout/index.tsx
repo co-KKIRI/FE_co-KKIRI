@@ -1,89 +1,56 @@
 import DeadlineDropdown from "@/components/commons/DropDowns/DeadlineDropdown/DeadlineDropdown";
 import Dropdown from "@/components/commons/DropDowns/Dropdown";
 import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselectDropdown";
-import RadioButton from "@/components/commons/RadioButton";
 import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_INFO } from "@/constants/dropDown";
-import { useState } from "react";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller } from "react-hook-form";
-import { CategoryList } from "@/types/categoryTypes";
+import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
 
+import {
+  handleSelectPosition,
+  findOptionByValue,
+  handleRecruitFail,
+  handleSelectStack,
+  validateFormData,
+} from "./utils";
+import RadioButtonField from "./RadioButtonField";
+import { MutationFunction } from "@tanstack/react-query";
 interface RecruitmentRequestLayoutProps {
-  onSubmit: (data: RecruitApiRequestDto) => void;
+  mutationFn: any; // 교체예정입니다
   buttonText: string;
-  defaultOption?: RecruitApiRequestDto;
+  selectedOptions: RecruitApiRequestDto;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }
 
 export default function RecruitmentRequestLayout({
-  onSubmit,
+  selectedOptions,
+  setSelectedOptions,
   buttonText,
-  defaultOption,
+  mutationFn,
 }: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_INFO;
 
-  const initialOption: RecruitApiRequestDto = {
-    type: "STUDY",
-    recruitEndAt: "",
-    progressPeriod: null,
-    capacity: 10,
-    contactWay: null,
-    progressWay: null,
-    stacks: null,
-    positions: [],
-    title: null,
-    content: null,
-    link: null,
-  };
-
-  //초기값으로 기본값옵션을 전달해주고있으면 기본값옵션으로 없으면 원시값옵션으로
-  const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>(
-    defaultOption ? defaultOption : initialOption,
-  );
-
-  const findOptionByValue = <ValueType, OptionType>(values: ValueType[], options: OptionType[], value: ValueType) => {
-    const index = values.indexOf(value);
-    return options[index];
-  };
-
-  const handleSelectType = (type: CategoryList): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      type: type,
-    }));
-  };
-
-  const handleSelectStack = (stacks: string[]): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      stacks: stacks,
-    }));
-  };
-
-  const handleSelectPosition = (position: string): void => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      positions: prevOptions.positions.includes(position)
-        ? prevOptions.positions.filter((prevPosition) => prevPosition !== position)
-        : [...prevOptions.positions, position],
-    }));
-  };
-
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
-  console.log(selectedOptions);
+  } = useForm({ mode: "onBlur" });
+
+  const onSubmit = () => {
+    if (validateFormData(errors)) {
+      mutationFn.mutate(selectedOptions);
+    }
+  };
+
   return (
-    <S.SelectContainer onSubmit={handleSubmit((selectedOptions: RecruitApiRequestDto) => onSubmit(selectedOptions))}>
+    <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
       <h1>스터디/프로젝트 정보 입력</h1>
       <S.GirdContainer>
         <S.RadioButtonBox>
@@ -91,25 +58,8 @@ export default function RecruitmentRequestLayout({
             모집 구분 <span>*</span>
           </h3>
           <span>
-            <S.RadioButtonWarper>
-              <RadioButton
-                defaultChecked
-                value="STUDY"
-                onClick={() => {
-                  handleSelectType("STUDY");
-                }}
-              />
-              <span>스터디</span>
-            </S.RadioButtonWarper>
-            <S.RadioButtonWarper>
-              <RadioButton
-                value="PROJECT"
-                onClick={() => {
-                  handleSelectType("PROJECT");
-                }}
-              />
-              <span>프로젝트</span>
-            </S.RadioButtonWarper>
+            <RadioButtonField name="type" value="STUDY" control={control} setSelectedOptions={setSelectedOptions} />
+            <RadioButtonField name="type" value="PROJECT" control={control} setSelectedOptions={setSelectedOptions} />
           </span>
         </S.RadioButtonBox>
         <S.SelectBox>
@@ -118,20 +68,24 @@ export default function RecruitmentRequestLayout({
           </h3>
           <Controller
             name="recruitEndAt"
+            defaultValue={selectedOptions.recruitEndAt}
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
               <>
                 <DeadlineDropdown
                   placeholder="모집 마감 기간"
-                  selectedOption={selectedOptions.recruitEndAt}
                   onSelect={(option) => {
+                    const formattedDate = format(option, "yyyy-MM-dd 23:59:59");
                     setSelectedOptions((prevOptions) => ({
                       ...prevOptions,
-                      recruitEndAt: option,
+                      recruitEndAt: formattedDate,
                     }));
-                    field.onChange(format(option, "yyyy.MM.dd"));
+                    field.onChange(formattedDate);
                   }}
+                  selectedOption={
+                    selectedOptions.recruitEndAt ? format(new Date(selectedOptions.recruitEndAt), "yyyy.MM.dd") : ""
+                  }
                 />
                 {errors.recruitEndAt && <p>모집 마감 기간을 선택해주세요.</p>}
               </>
@@ -140,26 +94,42 @@ export default function RecruitmentRequestLayout({
         </S.SelectBox>
         <S.SelectBox>
           <h3>진행 기간</h3>
-          <Dropdown
-            placeholder={progressPeriod.defaultValue}
-            options={progressPeriod.options}
-            selectedOption={selectedOptions.progressPeriod}
-            onSelect={(option) => {
-              setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option }));
-            }}
+          <Controller
+            name="progressPeriod"
+            control={control}
+            defaultValue={selectedOptions.progressPeriod}
+            render={({ field }) => (
+              <Dropdown
+                placeholder={progressPeriod.defaultValue}
+                options={progressPeriod.options}
+                selectedOption={field.value}
+                onSelect={(option) => {
+                  setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option }));
+                  field.onChange(option);
+                }}
+              />
+            )}
           />
         </S.SelectBox>
         <S.SelectBox>
           <h3>모집 인원</h3>
-          <Dropdown
-            placeholder={capacity.defaultValue}
-            options={capacity.options}
-            selectedOption={findOptionByValue(capacity.values, capacity.options, selectedOptions.capacity)}
-            onSelect={(option) => {
-              const optionIndex = capacity.options.indexOf(option);
-              const value = capacity.values[optionIndex];
-              setSelectedOptions((prevOption) => ({ ...prevOption, capacity: value }));
-            }}
+          <Controller
+            name="capacity"
+            defaultValue={selectedOptions.capacity}
+            control={control}
+            render={({ field }) => (
+              <Dropdown
+                placeholder={capacity.defaultValue}
+                options={capacity.options}
+                selectedOption={findOptionByValue(capacity.values, capacity.options, field.value)}
+                onSelect={(option) => {
+                  const optionIndex = capacity.options.indexOf(option);
+                  const value = capacity.values[optionIndex];
+                  setSelectedOptions((prevOption) => ({ ...prevOption, capacity: value }));
+                  field.onChange(value);
+                }}
+              />
+            )}
           />
         </S.SelectBox>
         <S.SelectBox>
@@ -168,6 +138,7 @@ export default function RecruitmentRequestLayout({
           </h3>
           <Controller
             name="progressWay"
+            defaultValue={selectedOptions.progressWay}
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -188,18 +159,28 @@ export default function RecruitmentRequestLayout({
         </S.SelectBox>
         <S.SelectBox>
           <h3>연락 방법</h3>
-          <Dropdown
-            placeholder={contactWay.defaultValue}
-            options={contactWay.options}
-            selectedOption={selectedOptions.contactWay}
-            onSelect={(option) => {
-              setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option }));
-            }}
+          <Controller
+            name="contactWay"
+            defaultValue={selectedOptions.contactWay}
+            control={control}
+            render={({ field }) => (
+              <Dropdown
+                placeholder={contactWay.defaultValue}
+                options={contactWay.options}
+                selectedOption={selectedOptions.contactWay}
+                onSelect={(option) => {
+                  setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option }));
+                  field.onChange(option);
+                }}
+              />
+            )}
           />
+
           {selectedOptions.contactWay !== "기타" && (
             <>
               <Controller
                 name={selectedOptions.contactWay || ""}
+                defaultValue={selectedOptions.link}
                 control={control}
                 rules={{
                   pattern: {
@@ -215,15 +196,16 @@ export default function RecruitmentRequestLayout({
                 }}
                 render={({ field }) => (
                   <LinkInput
+                    onBlur={field.onBlur}
                     selectedOption={selectedOptions.contactWay || ""}
-                    onChange={(link) => {
-                      setSelectedOptions((prevOption) => ({ ...prevOption, link: link }));
-                      field.onChange(link);
+                    onChange={(newLink) => {
+                      setSelectedOptions((prevOption) => ({ ...prevOption, link: newLink }));
+                      field.onChange(newLink);
                     }}
                   />
                 )}
               />
-              {selectedOptions.contactWay !== null && errors[selectedOptions.contactWay] && (
+              {selectedOptions.contactWay !== "기타" && errors[selectedOptions.contactWay] && (
                 <p>{String(errors[selectedOptions.contactWay]?.message)}</p>
               )}
             </>
@@ -232,10 +214,20 @@ export default function RecruitmentRequestLayout({
       </S.GirdContainer>
       <S.SelectChipBox>
         <h3>기술 스택</h3>
-        {/* <MultiselectDropdown
-          selectedOptions={selectedOption.stacks}
-          onSelectChange={(stack) => handleSelectStack(stack)}
-        /> */}
+        <Controller
+          name="stacks"
+          defaultValue={selectedOptions.stacks}
+          control={control}
+          render={({ field }) => (
+            <MultiselectDropdown
+              selectedOptions={selectedOptions.stacks}
+              onSelectChange={(stack) => {
+                handleSelectStack(stack, setSelectedOptions);
+                field.onChange(stack);
+              }}
+            />
+          )}
+        />
       </S.SelectChipBox>
       <S.SelectChipBox>
         <h3>
@@ -243,32 +235,67 @@ export default function RecruitmentRequestLayout({
         </h3>
         <Controller
           name="positions"
+          defaultValue={selectedOptions.positions}
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <>
-              <SelectPositionChipList
-                selectedPositions={selectedOptions.positions}
-                onChipClick={(position) => {
-                  handleSelectPosition(position);
-                  field.onChange(position);
-                }}
-              />
-            </>
+            <SelectPositionChipList
+              selectedPositions={selectedOptions.positions}
+              onChipClick={(selectedPosition) => {
+                const updatedPositions = selectedOptions.positions.includes(selectedPosition)
+                  ? selectedOptions.positions.filter((prevPosition) => prevPosition !== selectedPosition)
+                  : [...selectedOptions.positions, selectedPosition];
+                handleSelectPosition(updatedPositions, setSelectedOptions);
+                field.onChange(updatedPositions);
+              }}
+            />
           )}
         />
         {errors.positions && <p>모집 포지션을 선택해주세요.</p>}
       </S.SelectChipBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>
-        <QuillEditor setSelectedOptions={setSelectedOptions} />
+        <Controller
+          name="title"
+          defaultValue={selectedOptions.title}
+          control={control}
+          render={({ field }) => (
+            <S.TitleInput
+              placeholder="제목을 입력해주세요!"
+              onChange={(e) => {
+                setSelectedOptions((prevOptions) => ({
+                  ...prevOptions,
+                  title: e.target.value,
+                }));
+                field.onChange(e);
+              }}
+              value={selectedOptions.title || ""}
+            />
+          )}
+        />
+        <Controller
+          name="content"
+          defaultValue={selectedOptions.content}
+          control={control}
+          render={({ field }) => (
+            <QuillEditor
+              onChange={(value) => {
+                setSelectedOptions((prevOptions) => ({
+                  ...prevOptions,
+                  content: value,
+                }));
+                field.onChange(value);
+              }}
+            />
+          )}
+        />
       </S.QuillBox>
       <S.SubmitButtonBox>
         <Button variant="primaryLight">취소하기</Button>
         <Button
           variant="primary"
           onClick={() => {
-            onSubmit(selectedOptions);
+            handleRecruitFail(errors);
           }}>
           {buttonText}
         </Button>

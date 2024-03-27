@@ -1,59 +1,73 @@
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
 import * as S from "@/pages/Recruit/styled";
-import { RecruitApiRequestDto, PostDetailApiResponseDto } from "@/lib/api/post/type";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { modifyPost, getPostDetail } from "@/lib/api/post";
 import { useNavigate, useParams } from "react-router-dom";
-import { ApiRequestResponse } from "@/lib/api/axios";
+import { validateFormData } from "@/components/commons/RecruitmentRequestLayout/utils";
+import { useForm } from "react-hook-form";
 
 export default function Edit() {
-  const [defaultOption, setDefaultOption] = useState<RecruitApiRequestDto>();
+  const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>({
+    type: "STUDY",
+    recruitEndAt: "",
+    progressPeriod: "",
+    capacity: 999,
+    contactWay: "",
+    progressWay: "",
+    stacks: [],
+    positions: [],
+    title: "",
+    content: "",
+  });
+
+  const { control } = useForm();
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { postId } = useParams();
-
+  const { id } = useParams();
   // useQuery를 통해 데이터 가져오기
   const { data } = useQuery({
     queryKey: ["Post"],
-    queryFn: () => (postId ? getPostDetail(+postId) : null),
+    queryFn: () => (id ? getPostDetail(+id) : null),
   });
 
   // useMutation을 사용하여 데이터 수정하기
-  const editPost = useMutation<ApiRequestResponse<PostDetailApiResponseDto>, Error, RecruitApiRequestDto>({
-    mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+postId!, selectedOptions),
+  const editPost = useMutation<{ result: { postId: number } }, Error, RecruitApiRequestDto>({
+    mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+id!, selectedOptions),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] });
-      navigate(`/post/${postId}`);
+      navigate(`/post/${id}`);
     },
   });
 
-  // 폼 제출 핸들러
-  const handleSubmit = (selectedOptions: RecruitApiRequestDto) => {
-    editPost.mutate(selectedOptions);
-  };
-
-  useEffect(() => {
-    // 데이터가 로드되면 기본값 설정
-    data &&
-      setDefaultOption({
-        title: data.data?.postTitle || null,
-        content: data.data?.postContent || null,
-        type: data.data?.type || "STUDY",
-        recruitEndAt: data.data?.recruitEndAt || "",
-        progressPeriod: data.data?.progressPeriod || null,
-        progressWay: data.data?.progressWay || null,
-        contactWay: data.data?.contactWay || null,
-        capacity: data.data?.capacity || null,
-        positions: data.data?.positions || [],
-        stacks: data.data?.stacks || [],
-        link: data.data?.link || null,
-      });
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setSelectedOptions({
+  //       title: data.postDetails.postTitle,
+  //       content: data.postDetails.postContent,
+  //       type: data.postDetails.type,
+  //       recruitEndAt: data.postDetails.recruitEndAt,
+  //       progressPeriod: data.postDetails.progressPeriod,
+  //       progressWay: data.postDetails.progressWay,
+  //       contactWay: data.postDetails.contactWay,
+  //       capacity: data.postDetails.capacity,
+  //       positions: data.postDetails.positions,
+  //       stacks: data.postDetails.stacks,
+  //       link: data.postDetails.link,
+  //     });
+  //   }
+  // }, [data]);
 
   return (
     <S.Container>
-      <RecruitmentRequestLayout defaultOption={defaultOption} onSubmit={handleSubmit} buttonText="수정하기" />
+      <RecruitmentRequestLayout
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
+        mutationFn={editPost}
+        buttonText="수정하기"
+      />
     </S.Container>
   );
 }
