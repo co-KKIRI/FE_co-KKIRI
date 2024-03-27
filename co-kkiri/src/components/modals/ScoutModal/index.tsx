@@ -61,27 +61,29 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
       <Title>유저 초대하기</Title>
       <FormBox onSubmit={handleSubmit(onSubmitHandler)}>
         <FormElement label="초대할 유저" FormFieldComponent={<ScoutUserProfile {...values.userInfo} />} />
-        <FormElement
-          label="스터디/프로젝트 선택"
-          FormFieldComponent={
-            <RHFDropdown
-              formFieldName="postId"
-              placeholder="스터디/프로젝트 선택"
-              //TODO: 실 데이터 가져와야함
-              options={values.options}
-              control={control}
-              errorMessage="스터디/프로젝트를 선택해주세요"
-              isEssential
-            />
-          }
-          isEssential
-        />
-        <FormElement
-          label="초대 메시지"
-          FormFieldComponent={
-            <RHFTextArea formFieldName="message" placeholder="초대 메시지를 입력해주세요" control={control} />
-          }
-        />
+        <Wrapper>
+          <FormElement
+            label="스터디/프로젝트 선택"
+            FormFieldComponent={
+              <RHFDropdown
+                formFieldName="postId"
+                placeholder="스터디/프로젝트 선택"
+                //TODO: 실 데이터 가져와야함
+                options={values.options}
+                control={control}
+                errorMessage="스터디/프로젝트를 선택해주세요"
+                isEssential
+              />
+            }
+            isEssential
+          />
+          <FormElement
+            label="초대 메시지"
+            FormFieldComponent={
+              <RHFTextArea formFieldName="message" placeholder="초대 메시지를 입력해주세요" control={control} />
+            }
+          />
+        </Wrapper>
         <Button variant="primary">초대하기</Button>
       </FormBox>
     </ModalLayout>
@@ -96,6 +98,12 @@ const ModalLayout = styled(DefaultModalLayout)`
   display: flex;
   flex-direction: column;
   gap: 6rem;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
 `;
 
 const Title = styled.h1`

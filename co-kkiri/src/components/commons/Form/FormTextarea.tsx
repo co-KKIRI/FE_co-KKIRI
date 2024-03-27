@@ -12,14 +12,7 @@ interface FormTextAreaProps {
   helperText?: string;
 }
 
-export default function FormTextArea({
-  id,
-  placeholder,
-  value,
-  onChange,
-  isError,
-  helperText,
-}: FormTextAreaProps) {
+export default function FormTextArea({ id, placeholder, value, onChange, isError, helperText }: FormTextAreaProps) {
   return (
     <Container>
       <Textarea
@@ -32,7 +25,7 @@ export default function FormTextArea({
         //TODO: 화면 크기 감지해서 row 값 정해야함
         rows={5}
       />
-      <HelperText>{helperText}</HelperText>
+      {helperText && <HelperText>{helperText}</HelperText>}
     </Container>
   );
 }
