@@ -1,5 +1,5 @@
 import { CategoryList } from "@/types/categoryTypes";
-import { PageMeta, PagenationOptions } from "../pageMetaType";
+import { PageMeta, PaginationOptions } from "../pageMetaType";
 
 // 마이 페이지 유저 정보
 export type UserInfoApiResponseDto = {
@@ -23,7 +23,7 @@ export type InvitedTeamListApiResponseDto = {
   meta: PageMeta;
 };
 
-export type InvitedTeamListApiRequestDto = PagenationOptions;
+export type InvitedTeamListApiRequestDto = PaginationOptions;
 
 // 마이 페이지 스크랩 목록
 export type MyScrap = {

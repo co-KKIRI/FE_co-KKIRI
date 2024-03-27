@@ -1,6 +1,6 @@
 import { CategoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
-import { PageMeta, PagenationOptions } from "../pageMetaType";
+import { PageMeta, PaginationOptions } from "../pageMetaType";
 
 /**스터디모집하기, 수정하기 (연락 링크 추가 예정)*/
 export type RecruitApiRequestDto = {
@@ -39,7 +39,7 @@ export type ListApiResponseDto = {
   meta: PageMeta;
 };
 
-export type ListApiRequestDto = PagenationOptions & {
+export type ListApiRequestDto = PaginationOptions & {
   meetingType: CategoryListFilter;
   positions?: string[];
   progressWay?: string;
@@ -81,7 +81,7 @@ export type ApplyPostApiRequestDto = {
 };
 
 /**스터디 지원 목록 */
-export type AppliedMemberListApiRequestDto = PagenationOptions;
+export type AppliedMemberListApiRequestDto = PaginationOptions;
 
 type AppliedMember = {
   teamMemberId: number;

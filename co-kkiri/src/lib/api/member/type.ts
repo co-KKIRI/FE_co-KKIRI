@@ -1,4 +1,4 @@
-import { PageMeta, PagenationOptions } from "../pageMetaType";
+import { PageMeta, PaginationOptions } from "../pageMetaType";
 
 // 유저 프로필 조회
 type MemberProfile = {
@@ -32,7 +32,7 @@ export type SearchedMemberProfileApiResponseDto = {
   meta: PageMeta;
 };
 
-export type SearchedMemberProfileApiRequestDto = PagenationOptions & {
+export type SearchedMemberProfileApiRequestDto = PaginationOptions & {
   position?: string; // 포지션
   stacks?: string[]; // 스택
 };
