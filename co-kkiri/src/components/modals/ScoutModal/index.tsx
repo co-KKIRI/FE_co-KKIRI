@@ -50,18 +50,16 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
     mode: "onSubmit",
   });
 
-  const onSubmitHandler = () => {
-    handleSubmit((data) => {
-      const mappedData = mapSubmitData(values, data);
-      console.log(mappedData);
-      //TODO: mutate
-    });
+  const onSubmitHandler = (data: InviteMemberRequestDto) => {
+    const mappedData = mapSubmitData(values, data);
+    console.log(mappedData);
+    //TODO: mutate
   };
 
   return (
     <ModalLayout desktopWidth={430} mobileWidth={320} onClose={() => {}}>
       <Title>유저 초대하기</Title>
-      <FormBox onSubmit={onSubmitHandler}>
+      <FormBox onSubmit={handleSubmit(onSubmitHandler)}>
         <FormElement label="초대할 유저" FormFieldComponent={<ScoutUserProfile {...values.userInfo} />} />
         <FormElement
           label="스터디/프로젝트 선택"
@@ -84,9 +82,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
             <RHFTextArea formFieldName="message" placeholder="초대 메시지를 입력해주세요" control={control} />
           }
         />
-        <Button type="submit" variant="primary">
-          초대하기
-        </Button>
+        <Button variant="primary">초대하기</Button>
       </FormBox>
     </ModalLayout>
   );
@@ -106,6 +102,7 @@ const Title = styled.h1`
   color: ${color.black[1]};
   ${typography.font20Bold}
 `;
+
 const FormBox = styled.form`
   width: 100%;
 
