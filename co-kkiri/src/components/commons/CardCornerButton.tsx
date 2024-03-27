@@ -1,17 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToggle } from "usehooks-ts";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CARD_CORNER_BUTTON, CardCornerButtonType } from "@/constants/cardCornerButton";
-import { useMutation } from "@tanstack/react-query";
-import { scrapAdd } from "@/lib/api/post";
+import { scrapAdd, scrapCancel } from "@/lib/api/post";
 
-//임시
 interface CardCornerButtonProps {
   cardCornerType?: CardCornerButtonType;
   isScraped?: boolean;
-  postId?: number;
-  width?: number;
+  postId: number;
   className?: string;
 }
 
@@ -34,25 +32,40 @@ export default function CardCornerButton({
   className,
 }: CardCornerButtonProps) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isScrapedValue, toggle] = useToggle(isScraped);
-  const { text, icon, width, onClick } = CARD_CORNER_BUTTON[cardCornerType as CardCornerButtonType];
+  const { text, icon, width } = CARD_CORNER_BUTTON[cardCornerType as CardCornerButtonType];
 
   const ScrapMutation = useMutation({
     mutationFn: (postId: number) => scrapAdd(postId),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
+      queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
       //스크랩 리스트, 각종 카드리스트들 업데이트 하기
-      toggle();
+      // toggle();
+    },
+  });
+
+  const CancelScrapMutation = useMutation({
+    mutationFn: (postId: number) => scrapCancel(postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
+      queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
+      //스크랩 리스트, 각종 카드리스트들 업데이트 하기
+      // toggle();
     },
   });
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (cardCornerType === "scrap") {
-      // onClick({ isScraped: isScrapedValue, toggle });
-      onClick({ ScrapMutation });
-    } else if (cardCornerType === "manage" || (cardCornerType === "write" && postId)) {
-      onClick({ postId, navigate });
+      isScraped ? CancelScrapMutation.mutate(postId) : ScrapMutation.mutate(postId);
+    } else if (cardCornerType === "manage") {
+      navigate?.(`/mystudy/${postId}`);
+    } else if (cardCornerType === "write") {
+      navigate?.(`/mystudy/${postId}/review`);
     }
   };
 
