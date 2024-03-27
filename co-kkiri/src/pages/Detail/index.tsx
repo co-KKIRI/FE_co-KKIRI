@@ -2,14 +2,12 @@ import { useRef } from "react";
 import * as S from "./styled";
 import useComponentHeight from "@/hooks/useComponentHeight";
 import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
-import { studyDetailData } from "@/lib/mock/studyDetail";
 import { useQuery } from "@tanstack/react-query";
 import { getPostDetail } from "@/lib/api/post";
 import { useParams } from "react-router-dom";
 import { PostDetailApiResponseDto } from "@/lib/api/post/type";
 
 export default function Detail() {
-  // const detailData = studyDetailData; 테스트용
   const cardRef = useRef<HTMLDivElement>(null);
   const { id } = useParams();
   const postId = Number(id);
@@ -40,8 +38,8 @@ export default function Detail() {
         <S.ShareAndScrapButton isScraped={isScraped} />
         <S.PostSection postDetails={postDetails} postApplyStatus={postApplyStatus} />
         <S.DetailCardSection cardRef={cardRef} postDetails={postDetails} />
-        <S.CommentsSection commentCount={postDetails.commentCount} />
-        <S.ButtonSection $cardHeight={cardHeight} postApplyStatus={postApplyStatus} />
+        <S.CommentsSection postId={postId} />
+        <S.ButtonSection $cardHeight={cardHeight} postApplyStatus={postApplyStatus} postId={postId} />
         <ScrollToTop />
       </S.Box>
     </S.Container>
