@@ -12,7 +12,6 @@ import { useUserInfoStore } from "@/stores/userInfoStore";
 export default function Navigation() {
   const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
   const toggleSideBar = useSideBarStore((state) => state.toggleSideBar);
-  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
 
   const { width: screenWidth } = useWindowSize();
   const isTabletOrMobile = screenWidth < 1200;
@@ -20,10 +19,6 @@ export default function Navigation() {
   const handleSideBar = () => {
     toggleSideBar();
   };
-
-  useEffect(() => {
-    fetchUserInfo();
-  }, [fetchUserInfo]);
 
   return (
     <>
