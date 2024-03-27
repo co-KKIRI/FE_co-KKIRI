@@ -24,13 +24,13 @@ interface ContainerProps {
 export default function DropMenu({ options, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
   return (
     <Container $isOpen={isOpen} $borderType={$borderType}>
-      {options.map((option: string) => (
+      {options.map((option: string, index: number) => (
         <Option
           $borderType={$borderType}
           onClick={() => {
             handleSelectOption(option);
           }}
-          key={option}>
+          key={`${option}-${index}`}>
           {option}
         </Option>
       ))}
