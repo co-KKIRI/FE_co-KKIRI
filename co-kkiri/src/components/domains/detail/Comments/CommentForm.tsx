@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import CommentTextarea from "./CommentTextarea";
 import Button from "@/components/commons/Button";
-import useCommentMutation from "@/hooks/useCommentMutation";
+import useCommentMutation from "@/hooks/useMutation/useCommentMutation";
 
 export default function CommentForm() {
   const [content, setContent] = useState("");

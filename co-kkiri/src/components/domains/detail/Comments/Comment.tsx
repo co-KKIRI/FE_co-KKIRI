@@ -4,7 +4,7 @@ import UserInfo from "@/components/commons/UserInfo";
 import CommentTextarea from "@/components/domains/detail/Comments/CommentTextarea";
 import { createTimePassedMessage } from "@/utils/formatDate";
 import { CommentInfo } from "@/lib/api/comment/type";
-import useCommentMutation from "@/hooks/useCommentMutation";
+import useCommentMutation from "@/hooks/useMutation/useCommentMutation";
 
 interface CommentProps {
   commentInfo: CommentInfo;
