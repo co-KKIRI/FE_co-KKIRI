@@ -34,19 +34,12 @@ export default function Recruit() {
     },
   });
 
-  // 포스트 업로드 요청 처리
-  const handleSubmit = () => {
-    if (validateFormData(selectedOptions)) {
-      uploadPost.mutate(selectedOptions);
-    }
-  };
-
   return (
     <S.Container>
       <RecruitmentRequestLayout
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-        onSubmit={handleSubmit}
+        mutationFn={uploadPost}
         buttonText="글 등록하기"
       />
     </S.Container>

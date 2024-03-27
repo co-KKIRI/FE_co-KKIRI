@@ -11,11 +11,17 @@ import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
 
-import { handleSelectPosition, findOptionByValue, handleRecruitFail, handleSelectStack } from "./utils";
+import {
+  handleSelectPosition,
+  findOptionByValue,
+  handleRecruitFail,
+  handleSelectStack,
+  validateFormData,
+} from "./utils";
 import RadioButtonField from "./RadioButtonField";
-
+import { MutationFunction } from "@tanstack/react-query";
 interface RecruitmentRequestLayoutProps {
-  onSubmit: SubmitHandler<FieldValues>;
+  mutationFn: any; // 교체예정입니다
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
@@ -24,8 +30,8 @@ interface RecruitmentRequestLayoutProps {
 export default function RecruitmentRequestLayout({
   selectedOptions,
   setSelectedOptions,
-  onSubmit,
   buttonText,
+  mutationFn,
 }: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
@@ -36,6 +42,12 @@ export default function RecruitmentRequestLayout({
     control,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
+
+  const onSubmit = () => {
+    if (validateFormData(errors)) {
+      mutationFn.mutate(selectedOptions);
+    }
+  };
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -283,7 +295,7 @@ export default function RecruitmentRequestLayout({
         <Button
           variant="primary"
           onClick={() => {
-            handleRecruitFail(selectedOptions);
+            handleRecruitFail(errors);
           }}>
           {buttonText}
         </Button>

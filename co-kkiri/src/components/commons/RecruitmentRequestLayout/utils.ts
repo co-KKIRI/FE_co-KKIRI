@@ -1,11 +1,10 @@
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { CategoryList } from "@/types/categoryTypes";
+import { FieldErrors, FieldValues } from "react-hook-form";
 
 // handleSubmit 조건 처리
-export const validateFormData = (selectedOptions: RecruitApiRequestDto) => {
-  return (
-    selectedOptions.recruitEndAt !== "" && selectedOptions.progressWay !== "" && selectedOptions.positions.length > 0
-  );
+export const validateFormData = (error: FieldErrors<FieldValues>) => {
+  return !error.recruitEndAt && !error.progressWay && !error.positions && !error.link;
 };
 
 // index에 해당하는 옵션 식별
@@ -19,8 +18,8 @@ export const findOptionByValue = <ValueType, OptionType>(
 };
 
 // handleSubmit 요청 실패 처리
-export const handleRecruitFail = (selectedOptions: RecruitApiRequestDto) => {
-  if (!validateFormData(selectedOptions)) {
+export const handleRecruitFail = (error: FieldErrors<FieldValues>) => {
+  if (!validateFormData(error)) {
     alert("필수값을 입력해주세요");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }

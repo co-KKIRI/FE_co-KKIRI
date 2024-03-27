@@ -41,11 +41,7 @@ export default function Edit() {
       navigate(`/post/${id}`);
     },
   });
-  const handleSubmit = () => {
-    if (validateFormData(selectedOptions)) {
-      editPost.mutate(selectedOptions);
-    }
-  };
+
   // useEffect(() => {
   //   if (data) {
   //     setSelectedOptions({
@@ -69,7 +65,7 @@ export default function Edit() {
       <RecruitmentRequestLayout
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-        onSubmit={handleSubmit}
+        mutationFn={editPost}
         buttonText="수정하기"
       />
     </S.Container>
