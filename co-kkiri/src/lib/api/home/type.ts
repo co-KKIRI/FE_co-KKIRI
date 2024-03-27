@@ -18,8 +18,8 @@ export type MainPostInfo = {
 };
 
 export type HomeApiResponseDto = {
-  newStudyList: MainPostInfo[]; //4개씩 표시
-  hotStudyList: MainPostInfo[];
-  newProjectList: MainPostInfo[];
-  hotProjectList: MainPostInfo[];
+  newStudyLists: MainPostInfo[]; //4개씩 표시
+  hotStudyLists: MainPostInfo[];
+  newProjectLists: MainPostInfo[];
+  hotProjectLists: MainPostInfo[];
 };

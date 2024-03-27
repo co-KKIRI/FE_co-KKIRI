@@ -74,7 +74,7 @@ export const recruitComplete = (postId: number) => apiRequest("patch", postAddre
 /** 스크랩 추가하기 */
 export const scrapAdd = (postId: number) => apiRequest("post", postAddress.scrap(postId));
 
-/** 스크랩 추가하기 */
+/** 스크랩 취소하기 */
 export const scrapCancel = (postId: number) => apiRequest("delete", postAddress.scrap(postId));
 
 /** 이미지 url 가져오기 */

@@ -1,19 +1,37 @@
+import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 
+import { getHomeCardList } from "@/lib/api/home";
 import Banners from "@/components/domains/home/Banners";
 import HotAndNewSection from "@/components/domains/home/HotAndNewSection";
 import { HOT_AND_NEW_LIST } from "@/constants/hotAndNewList";
-//mock 데이터
-import { mainStudyList } from "@/lib/mock/mainStudyList";
+import { HomeCardListType } from "@/types/homeCardListTypes";
 
 export default function Home() {
+  const { data: homeCardListData, error: homeCardListError } = useQuery({
+    queryKey: ["homeCardList"],
+    queryFn: getHomeCardList,
+  });
+
+  const homeCardList: HomeCardListType = homeCardListData ?? {
+    newStudyLists: [],
+    hotStudyLists: [],
+    newProjectLists: [],
+    hotProjectLists: [],
+  };
+
   return (
     <Container>
       <Banners />
       <Box>
         {Object.entries(HOT_AND_NEW_LIST).map(([key, { title, path }]) => (
-          <HotAndNewSection key={key} category={title} path={path} cardDataList={mainStudyList[key]} />
+          <HotAndNewSection
+            key={key}
+            category={title}
+            path={path}
+            cardDataList={homeCardList[key as keyof HomeCardListType]}
+          />
         ))}
       </Box>
     </Container>
@@ -28,7 +46,8 @@ const {
 const Container = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+
   gap: 6rem;
   padding: ${spacing.desktop};
   padding-bottom: 12rem;
@@ -45,6 +64,7 @@ const Container = styled.main`
 `;
 
 const Box = styled.article`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
