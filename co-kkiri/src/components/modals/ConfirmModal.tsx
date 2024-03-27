@@ -9,9 +9,10 @@ export type ConfirmType = keyof typeof CONFIRM_TYPE;
 interface ConfirmModalProps {
   type: ConfirmType;
   onClose: () => void;
+  onClick: () => void;
 }
 
-export default function ConfirmModal({ type, onClose }: ConfirmModalProps) {
+export default function ConfirmModal({ type, onClose, onClick }: ConfirmModalProps) {
   return (
     <ModalLayout desktopWidth={430} mobileWidth={320} modalType="confirm" onClose={onClose}>
       <Container>
@@ -20,7 +21,9 @@ export default function ConfirmModal({ type, onClose }: ConfirmModalProps) {
           <Button variant="primaryLight" onClick={onClose}>
             {CONFIRM_TYPE[type].cancel}
           </Button>
-          <Button variant="primary">{CONFIRM_TYPE[type].agree}</Button>
+          <Button variant="primary" onClick={onClick}>
+            {CONFIRM_TYPE[type].agree}
+          </Button>
         </Wrapper>
       </Container>
     </ModalLayout>
