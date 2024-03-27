@@ -15,6 +15,7 @@ interface RecruitmentPostProps {
 
 export default function RecruitmentPost({ postDetails, postApplyStatus, className }: RecruitmentPostProps) {
   const {
+    postMemberId: id,
     postTitle,
     postContent,
     userProfileImg: profileImageUrl,
@@ -24,7 +25,7 @@ export default function RecruitmentPost({ postDetails, postApplyStatus, classNam
     scrapCount,
   } = postDetails;
 
-  const userInfo = { nickname, profileImageUrl };
+  const userInfo = { nickname, profileImageUrl, id };
   const isMine = postApplyStatus === "OWNER";
 
   const sanitizedContent = { __html: DOMPurify.sanitize(postContent) };
