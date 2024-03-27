@@ -4,7 +4,7 @@ import FilterList from "@/components/commons/FilterList";
 import SearchInput from "@/components/commons/SearchInput";
 import Filters from "@/components/domains/studyList/Filters";
 import Cards from "@/components/commons/Cards";
-import Pagination from "@/components/commons/Pagination_test/Pagination";
+import Pagination from "@/components/commons/Pagination";
 import CreatePost from "@/components/commons/FloatingButton/CreatePost";
 import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";

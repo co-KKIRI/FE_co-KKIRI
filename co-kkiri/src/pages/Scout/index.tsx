@@ -3,7 +3,7 @@ import * as S from "./styled";
 import ScoutFilters from "@/components/domains/scout/ScoutFilters";
 import ScoutCards from "@/components/domains/scout/ScoutCards";
 import SearchInput from "@/components/commons/SearchInput";
-import Pagination from "@/components/commons/Pagination_test/Pagination";
+import Pagination from "@/components/commons/Pagination";
 import { searchedMemberProfiles } from "@/lib/mock/scout/searchMemberList";
 
 export interface SelectedFilter {
