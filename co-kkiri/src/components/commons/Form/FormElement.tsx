@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Label from "./Label";
 
-export interface InputProps {
+export interface FormFieldProps {
   onChange: (value: string) => void;
   value: string;
   isError?: boolean;
@@ -12,10 +12,10 @@ export interface InputProps {
 interface FormElementProps {
   label: string;
   isEssential?: boolean;
-  InputComponent: React.ReactElement<InputProps>;
+  FormFieldComponent: React.ReactElement<FormFieldProps>;
 }
 
-export default function FormElement({ label, isEssential, InputComponent }: FormElementProps) {
+export default function FormElement({ label, isEssential, FormFieldComponent: InputComponent }: FormElementProps) {
   return (
     <Container>
       <Label label={label} isEssential={isEssential} />

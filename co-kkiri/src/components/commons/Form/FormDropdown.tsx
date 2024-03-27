@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Dropdown from "../DropDowns/Dropdown";
-import { InputProps } from "./FormElement";
+import { FormFieldProps } from "./FormElement";
 import DESIGN_TOKEN from "@/styles/tokens";
 
-interface FormDropdownProps extends InputProps {
+interface FormDropdownProps extends FormFieldProps {
   placeholder: string;
   options: string[];
 }

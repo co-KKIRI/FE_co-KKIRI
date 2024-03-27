@@ -85,7 +85,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
         )}>
         <FormElement
           label="초대할 유저"
-          InputComponent={
+          FormFieldComponent={
             <ScoutUserProfile
               nickname={results.userInfo.nickname}
               profileImageUrl={results.userInfo.profileImageUrl}
@@ -95,7 +95,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
         />
         <FormElement
           label="스터디/프로젝트 선택"
-          InputComponent={
+          FormFieldComponent={
             <RHFDropdown
               formFieldName="postId"
               placeholder="스터디/프로젝트 선택"
@@ -110,7 +110,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
         />
         <FormElement
           label="초대 메시지"
-          InputComponent={
+          FormFieldComponent={
             <RHFTextArea formFieldName="message" placeholder="초대 메시지를 입력해주세요" control={control} />
           }
         />
