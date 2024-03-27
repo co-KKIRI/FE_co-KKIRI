@@ -23,7 +23,6 @@ export default function Gnb({ onSideBarClick }: GnbProps) {
   const toggleAuthModal = useAuthModalToggleStore((state) => state.toggleAuthModal);
   const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
   const user = useUserInfoStore((state) => state.userInfo);
-  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
 
   const handlePopoverOpen = () => {
     togglePopover();
