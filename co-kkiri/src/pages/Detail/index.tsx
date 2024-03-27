@@ -2,22 +2,46 @@ import { useRef } from "react";
 import * as S from "./styled";
 import useComponentHeight from "@/hooks/useComponentHeight";
 import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
-import { DetailInfo, studyDetailData } from "@/lib/mock/studyDetail";
+import { studyDetailData } from "@/lib/mock/studyDetail";
+import { useQuery } from "@tanstack/react-query";
+import { getPostDetail } from "@/lib/api/post";
+import { useParams } from "react-router-dom";
+import { PostDetailApiResponseDto } from "@/lib/api/post/type";
 
 export default function Detail() {
-  const detailInfo = studyDetailData.result;
+  // const detailData = studyDetailData; 테스트용
   const cardRef = useRef<HTMLDivElement>(null);
-  const cardHeight = useComponentHeight<DetailInfo>(detailInfo, cardRef, 407);
+  const { id } = useParams();
+  const postId = Number(id);
+  const {
+    data: detailData,
+    isPending,
+    isError,
+    error,
+  } = useQuery({ queryKey: ["postDetail", postId], queryFn: () => getPostDetail(postId) });
+
+  const cardHeight = useComponentHeight<PostDetailApiResponseDto | undefined>(detailData, cardRef, 407);
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return console.error(error.message);
+    // 에러 및 로딩 처리 통일
+  }
+
+  const { postDetails, isScraped, postApplyStatus } = detailData;
 
   return (
     <S.Container>
       <S.Box>
         <S.GoBackButton />
-        <S.ShareAndScrapButton isScraped={detailInfo.isScraped} />
-        <S.PostSection detailInfo={detailInfo} />
-        <S.DetailCardSection cardRef={cardRef} detailInfo={detailInfo} />
-        <S.CommentsSection commentsNum={detailInfo.commentsNum} />
-        <S.ButtonSection $cardHeight={cardHeight} />
+        <S.ShareAndScrapButton isScraped={isScraped} />
+        <S.PostSection postDetails={postDetails} postApplyStatus={postApplyStatus} />
+        <S.DetailCardSection cardRef={cardRef} postDetails={postDetails} />
+        <S.CommentsSection commentCount={postDetails.commentCount} />
+        <S.ButtonSection $cardHeight={cardHeight} postApplyStatus={postApplyStatus} />
         <ScrollToTop />
       </S.Box>
     </S.Container>

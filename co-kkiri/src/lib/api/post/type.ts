@@ -45,27 +45,34 @@ export type ListApiRequestDto = {
   sortBy?: "LATEST" | "BYDEADLINE" | "BYVIEW";
 };
 
+export type PostApplyStatus = "OWNER" | "INVITED" | "NOT_APPLIED" | "APPLIED" | "RECRUIT_CLOSED";
+
+export type PostDetails = {
+  postTitle: string; //제목
+  postContent: string; //내용
+  userProfileImg: string; //작성자 프로필이미지
+  userNickname: string; //작성자 닉네임
+  createdAt: string; //생성 시간 YYYY-MM-DD HH:MM:SS
+  viewCount: number; //조회수
+  scrapCount: number; //스크랩수
+  type: "STUDY" | "PROJECT"; //스터디 종류
+  recruitEndAt: string; // 모집 마감
+  progressPeriod: string; //진행 기간
+  progressWay: string; //진행 방법 (온라인/오프라인)
+  contactWay: string; //연락 방법
+  capacity: number; //모집 인원 ==> 테이블에 추가 예정
+  positions: string[]; //포지션
+  stacks: string[]; //스택
+  commentCount: number; //댓글 수
+  link: string; //연락 방법 링크
+};
 /**스터디 상세*/
 export type PostDetailApiResponseDto = {
-  postTitle: string;
-  postContent: string;
-  memberProfileImg: string;
-  memberNickname: string;
-  createdAt: string; //생성 시간 YYYY-MM-DD HH:MM:SS
-  views: number;
-  isScraped: boolean;
-  scraps: number;
-  type: CategoryList;
-  recruitEndAt: string;
-  progressPeriod: string; //진행 기간 => enum 타입으로 넣을 예정
-  progressWay: string;
-  contactWay: string;
-  capacity: number;
-  positions: string[];
-  stacks: string[];
-  commentsNum: number;
-  link?: string;
+  postDetails: PostDetails;
+  isScraped: boolean; //스크랩 되어있는지 아닌지
+  postApplyStatus: PostApplyStatus;
 };
+
 /**스터디 지원 */
 export type ApplyPostApiRequestDto = {
   memberId: number;

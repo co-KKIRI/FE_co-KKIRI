@@ -3,24 +3,26 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import { commentList, CommentInfo } from "@/lib/mock/commentList";
+import Button from "@/components/commons/Button";
 
 interface CommentsProps {
-  commentsNum: number;
+  commentCount: number;
   className?: string;
 }
 
-export default function Comments({ commentsNum, className }: CommentsProps) {
+export default function Comments({ commentCount, className }: CommentsProps) {
   const comments: CommentInfo[] = commentList.result.comments;
   return (
     <Container className={className}>
       <Wrapper>
         <Label>댓글</Label>
-        <Count>{commentsNum}</Count>
+        <Count>{commentCount}</Count>
       </Wrapper>
       <CommentForm />
       <CommentWrapper>
         {comments?.map((commentInfo) => <Comment key={commentInfo.commentId} commentInfo={commentInfo} />)}
       </CommentWrapper>
+      {comments.length > 10 && <LoadMoreButton variant="ghost">더보기</LoadMoreButton>}
     </Container>
   );
 }
@@ -36,9 +38,6 @@ const Container = styled.div`
   gap: 2rem;
   width: 50rem;
 
-  ${tablet} {
-    width: 50rem;
-  }
   ${mobile} {
     width: 32rem;
   }
@@ -63,4 +62,9 @@ const Count = styled(Label)`
 
 const CommentWrapper = styled.div`
   margin-top: 2rem;
+`;
+
+const LoadMoreButton = styled(Button)`
+  margin-top: -1rem;
+  margin-bottom: 12rem;
 `;

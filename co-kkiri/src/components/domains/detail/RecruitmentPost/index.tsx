@@ -5,26 +5,27 @@ import Count from "@/components/commons/Count";
 import { ICONS } from "@/constants/icons";
 import DOMPurify from "dompurify";
 import { createTimePassedMessage } from "@/utils/formatDate";
-import { PostDetailApiResponseDto } from "@/lib/api/post/type";
+import { PostDetails, PostApplyStatus } from "@/lib/api/post/type";
 
 interface RecruitmentPostProps {
-  detailInfo: PostDetailApiResponseDto;
+  postDetails: PostDetails;
+  postApplyStatus: PostApplyStatus;
   className?: string;
 }
 
-export default function RecruitmentPost({ detailInfo, className }: RecruitmentPostProps) {
+export default function RecruitmentPost({ postDetails, postApplyStatus, className }: RecruitmentPostProps) {
   const {
     postTitle,
     postContent,
-    memberProfileImg: profileImageUrl,
-    memberNickname: nickname,
+    userProfileImg: profileImageUrl,
+    userNickname: nickname,
     createdAt,
-    views,
-    scraps,
-  } = detailInfo;
+    viewCount,
+    scrapCount,
+  } = postDetails;
 
   const userInfo = { nickname, profileImageUrl };
-  const isMine = true; // 임시
+  const isMine = postApplyStatus === "OWNER";
 
   const sanitizedContent = { __html: DOMPurify.sanitize(postContent) };
 
@@ -42,8 +43,8 @@ export default function RecruitmentPost({ detailInfo, className }: RecruitmentPo
       <S.HorizontalDivider />
       <S.Content dangerouslySetInnerHTML={sanitizedContent} />
       <S.CountWrapper>
-        <Count icon={ICONS.eye} count={views} />
-        <Count icon={ICONS.scrapEmpty} count={scraps} />
+        <Count icon={ICONS.eye} count={viewCount} />
+        <Count icon={ICONS.scrapEmpty} count={scrapCount} />
       </S.CountWrapper>
     </S.Container>
   );

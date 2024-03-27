@@ -24,7 +24,7 @@ export const ContentContainer = styled.div`
   justify-content: start;
   gap: 4rem;
   padding: 3rem;
-  margin-top: 0.2rem;
+  margin-top: 1rem;
 
   ${mediaQueries.mobile} {
     padding: 2rem;
