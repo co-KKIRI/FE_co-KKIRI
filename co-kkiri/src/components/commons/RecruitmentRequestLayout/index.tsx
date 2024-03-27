@@ -18,13 +18,20 @@ import {
   validateFormData,
 } from "./utils";
 import RadioButtonField from "./RadioButtonField";
+<<<<<<< HEAD
 
+=======
+import { MutationFunction } from "@tanstack/react-query";
+import { useEffect } from "react";
+>>>>>>> 22d1f18 (Feat: edit 페이지 1차 완료)
 interface RecruitmentRequestLayoutProps {
   mutationFn: any; // 교체예정입니다
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }
+
+const path = location.pathname;
 
 export default function RecruitmentRequestLayout({
   selectedOptions,
@@ -37,6 +44,7 @@ export default function RecruitmentRequestLayout({
   } = DROPDOWN_FORM_INFO;
 
   const {
+    setValue,
     handleSubmit,
     control,
     formState: { errors },
@@ -47,6 +55,22 @@ export default function RecruitmentRequestLayout({
       mutationFn.mutate(selectedOptions);
     }
   };
+
+  useEffect(() => {
+    if (path !== "recruit") {
+      setValue("type", selectedOptions.type);
+      setValue("recruitEndAt", selectedOptions.recruitEndAt);
+      setValue("progressPeriod", selectedOptions.progressPeriod);
+      setValue("capacity", selectedOptions.capacity);
+      setValue("progressWay", selectedOptions.progressWay);
+      setValue("contactWay", selectedOptions.contactWay);
+      setValue("stacks", selectedOptions.stacks);
+      setValue("positions", selectedOptions.positions);
+      setValue("title", selectedOptions.title);
+      setValue("content", selectedOptions.content);
+      return;
+    }
+  }, [selectedOptions, setValue]);
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -290,6 +314,7 @@ export default function RecruitmentRequestLayout({
         <Button variant="primaryLight">취소하기</Button>
         <Button
           variant="primary"
+          disabled={selectedOptions.title === "" || selectedOptions.content == "<p><br></p>" ? true : false}
           onClick={() => {
             handleRecruitFail(errors);
           }}>

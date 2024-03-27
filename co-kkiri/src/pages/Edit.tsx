@@ -42,23 +42,23 @@ export default function Edit() {
     },
   });
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setSelectedOptions({
-  //       title: data.postDetails.postTitle,
-  //       content: data.postDetails.postContent,
-  //       type: data.postDetails.type,
-  //       recruitEndAt: data.postDetails.recruitEndAt,
-  //       progressPeriod: data.postDetails.progressPeriod,
-  //       progressWay: data.postDetails.progressWay,
-  //       contactWay: data.postDetails.contactWay,
-  //       capacity: data.postDetails.capacity,
-  //       positions: data.postDetails.positions,
-  //       stacks: data.postDetails.stacks,
-  //       link: data.postDetails.link,
-  //     });
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data) {
+      setSelectedOptions({
+        title: data.postDetails.postTitle,
+        content: data.postDetails.postContent,
+        type: data.postDetails.type,
+        recruitEndAt: data.postDetails.recruitEndAt,
+        progressPeriod: data.postDetails.progressPeriod,
+        progressWay: data.postDetails.progressWay,
+        contactWay: data.postDetails.contactWay,
+        capacity: data.postDetails.capacity,
+        positions: data.postDetails.positions,
+        stacks: data.postDetails.stacks,
+        link: data.postDetails.link,
+      });
+    }
+  }, [data]);
 
   return (
     <S.Container>

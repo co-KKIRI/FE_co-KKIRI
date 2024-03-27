@@ -3,10 +3,13 @@ import { CategoryList } from "@/types/categoryTypes";
 import { FieldErrors, FieldValues } from "react-hook-form";
 
 // handleSubmit 조건 처리
-export const validateFormData = (error: FieldErrors<FieldValues>) => {
-  return !error.recruitEndAt && !error.progressWay && !error.positions && !error.link;
+export const validateFormData = (errors: FieldErrors<FieldValues>): boolean => {
+  if (!errors.recruitEndAt && !errors.progressWay && !errors.positions && !errors.link) {
+    return false;
+  } else {
+    return true;
+  }
 };
-
 // index에 해당하는 옵션 식별
 export const findOptionByValue = <ValueType, OptionType>(
   values: ValueType[],
