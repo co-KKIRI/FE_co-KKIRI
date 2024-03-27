@@ -3,6 +3,8 @@ import { useToggle } from "usehooks-ts";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CARD_CORNER_BUTTON, CardCornerButtonType } from "@/constants/cardCornerButton";
+import { useMutation } from "@tanstack/react-query";
+import { scrapAdd } from "@/lib/api/post";
 
 //임시
 interface CardCornerButtonProps {
@@ -35,11 +37,20 @@ export default function CardCornerButton({
   const [isScrapedValue, toggle] = useToggle(isScraped);
   const { text, icon, width, onClick } = CARD_CORNER_BUTTON[cardCornerType as CardCornerButtonType];
 
+  const ScrapMutation = useMutation({
+    mutationFn: (postId: number) => scrapAdd(postId),
+    onSuccess: () => {
+      //스크랩 리스트, 각종 카드리스트들 업데이트 하기
+      toggle();
+    },
+  });
+
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (cardCornerType === "scrap") {
-      onClick({ isScraped: isScrapedValue, toggle });
+      // onClick({ isScraped: isScrapedValue, toggle });
+      onClick({ ScrapMutation });
     } else if (cardCornerType === "manage" || (cardCornerType === "write" && postId)) {
       onClick({ postId, navigate });
     }

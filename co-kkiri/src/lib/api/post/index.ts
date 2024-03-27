@@ -71,5 +71,11 @@ export const recruitEnd = (postId: number) => apiRequest("patch", postAddress.re
 /** 스터디 모집 완료하기 */
 export const recruitComplete = (postId: number) => apiRequest("patch", postAddress.recruitComplete(postId));
 
+/** 스크랩 추가하기 */
+export const scrapAdd = (postId: number) => apiRequest("post", postAddress.scrap(postId));
+
+/** 스크랩 추가하기 */
+export const scrapCancel = (postId: number) => apiRequest("delete", postAddress.scrap(postId));
+
 /** 이미지 url 가져오기 */
 export const getImageUploadUrl = () => apiRequest("post", imageAddress);

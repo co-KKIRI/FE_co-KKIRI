@@ -32,6 +32,8 @@ export const postAddress = {
   recruitStart: (postId: number) => `/post/${postId}/recruit-start`, // 백엔드 확인 요망
   //patch
   recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`, // 백엔드 확인 요망
+  //post, delete
+  scrap: (postId: number) => `/post/${postId}/scrap`,
   //post
   invite: "/post/invite",
 };

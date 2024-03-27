@@ -1,3 +1,4 @@
+import { UseMutationResult } from "@tanstack/react-query";
 import { ICONS } from "./icons";
 
 export type CardCornerButtonType = "scrap" | "manage" | "write" | "view";
@@ -8,6 +9,7 @@ export type CardCornerButton = {
     width?: number;
     text?: string;
     onClick: (params: {
+      ScrapMutation?: UseMutationResult<unknown, unknown, unknown, unknown> | undefined;
       isScraped?: boolean;
       toggle?: () => void;
       postId?: number;
@@ -20,9 +22,12 @@ export const CARD_CORNER_BUTTON: CardCornerButton = {
   scrap: {
     icon: (isScraped: boolean) => (isScraped ? ICONS.scrapFull : ICONS.scrapEmpty),
     width: 36,
-    onClick: ({ isScraped, toggle }) => {
-      toggle?.();
+    onClick: ({ ScrapMutation }) => {
+      ScrapMutation.mutate();
     },
+    // onClick: ({ isScraped, toggle }) => {
+    //   toggle?.();
+    // },
   },
   manage: {
     icon: () => ICONS.manage,
