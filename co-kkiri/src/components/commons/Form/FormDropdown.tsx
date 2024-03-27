@@ -40,6 +40,8 @@ const Container = styled.div`
 `;
 
 const HelperText = styled.p`
+  min-height: 1.5rem;
+
   color: ${color.red};
   ${typography.font12Medium}
 `;
