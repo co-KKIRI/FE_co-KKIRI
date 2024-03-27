@@ -6,8 +6,6 @@ import Gnb from "@/components/commons/Gnb";
 import SideBar from "@/components/commons/SideBar";
 import { useWindowSize } from "usehooks-ts";
 import { slideIn, slideOut } from "@/utils/animation";
-import { useEffect } from "react";
-import { useUserInfoStore } from "@/stores/userInfoStore";
 
 export default function Navigation() {
   const isSideBarOpen = useSideBarStore((state) => state.isSideBarOpen);
