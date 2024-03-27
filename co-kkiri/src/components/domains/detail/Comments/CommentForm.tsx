@@ -1,21 +1,30 @@
+import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import CommentTextarea from "./CommentTextarea";
 import Button from "@/components/commons/Button";
-import { ChangeEvent, useState } from "react";
+import useCommentMutation from "@/hooks/useCommentMutation";
 
 export default function CommentForm() {
-  const [newComment, setNewComment] = useState("");
+  const [content, setContent] = useState("");
+  const { id } = useParams();
+  const postId = Number(id);
+  const { uploadMutation } = useCommentMutation(postId);
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewComment(e.target.value);
+    setContent(e.target.value);
   };
 
-  const handleCommentSubmit = async () => {}; //api
+  const handleCommentSubmit = () => {
+    const newComment = { content };
+    uploadMutation.mutate(newComment);
+    setContent("");
+  };
 
   return (
     <Container>
-      <CommentTextarea value={newComment} onChange={handleChange} />
-      <Button variant="ghost" onClick={handleCommentSubmit} width={120} disabled={!newComment}>
+      <CommentTextarea value={content} onChange={handleChange} />
+      <Button variant="ghost" onClick={handleCommentSubmit} width={120} disabled={uploadMutation.isPending || !content}>
         댓글 작성
       </Button>
     </Container>
