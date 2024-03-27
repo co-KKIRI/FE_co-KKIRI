@@ -1,10 +1,15 @@
 import { commentAddress } from "../address";
 import { apiRequest } from "../axios";
-import { CommentApiResponseDto, CreateCommentApiRequestDto, ModifyCommentApiRequestDto } from "./type";
+import {
+  CommentApiRequestDto,
+  CommentApiResponseDto,
+  CreateCommentApiRequestDto,
+  ModifyCommentApiRequestDto,
+} from "./type";
 
 /** 댓글 목록 가져오기 */
-export const getCommentList = (postId: number): Promise<CommentApiResponseDto> =>
-  apiRequest("get", commentAddress.list(postId));
+export const getCommentList = (postId: number, qs: CommentApiRequestDto): Promise<CommentApiResponseDto> =>
+  apiRequest("get", commentAddress.list(postId), null, qs);
 
 /** 댓글 달기 */
 export const createComment = (postId: number, data: CreateCommentApiRequestDto) =>
