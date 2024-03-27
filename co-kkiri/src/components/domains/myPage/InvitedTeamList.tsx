@@ -1,10 +1,10 @@
 import SectionTitle from "../manage/SectionTitle";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { InvitedTeam } from "@/lib/api/myPage/type";
+import { InvitedTeamListApiResponseDto } from "@/lib/api/myPage/type";
 
 interface InvitedTeamListProps {
-  teamList: InvitedTeam[];
+  teamList: InvitedTeamListApiResponseDto["data"];
   count: number;
 }
 
