@@ -3,7 +3,7 @@ import profileImg from "@/assets/images/profileImg.svg";
 import profileImgBig from "@/assets/images/profileImg_big.svg";
 import google from "@/assets/images/google_logo.svg";
 import github from "@/assets/images/github_logo.svg";
-import logoAnimation from "@/assets/images/logo_404.svg";
+import logoAnimation from "@/assets/images/logo_animation.svg";
 
 export const IMAGES = {
   logo: {
