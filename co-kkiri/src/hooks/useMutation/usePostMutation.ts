@@ -19,21 +19,25 @@ export default function usePostMutation() {
   const uploadMutation = useMutation({
     mutationFn: (data: RecruitApiRequestDto) => createPost(data),
     onSuccess: invalidateStudyList,
+    onError: (error) => console.error(error, error.message),
   });
 
   const editMutation = useMutation({
     mutationFn: ({ postId, data }: ModifyPostPayload) => modifyPost(postId, data),
     onSuccess: invalidateStudyList,
+    onError: (error) => console.error(error, error.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (postId: number) => deletePost(postId),
     onSuccess: invalidateStudyList,
+    onError: (error) => console.error(error, error.message),
   });
 
   const applyMutation = useMutation({
     mutationFn: ({ postId, data }: ApplyPostPayload) => applyPost(postId, data),
     onSuccess: (_, { postId }) => queryClient.invalidateQueries({ queryKey: ["postDetail", postId] }),
+    onError: (error) => console.error(error, error.message),
   });
 
   return { uploadMutation, editMutation, deleteMutation, applyMutation };

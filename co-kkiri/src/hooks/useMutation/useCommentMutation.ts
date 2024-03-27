@@ -14,16 +14,19 @@ export default function useCommentMutation(postId: number) {
   const uploadMutation = useMutation({
     mutationFn: (content: CommentApiRequestDto) => createComment(postId, content),
     onSuccess: invalidateComments,
+    onError: (error) => console.error(error, error.message),
   });
 
   const editMutation = useMutation({
     mutationFn: ({ commentId, content }: EditCommentPayload) => editComment(postId, commentId, content),
     onSuccess: invalidateComments,
+    onError: (error) => console.error(error, error.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (commentId: number) => deleteComment(postId, commentId),
     onSuccess: invalidateComments,
+    onError: (error) => console.error(error, error.message),
   });
 
   return { uploadMutation, editMutation, deleteMutation };
