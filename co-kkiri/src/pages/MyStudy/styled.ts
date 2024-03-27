@@ -7,7 +7,7 @@ import Button from "@/components/commons/Button";
 const {
   color,
   spacing,
-  typography: { font20Bold },
+  typography: { font20Bold, font16Bold },
   mediaQueries: { tablet, mobile },
 } = DESIGN_TOKEN;
 
@@ -18,8 +18,18 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   display: inline-grid;
-  padding-top: 2.6rem;
-  padding-bottom: 12rem;
+  padding-top: 4rem;
+  padding-bottom: 6.1rem;
+
+  ${tablet} {
+    padding-top: 3.6rem;
+    padding-bottom: 7.6rem;
+  }
+
+  ${mobile} {
+    padding-top: 2rem;
+    padding-bottom: 8.1rem;
+  }
 `;
 
 export const Title = styled.div`
@@ -37,6 +47,7 @@ export const Title = styled.div`
 `;
 
 export const FilterListSection = styled(FilterList)`
+  ${font16Bold}
   padding-bottom: 4rem;
 
   ${tablet} {
