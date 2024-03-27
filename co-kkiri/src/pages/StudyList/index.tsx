@@ -9,12 +9,13 @@ import CreatePost from "@/components/commons/FloatingButton/CreatePost";
 import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
 import { getFilterKey } from "@/utils/objectUtils";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getPostList } from "@/lib/api/post";
 import useStudyListStore from "@/stores/studyListStore";
 import { useItemsPerPage } from "@/hooks/useItemsPerPage";
 
 export default function StudyList() {
+  const queryClient = useQueryClient();
   const { currentCategory, setCurrentCategory } = useStudyListStore();
   const itemsPerPage = useItemsPerPage();
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,12 +27,26 @@ export default function StudyList() {
 
   const handleCategoryChange = (category: string) => {
     const filterKey = getFilterKey<CategoryList>(categoryListFilter, category);
-    setCurrentCategory(filterKey as CategoryListFilter);
+    const newCategory = filterKey as CategoryListFilter;
+    setCurrentCategory(newCategory);
   };
+
+  const totalPage = data?.meta.pageCount || NaN;
 
   useEffect(() => {
     setCurrentPage(1);
   }, [currentCategory]);
+
+  // 다음 페이지 변경 시, prefetch
+  useEffect(() => {
+    if (currentPage < totalPage) {
+      const nextPage = currentPage + 1;
+      queryClient.prefetchQuery({
+        queryKey: ["/post/list", { meetingType: currentCategory, page: nextPage, take: itemsPerPage }],
+        queryFn: () => getPostList({ meetingType: currentCategory, page: nextPage, take: itemsPerPage }),
+      });
+    }
+  }, [data, currentPage, currentCategory, itemsPerPage, queryClient, totalPage]);
 
   return (
     <S.Container>
@@ -47,11 +62,7 @@ export default function StudyList() {
         </S.CategoryWrapper>
         {/* <Filters handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} /> */}
         <Cards data={data?.data} page="studyList" />
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalPages={data?.meta.pageCount || NaN}
-        />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPage} />
       </S.Box>
       <CreatePost />
     </S.Container>
