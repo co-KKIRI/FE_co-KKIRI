@@ -17,7 +17,7 @@ interface ScoutModalProps {
 }
 
 type CombinedResults = {
-  options: Option<number>[];
+  options: Option[];
   userInfo: Pick<MemberProfile, "nickname" | "profileImageUrl" | "position">;
 };
 
@@ -56,7 +56,7 @@ export default function ScoutModal({ memberId }: ScoutModalProps) {
     ],
     combine: (results) => {
       const rawOptions = results[0].data as ScoutListApiResponseDto;
-      const options = rawOptions.data.map<Option<number>>((option) => ({ value: option.postId, label: option.title }));
+      const options = rawOptions.data.map<Option>((option) => ({ value: option.postId, label: option.title }));
       const {
         memberProfile: { nickname, profileImageUrl, position },
       } = results[1].data as MemberProfileApiResponseDto;
