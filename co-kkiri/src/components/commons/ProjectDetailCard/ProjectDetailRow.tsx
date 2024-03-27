@@ -43,7 +43,7 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
         if (typeof content === "object" && "label" in content) {
           switch (content.label) {
             case "기타": {
-              return <RowContent>기타 {content.content || "afdasdfasdfaasdfadfasfadfasdf"}</RowContent>;
+              return <RowContent>기타 {content.content || ""}</RowContent>;
             }
             case "카카오 오픈톡": {
               return <Link label="카카오 오픈톡" to={content.content || ""} icon={ICONS.link} linkType="external" />;
