@@ -22,26 +22,26 @@ export default function StatusBasedButton({ postApplyStatus, postId, className }
 
   const { applyMutation } = usePostMutation();
 
-  const memberId = 15; //임시
-  const applicant = { memberId };
+  // const memberId = 15; //임시
+  // const applicant = { memberId };
 
-  const handleConfirmAgreeClick = () => {
-    switch (postApplyStatus) {
-      case "APPLIED":
-        confirmToggle();
-        break;
-      case "NOT_APPLIED":
-        applyMutation.mutate(
-          { postId, data: applicant },
-          {
-            onSuccess: () => {
-              confirmToggle();
-            },
-          },
-        );
-        break;
-    }
-  };
+  // const handleConfirmAgreeClick = () => {
+  //   switch (postApplyStatus) {
+  //     case "APPLIED":
+  //       confirmToggle();
+  //       break;
+  //     case "NOT_APPLIED":
+  //       applyMutation.mutate(
+  //         { postId, data: applicant },
+  //         {
+  //           onSuccess: () => {
+  //             confirmToggle();
+  //           },
+  //         },
+  //       );
+  //       break;
+  //   }
+  // };
 
   const handleModal = () => {
     switch (postApplyStatus) {
