@@ -6,11 +6,12 @@ import { formatDate } from "@/utils/formatDate";
 interface HeaderProps {
   deadline: string;
   progressWay: string;
+  className?: string;
 }
 
-export default function Header({ deadline, progressWay }: HeaderProps) {
+export default function Header({ deadline, progressWay, className }: HeaderProps) {
   return (
-    <Container>
+    <Container className={className}>
       <span>{`${formatDate(deadline)} 마감`}</span>
       <div></div>
       <span>{progressWay}</span>

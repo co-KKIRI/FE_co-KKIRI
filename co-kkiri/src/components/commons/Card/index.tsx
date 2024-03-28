@@ -63,12 +63,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
           </S.TypeWrapper>
         )}
         <S.UpperBox $page={page}>
-          <S.HeaderWrapper $page={page}>
-            <S.HeaderPadding $page={page}>
-              <Header deadline={recruitEndAt} progressWay={progressWay} />
-            </S.HeaderPadding>
-            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} postId={postId} />}
-          </S.HeaderWrapper>
+          <S.HeaderSection deadline={recruitEndAt} progressWay={progressWay} />
           <S.ContentWrapper>
             <Title title={title} />
             <Positions positions={position || positions} variant="card" page={page} />

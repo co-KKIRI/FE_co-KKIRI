@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import CardCornerButton from "../CardCornerButton";
 import { Pages } from "@/types/pagesTypes";
+import Header from "./Header";
 
 interface PageProp {
   $page: Pages;
@@ -73,37 +73,15 @@ export const UpperBox = styled.div<PageProp>`
   ${({ $page }) => {
     switch ($page) {
       case "home":
-        return `padding: 1rem 2rem 1.8rem;`;
+        return `padding: 2rem 2rem 1.8rem;`;
       default:
         return `padding: 0.5rem 2rem 1.5rem;`;
     }
   }};
 `;
 
-const paddingBottomByPage = ($page: Pages) => {
-  switch ($page) {
-    case "home":
-      return "0.8rem";
-    default:
-      return "1.2rem";
-  }
-};
-
-export const HeaderWrapper = styled.header<PageProp>`
-  ${({ $page }) => `padding-bottom: ${paddingBottomByPage($page)};`}
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const HeaderPadding = styled.div<PageProp>`
-  ${({ $page }) => ($page === "home" ? `padding-top: 1rem; padding-bottom: 0.4rem;` : "")}
-`;
-
-export const HomeCardCornerButton = styled(CardCornerButton)`
-  img {
-    width: 2.8rem;
-  }
+export const HeaderSection = styled(Header)`
+  padding-bottom: 1.2rem;
 `;
 
 export const ContentWrapper = styled.main`
