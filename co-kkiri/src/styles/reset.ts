@@ -85,11 +85,13 @@ const resetStyle = css`
   em {
     font-style: italic;
   }
-  .ql-align-center {
+
+  // 리액트 퀼 관련 css
+  /* .ql-align-center {
     text-align: center;
   }
 
-  /* .ql-align-right {
+  .ql-align-right {
     text-align: right;
   }
 
