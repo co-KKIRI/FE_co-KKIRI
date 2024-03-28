@@ -7,6 +7,7 @@ import LeaderIcon from "./LeaderIcon";
 import { TeamMemberApiResponseDto } from "@/lib/api/teamMember/type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteTeamMember } from "@/lib/api/teamMember";
+import { ICONS } from "@/constants/icons";
 
 interface MemberListProps {
   detailInfo: TeamMemberApiResponseDto["data"] | null | undefined;
@@ -39,7 +40,7 @@ export default function MemberList({ detailInfo }: MemberListProps) {
               <UserInfo user={{ id: info.memberId, nickname: info.nickname, profileImageUrl: info.profileImageUrl }} />
               {info.isLeader && (
                 <Leader>
-                  <LeaderIcon />
+                  <img src={ICONS.leader.src} alt={ICONS.leader.alt} />
                 </Leader>
               )}
               <PositionChip label={info.position} />

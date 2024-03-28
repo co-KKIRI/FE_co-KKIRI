@@ -2,15 +2,15 @@ import MemberList from "@/components/domains/manage/MemberList";
 import * as S from "./styled";
 import AppliedList from "@/components/domains/manage/AppliedList";
 import { getAppliedMemberList, getStudyManagement } from "@/lib/api/post";
-import { StudyManagementApiResponseDto } from "@/lib/api/post/type";
 import { getTeamMember } from "@/lib/api/teamMember";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-interface ManageProps {
-  postId: StudyManagementApiResponseDto["postId"];
-}
-
-export default function Manage({ postId }: ManageProps) {
+export default function Manage() {
+  const { id } = useParams();
+  const postId = Number(id);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState<boolean>(false);
   const { data: detailInfo, error } = useQuery({
     queryKey: ["management", postId],
     queryFn: () => getStudyManagement(postId),
@@ -44,8 +44,17 @@ export default function Manage({ postId }: ManageProps) {
           {appliedMemberList && <AppliedList detailInfo={appliedMemberList.data} />}
           {memberList && <MemberList detailInfo={memberList.data} />}
         </S.ListSection>
-        {detailInfo && <S.ButtonSection buttonType={detailInfo.status} isLeader={detailInfo.isLeader} />}
+        {detailInfo && (
+          <S.ButtonSection
+            buttonType={detailInfo.status}
+            isLeader={detailInfo.isLeader}
+            postId={postId}
+            isReviewModalOpen={isReviewModalOpen}
+            setIsReviewModalOpen={setIsReviewModalOpen}
+          />
+        )}
       </S.Box>
+      {/* {isReviewModalOpen && 받은 리뷰 모달 컴포넌트} */}
     </S.Container>
   );
 }
