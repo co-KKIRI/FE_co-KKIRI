@@ -30,6 +30,10 @@ export const Container = styled.div`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${mediaQueries.mobile} {
+    width: 100%;
+  }
 `;
 
 export const Wrapper = styled.div`
