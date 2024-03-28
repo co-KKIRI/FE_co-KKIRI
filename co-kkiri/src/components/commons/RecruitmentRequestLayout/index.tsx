@@ -9,60 +9,44 @@ import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller } from "react-hook-form";
-
-import { handleSelectPosition, handleRecruitFail, handleSelectStack, validateFormData } from "./utils";
+import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
+import {
+  handleSelectPosition,
+  findOptionByValue,
+  handleRecruitFail,
+  handleSelectStack,
+  validateFormData,
+} from "./utils";
 import RadioButtonField from "./RadioButtonField";
-import { MutationFunction } from "@tanstack/react-query";
-import { useEffect } from "react";
 
 interface RecruitmentRequestLayoutProps {
-  mutationFn: any;
+  onSubmitClick: () => void;
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }
 
-const path = location.pathname;
-
 export default function RecruitmentRequestLayout({
   selectedOptions,
   setSelectedOptions,
   buttonText,
-  mutationFn,
+  onSubmitClick,
 }: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
   } = DROPDOWN_FORM_INFO;
 
   const {
-    setValue,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
 
   const onSubmit = () => {
-    if (validateFormData(errors)) {
-      mutationFn.mutate(selectedOptions);
+    if (!validateFormData(errors)) {
+      onSubmitClick();
     }
   };
-
-  useEffect(() => {
-    if (path !== "recruit") {
-      setValue("type", selectedOptions.type);
-      setValue("recruitEndAt", selectedOptions.recruitEndAt);
-      setValue("progressPeriod", selectedOptions.progressPeriod);
-      setValue("capacity", selectedOptions.capacity);
-      setValue("progressWay", selectedOptions.progressWay);
-      setValue("contactWay", selectedOptions.contactWay);
-      setValue("stacks", selectedOptions.stacks);
-      setValue("positions", selectedOptions.positions);
-      setValue("title", selectedOptions.title);
-      setValue("content", selectedOptions.content);
-      return;
-    }
-  }, [selectedOptions, setValue]);
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -298,7 +282,6 @@ export default function RecruitmentRequestLayout({
                 }));
                 field.onChange(value);
               }}
-              value={selectedOptions.content}
             />
           )}
         />
@@ -307,7 +290,6 @@ export default function RecruitmentRequestLayout({
         <Button variant="primaryLight">취소하기</Button>
         <Button
           variant="primary"
-          disabled={selectedOptions.title === "" || selectedOptions.content == "<p><br></p>" ? true : false}
           onClick={() => {
             handleRecruitFail(errors);
           }}>

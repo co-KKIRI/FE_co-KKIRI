@@ -2,11 +2,10 @@ import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLay
 import * as S from "@/pages/Recruit/styled";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { useEffect, useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { modifyPost, getPostDetail } from "@/lib/api/post";
+import { useQuery } from "@tanstack/react-query";
+import { getPostDetail } from "@/lib/api/post";
 import { useNavigate, useParams } from "react-router-dom";
-import { validateFormData } from "@/components/commons/RecruitmentRequestLayout/utils";
-import { useForm } from "react-hook-form";
+import usePostMutation from "@/hooks/useMutation/usePostMutation";
 
 export default function Edit() {
   const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>({
@@ -22,24 +21,28 @@ export default function Edit() {
     content: "",
   });
 
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { id } = useParams();
+  const postId = Number(id);
+  const { editMutation } = usePostMutation();
 
   // useQuery를 통해 데이터 가져오기
   const { data } = useQuery({
-    queryKey: ["Post"],
-    queryFn: () => (id ? getPostDetail(+id) : null),
+    queryKey: ["postEdit", postId],
+    queryFn: () => getPostDetail(postId),
   });
 
-  // useMutation을 사용하여 데이터 수정하기
-  const editPost = useMutation<{ result: { status: 200 } }, Error, RecruitApiRequestDto>({
-    mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+id!, selectedOptions),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["post"] });
-      navigate(`/list/${id}`);
-    },
-  });
+  // 수정 요청 처리
+  const handleSubmit = () => {
+    editMutation.mutate(
+      { postId, data: selectedOptions },
+      {
+        onSuccess: () => {
+          navigate(`/list/${postId}`);
+        },
+      },
+    );
+  };
 
   useEffect(() => {
     if (data) {
@@ -64,7 +67,7 @@ export default function Edit() {
       <RecruitmentRequestLayout
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-        mutationFn={editPost}
+        onSubmitClick={handleSubmit}
         buttonText="수정하기"
       />
     </S.Container>
