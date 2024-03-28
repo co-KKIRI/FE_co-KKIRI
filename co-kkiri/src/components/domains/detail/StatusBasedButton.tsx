@@ -8,6 +8,7 @@ import { statusButtonConfig, StatusButtonConfig } from "@/constants/statusButton
 import { ConfirmType } from "@/components/modals/ConfirmModal";
 import { PostApplyStatus } from "@/lib/api/post/type";
 import usePostMutation from "@/hooks/useMutation/usePostMutation";
+import { Variable } from "lucide-react";
 
 interface MappedButtonProps {
   postApplyStatus: PostApplyStatus;
@@ -20,27 +21,32 @@ export default function StatusBasedButton({ postApplyStatus, postId, className }
   const { isOpen: isInviteResponseOpen, openToggle: inviteResponseToggle } = useOpenToggle();
   const [confirmType, setConfirmType] = useState<ConfirmType>("apply");
 
-  const { applyMutation } = usePostMutation();
-
-  // const memberId = 15; //임시
-  // const applicant = { memberId };
+  const { applyMutation, cancelMutation } = usePostMutation();
 
   const handleConfirmAgreeClick = () => {
-    // switch (postApplyStatus) {
-    //   case "APPLIED":
-    //     confirmToggle();
-    //     break;
-    //   case "NOT_APPLIED":
-    //     applyMutation.mutate(
-    //       { postId, data: applicant },
-    //       {
-    //         onSuccess: () => {
-    //           confirmToggle();
-    //         },
-    //       },
-    //     );
-    //     break;
-    // }
+    switch (postApplyStatus) {
+      case "APPLIED":
+        cancelMutation.mutate(postId, {
+          onSuccess: () => {}, //토스트 추가
+          onSettled: () => {
+            confirmToggle();
+          },
+        });
+        break;
+      case "NOT_APPLIED":
+        applyMutation.mutate(postId, {
+          onSuccess: () => {}, //토스트 추가
+          onError: (error) => {
+            if (error.name === "Unauthorized") {
+              return; //토스트 추가
+            }
+          },
+          onSettled: () => {
+            confirmToggle();
+          },
+        });
+        break;
+    }
   };
 
   const handleModal = () => {

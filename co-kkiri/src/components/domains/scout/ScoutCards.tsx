@@ -63,7 +63,7 @@ const Wrapper = styled.div<{ $isSidebarOpenNarrow: boolean }>`
   }
 
   ${mediaQueries.mobile} {
-    grid-template-columns: repeat(1, 32rem);
+    grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
   }
 `;

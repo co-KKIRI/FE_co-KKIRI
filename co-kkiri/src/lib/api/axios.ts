@@ -33,7 +33,11 @@ export async function apiRequest<T, U>(
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      throw error;
+      const errorMessage = error.response.data.message;
+      const errorName = error.response.statusText;
+      const axiosError = new Error(errorMessage);
+      axiosError.name = errorName;
+      throw axiosError;
     } else {
       console.error(`${method} Error : `, error);
       throw error;

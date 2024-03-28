@@ -21,6 +21,11 @@ export default function CommentForm() {
       onSuccess: () => {
         setContent("");
       },
+      onError: (error) => {
+        if (error.name === "Unauthorized") {
+          return; //토스트
+        }
+      },
     });
   };
 

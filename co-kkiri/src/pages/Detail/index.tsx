@@ -16,7 +16,13 @@ export default function Detail() {
     isPending,
     isError,
     error,
-  } = useQuery({ queryKey: ["postDetail", postId], queryFn: () => getPostDetail(postId) });
+  } = useQuery({
+    queryKey: ["postDetail", postId],
+    queryFn: () => getPostDetail(postId),
+    retry: 0,
+    refetchOnWindowFocus: false,
+    staleTime: 60 * 1000,
+  });
 
   const cardHeight = useComponentHeight<PostDetailApiResponseDto | undefined>(detailData, cardRef, 407);
 
@@ -35,7 +41,7 @@ export default function Detail() {
     <S.Container>
       <S.Box>
         <S.GoBackButton />
-        <S.ShareAndScrapButton isScraped={isScraped} postId={Number(id)} />
+        <S.ShareAndScrapButton isScraped={isScraped} postId={postId} />
         <S.PostSection postDetails={postDetails} postApplyStatus={postApplyStatus} />
         <S.DetailCardSection cardRef={cardRef} postDetails={postDetails} />
         <S.CommentsSection postId={postId} />

@@ -22,6 +22,8 @@ export const postAddress = {
   postId: (postId: number) => `/post/${postId}`,
   //get, post
   apply: (postId: number) => `/post/${postId}/apply`,
+  //delete
+  cancel: (postId: number) => `/post/${postId}/apply/cancel`,
   //patch
   modify: (postId: number) => `/post/${postId}/modify`,
   //get

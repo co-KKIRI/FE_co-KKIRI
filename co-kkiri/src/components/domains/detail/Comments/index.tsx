@@ -3,7 +3,7 @@ import DESIGN_TOKEN from "@/styles/tokens";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import Button from "@/components/commons/Button";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getCommentList } from "@/lib/api/comment";
 
 interface CommentsProps {
@@ -14,12 +14,21 @@ interface CommentsProps {
 export default function Comments({ postId, className }: CommentsProps) {
   const {
     data: commentsData,
+    isSuccess,
     isError,
     isPending,
     error,
-  } = useQuery({
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ["comments", postId],
-    queryFn: () => getCommentList(postId, { order: "DESC", page: 1, take: 10 }),
+    queryFn: ({ pageParam }) => getCommentList(postId, { order: "DESC", page: pageParam, take: 10 }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages, lastPageParam) =>
+      lastPage.meta.hasNextPage ? lastPageParam + 1 : undefined,
+    retry: 0,
+    refetchOnWindowFocus: false,
   });
 
   if (isPending) {
@@ -31,10 +40,8 @@ export default function Comments({ postId, className }: CommentsProps) {
     // 에러 및 로딩 처리 통일
   }
 
-  const {
-    data: comments,
-    meta: { totalCount },
-  } = commentsData;
+  const commentsPages = commentsData?.pages ?? [];
+  const totalCount = isSuccess ? commentsData.pages[0].meta.totalCount : 0;
 
   return (
     <Container className={className}>
@@ -44,11 +51,15 @@ export default function Comments({ postId, className }: CommentsProps) {
       </Wrapper>
       <CommentForm />
       <CommentWrapper>
-        {comments?.map((commentInfo) => (
-          <Comment key={commentInfo.commentId} commentInfo={commentInfo} postId={postId} />
-        ))}
+        {commentsPages.map((commentPage) =>
+          commentPage.data.map((comment) => <Comment key={comment.commentId} commentInfo={comment} postId={postId} />),
+        )}
       </CommentWrapper>
-      {comments.length > 10 && <LoadMoreButton variant="ghost">더보기</LoadMoreButton>}
+      {hasNextPage && (
+        <LoadMoreButton variant="ghost" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+          더보기
+        </LoadMoreButton>
+      )}
     </Container>
   );
 }
