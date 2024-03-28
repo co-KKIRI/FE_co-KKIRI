@@ -85,6 +85,28 @@ const resetStyle = css`
   em {
     font-style: italic;
   }
+  .ql-align-center {
+    text-align: center;
+  }
+
+  /* .ql-align-right {
+    text-align: right;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+  } */
 `;
 
 export default resetStyle;

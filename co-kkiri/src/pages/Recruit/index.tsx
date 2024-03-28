@@ -30,7 +30,7 @@ export default function Recruit() {
     mutationFn: (selectedOptions: RecruitApiRequestDto) => createPost(selectedOptions),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["posts"] }); //키값 물어보기
-      navigate(`/post/${data.postId}`);
+      navigate(`/list/${data.postId}`);
     },
   });
 

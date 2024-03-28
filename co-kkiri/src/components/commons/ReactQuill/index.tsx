@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import CustomToolbar from "./CustomToolbar";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { RecruitApiRequestDto } from "@/lib/api/post/type";
 
 const formats = [
   "header",
@@ -20,7 +19,7 @@ const formats = [
   "image",
 ];
 
-export default function QuillEditor({ onChange }: { onChange: (value: string) => void }) {
+export default function QuillEditor({ onChange, value }: { onChange: (value: string) => void; value: string }) {
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -34,6 +33,7 @@ export default function QuillEditor({ onChange }: { onChange: (value: string) =>
       <CustomToolbar />
       <ReactQuillWrapper>
         <ReactQuill
+          value={value}
           theme="snow"
           modules={modules}
           formats={formats}
