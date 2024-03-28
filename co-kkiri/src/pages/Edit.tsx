@@ -25,6 +25,7 @@ export default function Edit() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { id } = useParams();
+
   // useQuery를 통해 데이터 가져오기
   const { data } = useQuery({
     queryKey: ["Post"],
@@ -32,7 +33,7 @@ export default function Edit() {
   });
 
   // useMutation을 사용하여 데이터 수정하기
-  const editPost = useMutation<{ result: { postId: number } }, Error, RecruitApiRequestDto>({
+  const editPost = useMutation<{ result: { status: 200 } }, Error, RecruitApiRequestDto>({
     mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+id!, selectedOptions),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] });
