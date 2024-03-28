@@ -6,6 +6,7 @@ import DefaultStacks from "../Stacks";
 import DefaultPositions from "../Positions";
 import Link from "../Link";
 import { ICONS } from "@/constants/icons";
+import { getEmailLink } from "@/utils/validationUtils";
 
 export interface ProjectDetailRowProps {
   label: string;
@@ -19,12 +20,12 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
     switch (renderType) {
       case "text":
         if (typeof content === "string") {
-          return <p>{content}</p>;
+          return <RowContent>{content}</RowContent>;
         }
         break;
       case "capacity":
         if (typeof content === "number") {
-          return <p>{content}명</p>;
+          return <RowContent>{content}명</RowContent>;
         }
         break;
       case "positions":
@@ -37,10 +38,31 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
           return <Stacks stacks={content} />;
         }
         break;
-      case "link":
-        // 타입 가드를 사용하여 Link 컴포넌트임을 보장
-        if (typeof content === "object" && "to" in content) {
-          return <Link {...content} icon={ICONS.link} />;
+      case "contactWay":
+        if (typeof content === "object" && "label" in content && "content" in content) {
+          switch (content.label) {
+            case "기타": {
+              return <RowContent>{content.label}</RowContent>;
+            }
+            case "카카오 오픈톡": {
+              return <Link label={content.label} to={content.content || ""} icon={ICONS.link} linkType="external" />;
+            }
+            case "구글폼": {
+              return <Link label={content.label} to={content.content || ""} icon={ICONS.link} linkType="external" />;
+            }
+            case "이메일": {
+              return (
+                <Link
+                  label={content.label}
+                  to={content.content ? getEmailLink(content.content) : ""}
+                  icon={ICONS.link}
+                  linkType="external"
+                />
+              );
+            }
+            default:
+              return <p>준비 중</p>;
+          }
         }
     }
   }, [content, renderType]);
@@ -50,7 +72,7 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
       <Label>
         <span>{label}</span>
       </Label>
-      {renderContent()}
+      <Box>{renderContent()}</Box>
     </Container>
   );
 }
@@ -70,6 +92,11 @@ const Container = styled.div`
   }
 `;
 
+const Box = styled.div`
+  //Label의 크기만큼 작아짐
+  width: calc(100% - 10rem);
+`;
+
 const Label = styled.div`
   width: 10rem;
   color: ${color.gray[1]};
@@ -84,4 +111,11 @@ const Stacks = styled(DefaultStacks)`
   flex-wrap: wrap;
   flex-shrink: 1;
   gap: 0.8rem;
+`;
+
+const RowContent = styled.p`
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
