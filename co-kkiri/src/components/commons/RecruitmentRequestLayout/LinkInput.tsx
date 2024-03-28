@@ -1,24 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { DROPDOWN_FORM_INFO, DROPDOWN_INFO } from "@/constants/dropDown";
 
 interface LinkInputProps {
-  selectedOption: string;
+  contactWayValue: string;
   onChange: (value: string) => void;
-  onBlur: () => void; // onBlur 추가
 }
 
-export default function LinkInput({ selectedOption, onChange, onBlur }: LinkInputProps) {
-  const { recruitment } = DROPDOWN_INFO;
-  const optionIndex = recruitment.contactWay.options.indexOf(selectedOption);
-  const value = selectedOption ? String(recruitment.contactWay.placeholder[optionIndex]) : "";
+export default function LinkInput({ onChange, contactWayValue }: LinkInputProps) {
+  const placeholder: { [key: string]: string } = {
+    "카카오 오픈톡": "오픈채팅 링크",
+    이메일: "이메일 주소",
+    구글폼: "구글폼 주소",
+  };
 
   return (
     <Container>
-      {selectedOption !== "기타" && (
-        <Input placeholder={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} /> // onBlur 속성 추가
-      )}
+      <Input placeholder={placeholder[contactWayValue]} onChange={(e) => onChange(e.target.value)} />
     </Container>
   );
 }
@@ -28,6 +27,8 @@ const { color } = DESIGN_TOKEN;
 const Container = styled.div`
   width: 100%;
   height: 4.8rem;
+  position: relative;
+  top: -1.5rem;
 `;
 
 const Input = styled.input`

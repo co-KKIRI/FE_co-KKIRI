@@ -12,7 +12,7 @@ export default function Recruit() {
     type: "STUDY",
     recruitEndAt: "",
     progressPeriod: "",
-    capacity: 999,
+    capacity: 11,
     contactWay: "",
     progressWay: "",
     stacks: [],
@@ -22,8 +22,8 @@ export default function Recruit() {
     link: "",
   });
 
-  const handleSubmit = () => {
-    uploadMutation.mutate(selectedOptions, {
+  const handleSubmit = (data: RecruitApiRequestDto) => {
+    uploadMutation.mutate(data, {
       onSuccess: (data) => {
         navigate(`/list/${data.postId}`);
       },

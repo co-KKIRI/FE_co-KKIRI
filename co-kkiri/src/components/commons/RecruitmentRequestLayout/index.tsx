@@ -7,7 +7,6 @@ import * as S from "./RecruitLayout.styled";
 import { DROPDOWN_FORM_INFO } from "@/constants/dropDown";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
-import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
 import {
@@ -18,9 +17,13 @@ import {
   validateFormData,
 } from "./utils";
 import RadioButtonField from "./RadioButtonField";
+import FormElement from "../Form/FormElement";
+import RHFDropdown from "../Form/RHFDropdown";
+import LinkInput from "./LinkInput";
+import { useEffect, useMemo } from "react";
 
 interface RecruitmentRequestLayoutProps {
-  onSubmitClick: () => void;
+  onSubmitClick: (data: RecruitApiRequestDto) => void;
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
@@ -37,16 +40,25 @@ export default function RecruitmentRequestLayout({
   } = DROPDOWN_FORM_INFO;
 
   const {
+    watch,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({ mode: "onBlur" });
+  } = useForm<RecruitApiRequestDto>({
+    defaultValues: useMemo(() => {
+      return selectedOptions;
+    }, [selectedOptions]),
+    mode: "onBlur",
+    values: selectedOptions,
+  });
 
-  const onSubmit = () => {
+  const onSubmit = (data: RecruitApiRequestDto) => {
     if (!validateFormData(errors)) {
-      onSubmitClick();
+      onSubmitClick(data);
     }
   };
+
+  const contactWayValue = watch("contactWay");
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -91,109 +103,62 @@ export default function RecruitmentRequestLayout({
             )}
           />
         </S.SelectBox>
-        <S.SelectBox>
-          <h3>진행 기간</h3>
-          <Controller
-            name="progressPeriod"
-            control={control}
-            defaultValue={selectedOptions.progressPeriod}
-            render={({ field }) => (
-              <Dropdown
-                placeholder={"진행 기간"}
-                options={progressPeriod}
-                selectedOption={field.value}
-                onSelect={(option) => {
-                  setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option.label }));
-                  field.onChange(option.value);
-                }}
-              />
-            )}
+        <FormElement
+          label="진행 기간"
+          FormFieldComponent={
+            <RHFDropdown
+              formFieldName="progressPeriod"
+              placeholder="진행 기간"
+              options={progressPeriod}
+              control={control}
+            />
+          }
+        />
+        <FormElement
+          label="모집 인원"
+          FormFieldComponent={
+            <RHFDropdown formFieldName="capacity" placeholder="모집 인원" options={capacity} control={control} />
+          }
+        />
+        <FormElement
+          label="진행 방식"
+          FormFieldComponent={
+            <RHFDropdown
+              formFieldName="progressWay"
+              placeholder="진행 방식"
+              options={progressWay}
+              control={control}
+              isEssential
+            />
+          }
+          isEssential
+        />
+        <div>
+          <FormElement
+            label="연락 방법"
+            FormFieldComponent={
+              <RHFDropdown formFieldName="contactWay" placeholder="연락 방법" options={contactWay} control={control} />
+            }
           />
-        </S.SelectBox>
-        <S.SelectBox>
-          <h3>모집 인원</h3>
-          <Controller
-            name="capacity"
-            defaultValue={selectedOptions.capacity}
-            control={control}
-            render={({ field }) => (
-              <Dropdown
-                placeholder={"모집 인원"}
-                options={capacity}
-                selectedOption={field.value}
-                onSelect={(option) => {
-                  field.onChange(option.value);
-                }}
-              />
-            )}
-          />
-        </S.SelectBox>
-        <S.SelectBox>
-          <h3>
-            진행 방식<span>*</span>
-          </h3>
-          <Controller
-            name="progressWay"
-            defaultValue={selectedOptions.progressWay}
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <S.DropdownWrapper>
-                <Dropdown
-                  placeholder={"진행 방식"}
-                  options={progressWay}
-                  selectedOption={selectedOptions.progressWay}
-                  onSelect={(option) => {
-                    setSelectedOptions((prevOption) => ({ ...prevOption, progressWay: option.label }));
-                    field.onChange(option);
-                  }}
-                />
-              </S.DropdownWrapper>
-            )}
-          />
-          {errors.progressWay && <p>진행방식을 선택해주세요.</p>}
-        </S.SelectBox>
-        <S.SelectBox>
-          <h3>연락 방법</h3>
-          <Controller
-            name="contactWay"
-            defaultValue={selectedOptions.contactWay}
-            control={control}
-            render={({ field }) => (
-              <Dropdown
-                placeholder={"연락 방법"}
-                options={contactWay}
-                selectedOption={selectedOptions.contactWay}
-                onSelect={(option) => {
-                  setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option.label }));
-                  field.onChange(option);
-                }}
-              />
-            )}
-          />
-
-          {selectedOptions.contactWay !== "기타" && (
+          {contactWayValue !== "기타" && (
             <>
               <Controller
-                name={selectedOptions.contactWay || ""}
+                name="link"
                 defaultValue={selectedOptions.link}
                 control={control}
                 rules={{
                   pattern: {
                     value:
-                      selectedOptions.contactWay === "이메일"
+                      contactWayValue === "이메일"
                         ? /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
                         : /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})\/?([\w/#.-]*)*(\?[\w=&.-]*)?(#[\w-]*)?$/,
                     message:
-                      selectedOptions.contactWay === "이메일"
-                        ? "올바른 이메일 형식이 아닙니다."
-                        : "올바른 url 형식이 아닙니다",
+                      contactWayValue === "이메일" ? "올바른 이메일 형식이 아닙니다." : "올바른 url 형식이 아닙니다",
                   },
                 }}
                 render={({ field }) => (
                   <LinkInput
-                    onBlur={field.onBlur}
-                    selectedOption={selectedOptions.contactWay || ""}
+                    contactWayValue={contactWayValue}
                     onChange={(newLink) => {
                       setSelectedOptions((prevOption) => ({ ...prevOption, link: newLink }));
                       field.onChange(newLink);
@@ -201,12 +166,9 @@ export default function RecruitmentRequestLayout({
                   />
                 )}
               />
-              {selectedOptions.contactWay !== "기타" && errors[selectedOptions.contactWay] && (
-                <p>{String(errors[selectedOptions.contactWay]?.message)}</p>
-              )}
             </>
           )}
-        </S.SelectBox>
+        </div>
       </S.GirdContainer>
       <S.SelectChipBox>
         <h3>기술 스택</h3>
@@ -275,6 +237,7 @@ export default function RecruitmentRequestLayout({
           control={control}
           render={({ field }) => (
             <QuillEditor
+              value={selectedOptions.content}
               onChange={(value) => {
                 setSelectedOptions((prevOptions) => ({
                   ...prevOptions,
