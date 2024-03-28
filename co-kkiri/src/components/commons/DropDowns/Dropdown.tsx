@@ -2,19 +2,29 @@ import useOpenToggle from "@/hooks/useOpenToggle";
 import SquareDropButton from "./commons/SquareDropButton";
 import DropMenu from "./commons/DropMenu";
 import styled from "styled-components";
+import DESIGN_TOKEN from "@/styles/tokens";
+import { Option } from "../Form/RHFDropdown";
 
 interface DropdownProps {
   placeholder: string;
   selectedOption?: string | null;
-  options: string[];
-  onSelect: (option: string) => void;
+  options: Option[];
+  isError?: boolean;
+  onSelect: (option: Option) => void;
   dropdownRef?: React.RefCallback<HTMLButtonElement>;
 }
 
-export default function Dropdown({ placeholder, selectedOption, options, onSelect, dropdownRef }: DropdownProps) {
+export default function Dropdown({
+  placeholder,
+  selectedOption,
+  options,
+  onSelect,
+  isError,
+  dropdownRef,
+}: DropdownProps) {
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string) => {
+  const handleSelectOption = (option: Option) => {
     onSelect(option);
     toggleDropdown();
   };
@@ -27,13 +37,19 @@ export default function Dropdown({ placeholder, selectedOption, options, onSelec
         $isSelected={!!selectedOption}
         $iconType="default"
         dropButtonRef={dropdownRef}
+        isError={isError}
       />
       <DropMenu isOpen={isOpen} handleSelectOption={handleSelectOption} $borderType="square" options={options} />
     </Container>
   );
 }
 
-const Container = styled.div`
+const { color, typography } = DESIGN_TOKEN;
+interface ContainerProps {
+  $isError?: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   width: 100%;
   display: flex;
   flex-direction: column;

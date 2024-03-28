@@ -6,10 +6,11 @@ export type TextareaType = "comment" | "modal";
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   type: TextareaType;
   defaultContent?: string;
+  className?: string;
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
-  { id, type, placeholder, value, onChange, ...props },
+  { id, type, placeholder, value, onChange, className, ...props },
   ref,
 ) {
   return (
@@ -21,6 +22,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textare
       value={value || ""}
       onChange={onChange}
       ref={ref}
+      className={className}
       {...props}
     />
   );

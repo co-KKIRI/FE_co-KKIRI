@@ -112,14 +112,14 @@ export type StudyManagementApiResponseDto = {
   stacks: string[];
 };
 
-type ScoutPost = {
+export type ScoutPost = {
   postId: number;
   title: string;
 };
 
 /**스카우트 스터디/프로젝트 목록 -백엔드 확인요망*/
 export type ScoutListApiResponseDto = {
-  content: ScoutPost[];
+  data: ScoutPost[];
   // meta: Pageable  페이지네이션 정보, 추후 추가 예정
 };
 

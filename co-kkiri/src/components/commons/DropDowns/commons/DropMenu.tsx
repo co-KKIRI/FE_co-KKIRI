@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { Option } from "../../Form/RHFDropdown";
 
-interface DropdownMenuProps {
-  options: string[];
-  handleSelectOption: (option: string) => void;
+interface DropdownMenuProps<ValueType = string> {
+  options: Option[];
+  handleSelectOption: (option: Option) => void;
   isOpen: boolean;
   $borderType: "round" | "square";
 }
@@ -24,14 +25,14 @@ interface ContainerProps {
 export default function DropMenu({ options, isOpen, handleSelectOption, $borderType }: DropdownMenuProps) {
   return (
     <Container $isOpen={isOpen} $borderType={$borderType}>
-      {options.map((option: string) => (
+      {options.map((option: Option, index: number) => (
         <Option
           $borderType={$borderType}
           onClick={() => {
             handleSelectOption(option);
           }}
-          key={option}>
-          {option}
+          key={`${option}-${index}`}>
+          {option.label}
         </Option>
       ))}
     </Container>
