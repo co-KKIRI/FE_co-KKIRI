@@ -80,7 +80,7 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
       <FormElement
         $gridArea="stacks"
         label={"관심 스택"}
-        FormFieldComponent={<RHFStackPopover formFieldName="stacks" control={control} />}
+        FormFieldComponent={<RHFStackPopover formFieldName="stack" control={control} />}
       />
 
       <FormElement

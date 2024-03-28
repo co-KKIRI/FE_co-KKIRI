@@ -30,7 +30,7 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
     position: "",
     career: undefined,
     introduce: "",
-    stacks: [],
+    stack: [],
     link: "",
   },
   userId: null,
@@ -54,7 +54,7 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
         position,
         career,
         introduce,
-        stacks: data.stack,
+        stack: data.stack,
         link,
       };
     } catch (error) {

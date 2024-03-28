@@ -4,6 +4,6 @@ export interface UserProfile {
   position: string;
   career: number | undefined;
   introduce: string;
-  stacks: string[];
+  stack: string[];
   link: string;
 }
