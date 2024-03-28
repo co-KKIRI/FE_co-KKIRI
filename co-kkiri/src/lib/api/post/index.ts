@@ -38,6 +38,9 @@ export const deletePost = (postId: number) => apiRequest("delete", postAddress.p
 /** 스터디 지원하기 */
 export const applyPost = (postId: number) => apiRequest("post", postAddress.apply(postId));
 
+/** 스터디 지원 취소하기 */
+export const cancelApplyPost = (postId: number) => apiRequest("delete", postAddress.cancel(postId));
+
 /** 지원한 유저 목록 가져오기
  *
  *@param {number} postId

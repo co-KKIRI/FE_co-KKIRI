@@ -21,21 +21,24 @@ export default function StatusBasedButton({ postApplyStatus, postId, className }
   const { isOpen: isInviteResponseOpen, openToggle: inviteResponseToggle } = useOpenToggle();
   const [confirmType, setConfirmType] = useState<ConfirmType>("apply");
 
-  const { applyMutation } = usePostMutation();
+  const { applyMutation, cancelMutation } = usePostMutation();
 
   const handleConfirmAgreeClick = () => {
     switch (postApplyStatus) {
       case "APPLIED":
-        confirmToggle();
+        cancelMutation.mutate(postId, {
+          onSuccess: () => {}, //토스트 추가
+          onSettled: () => {
+            confirmToggle();
+          },
+        });
         break;
       case "NOT_APPLIED":
         applyMutation.mutate(postId, {
-          onSuccess: () => {
-            return;
-          },
+          onSuccess: () => {}, //토스트 추가
           onError: (error) => {
             if (error.name === "Unauthorized") {
-              return; //토스트
+              return; //토스트 추가
             }
           },
           onSettled: () => {
