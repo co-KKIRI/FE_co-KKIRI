@@ -60,3 +60,19 @@ export const handleSelectType = (
     type: type,
   }));
 };
+
+// 비활성화 검사
+export const isButtonDisabled = (title: string, content: string): boolean => {
+  if (
+    title === "" ||
+    content === "" || // 콘텐트가 빈 문자열인 경우도 고려
+    content === "<p><br></p>" ||
+    content === "<h1><br></h1>" ||
+    content === "<h2><br></h2>" ||
+    content === "<h3><br></h3>"
+  ) {
+    return true;
+  } else {
+    return false; // 모든 조건을 통과하면 버튼을 활성화
+  }
+};

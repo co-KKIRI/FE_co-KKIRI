@@ -8,22 +8,16 @@ import { DROPDOWN_FORM_INFO } from "@/constants/dropDown";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import Button from "../Button";
-import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
-import {
-  handleSelectPosition,
-  findOptionByValue,
-  handleRecruitFail,
-  handleSelectStack,
-  validateFormData,
-} from "./utils";
+import { useForm, Controller, FieldValues, SubmitHandler } from "react-hook-form";
+import { handleSelectPosition, handleSelectStack, isButtonDisabled, validateFormData } from "./utils";
 import RadioButtonField from "./RadioButtonField";
 import FormElement from "../Form/FormElement";
 import RHFDropdown from "../Form/RHFDropdown";
 import LinkInput from "./LinkInput";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 interface RecruitmentRequestLayoutProps {
-  onSubmitClick: (data: RecruitApiRequestDto) => void;
+  onSubmitClick: (data: FieldValues) => void;
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
@@ -44,21 +38,19 @@ export default function RecruitmentRequestLayout({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RecruitApiRequestDto>({
-    defaultValues: useMemo(() => {
-      return selectedOptions;
-    }, [selectedOptions]),
+  } = useForm<FieldValues>({
+    defaultValues: selectedOptions,
     mode: "onBlur",
-    values: selectedOptions,
   });
 
-  const onSubmit = (data: RecruitApiRequestDto) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (!validateFormData(errors)) {
       onSubmitClick(data);
     }
   };
-
   const contactWayValue = watch("contactWay");
+  const titleValue = watch("title");
+  const contentValue = watch("content");
 
   return (
     <S.SelectContainer onSubmit={handleSubmit(onSubmit)}>
@@ -98,22 +90,24 @@ export default function RecruitmentRequestLayout({
                     selectedOptions.recruitEndAt ? format(new Date(selectedOptions.recruitEndAt), "yyyy.MM.dd") : ""
                   }
                 />
-                {errors.recruitEndAt && <p>모집 마감 기간을 선택해주세요.</p>}
+                {errors.recruitEndAt && <p>필수 입력사항입니다</p>}
               </>
             )}
           />
         </S.SelectBox>
-        <FormElement
-          label="진행 기간"
-          FormFieldComponent={
-            <RHFDropdown
-              formFieldName="progressPeriod"
-              placeholder="진행 기간"
-              options={progressPeriod}
-              control={control}
-            />
-          }
-        />
+        <S.SelectBox>
+          <FormElement
+            label="진행 기간"
+            FormFieldComponent={
+              <RHFDropdown
+                formFieldName="progressPeriod"
+                placeholder="진행 기간"
+                options={progressPeriod}
+                control={control}
+              />
+            }
+          />
+        </S.SelectBox>
         <FormElement
           label="모집 인원"
           FormFieldComponent={
@@ -187,7 +181,7 @@ export default function RecruitmentRequestLayout({
           )}
         />
       </S.SelectChipBox>
-      <S.SelectChipBox>
+      <S.SelectPositionBox>
         <h3>
           모집 포지션<span>*</span>
         </h3>
@@ -209,8 +203,8 @@ export default function RecruitmentRequestLayout({
             />
           )}
         />
-        {errors.positions && <p>모집 포지션을 선택해주세요.</p>}
-      </S.SelectChipBox>
+        {errors.positions && <p>필수 입력사항입니다</p>}
+      </S.SelectPositionBox>
       <S.QuillBox>
         <h1>스터디/프로젝트 소개</h1>
         <Controller
@@ -251,11 +245,7 @@ export default function RecruitmentRequestLayout({
       </S.QuillBox>
       <S.SubmitButtonBox>
         <Button variant="primaryLight">취소하기</Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            handleRecruitFail(errors);
-          }}>
+        <Button variant="primary" disabled={isButtonDisabled(titleValue, contentValue)}>
           {buttonText}
         </Button>
       </S.SubmitButtonBox>

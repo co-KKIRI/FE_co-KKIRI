@@ -120,11 +120,12 @@ export const SelectBox = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   height: 10.1rem;
+  width: 36.7rem;
 
   & p {
     position: relative;
     top: -0.4rem;
-    ${typography.font12Medium}
+    ${typography.font12Medium};
     color: ${color.red};
   }
 `;
@@ -147,11 +148,13 @@ export const SelectChipBox = styled.div`
     flex-wrap: wrap;
     gap: 0.8rem;
   }
+`;
 
+export const SelectPositionBox = styled(SelectChipBox)`
   & p {
-    margin-top: -1.2rem;
-
-    ${typography.font12Medium}
+    position: relative;
+    top: -1.3rem;
+    ${typography.font12Medium};
     color: ${color.red};
   }
 `;
