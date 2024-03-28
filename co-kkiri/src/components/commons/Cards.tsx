@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { Pages } from "@/types/pagesTypes";
+import NoResultText from "./NoResultText";
 
 interface CardsProps {
   data: ListApiResponseDto["data"] | [];
@@ -23,7 +24,7 @@ export default function Cards({ data, page }: CardsProps) {
           ))}
         </CardList>
       ) : (
-        <NoResultText $isSidebarOpenNarrow={isSidebarOpenNarrow}>검색 결과가 없어요.</NoResultText>
+        <NoResultText text="검색 결과가 없어요." padding={120} color="black" />
       )}
     </Box>
   );
@@ -55,22 +56,5 @@ const CardList = styled.div<{ $isSidebarOpenNarrow: boolean }>`
 
   ${mediaQueries.mobile} {
     grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-const NoResultText = styled.p<{ $isSidebarOpenNarrow: boolean }>`
-  font-size: 1.2rem;
-  color: ${color.black};
-  text-align: center;
-  margin-top: 2rem;
-  width: 112rem;
-  ${({ $isSidebarOpenNarrow }) => $isSidebarOpenNarrow && `width: 76.8rem;`}
-
-  ${mediaQueries.tablet} {
-    width: 76.8rem;
-  }
-
-  ${mediaQueries.mobile} {
-    width: 36rem;
   }
 `;

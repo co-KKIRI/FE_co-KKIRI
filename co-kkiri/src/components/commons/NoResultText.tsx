@@ -25,6 +25,6 @@ const Wrapper = styled.div<WrapperProps>`
   ${typography.font16Regular}
   width: 100%;
   text-align: center;
-  padding: ${({ $padding }) => $padding && `${$padding / 10}rem;`};
+  padding: ${({ $padding }) => $padding && `${$padding / 10}rem 0;`};
   color: ${({ $color }) => ($color === "black" ? `${color.black[1]}` : `${color.gray[1]}`)};
 `;
