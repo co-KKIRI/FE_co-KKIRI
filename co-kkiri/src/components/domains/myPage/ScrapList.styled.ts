@@ -1,20 +1,13 @@
 import DESIGN_TOKEN from "@/styles/tokens";
 import styled from "styled-components";
 
-const { typography, color, mediaQueries } = DESIGN_TOKEN;
+const { mediaQueries } = DESIGN_TOKEN;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
-`;
-
-export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6rem;
   width: 91rem;
 
   ${mediaQueries.tablet} {
@@ -23,6 +16,13 @@ export const Box = styled.div`
   ${mediaQueries.mobile} {
     width: 32rem;
   }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
 `;
 
 export const Wrapper = styled.div`
@@ -39,9 +39,4 @@ export const Wrapper = styled.div`
   ${mediaQueries.mobile} {
     grid-template-columns: repeat(1, 1fr);
   }
-`;
-
-export const NoResultText = styled.div`
-  ${typography.font16Regular}
-  color: ${color.gray[1]}
 `;

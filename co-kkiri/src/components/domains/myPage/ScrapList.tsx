@@ -4,6 +4,7 @@ import Card from "@/components/commons/Card";
 import Button from "@/components/commons/Button";
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { getScrapList } from "@/lib/api/myPage";
+import NoResultText from "@/components/commons/NoResultText";
 
 export default function ScrapList() {
   const PAGE_LIMIT = 9;
@@ -31,28 +32,31 @@ export default function ScrapList() {
   return (
     <S.Container>
       <SectionTitle title="스터디/프로젝트 스크랩 목록" count={count} type="cardList" />
-      <S.Box>
-        <S.Wrapper>
-          {data?.pages.map((page) =>
-            page.data.map(
-              (scrap) =>
-                scrap.isScraped && (
-                  <div key={scrap.postId}>
-                    <Card page="studyList" cardData={scrap} />
-                  </div>
-                ),
-            ),
-          )}
-        </S.Wrapper>
-        {count === 0 && <S.NoResultText>스크랩 목록이 없어요.</S.NoResultText>}
-        <Button
-          variant="ghost"
-          width={158}
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}>
-          더보기
-        </Button>
-      </S.Box>
+      {count ? (
+        <S.Box>
+          <S.Wrapper>
+            {data?.pages.map((page) =>
+              page.data.map(
+                (scrap) =>
+                  scrap.isScraped && (
+                    <div key={scrap.postId}>
+                      <Card page="studyList" cardData={scrap} />
+                    </div>
+                  ),
+              ),
+            )}
+          </S.Wrapper>
+          <Button
+            variant="ghost"
+            width={158}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}>
+            더보기
+          </Button>
+        </S.Box>
+      ) : (
+        <NoResultText text="스크랩 목록이 없어요." padding={60} color="gray" />
+      )}
     </S.Container>
   );
 }
