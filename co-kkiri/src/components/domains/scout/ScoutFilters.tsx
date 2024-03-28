@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import FilterDropdown from "@/components/commons/DropDowns/FilterDropdown";
 import StacksPopover from "@/components/commons/StackPopover";
-import { useState } from "react";
 import { SelectedFilter } from "@/pages/Scout";
-import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { DROPDOWN_FILTER_INFO } from "@/constants/dropDown";
+import { Option } from "@/components/commons/Form/RHFDropdown";
 
 interface ScoutFiltersProps {
   selectedFilter: SelectedFilter;
@@ -12,16 +12,17 @@ interface ScoutFiltersProps {
 }
 
 export default function ScoutFilters({ selectedFilter, handleStacksChange, handlePositionChange }: ScoutFiltersProps) {
-  const { filter } = DROPDOWN_INFO;
+  const { filter:{
+    position
+  } } = DROPDOWN_FILTER_INFO;
 
-  const onSelectPosition = (type: string, selectedValue: string) => {
-    const selectedPosition = selectedValue === filter.position.options[0] ? "" : selectedValue;
-    handlePositionChange(selectedPosition);
+  const onSelectPosition = (selectedOption: Option) => {
+    handlePositionChange(selectedOption.label);
   };
 
   return (
     <Container>
-      <FilterDropdown menuInfoType="position" onSelectFilter={onSelectPosition} />
+      <FilterDropdown  onSelectFilter={onSelectPosition} placeholder={"포지션"} options={position} />
       <StacksPopover stacks={selectedFilter.stacks} onStacksChange={(stack) => handleStacksChange(stack)} />
     </Container>
   );

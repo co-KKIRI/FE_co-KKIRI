@@ -15,10 +15,6 @@ const TextFieldInput = forwardRef<HTMLInputElement, TextFieldInputProps>(
   ({ label, id, value, placeholder = "", isRequired = false, isError, helperText = "", className, ...props }, ref) => {
     return (
       <Wrapper className={className}>
-        <Label htmlFor={id}>
-          {label}
-          {isRequired && <span className="required-mark"> *</span>}
-        </Label>
         <Input $isError={isError} id={id} value={value} placeholder={placeholder} ref={ref} {...props} />
         <Text>{helperText}</Text>
       </Wrapper>

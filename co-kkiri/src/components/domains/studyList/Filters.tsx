@@ -2,20 +2,27 @@ import styled from "styled-components";
 import FilterDropdown from "@/components/commons/DropDowns/FilterDropdown";
 import SortDropdown from "@/components/commons/DropDowns/SortDropdown";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { Option } from "@/components/commons/Form/RHFDropdown";
+import { DROPDOWN_FILTER_INFO } from "@/constants/dropDown";
 
 interface FiltersProps {
-  handleFilterChange: (filterType: string, selectedValue: string) => void;
-  handleSortChange: (option: string) => void;
+  handleFilterChange: (selectedFilter: Option) => void;
+  handleSortChange: (selectedOption: Option) => void;
 }
 
 export default function Filters({ handleFilterChange, handleSortChange }: FiltersProps) {
+  const {
+    filter: { position, progressWay },
+    sort: { sort },
+  } = DROPDOWN_FILTER_INFO;
+
   return (
     <Container>
       <FilterWrapper>
-        <FilterDropdown menuInfoType="position" onSelectFilter={handleFilterChange} />
-        <FilterDropdown menuInfoType="progressWay" onSelectFilter={handleFilterChange} />
+        <FilterDropdown onSelectFilter={handleFilterChange} placeholder={"포지션"} options={position} />
+        <FilterDropdown onSelectFilter={handleFilterChange} placeholder={"진행 방식"} options={progressWay} />
       </FilterWrapper>
-      <SortDropdown handleSortChange={handleSortChange} />
+      <SortDropdown handleSortChange={handleSortChange} placeholder={"최신순"} options={sort} />
     </Container>
   );
 }

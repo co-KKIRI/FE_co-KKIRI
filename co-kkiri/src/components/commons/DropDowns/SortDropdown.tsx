@@ -3,35 +3,35 @@ import DropMenu from "./commons/DropMenu";
 import { useState } from "react";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import TextDropButton from "./commons/TextDropButton";
-import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { Option } from "../Form/RHFDropdown";
 
 interface SortDropdownProps {
-  handleSortChange: (sortType: string) => void;
+  placeholder: string;
+  options: Option[];
+  handleSortChange: (selectedSort: Option) => void;
 }
 
-export default function SortDropdown({ handleSortChange }: SortDropdownProps) {
-  const { sort } = DROPDOWN_INFO;
-
-  const [selectOption, setSelectOption] = useState(sort.defaultValue);
+export default function SortDropdown({ placeholder, options, handleSortChange }: SortDropdownProps) {
+  const [selectOption, setSelectOption] = useState<Option>({ label: placeholder, value: "" });
   const [isSelected, setIsSelected] = useState(false);
 
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string | number) => {
-    handleSortChange(option as string);
-    setSelectOption(option as string);
+  const handleSelectOption = (option: Option) => {
+    handleSortChange(option);
+    setSelectOption(option);
     setIsSelected(true);
     toggleDropdown();
   };
 
   return (
     <Container ref={ref}>
-      <TextDropButton onClick={toggleDropdown} selectOption={selectOption} $isSelected={isSelected} />
+      <TextDropButton onClick={toggleDropdown} selectOption={selectOption.label} $isSelected={isSelected} />
       <Wrapper>
         <DropMenu
           isOpen={isOpen}
           handleSelectOption={handleSelectOption}
-          options={sort.options}
+          options={options}
           $borderType="round"></DropMenu>
       </Wrapper>
     </Container>

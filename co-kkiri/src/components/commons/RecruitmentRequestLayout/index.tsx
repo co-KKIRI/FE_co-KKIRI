@@ -4,22 +4,21 @@ import MultiselectDropdown from "@/components/commons/DropDowns/StackMultiselect
 import QuillEditor from "@/components/commons/ReactQuill";
 import SelectPositionChipList from "@/components/commons/SelectPositionChipList";
 import * as S from "./RecruitLayout.styled";
-import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { DROPDOWN_FORM_INFO } from "@/constants/dropDown";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { format } from "date-fns";
 import LinkInput from "./LinkInput";
 import Button from "../Button";
-import { useForm, Controller, FieldValues, SubmitHandler, Control, FieldErrors } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import {
   handleSelectPosition,
-  findOptionByValue,
   handleRecruitFail,
   handleSelectStack,
   validateFormData,
 } from "./utils";
 import RadioButtonField from "./RadioButtonField";
-import { MutationFunction } from "@tanstack/react-query";
+
 interface RecruitmentRequestLayoutProps {
   mutationFn: any; // 교체예정입니다
   buttonText: string;
@@ -35,7 +34,7 @@ export default function RecruitmentRequestLayout({
 }: RecruitmentRequestLayoutProps) {
   const {
     recruitment: { capacity, progressPeriod, progressWay, contactWay },
-  } = DROPDOWN_INFO;
+  } = DROPDOWN_FORM_INFO;
 
   const {
     handleSubmit,
@@ -100,12 +99,12 @@ export default function RecruitmentRequestLayout({
             defaultValue={selectedOptions.progressPeriod}
             render={({ field }) => (
               <Dropdown
-                placeholder={progressPeriod.defaultValue}
-                options={progressPeriod.options}
+                placeholder={"진행 기간"}
+                options={progressPeriod}
                 selectedOption={field.value}
                 onSelect={(option) => {
-                  setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option }));
-                  field.onChange(option);
+                  setSelectedOptions((prevOption) => ({ ...prevOption, progressPeriod: option.label }));
+                  field.onChange(option.value);
                 }}
               />
             )}
@@ -119,14 +118,11 @@ export default function RecruitmentRequestLayout({
             control={control}
             render={({ field }) => (
               <Dropdown
-                placeholder={capacity.defaultValue}
-                options={capacity.options}
-                selectedOption={findOptionByValue(capacity.values, capacity.options, field.value)}
+                placeholder={"모집 인원"}
+                options={capacity}
+                selectedOption={field.value}
                 onSelect={(option) => {
-                  const optionIndex = capacity.options.indexOf(option);
-                  const value = capacity.values[optionIndex];
-                  setSelectedOptions((prevOption) => ({ ...prevOption, capacity: value }));
-                  field.onChange(value);
+                  field.onChange(option.value);
                 }}
               />
             )}
@@ -144,11 +140,11 @@ export default function RecruitmentRequestLayout({
             render={({ field }) => (
               <S.DropdownWrapper>
                 <Dropdown
-                  placeholder={progressWay.defaultValue}
-                  options={progressWay.options}
+                  placeholder={"진행 방식"}
+                  options={progressWay}
                   selectedOption={selectedOptions.progressWay}
                   onSelect={(option) => {
-                    setSelectedOptions((prevOption) => ({ ...prevOption, progressWay: option }));
+                    setSelectedOptions((prevOption) => ({ ...prevOption, progressWay: option.label }));
                     field.onChange(option);
                   }}
                 />
@@ -165,11 +161,11 @@ export default function RecruitmentRequestLayout({
             control={control}
             render={({ field }) => (
               <Dropdown
-                placeholder={contactWay.defaultValue}
-                options={contactWay.options}
+                placeholder={"연락 방법"}
+                options={contactWay}
                 selectedOption={selectedOptions.contactWay}
                 onSelect={(option) => {
-                  setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option }));
+                  setSelectedOptions((prevOption) => ({ ...prevOption, contactWay: option.label }));
                   field.onChange(option);
                 }}
               />

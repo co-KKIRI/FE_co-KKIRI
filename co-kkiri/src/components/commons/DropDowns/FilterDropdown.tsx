@@ -3,11 +3,12 @@ import styled from "styled-components";
 import FilterButton from "./commons/FilterButton";
 import useOpenToggle from "@/hooks/useOpenToggle";
 import DropMenu from "./commons/DropMenu";
-import { DROPDOWN_INFO } from "@/constants/dropDown";
+import { Option } from "../Form/RHFDropdown";
 
 interface FilterDropdownProps {
-  menuInfoType: "position" | "progressWay";
-  onSelectFilter: (menuInfoType: string, selectedValue: string) => void;
+  placeholder: string;
+  options: Option[];
+  onSelectFilter: (selectedFilter: Option) => void;
 }
 
 /**
@@ -15,29 +16,27 @@ interface FilterDropdownProps {
  * @param menuInfoType: 드랍메뉴 내용
  * @property {"position"|"progressWay"} menuInfoType
  * */
-export default function FilterDropdown({ menuInfoType, onSelectFilter }: FilterDropdownProps) {
-  const { filter } = DROPDOWN_INFO;
-
-  const [selectOption, setSelectOption] = useState(filter[menuInfoType].defaultValue);
+export default function FilterDropdown({ placeholder, options, onSelectFilter }: FilterDropdownProps) {
+  const [selectOption, setSelectOption] = useState<Option>({ label: placeholder, value: "" });
   const [isSelected, setIsSelected] = useState(false);
   const { isOpen, openToggle: toggleDropdown, ref } = useOpenToggle();
 
-  const handleSelectOption = (option: string | number) => {
-    setSelectOption(option as string);
+  const handleSelectOption = (option: Option) => {
+    setSelectOption(option);
     setIsSelected(true);
-    onSelectFilter(menuInfoType, option as string);
+    onSelectFilter(option);
     toggleDropdown();
   };
 
   return (
     <Container ref={ref}>
-      <FilterButton onClick={toggleDropdown} selectOption={selectOption} isSelected={isSelected} isOpen={isOpen} />
-      <DropMenu
-        $borderType="round"
+      <FilterButton
+        onClick={toggleDropdown}
+        selectOption={selectOption.label}
+        isSelected={isSelected}
         isOpen={isOpen}
-        handleSelectOption={handleSelectOption}
-        options={filter[menuInfoType].options}
       />
+      <DropMenu $borderType="round" isOpen={isOpen} handleSelectOption={handleSelectOption} options={options} />
     </Container>
   );
 }
