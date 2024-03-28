@@ -4,7 +4,7 @@ import TagList from "@/components/domains/myPage/TagList";
 import InvitedTeamList from "@/components/domains/myPage/InvitedTeamList";
 import ScrapList from "@/components/domains/myPage/ScrapList";
 import { useQuery } from "@tanstack/react-query";
-import { getInvitedTeamList, getScrapList, getVisibleProfileStatus } from "@/lib/api/myPage";
+import { getInvitedTeamList, getVisibleProfileStatus } from "@/lib/api/myPage";
 
 export default function MyPage() {
   // 리뷰는 아직 API 명세 안나옴.
@@ -12,12 +12,6 @@ export default function MyPage() {
   const { data: invitedTeamList, error: invitedTeamListError } = useQuery({
     queryKey: ["invite/list"],
     queryFn: () => getInvitedTeamList({ order: "DESC", page: 1, take: 100 }),
-    retry: false,
-  });
-
-  const { data: scrapList, error: scrapListError } = useQuery({
-    queryKey: ["/my-page/scrap/list"],
-    queryFn: () => getScrapList({ order: "DESC", page: 1, take: 100 }),
     retry: false,
   });
 
@@ -29,10 +23,6 @@ export default function MyPage() {
 
   if (invitedTeamListError) {
     console.error(invitedTeamListError);
-  }
-
-  if (scrapListError) {
-    console.error(scrapListError);
   }
 
   if (visibleProfileError) {
@@ -49,7 +39,7 @@ export default function MyPage() {
             {invitedTeamList && <InvitedTeamList count={invitedTeamList.data.length} teamList={invitedTeamList.data} />}
           </S.Lists>
         </S.Wrapper>
-        {scrapList && <ScrapList data={scrapList.data} onClick={() => {}} />}
+        <ScrapList />
       </S.Box>
     </S.Container>
   );

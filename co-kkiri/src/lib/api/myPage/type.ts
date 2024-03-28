@@ -47,9 +47,11 @@ export type MyScrapApiResponseDto = {
 };
 
 export type MyScrapApiRequestDto = {
-  order: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
+  order?: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
   page: number; // 요청할 페이지
   take: number;
+  hasPreviousPage?: boolean;
+  hasNextPage?: boolean;
 };
 
 // 마이 페이지 유저 정보 수정
