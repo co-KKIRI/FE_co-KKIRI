@@ -32,13 +32,14 @@ export default function Navigation() {
   );
 }
 
-const { mediaQueries } = DESIGN_TOKEN;
+const { mediaQueries, zIndex } = DESIGN_TOKEN;
 
 interface SideBarWrapperProps {
   $isOpen: boolean;
 }
 
 const SideBarWrapper = styled.div<SideBarWrapperProps>`
+  ${zIndex.modal}
   position: fixed;
   animation: ${(props) => (props.$isOpen ? slideIn : slideOut)} 0.2s forwards;
 `;

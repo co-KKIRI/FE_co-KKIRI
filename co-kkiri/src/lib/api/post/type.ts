@@ -1,5 +1,6 @@
 import { CategoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
+import { PageMeta, PaginationOptions } from "../pageMetaType";
 
 /**스터디모집하기, 수정하기 (연락 링크 추가 예정)*/
 export type RecruitApiRequestDto = {
@@ -34,15 +35,16 @@ export type PostInfo = {
 
 /**스터디 목록*/
 export type ListApiResponseDto = {
-  postList: PostInfo[];
+  data: PostInfo[];
+  meta: PageMeta;
 };
 
-export type ListApiRequestDto = {
-  meetingType?: CategoryListFilter;
+export type ListApiRequestDto = PaginationOptions & {
+  meetingType: CategoryListFilter;
   positions?: string[];
   progressWay?: string;
-  stacks?: string[]; //stacks 통일 요청
-  sortBy?: "LATEST" | "BYDEADLINE" | "BYVIEW";
+  stacks?: string[];
+  sortBy?: "LATEST" | "BY_DEADLINE" | "BY_VIEW";
 };
 
 export type PostApplyStatus = "OWNER" | "INVITED" | "NOT_APPLIED" | "APPLIED" | "RECRUIT_CLOSED";
@@ -80,11 +82,7 @@ export type ApplyPostApiRequestDto = {
 };
 
 /**스터디 지원 목록 */
-export type AppliedMemberListApiRequestDto = {
-  order: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
-  page: number; // 요청할 페이지
-  take: number; // 몇개 가져올지
-};
+export type AppliedMemberListApiRequestDto = PaginationOptions;
 
 type AppliedMember = {
   teamMemberId: number;
