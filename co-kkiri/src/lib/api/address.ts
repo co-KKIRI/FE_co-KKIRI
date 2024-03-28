@@ -27,11 +27,11 @@ export const postAddress = {
   //get
   management: (postId: number) => `/post/${postId}/management`,
   //patch
-  recruitEnd: (postId: number) => `/post/${postId}/recruit-end`,
+  studyStart: (postId: number) => `/post/${postId}/start`,
   //patch
+  studyEnd: (postId: number) => `/post/${postId}/end`,
+  //patch ???
   recruitStart: (postId: number) => `/post/${postId}/recruit-start`, // 백엔드 확인 요망
-  //patch
-  recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`, // 백엔드 확인 요망
   //post
   invite: "/post/invite",
 };

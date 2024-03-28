@@ -16,7 +16,6 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "초대하기",
     variant: "ghost",
     disabled: false,
-    onClick: () => {},
   },
   {
     type: "READY",
@@ -24,7 +23,6 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "스터디 시작",
     variant: "primary",
     disabled: false,
-    onClick: () => {},
   },
   {
     type: "PROGRESS",
@@ -32,7 +30,6 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "스터디 완료",
     variant: "primary",
     disabled: false,
-    onClick: () => {},
   },
   {
     type: "PROGRESS",
@@ -47,7 +44,6 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "리뷰 작성",
     variant: "primary",
     disabled: false,
-    onClick: () => {},
   },
   {
     type: "DONE",
@@ -55,6 +51,5 @@ export const BUTTON_TYPE: ButtonType[] = [
     label: "리뷰 보기",
     variant: "primary",
     disabled: false,
-    onClick: () => {},
   },
 ];
