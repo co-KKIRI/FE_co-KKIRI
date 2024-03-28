@@ -1,12 +1,11 @@
+import * as S from "./UserInfo.styled";
 import ToggleButton from "@/components/commons/ToggleButton";
 import UserProfileCard from "@/components/commons/UserProfileCard";
 import { deleteUser, editVisibleProfileStatus } from "@/lib/api/myPage";
-import { UserInfoApiResponseDto, VisibleProfileStatusApiRequestDto } from "@/lib/api/myPage/type";
+import { VisibleProfileStatusApiRequestDto } from "@/lib/api/myPage/type";
 import { useUserInfoStore } from "@/stores/userInfoStore";
-import DESIGN_TOKEN from "@/styles/tokens";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigate, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
 interface UserInfoProps {
   visibleProfile: VisibleProfileStatusApiRequestDto;
@@ -50,7 +49,7 @@ export default function UserInfo({ visibleProfile }: UserInfoProps) {
   };
 
   return (
-    <Container>
+    <S.Container>
       <UserProfileCard
         profileImageUrl={user.userInfo?.profileImageUrl || ""}
         nickname={user.userInfo?.nickname || ""}
@@ -62,50 +61,16 @@ export default function UserInfo({ visibleProfile }: UserInfoProps) {
         link={user.userInfo?.link}
         cardType="mypage"
       />
-      <Box>
-        <Scout>
+      <S.Box>
+        <S.Scout>
           <ToggleButton
             content="스카우트 동의"
             onChange={() => handleEditVisibleProfile()}
             isChecked={visibleProfile.isVisibleProfile}
           />
-        </Scout>
-        <DeleteUser onClick={handleDeleteUser}>회원 탈퇴하기</DeleteUser>
-      </Box>
-    </Container>
+        </S.Scout>
+        <S.DeleteUser onClick={handleDeleteUser}>회원 탈퇴하기</S.DeleteUser>
+      </S.Box>
+    </S.Container>
   );
 }
-
-const { typography, color, mediaQueries } = DESIGN_TOKEN;
-
-const Container = styled.div`
-  width: 43rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
-`;
-
-const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 43rem;
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
-`;
-
-const Scout = styled.div`
-  display: flex;
-  gap: 1.2rem;
-`;
-
-const DeleteUser = styled.button`
-  ${typography.font14Semibold}
-  color: ${color.gray[1]};
-`;
