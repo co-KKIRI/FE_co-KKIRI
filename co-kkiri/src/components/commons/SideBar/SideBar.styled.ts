@@ -15,11 +15,14 @@ export const Container = styled.div`
   box-shadow: ${boxShadow.content};
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
-  padding-left: 4rem;
+  padding: 3rem 4rem 4rem;
   background-color: ${color.white};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   ${mediaQueries.tablet} {
-    padding-left: 3rem;
+    padding: 0 3rem 4rem;
     border-radius: 0;
     box-shadow: none;
     width: 21rem;
@@ -27,12 +30,22 @@ export const Container = styled.div`
   }
 
   ${mediaQueries.mobile} {
-    padding-left: 2rem;
-    padding-bottom: 3.8rem;
+    padding: 0 2rem 4rem;
     width: 21rem;
     height: 100vh;
     box-shadow: none;
     border-radius: 0;
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${mediaQueries.tablet} {
+    gap: 6.8rem;
+  }
+  ${mediaQueries.mobile} {
+    gap: 6.1rem;
   }
 `;
 
@@ -42,7 +55,6 @@ export const CategoryBox = styled.div`
   flex-direction: column;
   gap: 2.4rem;
   color: ${color.black[1]};
-  padding-top: 3rem;
 `;
 
 export const Category = styled.button`
@@ -54,18 +66,16 @@ export const Category = styled.button`
 `;
 
 export const HamburgerMenuWrapper = styled.button`
-  padding-top: 2.8rem;
   display: none;
 
   ${mediaQueries.tablet} {
     display: block;
-    padding-bottom: 3.8rem;
+    padding-top: 2.8rem;
     width: 2rem;
   }
 
   ${mediaQueries.mobile} {
     display: block;
-    margin-bottom: 3.1rem;
     padding-top: 2.1rem;
     width: 1.8rem;
   }
