@@ -42,18 +42,18 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
         if (typeof content === "object" && "label" in content && "content" in content) {
           switch (content.label) {
             case "기타": {
-              return <RowContent>기타 {content.content || ""}</RowContent>;
+              return <RowContent>{content.label}</RowContent>;
             }
             case "카카오 오픈톡": {
-              return <Link label="카카오 오픈톡" to={content.content || ""} icon={ICONS.link} linkType="external" />;
+              return <Link label={content.label} to={content.content || ""} icon={ICONS.link} linkType="external" />;
             }
             case "구글폼": {
-              return <Link label="구글폼" to={content.content || ""} icon={ICONS.link} linkType="external" />;
+              return <Link label={content.label} to={content.content || ""} icon={ICONS.link} linkType="external" />;
             }
             case "이메일": {
               return (
                 <Link
-                  label="이메일"
+                  label={content.label}
                   to={content.content ? getEmailLink(content.content) : ""}
                   icon={ICONS.link}
                   linkType="external"
