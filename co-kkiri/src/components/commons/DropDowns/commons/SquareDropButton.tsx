@@ -10,6 +10,7 @@ interface DropdownButtonProps {
   $iconType: "date" | "default";
   $isSelected: boolean;
   isError?: boolean;
+  $isDate?: boolean;
   dropButtonRef?: RefObject<HTMLButtonElement> | RefCallBack;
 }
 
@@ -36,6 +37,7 @@ export default function SquareDropButton({
   $isSelected,
   isError,
   dropButtonRef,
+  $isDate,
 }: DropdownButtonProps) {
   const iconSources = {
     date: { src: ICONS.calendar.src, alt: ICONS.calendar.alt },

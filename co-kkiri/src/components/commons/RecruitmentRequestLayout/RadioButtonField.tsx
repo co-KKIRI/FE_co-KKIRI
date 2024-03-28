@@ -8,7 +8,7 @@ import { CategoryList } from "@/types/categoryTypes";
 interface RadioButtonFieldProps {
   name: string;
   value: CategoryList;
-  control: Control<FieldValues, unknown>;
+  control: Control<FieldValues>;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
 }
 export default function RadioButtonField({ name, value, control, setSelectedOptions }: RadioButtonFieldProps) {
@@ -21,7 +21,7 @@ export default function RadioButtonField({ name, value, control, setSelectedOpti
         rules={{ required: true }}
         render={({ field }) => (
           <RadioButton
-            defaultChecked={value === "STUDY"}
+            defaultChecked={value === "STUDY" ? true : false}
             value={value}
             onClick={() => {
               handleSelectType(value, setSelectedOptions);

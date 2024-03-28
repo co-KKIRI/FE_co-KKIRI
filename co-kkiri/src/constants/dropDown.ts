@@ -32,7 +32,7 @@ export const DROPDOWN_FORM_INFO: DropdownInfo = {
   },
   recruitment: {
     progressPeriod: [
-      { label: "협의 후 결정", value: null },
+      { label: "협의 후 결정", value: "협의 후 결정" },
       { label: "1주", value: "1주" },
       { label: "2주", value: "2주" },
       { label: "3주", value: "3주" },
@@ -50,7 +50,7 @@ export const DROPDOWN_FORM_INFO: DropdownInfo = {
       { label: "온/오프라인", value: "온/오프라인" },
     ],
     capacity: [
-      { label: "인원 미정", value: null },
+      { label: "인원 미정", value: 0 },
       { label: "1명", value: 1 },
       { label: "2명", value: 2 },
       { label: "3명", value: 3 },
@@ -60,10 +60,10 @@ export const DROPDOWN_FORM_INFO: DropdownInfo = {
       { label: "7명", value: 7 },
       { label: "8명", value: 8 },
       { label: "9명", value: 9 },
-      { label: "10명 이상", value: 999 },
+      { label: "10명 이상", value: 10 },
     ],
     contactWay: [
-      { label: "기타", value: null },
+      { label: "기타", value: "기타" },
       { label: "카카오 오픈톡", value: "카카오 오픈톡" },
       { label: "이메일", value: "이메일" },
       { label: "구글폼", value: "구글폼" },
@@ -104,7 +104,6 @@ export const DROPDOWN_FILTER_INFO: DropdownInfo = {
     ],
   },
 };
-
 
 export const DROPDOWN_INFO = {
   user: {

@@ -1,21 +1,19 @@
 import RecruitmentRequestLayout from "@/components/commons/RecruitmentRequestLayout";
 import * as S from "./styled";
 import { RecruitApiRequestDto } from "@/lib/api/post/type";
-import { createPost } from "@/lib/api/post";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { validateFormData } from "@/components/commons/RecruitmentRequestLayout/utils";
+import usePostMutation from "@/hooks/useMutation/usePostMutation";
+import { FieldValues } from "react-hook-form";
 
 export default function Recruit() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
-
+  const { uploadMutation } = usePostMutation();
   const [selectedOptions, setSelectedOptions] = useState<RecruitApiRequestDto>({
     type: "STUDY",
     recruitEndAt: "",
     progressPeriod: "",
-    capacity: 999,
+    capacity: 11,
     contactWay: "",
     progressWay: "",
     stacks: [],
@@ -25,21 +23,20 @@ export default function Recruit() {
     link: "",
   });
 
-  // 포스트 업로드
-  const uploadPost = useMutation<{ postId: number }, Error, RecruitApiRequestDto>({
-    mutationFn: (selectedOptions: RecruitApiRequestDto) => createPost(selectedOptions),
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] }); //키값 물어보기
-      navigate(`/post/${data.postId}`);
-    },
-  });
+  const handleSubmit = (data: FieldValues) => {
+    uploadMutation.mutate(data as RecruitApiRequestDto, {
+      onSuccess: (data) => {
+        navigate(`/list/${data.postId}`);
+      },
+    });
+  };
 
   return (
     <S.Container>
       <RecruitmentRequestLayout
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-        mutationFn={uploadPost}
+        onSubmitClick={handleSubmit}
         buttonText="글 등록하기"
       />
     </S.Container>

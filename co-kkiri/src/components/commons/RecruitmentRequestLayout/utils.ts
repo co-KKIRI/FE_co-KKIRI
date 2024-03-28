@@ -3,10 +3,13 @@ import { CategoryList } from "@/types/categoryTypes";
 import { FieldErrors, FieldValues } from "react-hook-form";
 
 // handleSubmit 조건 처리
-export const validateFormData = (error: FieldErrors<FieldValues>) => {
-  return !error.recruitEndAt && !error.progressWay && !error.positions && !error.link;
+export const validateFormData = (errors: FieldErrors<FieldValues>): boolean => {
+  if (!errors.recruitEndAt && !errors.progressWay && !errors.positions && !errors.link) {
+    return false;
+  } else {
+    return true;
+  }
 };
-
 // index에 해당하는 옵션 식별
 export const findOptionByValue = <ValueType, OptionType>(
   values: ValueType[],
@@ -56,4 +59,20 @@ export const handleSelectType = (
     ...prevOptions,
     type: type,
   }));
+};
+
+// 비활성화 검사
+export const isButtonDisabled = (title: string, content: string): boolean => {
+  if (
+    title === "" ||
+    content === "" || // 콘텐트가 빈 문자열인 경우도 고려
+    content === "<p><br></p>" ||
+    content === "<h1><br></h1>" ||
+    content === "<h2><br></h2>" ||
+    content === "<h3><br></h3>"
+  ) {
+    return true;
+  } else {
+    return false; // 모든 조건을 통과하면 버튼을 활성화
+  }
 };
