@@ -5,10 +5,16 @@ export default function Footer() {
   return (
     <Container>
       <LinkBox>
-        //TODO: 노션 작성 후 링크 연결
-        <Link href="/">코끼리 소개</Link>
-        <Link href="/">이용약관</Link>
-        <Link href="/">개인정보처리방침</Link>
+        {/* TODO: 노션 작성 후 링크 연결 */}
+        <Link href="/" target="_blank" rel="noopener noreferrer">
+          코끼리 소개
+        </Link>
+        <Link href="/" target="_blank" rel="noopener noreferrer">
+          이용약관
+        </Link>
+        <Link href="/" target="_blank" rel="noopener noreferrer">
+          개인정보처리방침
+        </Link>
       </LinkBox>
       <Organization>© 2024 COKKIRI</Organization>
     </Container>
