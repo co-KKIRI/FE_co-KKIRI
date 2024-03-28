@@ -11,21 +11,13 @@ import LinkInput from "./LinkInput";
 import Button from "../Button";
 import { useForm, Controller } from "react-hook-form";
 
-import {
-  handleSelectPosition,
-  handleRecruitFail,
-  handleSelectStack,
-  validateFormData,
-} from "./utils";
+import { handleSelectPosition, handleRecruitFail, handleSelectStack, validateFormData } from "./utils";
 import RadioButtonField from "./RadioButtonField";
-<<<<<<< HEAD
-
-=======
 import { MutationFunction } from "@tanstack/react-query";
 import { useEffect } from "react";
->>>>>>> 22d1f18 (Feat: edit 페이지 1차 완료)
+
 interface RecruitmentRequestLayoutProps {
-  mutationFn: any; // 교체예정입니다
+  mutationFn: any;
   buttonText: string;
   selectedOptions: RecruitApiRequestDto;
   setSelectedOptions: React.Dispatch<React.SetStateAction<RecruitApiRequestDto>>;
