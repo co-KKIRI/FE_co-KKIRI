@@ -306,6 +306,7 @@ export default function RecruitmentRequestLayout({
                 }));
                 field.onChange(value);
               }}
+              value={selectedOptions.content}
             />
           )}
         />

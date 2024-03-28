@@ -22,8 +22,6 @@ export default function Edit() {
     content: "",
   });
 
-  const { control } = useForm();
-
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,7 +36,7 @@ export default function Edit() {
     mutationFn: (selectedOptions: RecruitApiRequestDto) => modifyPost(+id!, selectedOptions),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] });
-      navigate(`/post/${id}`);
+      navigate(`/list/${id}`);
     },
   });
 
