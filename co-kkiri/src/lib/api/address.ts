@@ -56,8 +56,12 @@ export const commentAddress = {
   commentId: (postId: number, commentId: number) => `/post/${postId}/${commentId}`,
 };
 
-//post, delete
-export const scrapAddress = (postId: number) => `/post/${postId}/scrap`;
+export const scrapAddress = {
+  //post
+  scrap: (postId: number) => `/post/${postId}/scrap/create`,
+  //delete
+  cancel: (postId: number) => `/post/${postId}/scrap/delete`,
+};
 
 export const myPageAddress = {
   //get, patch

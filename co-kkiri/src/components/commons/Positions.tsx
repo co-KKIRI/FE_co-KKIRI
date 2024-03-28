@@ -55,6 +55,7 @@ export default function Positions({ positions, variant = "profile", page = "home
 const Wrapper = styled.div`
   display: flex;
   gap: 0.6rem;
+  height: 2.2rem;
 `;
 
 const MoreChip = styled(DefaultChip)`

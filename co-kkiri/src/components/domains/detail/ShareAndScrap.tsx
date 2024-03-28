@@ -5,13 +5,14 @@ import CardCornerButton from "@/components/commons/CardCornerButton";
 interface ShareAndScrapProps {
   isScraped: boolean;
   className?: string;
+  postId: number;
 }
 
-export default function ShareAndScrap({ isScraped, className }: ShareAndScrapProps) {
+export default function ShareAndScrap({ isScraped, className, postId }: ShareAndScrapProps) {
   return (
     <Container className={className}>
       <Share />
-      <ScrapSection isScraped={isScraped} />
+      <ScrapSection isScraped={isScraped} postId={postId} />
     </Container>
   );
 }

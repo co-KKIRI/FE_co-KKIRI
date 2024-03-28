@@ -18,9 +18,15 @@ import { ICONS } from "@/constants/icons";
 import { PostInfo } from "@/lib/api/post/type";
 import { Pages } from "@/types/pagesTypes";
 
+//임시
+interface TempType extends PostInfo {
+  position?: string[];
+  stack?: string[];
+}
+
 interface CardProps {
   page?: Pages;
-  cardData: PostInfo;
+  cardData: TempType;
 }
 
 export default function Card({ page = "home", cardData }: CardProps) {
@@ -33,7 +39,9 @@ export default function Card({ page = "home", cardData }: CardProps) {
     recruitEndAt,
     progressWay,
     title,
+    position,
     positions,
+    stack,
     stacks,
     memberNickname,
     memberProfileImg,
@@ -59,12 +67,12 @@ export default function Card({ page = "home", cardData }: CardProps) {
             <S.HeaderPadding $page={page}>
               <Header deadline={recruitEndAt} progressWay={progressWay} />
             </S.HeaderPadding>
-            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} />}
+            {page === "home" && <S.HomeCardCornerButton isScraped={isScraped} postId={postId} />}
           </S.HeaderWrapper>
           <S.ContentWrapper>
             <Title title={title} />
-            <Positions positions={positions} variant="card" page={page} />
-            {page !== "home" && <Stacks stacks={stacks} variant="card" />}
+            <Positions positions={position || positions} variant="card" page={page} />
+            {page !== "home" && <Stacks stacks={stack || stacks} variant="card" />}
           </S.ContentWrapper>
         </S.UpperBox>
         <S.BreakLine />

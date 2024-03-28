@@ -35,7 +35,7 @@ export default function Detail() {
     <S.Container>
       <S.Box>
         <S.GoBackButton />
-        <S.ShareAndScrapButton isScraped={isScraped} />
+        <S.ShareAndScrapButton isScraped={isScraped} postId={Number(id)} />
         <S.PostSection postDetails={postDetails} postApplyStatus={postApplyStatus} />
         <S.DetailCardSection cardRef={cardRef} postDetails={postDetails} />
         <S.CommentsSection postId={postId} />
