@@ -3,16 +3,16 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/commons/Button";
 import DESIGN_TOKEN from "@/styles/tokens";
 import DefaultUserImage from "./UserImage";
-import { UserProfile } from "@/types/userTypes";
 import { useUserInfoStore } from "@/stores/userInfoStore";
 import DefulatFormElement from "@/components/commons/Form/FormElement";
 import RHFDropdown from "@/components/commons/Form/RHFDropdown";
 import ModalTextFieldInput from "../ModalTextFieldInput";
 import { DROPDOWN_FORM_INFO } from "../../../constants/dropDown";
 import RHFStackPopover from "@/components/commons/Form/RHFStackPopover";
+import { UserInfoEditApiRequestDto } from "@/lib/api/myPage/type";
 
 interface EditUserProfileModalLayoutProps {
-  onSubmit: (data: UserProfile) => void;
+  onSubmit: (data: UserInfoEditApiRequestDto) => void;
 }
 
 export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfileModalLayoutProps) {
@@ -22,13 +22,13 @@ export default function EditUserProfileModalLayout({ onSubmit }: EditUserProfile
 
   const userInfo = useUserInfoStore((state) => state.userInfo ?? state.defaultUserInfo);
 
-  const { control, handleSubmit } = useForm<UserProfile>({
+  const { control, handleSubmit } = useForm<UserInfoEditApiRequestDto>({
     defaultValues: userInfo,
     mode: "onBlur",
   });
 
   /**TODO: 이미지가 먼저, url 받아오고 나머지랑 같이 보내야함 */
-  const onSubmitHandler = (data: UserProfile) => {
+  const onSubmitHandler = (data: UserInfoEditApiRequestDto) => {
     useUserInfoStore.setState({ userInfo: data });
     onSubmit(data);
     console.log(data);

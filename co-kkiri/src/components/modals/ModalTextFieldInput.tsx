@@ -2,11 +2,11 @@ import { Control, Controller, FieldValues } from "react-hook-form";
 import TextFieldInput from "@/components/modals/TextFieldInput";
 import { LABELS, ModalTextFieldInputConfig, PLACEHOLDERS, REQUIRED, RULES } from "@/constants/textInputRules";
 import styled from "styled-components";
-import { UserProfile } from "@/types/userTypes";
+import { UserInfoEditApiRequestDto } from "@/lib/api/myPage/type";
 
 interface ModalTextFieldInputProps {
   name: ModalTextFieldInputConfig;
-  control: Control<UserProfile>;
+  control: Control<UserInfoEditApiRequestDto>;
   className?: string;
 }
 

@@ -57,9 +57,9 @@ export type UserInfoEditApiRequestDto = {
   nickname: string;
   profileImageUrl: string;
   position: string;
-  career: number;
+  career: number | undefined;
   introduce: string;
-  stacks: string[];
+  stack: string[];
   link: string;
 };
 

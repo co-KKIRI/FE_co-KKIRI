@@ -1,16 +1,16 @@
 import { getUserInfo } from "@/lib/api/myPage";
-import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
+import { UserInfoApiResponseDto, UserInfoEditApiRequestDto } from "@/lib/api/myPage/type";
 import { SetterFromState } from "@/types/objectUtilTypes";
 import { UserProfile } from "@/types/userTypes";
 import { create } from "zustand";
 
 interface defaultUserInfo {
-  defaultUserInfo: UserProfile;
+  defaultUserInfo: UserInfoEditApiRequestDto;
 }
 
 interface UserInfoState {
   userId: number | null;
-  userInfo: UserProfile | null;
+  userInfo: UserInfoEditApiRequestDto | null;
   isLoading: boolean;
   isVisible: boolean;
 }
@@ -44,7 +44,7 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
   setIsLoading: (isLoading) => set({ isLoading }),
   setIsVisible: (isVisible) => set({ isVisible }),
   fetchUserInfo: async () => {
-    let userProfile: UserProfile | null = null;
+    let userProfile: UserInfoApiResponseDto | null = null;
     try {
       const data: UserInfoApiResponseDto = await getUserInfo();
       const { nickname, profileImageUrl, position, career, introduce, link } = data;
