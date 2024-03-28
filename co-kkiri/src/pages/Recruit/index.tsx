@@ -4,6 +4,7 @@ import { RecruitApiRequestDto } from "@/lib/api/post/type";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import usePostMutation from "@/hooks/useMutation/usePostMutation";
+import { FieldValues } from "react-hook-form";
 
 export default function Recruit() {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ export default function Recruit() {
     link: "",
   });
 
-  const handleSubmit = (data: RecruitApiRequestDto) => {
-    uploadMutation.mutate(data, {
+  const handleSubmit = (data: FieldValues) => {
+    uploadMutation.mutate(data as RecruitApiRequestDto, {
       onSuccess: (data) => {
         navigate(`/list/${data.postId}`);
       },

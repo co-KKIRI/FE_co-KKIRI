@@ -59,7 +59,6 @@ export default function Edit() {
         stacks: data.postDetails.stacks,
         link: data.postDetails.link,
       });
-      console.log(data);
     }
   }, [data]);
 
