@@ -1,20 +1,23 @@
 import ToggleButton from "@/components/commons/ToggleButton";
 import UserProfileCard from "@/components/commons/UserProfileCard";
-import { deleteUser, editVisibleProfileStatus, getVisibleProfileStatus } from "@/lib/api/myPage";
+import { deleteUser, editVisibleProfileStatus } from "@/lib/api/myPage";
 import { UserInfoApiResponseDto, VisibleProfileStatusApiRequestDto } from "@/lib/api/myPage/type";
+import { useUserInfoStore } from "@/stores/userInfoStore";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface UserInfoProps {
-  user: UserInfoApiResponseDto;
   visibleProfile: VisibleProfileStatusApiRequestDto;
 }
 
-export default function UserInfo({ user, visibleProfile }: UserInfoProps) {
+export default function UserInfo({ visibleProfile }: UserInfoProps) {
+  const user = useUserInfoStore();
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
   const editVisibleProfile = useMutation({
     mutationFn: (data: VisibleProfileStatusApiRequestDto) => editVisibleProfileStatus(data),
     onSuccess: () => {
@@ -49,13 +52,14 @@ export default function UserInfo({ user, visibleProfile }: UserInfoProps) {
   return (
     <Container>
       <UserProfileCard
-        nickname={user.nickname}
-        position={user.position}
-        career={user.career}
-        stacks={user.stack}
+        profileImageUrl={user.userInfo?.profileImageUrl || ""}
+        nickname={user.userInfo?.nickname || ""}
+        position={user.userInfo?.position}
+        career={user.userInfo?.career}
+        stack={user.userInfo?.stack || []}
         score={40}
-        introduce={user.introduce}
-        link={user.link}
+        introduce={user.userInfo?.introduce}
+        link={user.userInfo?.link}
         cardType="mypage"
       />
       <Box>

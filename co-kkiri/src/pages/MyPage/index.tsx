@@ -4,15 +4,9 @@ import TagList from "@/components/domains/myPage/TagList";
 import InvitedTeamList from "@/components/domains/myPage/InvitedTeamList";
 import ScrapList from "@/components/domains/myPage/ScrapList";
 import { useQuery } from "@tanstack/react-query";
-import { getInvitedTeamList, getScrapList, getUserInfo, getVisibleProfileStatus } from "@/lib/api/myPage";
+import { getInvitedTeamList, getScrapList, getVisibleProfileStatus } from "@/lib/api/myPage";
 
 export default function MyPage() {
-  const { data: userInfo, error: userInfoError } = useQuery({
-    queryKey: ["info"],
-    queryFn: () => getUserInfo(),
-    retry: false,
-  });
-
   // 리뷰는 아직 API 명세 안나옴.
 
   const { data: invitedTeamList, error: invitedTeamListError } = useQuery({
@@ -33,10 +27,6 @@ export default function MyPage() {
     retry: false,
   });
 
-  if (userInfoError) {
-    console.error(userInfoError);
-  }
-
   if (invitedTeamListError) {
     console.error(invitedTeamListError);
   }
@@ -53,15 +43,14 @@ export default function MyPage() {
     <S.Container>
       <S.Box>
         <S.Wrapper>
-          {userInfo && visibleProfile && <UserInfo user={userInfo} visibleProfile={visibleProfile} />}
+          {visibleProfile && <UserInfo visibleProfile={visibleProfile} />}
           <S.Lists>
             <TagList />
             {invitedTeamList && <InvitedTeamList count={invitedTeamList.data.length} teamList={invitedTeamList.data} />}
           </S.Lists>
         </S.Wrapper>
-        {scrapList && <ScrapList data={scrapList.data} />}
+        {scrapList && <ScrapList data={scrapList.data} onClick={() => {}} />}
       </S.Box>
-      {/* {userInfoError && <AuthModal onClose={handleModal} />} */}
     </S.Container>
   );
 }
