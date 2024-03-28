@@ -5,11 +5,12 @@ export default function Footer() {
   return (
     <Container>
       <LinkBox>
+        //TODO: 노션 작성 후 링크 연결
         <Link href="/">코끼리 소개</Link>
         <Link href="/">이용약관</Link>
         <Link href="/">개인정보처리방침</Link>
       </LinkBox>
-      <p>© 2024 COKKIRI</p>
+      <Organization>© 2024 COKKIRI</Organization>
     </Container>
   );
 }
@@ -22,11 +23,6 @@ const Container = styled.div`
   gap: 2rem;
   align-items: flex-start;
   justify-content: flex-start;
-
-  p {
-    ${typography.font12Regular}
-    color: ${color.black[3]}
-  }
 `;
 
 const LinkBox = styled.div`
@@ -37,9 +33,12 @@ const LinkBox = styled.div`
   justify-content: flex-start;
 `;
 
-// 코끼리 소개를 페이지로 따로 만들 것인지? => Link to
-// 아니면 노션같은 문서에 작성할 것인지? => a
 const Link = styled.a`
+  ${typography.font12Regular}
+  color: ${color.black[3]}
+`;
+
+const Organization = styled.div`
   ${typography.font12Regular}
   color: ${color.black[3]}
 `;
