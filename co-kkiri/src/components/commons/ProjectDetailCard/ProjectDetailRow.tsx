@@ -39,8 +39,7 @@ export default function ProjectDetailRow({ label, content, renderType }: Project
         }
         break;
       case "contactWay":
-        // 타입 가드를 사용하여 Link 컴포넌트임을 보장
-        if (typeof content === "object" && "label" in content) {
+        if (typeof content === "object" && "label" in content && "content" in content) {
           switch (content.label) {
             case "기타": {
               return <RowContent>기타 {content.content || ""}</RowContent>;
