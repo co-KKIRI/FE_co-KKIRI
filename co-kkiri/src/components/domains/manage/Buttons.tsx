@@ -2,27 +2,35 @@ import Button from "@/components/commons/Button";
 import { BUTTON_TYPE } from "@/constants/manageButtons";
 import useManageButtons from "@/hooks/useManageButtons";
 import DESIGN_TOKEN from "@/styles/tokens";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 
 interface ButtonsProps {
   buttonType: "READY" | "PROGRESS" | "PROGRESS_END" | "DONE";
   isLeader: boolean;
+  isReviewModalOpen: boolean;
+  setIsReviewModalOpen: Dispatch<SetStateAction<boolean>>;
+  postId: number;
 }
 
-export default function Buttons({ buttonType, isLeader }: ButtonsProps) {
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+export default function Buttons({
+  buttonType,
+  isLeader,
+  postId,
+  isReviewModalOpen,
+  setIsReviewModalOpen,
+}: ButtonsProps) {
   const numOfButtons = BUTTON_TYPE.filter(
     (buttonInfo) => buttonInfo.type === buttonType && buttonInfo.isLeader === isLeader,
   ).length;
   const { goToScoutPage, goToPostReviewPage, studyStartMutation, studyEndMutation } = useManageButtons();
 
-  const handleStudyStart = (teamMemberId: number) => {
-    studyStartMutation.mutate(teamMemberId);
+  const handleStudyStart = (postId: number) => {
+    studyStartMutation.mutate(postId);
   };
 
-  const handleStudyEnd = (teamMemberId: number) => {
-    studyEndMutation.mutate(teamMemberId);
+  const handleStudyEnd = (postId: number) => {
+    studyEndMutation.mutate(postId);
   };
 
   const handleReviewModalOpen = () => {
@@ -32,15 +40,15 @@ export default function Buttons({ buttonType, isLeader }: ButtonsProps) {
   const getOnClickHandler = (label: string) => {
     switch (label) {
       case "초대하기":
-        return goToScoutPage;
+        return goToScoutPage();
       case "스터디 시작":
-        return handleStudyStart;
+        return handleStudyStart(postId);
       case "스터디 완료":
-        return handleStudyEnd;
+        return handleStudyEnd(postId);
       case "리뷰 작성":
-        return goToPostReviewPage;
+        return goToPostReviewPage(postId);
       case "리뷰 보기":
-        return handleReviewModalOpen;
+        return handleReviewModalOpen();
       default:
         return () => {};
     }
@@ -62,7 +70,6 @@ export default function Buttons({ buttonType, isLeader }: ButtonsProps) {
             </ButtonWrapper>
           ),
       )}
-      {/* {isReviewModalOpen && 받은 리뷰 모달 컴포넌트} */}
     </Box>
   );
 }

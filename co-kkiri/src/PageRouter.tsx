@@ -45,7 +45,7 @@ const PageRouter = () => {
           <Route path={MY_PAGE} element={<MyPage />} />
           <Route path={MY_STUDY} element={<MyStudy />} />
           //TODO: Manage 페이지에 id값을 넘겨줘야함
-          <Route path={MANAGE} element={<Manage postId={1} />} />
+          <Route path={MANAGE} element={<Manage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path={GOOGLE_REDIRECT} element={<GoogleAuth />} />
