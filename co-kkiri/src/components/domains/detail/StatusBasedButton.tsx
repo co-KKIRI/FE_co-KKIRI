@@ -8,6 +8,7 @@ import { statusButtonConfig, StatusButtonConfig } from "@/constants/statusButton
 import { ConfirmType } from "@/components/modals/ConfirmModal";
 import { PostApplyStatus } from "@/lib/api/post/type";
 import usePostMutation from "@/hooks/useMutation/usePostMutation";
+import { Variable } from "lucide-react";
 
 interface MappedButtonProps {
   postApplyStatus: PostApplyStatus;
@@ -30,6 +31,14 @@ export default function StatusBasedButton({ postApplyStatus, postId, className }
       case "NOT_APPLIED":
         applyMutation.mutate(postId, {
           onSuccess: () => {
+            return;
+          },
+          onError: (error) => {
+            if (error.name === "Unauthorized") {
+              return; //토스트
+            }
+          },
+          onSettled: () => {
             confirmToggle();
           },
         });
