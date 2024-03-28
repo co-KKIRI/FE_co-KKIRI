@@ -14,8 +14,9 @@ export type UserInfoApiResponseDto = {
 
 //마이 페이지 초대된 팀 목록
 type InvitedTeam = {
+  postId: number;
   teamInviteId: number;
-  postTitle: string;
+  title: string;
 };
 
 export type InvitedTeamListApiResponseDto = {
