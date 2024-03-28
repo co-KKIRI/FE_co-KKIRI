@@ -4,7 +4,7 @@ import { useToggle } from "usehooks-ts";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CARD_CORNER_BUTTON, CardCornerButtonType } from "@/constants/cardCornerButton";
-import { scrapAdd, scrapCancel } from "@/lib/api/post";
+import { scrapAdd, scrapCancel } from "@/lib/api/scrap";
 
 interface CardCornerButtonProps {
   cardCornerType?: CardCornerButtonType;
@@ -17,13 +17,12 @@ interface CardCornerButtonProps {
  * CardCornerButton 컴포넌트는 카드 모서리에 위치하는 버튼(스크랩, 관리, 리뷰 작성, 리뷰 보기)을 표시합니다.
  *
  * @param {CardCornerButtonType} cardCornerType - 버튼의 타입을 결정합니다. ("scrap", "manage", "write", "view" 중 하나)
- * 각 타입의 icon 이미지, width, text, onClick은 CARD_CORNER_BUTTON객체에서 관리합니다.
+ * 각 타입의 icon, width, text는 CARD_CORNER_BUTTON객체에서 관리합니다.
  * @param {boolean} isScraped - 스크랩 버튼의 경우, 현재 스크랩이 되어있는지 여부를 나타냅니다.
  * @param {number} [postId] - 관리, 리뷰 작성 버튼의 경우, 해당 포스트의 ID입니다.
  *
  * @example
- * <CardCornerButton cardCornerType="scrap" isScraped={true} />
- * <CardCornerButton cardCornerType="manage" postId={123} />
+ * <CardCornerButton cardCornerType="scrap" isScraped={true} postId={123}/>
  */
 export default function CardCornerButton({
   cardCornerType = "scrap",
@@ -41,8 +40,9 @@ export default function CardCornerButton({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
       queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
-      //스크랩 리스트, 각종 카드리스트들 업데이트 하기
-      // toggle();
+      queryClient.invalidateQueries({ queryKey: ["postDetail", postId] });
+      //각종 카드리스트들 업데이트 하기
+      toggle();
     },
   });
 
@@ -51,8 +51,9 @@ export default function CardCornerButton({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
       queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
-      //스크랩 리스트, 각종 카드리스트들 업데이트 하기
-      // toggle();
+      queryClient.invalidateQueries({ queryKey: ["postDetail", postId] });
+      //각종 카드리스트들 업데이트 하기
+      toggle();
     },
   });
 
@@ -60,12 +61,16 @@ export default function CardCornerButton({
     e.preventDefault();
     e.stopPropagation();
 
-    if (cardCornerType === "scrap") {
-      isScraped ? CancelScrapMutation.mutate(postId) : ScrapMutation.mutate(postId);
-    } else if (cardCornerType === "manage") {
-      navigate?.(`/mystudy/${postId}`);
-    } else if (cardCornerType === "write") {
-      navigate?.(`/mystudy/${postId}/review`);
+    switch (cardCornerType) {
+      case "scrap":
+        isScrapedValue ? CancelScrapMutation.mutate(postId) : ScrapMutation.mutate(postId);
+        break;
+      case "manage":
+        navigate(`/mystudy/${postId}`);
+        break;
+      case "write":
+        navigate(`/mystudy/${postId}/review`);
+        break;
     }
   };
 

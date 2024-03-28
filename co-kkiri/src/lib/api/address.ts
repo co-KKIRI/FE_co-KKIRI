@@ -32,8 +32,6 @@ export const postAddress = {
   recruitStart: (postId: number) => `/post/${postId}/recruit-start`, // 백엔드 확인 요망
   //patch
   recruitComplete: (postId: number) => `/post/${postId}/recruit-complete`, // 백엔드 확인 요망
-  //post, delete
-  scrap: (postId: number) => `/post/${postId}/scrap`,
   //post
   invite: "/post/invite",
 };
@@ -58,8 +56,12 @@ export const commentAddress = {
   commentId: (postId: number, commentId: number) => `/post/${postId}/${commentId}`,
 };
 
-//post, delete
-export const scrapAddress = (postId: number) => `/post/${postId}/scrap`;
+export const scrapAddress = {
+  //post
+  scrap: (postId: number) => `/post/${postId}/scrap/create`,
+  //delete
+  cancel: (postId: number) => `/post/${postId}/scrap/delete`,
+};
 
 export const myPageAddress = {
   //get, patch

@@ -1,4 +1,3 @@
-import { UseMutationResult } from "@tanstack/react-query";
 import { ICONS } from "./icons";
 
 export type CardCornerButtonType = "scrap" | "manage" | "write" | "view";

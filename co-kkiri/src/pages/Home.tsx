@@ -9,10 +9,14 @@ import { HOT_AND_NEW_LIST } from "@/constants/hotAndNewList";
 import { HomeCardListType } from "@/types/homeCardListTypes";
 
 export default function Home() {
-  const { data: homeCardListData, error: homeCardListError } = useQuery({
+  const {
+    data: homeCardListData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["homeCardList"],
     queryFn: getHomeCardList,
-    staleTime: 1000 * 60 * 5,
+    gcTime: 0,
   });
 
   const homeCardList: HomeCardListType = homeCardListData ?? {
@@ -21,6 +25,15 @@ export default function Home() {
     newProjectLists: [],
     hotProjectLists: [],
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return console.error(error.message);
+    // 에러 및 로딩 처리 통일
+  }
 
   return (
     <Container>

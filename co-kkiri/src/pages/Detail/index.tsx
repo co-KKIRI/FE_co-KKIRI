@@ -2,7 +2,6 @@ import { useRef } from "react";
 import * as S from "./styled";
 import useComponentHeight from "@/hooks/useComponentHeight";
 import ScrollToTop from "@/components/commons/FloatingButton/ScrollToTop";
-import { studyDetailData } from "@/lib/mock/studyDetail";
 import { useQuery } from "@tanstack/react-query";
 import { getPostDetail } from "@/lib/api/post";
 import { useParams } from "react-router-dom";
@@ -37,7 +36,7 @@ export default function Detail() {
     <S.Container>
       <S.Box>
         <S.GoBackButton />
-        <S.ShareAndScrapButton isScraped={isScraped} />
+        <S.ShareAndScrapButton isScraped={isScraped} postId={Number(id)} />
         <S.PostSection postDetails={postDetails} postApplyStatus={postApplyStatus} />
         <S.DetailCardSection cardRef={cardRef} postDetails={postDetails} />
         <S.CommentsSection commentCount={postDetails.commentCount} />
