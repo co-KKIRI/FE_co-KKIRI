@@ -76,11 +76,6 @@ export type PostDetailApiResponseDto = {
   postApplyStatus: PostApplyStatus;
 };
 
-/**스터디 지원 */
-export type ApplyPostApiRequestDto = {
-  memberId: number;
-};
-
 /**스터디 지원 목록 */
 export type AppliedMemberListApiRequestDto = PaginationOptions;
 

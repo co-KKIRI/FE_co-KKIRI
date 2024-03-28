@@ -3,7 +3,6 @@ import { apiRequest } from "../axios";
 import {
   AppliedMemberListApiRequestDto,
   AppliedMemberListApiResponseDto,
-  ApplyPostApiRequestDto,
   InviteMemberRequestDto,
   ListApiRequestDto,
   ListApiResponseDto,
@@ -37,8 +36,7 @@ export const modifyPost = (postId: number, data: RecruitApiRequestDto) =>
 export const deletePost = (postId: number) => apiRequest("delete", postAddress.postId(postId));
 
 /** 스터디 지원하기 */
-export const applyPost = (postId: number, data: ApplyPostApiRequestDto) =>
-  apiRequest("post", postAddress.apply(postId), data);
+export const applyPost = (postId: number) => apiRequest("post", postAddress.apply(postId));
 
 /** 지원한 유저 목록 가져오기
  *

@@ -1,15 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPost, modifyPost, deletePost, applyPost } from "@/lib/api/post";
-import { ApplyPostApiRequestDto, RecruitApiRequestDto } from "@/lib/api/post/type";
+import { RecruitApiRequestDto } from "@/lib/api/post/type";
 
 interface ModifyPostPayload {
   postId: number;
   data: RecruitApiRequestDto;
-}
-
-interface ApplyPostPayload {
-  postId: number;
-  data: ApplyPostApiRequestDto;
 }
 
 export default function usePostMutation() {
@@ -35,8 +30,8 @@ export default function usePostMutation() {
   });
 
   const applyMutation = useMutation({
-    mutationFn: ({ postId, data }: ApplyPostPayload) => applyPost(postId, data),
-    onSuccess: (_, { postId }) => queryClient.invalidateQueries({ queryKey: ["postDetail", postId] }),
+    mutationFn: (postId: number) => applyPost(postId),
+    onSuccess: (_, postId) => queryClient.invalidateQueries({ queryKey: ["postDetail", postId] }),
     onError: (error) => console.error(error, error.message),
   });
 
