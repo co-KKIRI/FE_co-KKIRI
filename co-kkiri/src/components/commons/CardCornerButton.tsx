@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useToggle } from "usehooks-ts";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { CARD_CORNER_BUTTON, CardCornerButtonType } from "@/constants/cardCornerButton";
-import { scrapAdd, scrapCancel } from "@/lib/api/scrap";
+import useScrapMutations from "@/hooks/useMutation/useScrapMutation";
 
 interface CardCornerButtonProps {
   cardCornerType?: CardCornerButtonType;
@@ -31,31 +29,9 @@ export default function CardCornerButton({
   className,
 }: CardCornerButtonProps) {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const [isScrapedValue, toggle] = useToggle(isScraped);
   const { text, icon, width } = CARD_CORNER_BUTTON[cardCornerType as CardCornerButtonType];
-
-  const ScrapMutation = useMutation({
-    mutationFn: (postId: number) => scrapAdd(postId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
-      queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
-      queryClient.invalidateQueries({ queryKey: ["postDetail", postId] });
-      //각종 카드리스트들 업데이트 하기
-      toggle();
-    },
-  });
-
-  const CancelScrapMutation = useMutation({
-    mutationFn: (postId: number) => scrapCancel(postId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
-      queryClient.invalidateQueries({ queryKey: ["/my-page/scrap/list"] });
-      queryClient.invalidateQueries({ queryKey: ["postDetail", postId] });
-      //각종 카드리스트들 업데이트 하기
-      toggle();
-    },
-  });
+  const { ScrapMutation, CancelScrapMutation, isScrapedValue } = useScrapMutations(postId, isScraped);
+  const isLoading = ScrapMutation.isPending || CancelScrapMutation.isPending;
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -63,7 +39,10 @@ export default function CardCornerButton({
 
     switch (cardCornerType) {
       case "scrap":
-        isScrapedValue ? CancelScrapMutation.mutate(postId) : ScrapMutation.mutate(postId);
+        if (isLoading) {
+          return;
+        }
+        isScrapedValue ? CancelScrapMutation.mutate() : ScrapMutation.mutate();
         break;
       case "manage":
         navigate(`/mystudy/${postId}`);
@@ -75,7 +54,7 @@ export default function CardCornerButton({
   };
 
   return (
-    <Wrapper onClick={handleClick} className={className} $cardCornerType={cardCornerType}>
+    <Wrapper onClick={handleClick} className={className} $cardCornerType={cardCornerType} $isLoading={isLoading}>
       {text && <Text $cardCornerType={cardCornerType}>{text}</Text>}
       <Icon src={icon(isScrapedValue).src} alt={icon(isScrapedValue).alt} $width={width} />
     </Wrapper>
@@ -87,11 +66,11 @@ const {
   typography: { font12Bold },
 } = DESIGN_TOKEN;
 
-const Wrapper = styled.div<{ $cardCornerType: CardCornerButtonType | null }>`
+const Wrapper = styled.div<{ $cardCornerType: CardCornerButtonType | null; $isLoading: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  cursor: pointer;
+  ${({ $isLoading }) => ($isLoading ? "cursor: wait" : "cursor: pointer;")};
   ${({ $cardCornerType }) =>
     $cardCornerType === "write" || $cardCornerType === "view" ? `padding-top:0.5rem; padding-bottom: 1.5rem;` : ""};
 `;
