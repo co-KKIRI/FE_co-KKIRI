@@ -3,11 +3,13 @@ import SectionTitle from "../manage/SectionTitle";
 import Card from "@/components/commons/Card";
 import styled from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
+import Button from "@/components/commons/Button";
 
 interface ScrapListProps {
   data: MyScrapApiResponseDto["data"];
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
-export default function ScrapList({ data }: ScrapListProps) {
+export default function ScrapList({ data, onClick }: ScrapListProps) {
   const count = data.filter((scrap) => scrap.isScraped).length;
 
   return (
@@ -18,6 +20,9 @@ export default function ScrapList({ data }: ScrapListProps) {
           return scrap.isScraped && <Card key={scrap.postId} page="studyList" cardData={scrap} />;
         })}
       </Wrapper>
+      <Button variant="ghost" width={158} onClick={onClick}>
+        더보기
+      </Button>
     </Container>
   );
 }

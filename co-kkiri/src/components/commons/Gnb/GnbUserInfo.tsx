@@ -1,9 +1,9 @@
 import { IMAGES } from "@/constants/images";
 import * as S from "./Gnb.styled";
-import { UserProfile } from "@/types/userTypes";
+import { UserInfoEditApiRequestDto } from "@/lib/api/myPage/type";
 
 interface GnbUserInfoProps {
-  user: UserProfile;
+  user: UserInfoEditApiRequestDto;
   onClick: () => void;
 }
 

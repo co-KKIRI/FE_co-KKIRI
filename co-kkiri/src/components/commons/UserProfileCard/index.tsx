@@ -1,16 +1,10 @@
 import styled from "styled-components";
 import UserProfileCardLayout from "./UserProfileCardLayout";
 import DESIGN_TOKEN from "@/styles/tokens";
+import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
 
-interface UserProfileCardProps {
-  profileImgUrl?: string;
-  nickname: string;
-  position: string;
-  career: number;
-  stacks: string[];
+interface UserProfileCardProps extends UserInfoApiResponseDto {
   score: number;
-  introduce?: string;
-  link?: string;
   cardType?: "mypage" | "scout";
 }
 

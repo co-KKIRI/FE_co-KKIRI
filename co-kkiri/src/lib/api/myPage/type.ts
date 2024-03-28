@@ -5,11 +5,11 @@ import { PageMeta, PaginationOptions } from "../pageMetaType";
 export type UserInfoApiResponseDto = {
   nickname: string;
   profileImageUrl: string;
-  position: string;
-  career: number;
-  introduce: string;
-  stack: string[];
-  link: string;
+  position?: string;
+  career?: number;
+  introduce?: string;
+  stack?: string[];
+  link?: string;
 };
 
 //마이 페이지 초대된 팀 목록
@@ -56,11 +56,11 @@ export type MyScrapApiRequestDto = {
 export type UserInfoEditApiRequestDto = {
   nickname: string;
   profileImageUrl: string;
-  position: string;
-  career: number | undefined;
-  introduce: string;
-  stack: string[];
-  link: string;
+  position?: string;
+  career?: number;
+  introduce?: string;
+  stack?: string[];
+  link?: string;
 };
 
 // 마이 페이지 프로필 공개 여부 수정
