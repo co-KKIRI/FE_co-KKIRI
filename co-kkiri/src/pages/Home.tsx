@@ -31,7 +31,7 @@ export default function Home() {
   }
 
   if (error) {
-    return console.error(error.message);
+    return <div>{error.message}</div>;
     // 에러 및 로딩 처리 통일
   }
 

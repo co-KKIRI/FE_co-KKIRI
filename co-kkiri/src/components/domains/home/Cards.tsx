@@ -6,7 +6,7 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { ListApiResponseDto } from "@/lib/api/post/type";
 
 interface CardsProps {
-  cardDataList: ListApiResponseDto["postList"];
+  cardDataList: ListApiResponseDto["data"];
 }
 
 export default function Cards({ cardDataList }: CardsProps) {

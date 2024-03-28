@@ -4,6 +4,10 @@ import { SetterFromState } from "@/types/objectUtilTypes";
 import { UserProfile } from "@/types/userTypes";
 import { create } from "zustand";
 
+interface defaultUserInfo {
+  defaultUserInfo: UserProfile;
+}
+
 interface UserInfoState {
   userId: number | null;
   userInfo: UserProfile | null;
@@ -17,9 +21,18 @@ type UserInfoActions = {
   fetchUserInfo: () => Promise<void>;
 };
 
-type UserInfoStore = UserInfoState & UserInfoSetter & UserInfoActions;
+type UserInfoStore = defaultUserInfo & UserInfoState & UserInfoSetter & UserInfoActions;
 
 export const useUserInfoStore = create<UserInfoStore>((set) => ({
+  defaultUserInfo: {
+    nickname: "",
+    profileImageUrl: "",
+    position: "",
+    career: undefined,
+    introduce: "",
+    stack: [],
+    link: "",
+  },
   userId: null,
   profileImage: undefined,
   userInfo: null,
@@ -41,7 +54,7 @@ export const useUserInfoStore = create<UserInfoStore>((set) => ({
         position,
         career,
         introduce,
-        stacks: data.stack,
+        stack: data.stack,
         link,
       };
     } catch (error) {

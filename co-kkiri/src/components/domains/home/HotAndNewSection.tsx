@@ -9,7 +9,7 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 interface CardsProps {
   category: string;
   path: string;
-  cardDataList: ListApiResponseDto["postList"] | [];
+  cardDataList: ListApiResponseDto["data"] | [];
 }
 
 export default function HotAndNewSection({ category, path, cardDataList }: CardsProps) {

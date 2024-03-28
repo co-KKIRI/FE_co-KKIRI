@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import DESIGN_TOKEN from "@/styles/tokens";
 import { Option } from "../../Form/RHFDropdown";
 
-interface DropdownMenuProps<ValueType = string> {
+interface DropdownMenuProps {
   options: Option[];
   handleSelectOption: (option: Option) => void;
   isOpen: boolean;
@@ -26,14 +26,14 @@ export default function DropMenu({ options, isOpen, handleSelectOption, $borderT
   return (
     <Container $isOpen={isOpen} $borderType={$borderType}>
       {options.map((option: Option, index: number) => (
-        <Option
+        <OptionPart
           $borderType={$borderType}
           onClick={() => {
             handleSelectOption(option);
           }}
           key={`${option}-${index}`}>
           {option.label}
-        </Option>
+        </OptionPart>
       ))}
     </Container>
   );
@@ -74,7 +74,7 @@ const VARIANT_STYLE = {
   `,
 };
 
-const Option = styled.div<{ $borderType?: string }>`
+const OptionPart = styled.div<{ $borderType?: string }>`
   color: ${color.black[1]};
   cursor: pointer;
   ${({ $borderType }) => ($borderType === "round" ? typography.font12Semibold : typography.font16Medium)};
