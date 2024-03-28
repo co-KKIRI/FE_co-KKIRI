@@ -49,6 +49,7 @@ export type PostApplyStatus = "OWNER" | "INVITED" | "NOT_APPLIED" | "APPLIED" | 
 
 export type PostDetails = {
   postTitle: string; //제목
+  postMemberId: number; //글 작성자
   postContent: string; //내용
   userProfileImg: string; //작성자 프로필이미지
   userNickname: string; //작성자 닉네임

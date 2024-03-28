@@ -7,16 +7,41 @@ import InviteResponseModal from "@/components/modals/InviteResponseModal";
 import { statusButtonConfig, StatusButtonConfig } from "@/constants/statusButtonConfig";
 import { ConfirmType } from "@/components/modals/ConfirmModal";
 import { PostApplyStatus } from "@/lib/api/post/type";
+import usePostMutation from "@/hooks/useMutation/usePostMutation";
 
 interface MappedButtonProps {
   postApplyStatus: PostApplyStatus;
+  postId: number;
   className?: string;
 }
 
-export default function StatusBasedButton({ postApplyStatus, className }: MappedButtonProps) {
+export default function StatusBasedButton({ postApplyStatus, postId, className }: MappedButtonProps) {
   const { isOpen: isConfirmOpen, openToggle: confirmToggle } = useOpenToggle();
   const { isOpen: isInviteResponseOpen, openToggle: inviteResponseToggle } = useOpenToggle();
   const [confirmType, setConfirmType] = useState<ConfirmType>("apply");
+
+  const { applyMutation } = usePostMutation();
+
+  // const memberId = 15; //임시
+  // const applicant = { memberId };
+
+  const handleConfirmAgreeClick = () => {
+    // switch (postApplyStatus) {
+    //   case "APPLIED":
+    //     confirmToggle();
+    //     break;
+    //   case "NOT_APPLIED":
+    //     applyMutation.mutate(
+    //       { postId, data: applicant },
+    //       {
+    //         onSuccess: () => {
+    //           confirmToggle();
+    //         },
+    //       },
+    //     );
+    //     break;
+    // }
+  };
 
   const handleModal = () => {
     switch (postApplyStatus) {
@@ -44,10 +69,10 @@ export default function StatusBasedButton({ postApplyStatus, className }: Mapped
       <StyledButton
         onClick={handleModal}
         variant={statusButtonConfig[postApplyStatus].variant}
-        disabled={statusButtonConfig[postApplyStatus].disabled}>
+        disabled={statusButtonConfig[postApplyStatus].disabled || applyMutation.isPending}>
         {statusButtonConfig[postApplyStatus].text}
       </StyledButton>
-      {isConfirmOpen && <ConfirmModal type={confirmType} onClose={confirmToggle} />}
+      {isConfirmOpen && <ConfirmModal type={confirmType} onClose={confirmToggle} onClick={handleConfirmAgreeClick} />}
       {isInviteResponseOpen && <InviteResponseModal onClose={inviteResponseToggle} />}
     </div>
   );

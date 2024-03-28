@@ -39,6 +39,10 @@ export const Button = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
   line-height: normal;
+
+  &:disabled {
+    color: ${color.gray[2]};
+  }
 `;
 
 export const Date = styled.div`
