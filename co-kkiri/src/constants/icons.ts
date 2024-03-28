@@ -22,13 +22,12 @@ import arrowRightGray from "@/assets/icons/arrow_right_gray.svg";
 import scrollTop from "@/assets/icons/scroll_top.svg";
 import accept from "@/assets/icons/accept.svg";
 import reject from "@/assets/icons/reject.svg";
-import leaderIcon from "@/assets/icons/leader/leader.svg";
-import leaderBackground from "@/assets/icons/leader/leader_background.svg";
 import camera from "@/assets/icons/camera.svg";
 import circleArrow from "@/assets/icons/circle_arrow.svg";
 import manage from "@/assets/icons/manage.svg";
 import pen from "@/assets/icons/pen.svg";
 import link from "@/assets/icons/link.svg";
+import leader from "@/assets/icons/leader.svg";
 import { Images } from "@/types/imageTypes";
 
 export const ICONS: Images = {
@@ -137,14 +136,6 @@ export const ICONS: Images = {
     src: reject,
     alt: "거절",
   },
-  leaderIcon: {
-    src: leaderIcon,
-    alt: "리더 아이콘",
-  },
-  leaderBackground: {
-    src: leaderBackground,
-    alt: "리더 아이콘 배경",
-  },
   manage: {
     src: manage,
     alt: "관리 아이콘",
@@ -152,5 +143,9 @@ export const ICONS: Images = {
   pen: {
     src: pen,
     alt: "리뷰 작성 아이콘",
+  },
+  leader: {
+    src: leader,
+    alt: "리더 아이콘",
   },
 };

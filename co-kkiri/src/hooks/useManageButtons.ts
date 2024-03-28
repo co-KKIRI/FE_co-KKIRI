@@ -1,12 +1,6 @@
 import { studyEnd, studyStart } from "@/lib/api/post";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-interface ReviewModalProps {
-  isReviewModalOpen?: Dispatch<SetStateAction<boolean>>;
-  setIsModalOpen?: Dispatch<SetStateAction<boolean>>;
-}
 
 export default function useManageButtons() {
   const navigate = useNavigate();
