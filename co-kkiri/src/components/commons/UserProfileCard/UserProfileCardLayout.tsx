@@ -5,25 +5,19 @@ import { isEmptyValue } from "@/utils/validationUtils";
 import Button from "../Button";
 import { useState } from "react";
 import EditUserProfileModal from "@/components/modals/EditUserProfileModal";
+import { UserInfoApiResponseDto } from "@/lib/api/myPage/type";
 
-interface UserProfileCardProps {
-  profileImgUrl?: string;
-  nickname: string;
-  position: string | null;
-  career: number | null;
-  stacks: string[];
+interface UserProfileCardProps extends UserInfoApiResponseDto {
   score: number;
-  introduce?: string | null;
-  link?: string | null;
   cardType?: "mypage" | "scout";
 }
 
 export default function UserProfileCardLayout({
-  profileImgUrl,
+  profileImageUrl,
   nickname,
   position,
   career,
-  stacks,
+  stack,
   score,
   introduce,
   link,
@@ -39,12 +33,12 @@ export default function UserProfileCardLayout({
       <S.InfoBox>
         <S.ProgressWrapper>
           <CircularProgressBar size={130} strokeWidth={8} percentage={score} animationDuration={1} />
-          <S.UserImage profileImgUrl={profileImgUrl} onSelect={() => {}} />
+          <S.UserImage profileImgUrl={profileImageUrl} onSelect={() => {}} />
         </S.ProgressWrapper>
         <S.PositionChip label={isEmptyValue(position) ? emptyMessages.position : position!} />
         <S.Nickname>{nickname}</S.Nickname>
         <S.Career>{isEmptyValue(position) ? emptyMessages.career : `경력 ${career}년차`}</S.Career>
-        <Stacks stacks={stacks} />
+        <Stacks stacks={stack || []} />
       </S.InfoBox>
       {!(cardType === "scout") && (
         <S.IntroduceBox>

@@ -1,20 +1,22 @@
+import * as S from "./UserInfo.styled";
 import ToggleButton from "@/components/commons/ToggleButton";
 import UserProfileCard from "@/components/commons/UserProfileCard";
-import { deleteUser, editVisibleProfileStatus, getVisibleProfileStatus } from "@/lib/api/myPage";
-import { UserInfoApiResponseDto, VisibleProfileStatusApiRequestDto } from "@/lib/api/myPage/type";
-import DESIGN_TOKEN from "@/styles/tokens";
+import { deleteUser, editVisibleProfileStatus } from "@/lib/api/myPage";
+import { VisibleProfileStatusApiRequestDto } from "@/lib/api/myPage/type";
+import { useUserInfoStore } from "@/stores/userInfoStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigate, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
 interface UserInfoProps {
-  user: UserInfoApiResponseDto;
   visibleProfile: VisibleProfileStatusApiRequestDto;
 }
 
-export default function UserInfo({ user, visibleProfile }: UserInfoProps) {
+export default function UserInfo({ visibleProfile }: UserInfoProps) {
+  const user = useUserInfoStore();
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
   const editVisibleProfile = useMutation({
     mutationFn: (data: VisibleProfileStatusApiRequestDto) => editVisibleProfileStatus(data),
     onSuccess: () => {
@@ -47,61 +49,28 @@ export default function UserInfo({ user, visibleProfile }: UserInfoProps) {
   };
 
   return (
-    <Container>
+    <S.Container>
       <UserProfileCard
-        nickname={user.nickname}
-        position={user.position}
-        career={user.career}
-        stacks={user.stack}
+        profileImageUrl={user.userInfo?.profileImageUrl || ""}
+        nickname={user.userInfo?.nickname || ""}
+        position={user.userInfo?.position}
+        career={user.userInfo?.career}
+        stack={user.userInfo?.stack || []}
         score={40}
-        introduce={user.introduce}
-        link={user.link}
+        introduce={user.userInfo?.introduce}
+        link={user.userInfo?.link}
         cardType="mypage"
       />
-      <Box>
-        <Scout>
+      <S.Box>
+        <S.Scout>
           <ToggleButton
             content="스카우트 동의"
             onChange={() => handleEditVisibleProfile()}
             isChecked={visibleProfile.isVisibleProfile}
           />
-        </Scout>
-        <DeleteUser onClick={handleDeleteUser}>회원 탈퇴하기</DeleteUser>
-      </Box>
-    </Container>
+        </S.Scout>
+        <S.DeleteUser onClick={handleDeleteUser}>회원 탈퇴하기</S.DeleteUser>
+      </S.Box>
+    </S.Container>
   );
 }
-
-const { typography, color, mediaQueries } = DESIGN_TOKEN;
-
-const Container = styled.div`
-  width: 43rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
-`;
-
-const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 43rem;
-  ${mediaQueries.mobile} {
-    width: 32rem;
-  }
-`;
-
-const Scout = styled.div`
-  display: flex;
-  gap: 1.2rem;
-`;
-
-const DeleteUser = styled.button`
-  ${typography.font14Semibold}
-  color: ${color.gray[1]};
-`;

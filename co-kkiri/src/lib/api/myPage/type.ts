@@ -5,17 +5,18 @@ import { PageMeta, PaginationOptions } from "../pageMetaType";
 export type UserInfoApiResponseDto = {
   nickname: string;
   profileImageUrl: string;
-  position: string;
-  career: number;
-  introduce: string;
-  stack: string[];
-  link: string;
+  position?: string;
+  career?: number;
+  introduce?: string;
+  stack?: string[];
+  link?: string;
 };
 
 //마이 페이지 초대된 팀 목록
 type InvitedTeam = {
+  postId: number;
   teamInviteId: number;
-  postTitle: string;
+  title: string;
 };
 
 export type InvitedTeamListApiResponseDto = {
@@ -47,20 +48,22 @@ export type MyScrapApiResponseDto = {
 };
 
 export type MyScrapApiRequestDto = {
-  order: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
+  order?: "ASC" | "DESC"; // 정렬 순서, ASC: 옛날순, DESC: 최신순
   page: number; // 요청할 페이지
   take: number;
+  hasPreviousPage?: boolean;
+  hasNextPage?: boolean;
 };
 
 // 마이 페이지 유저 정보 수정
 export type UserInfoEditApiRequestDto = {
   nickname: string;
   profileImageUrl: string;
-  position: string;
-  career: number | undefined;
-  introduce: string;
-  stack: string[];
-  link: string;
+  position?: string;
+  career?: number;
+  introduce?: string;
+  stack?: string[];
+  link?: string;
 };
 
 // 마이 페이지 프로필 공개 여부 수정

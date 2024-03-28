@@ -1,7 +1,6 @@
 import { getUserInfo } from "@/lib/api/myPage";
 import { UserInfoApiResponseDto, UserInfoEditApiRequestDto } from "@/lib/api/myPage/type";
 import { SetterFromState } from "@/types/objectUtilTypes";
-import { UserProfile } from "@/types/userTypes";
 import { create } from "zustand";
 
 interface defaultUserInfo {

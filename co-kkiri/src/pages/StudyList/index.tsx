@@ -57,7 +57,7 @@ export default function StudyList() {
           <SearchInput placeholder="제목을 검색해보세요!" />
         </S.CategoryWrapper>
         {/* <Filters handleFilterChange={handleFilterChange} handleSortChange={handleSortChange} /> */}
-        <Cards data={data?.data} page="studyList" />
+        {data && <Cards data={data.data} page="studyList" />}
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPage} />
       </S.Box>
       <CreatePost />

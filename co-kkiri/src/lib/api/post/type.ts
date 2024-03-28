@@ -28,7 +28,7 @@ export type PostInfo = {
   positions: string[];
   stacks: string[];
   memberNickname: string;
-  memberProfileImg: string;
+  memberProfileImageUrl: string;
   viewCount: number;
   commentCount: number;
 };

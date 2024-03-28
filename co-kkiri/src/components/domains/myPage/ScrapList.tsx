@@ -1,49 +1,62 @@
-import { MyScrapApiResponseDto } from "@/lib/api/myPage/type";
+import * as S from "./ScrapList.styled";
 import SectionTitle from "../manage/SectionTitle";
 import Card from "@/components/commons/Card";
-import styled from "styled-components";
-import DESIGN_TOKEN from "@/styles/tokens";
+import Button from "@/components/commons/Button";
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
+import { getScrapList } from "@/lib/api/myPage";
+import NoResultText from "@/components/commons/NoResultText";
 
-interface ScrapListProps {
-  data: MyScrapApiResponseDto["data"];
-}
-export default function ScrapList({ data }: ScrapListProps) {
-  const count = data.filter((scrap) => scrap.isScraped).length;
+export default function ScrapList() {
+  const PAGE_LIMIT = 9;
+
+  const { data, error, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: ["/my-page/scrap/list"],
+    queryFn: ({ pageParam = 1 }) => getScrapList({ page: pageParam, take: PAGE_LIMIT }),
+    initialPageParam: 1,
+    getNextPageParam: (prevPage, pages) => {
+      if (prevPage.meta.hasNextPage) {
+        return pages.length + 1;
+      } else {
+        return undefined;
+      }
+    },
+    placeholderData: keepPreviousData,
+  });
+
+  const count = data?.pages[0].meta.totalCount;
+
+  if (error) {
+    console.error(error);
+  }
 
   return (
-    <Container>
+    <S.Container>
       <SectionTitle title="스터디/프로젝트 스크랩 목록" count={count} type="cardList" />
-      <Wrapper>
-        {data.map((scrap) => {
-          return scrap.isScraped && <Card key={scrap.postId} page="studyList" cardData={scrap} />;
-        })}
-      </Wrapper>
-    </Container>
+      {count ? (
+        <S.Box>
+          <S.Wrapper>
+            {data?.pages.map((page) =>
+              page.data.map(
+                (scrap) =>
+                  scrap.isScraped && (
+                    <div key={scrap.postId}>
+                      <Card page="studyList" cardData={scrap} />
+                    </div>
+                  ),
+              ),
+            )}
+          </S.Wrapper>
+          <Button
+            variant="ghost"
+            width={158}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}>
+            더보기
+          </Button>
+        </S.Box>
+      ) : (
+        <NoResultText text="스크랩 목록이 없어요." padding={60} color="gray" />
+      )}
+    </S.Container>
   );
 }
-
-const { mediaQueries } = DESIGN_TOKEN;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2rem;
-  width: 100%;
-`;
-
-const Wrapper = styled.div`
-  display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-
-  ${mediaQueries.tablet} {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-  }
-
-  ${mediaQueries.mobile} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;

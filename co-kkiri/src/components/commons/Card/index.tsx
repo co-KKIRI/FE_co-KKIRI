@@ -44,7 +44,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
     stack,
     stacks,
     memberNickname,
-    memberProfileImg,
+    memberProfileImageUrl,
     viewCount,
     commentCount,
   } = cardData;
@@ -77,7 +77,7 @@ export default function Card({ page = "home", cardData }: CardProps) {
         </S.UpperBox>
         <S.BreakLine />
         <S.FooterBox>
-          <UserInfo user={{ nickname: memberNickname, profileImageUrl: memberProfileImg }} />
+          <UserInfo user={{ nickname: memberNickname, profileImageUrl: memberProfileImageUrl }} />
           <S.CountWrapper>
             <Count icon={ICONS.eye} count={viewCount} />
             <Count icon={ICONS.comment} count={commentCount} />

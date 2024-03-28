@@ -20,11 +20,11 @@ export default function ScoutCards({ userProfiles }: ScoutCardsProps) {
           {userProfiles?.map(({ memberId, profileImageUrl, nickname, position, career, stacks: stacks, score }) => (
             <UserProfileCard
               key={memberId}
-              profileImgUrl={profileImageUrl}
+              profileImageUrl={profileImageUrl}
               nickname={nickname}
               position={position}
               career={career}
-              stacks={stacks}
+              stack={stacks}
               score={score}
               cardType="scout"
             />

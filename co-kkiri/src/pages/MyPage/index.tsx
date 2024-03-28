@@ -4,26 +4,14 @@ import TagList from "@/components/domains/myPage/TagList";
 import InvitedTeamList from "@/components/domains/myPage/InvitedTeamList";
 import ScrapList from "@/components/domains/myPage/ScrapList";
 import { useQuery } from "@tanstack/react-query";
-import { getInvitedTeamList, getScrapList, getUserInfo, getVisibleProfileStatus } from "@/lib/api/myPage";
+import { getInvitedTeamList, getVisibleProfileStatus } from "@/lib/api/myPage";
 
 export default function MyPage() {
-  const { data: userInfo, error: userInfoError } = useQuery({
-    queryKey: ["info"],
-    queryFn: () => getUserInfo(),
-    retry: false,
-  });
-
   // 리뷰는 아직 API 명세 안나옴.
 
   const { data: invitedTeamList, error: invitedTeamListError } = useQuery({
     queryKey: ["invite/list"],
     queryFn: () => getInvitedTeamList({ order: "DESC", page: 1, take: 100 }),
-    retry: false,
-  });
-
-  const { data: scrapList, error: scrapListError } = useQuery({
-    queryKey: ["/my-page/scrap/list"],
-    queryFn: () => getScrapList({ order: "DESC", page: 1, take: 100 }),
     retry: false,
   });
 
@@ -33,16 +21,8 @@ export default function MyPage() {
     retry: false,
   });
 
-  if (userInfoError) {
-    console.error(userInfoError);
-  }
-
   if (invitedTeamListError) {
     console.error(invitedTeamListError);
-  }
-
-  if (scrapListError) {
-    console.error(scrapListError);
   }
 
   if (visibleProfileError) {
@@ -53,15 +33,14 @@ export default function MyPage() {
     <S.Container>
       <S.Box>
         <S.Wrapper>
-          {userInfo && visibleProfile && <UserInfo user={userInfo} visibleProfile={visibleProfile} />}
+          {visibleProfile && <UserInfo visibleProfile={visibleProfile} />}
           <S.Lists>
             <TagList />
             {invitedTeamList && <InvitedTeamList count={invitedTeamList.data.length} teamList={invitedTeamList.data} />}
           </S.Lists>
         </S.Wrapper>
-        {scrapList && <ScrapList data={scrapList.data} />}
+        <ScrapList />
       </S.Box>
-      {/* {userInfoError && <AuthModal onClose={handleModal} />} */}
     </S.Container>
   );
 }
