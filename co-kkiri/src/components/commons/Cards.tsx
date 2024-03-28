@@ -6,13 +6,12 @@ import useResponsiveSidebar from "@/hooks/useResponsiveSideBar";
 import { Pages } from "@/types/pagesTypes";
 
 interface CardsProps {
-  data: ListApiResponseDto["data"] | null | undefined;
+  data: ListApiResponseDto["data"] | [];
   page?: Pages;
 }
 
 export default function Cards({ data, page }: CardsProps) {
   const isSidebarOpenNarrow = useResponsiveSidebar();
-
   return (
     <Box>
       {data ? (
