@@ -31,7 +31,7 @@ export const createPost = (data: RecruitApiRequestDto): Promise<{ postId: number
 
 /** 스터디 글 수정하기 */
 export const modifyPost = (postId: number, data: RecruitApiRequestDto) =>
-  apiRequest<{ result: { postId: number } }, RecruitApiRequestDto>("patch", postAddress.modify(postId), data);
+  apiRequest<{ result: { status: 200 } }, RecruitApiRequestDto>("patch", postAddress.modify(postId), data);
 
 /** 스터디 글 삭제하기 */
 export const deletePost = (postId: number) => apiRequest("delete", postAddress.postId(postId));
