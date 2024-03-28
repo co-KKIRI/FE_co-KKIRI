@@ -14,23 +14,26 @@ interface ApplyPostPayload {
 
 export default function usePostMutation() {
   const queryClient = useQueryClient();
-  const invalidateStudyList = () => queryClient.invalidateQueries({ queryKey: ["studyList"] }); //스터디리스트 쿼리키 반영
+  const invalidateCardList = () => {
+    queryClient.invalidateQueries({ queryKey: ["/post/list"] }),
+      queryClient.invalidateQueries({ queryKey: ["homeCardList"] });
+  };
 
   const uploadMutation = useMutation({
     mutationFn: (data: RecruitApiRequestDto) => createPost(data),
-    onSuccess: invalidateStudyList,
+    onSuccess: invalidateCardList,
     onError: (error) => console.error(error, error.message),
   });
 
   const editMutation = useMutation({
     mutationFn: ({ postId, data }: ModifyPostPayload) => modifyPost(postId, data),
-    onSuccess: invalidateStudyList,
+    onSuccess: invalidateCardList,
     onError: (error) => console.error(error, error.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (postId: number) => deletePost(postId),
-    onSuccess: invalidateStudyList,
+    onSuccess: invalidateCardList,
     onError: (error) => console.error(error, error.message),
   });
 

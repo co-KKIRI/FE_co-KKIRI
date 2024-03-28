@@ -4,7 +4,11 @@ import { FieldErrors, FieldValues } from "react-hook-form";
 
 // handleSubmit 조건 처리
 export const validateFormData = (errors: FieldErrors<FieldValues>): boolean => {
-  return !errors.recruitEndAt && !errors.progressWay && !errors.positions && !errors.link;
+  if (!errors.recruitEndAt && !errors.progressWay && !errors.positions && !errors.link) {
+    return false;
+  } else {
+    return true;
+  }
 };
 // index에 해당하는 옵션 식별
 export const findOptionByValue = <ValueType, OptionType>(
