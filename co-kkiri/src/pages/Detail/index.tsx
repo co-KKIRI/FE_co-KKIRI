@@ -16,7 +16,13 @@ export default function Detail() {
     isPending,
     isError,
     error,
-  } = useQuery({ queryKey: ["postDetail", postId], queryFn: () => getPostDetail(postId) });
+  } = useQuery({
+    queryKey: ["postDetail", postId],
+    queryFn: () => getPostDetail(postId),
+    retry: 0,
+    refetchOnWindowFocus: false,
+    staleTime: 60 * 1000,
+  });
 
   const cardHeight = useComponentHeight<PostDetailApiResponseDto | undefined>(detailData, cardRef, 407);
 
