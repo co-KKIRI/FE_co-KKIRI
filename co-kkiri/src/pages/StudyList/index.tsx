@@ -9,20 +9,18 @@ import CreatePost from "@/components/commons/FloatingButton/CreatePost";
 import { CategoryListFilter, categoryListFilter } from "@/constants/categories";
 import { CategoryList } from "@/types/categoryTypes";
 import { getFilterKey } from "@/utils/objectUtils";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { getPostList } from "@/lib/api/post";
 import useStudyListStore from "@/stores/studyListStore";
-import { useItemsPerPage } from "@/hooks/useItemsPerPage";
 
 export default function StudyList() {
-  const queryClient = useQueryClient();
   const { currentCategory, setCurrentCategory } = useStudyListStore();
-  const itemsPerPage = useItemsPerPage();
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ["/post/list", { meetingType: currentCategory, page: currentPage, take: itemsPerPage }],
-    queryFn: () => getPostList({ meetingType: currentCategory, page: currentPage, take: itemsPerPage }),
+    queryKey: ["/post/list", { meetingType: currentCategory, page: currentPage, take: 12 }],
+    queryFn: () => getPostList({ meetingType: currentCategory, page: currentPage, take: 12 }),
+    placeholderData: keepPreviousData,
   });
 
   if (error) {
@@ -45,17 +43,6 @@ export default function StudyList() {
   useEffect(() => {
     setCurrentPage(1);
   }, [currentCategory]);
-
-  // 다음 페이지 변경 시, prefetch
-  useEffect(() => {
-    if (currentPage < totalPage) {
-      const nextPage = currentPage + 1;
-      queryClient.prefetchQuery({
-        queryKey: ["/post/list", { meetingType: currentCategory, page: nextPage, take: itemsPerPage }],
-        queryFn: () => getPostList({ meetingType: currentCategory, page: nextPage, take: itemsPerPage }),
-      });
-    }
-  }, [data, currentPage, currentCategory, itemsPerPage, queryClient, totalPage]);
 
   return (
     <S.Container>
